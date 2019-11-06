@@ -1,10 +1,14 @@
 import cocos
+from cocos.text import Label
+from cocos import scene
+from cocos.layer import Layer
+from cocos.director import director
 
-class Window(cocos.layer.Layer):
-    
+
+class rendererWindow(Layer):
+
     def __init__(self):
-        super(Window, self).__init__()
-        cocos.director.director.init(height=1280, width=720, caption="Hello World!")
-        cocos.director.director.run(cocos.scene.Scene(Window()))
+        super(rendererWindow, self).__init__()
 
-window1 = Window()
+director.init()
+director.run(scene.Scene(rendererWindow()))
