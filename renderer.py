@@ -12,3 +12,6 @@ class rendererWindow(Layer):
 
 director.init(width=1280, height=720, caption="Game", fullscreen=False)
 director.run(scene.Scene(rendererWindow()))
+
+#if __name__=="__main__":
+ #   print("This file cannot be run directly, please run main.py to start the game.")
