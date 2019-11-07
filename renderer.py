@@ -15,3 +15,6 @@ class BaseWindow(Layer):
 if __name__=="__main__":
     print("This file cannot be run directly, please run main.py to start the game.")
     main.main()
+
+
+    
