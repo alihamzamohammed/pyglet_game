@@ -10,14 +10,14 @@ config = {}
 font = ""
 
 def configread(configFile):
-    dict1 = {}
+    temp = {}
     conf = configparser.ConfigParser()
     conf.read(configFile)
     for section in conf.sections():
         for option in conf.options(section):
-            dict1[option] = conf.get(section, option)
-        config[section] = dict1
-        dict1 = {}
+            temp[option] = conf.get(section, option)
+        config[section] = temp
+        temp = {}
 
 def resourceLoad():
     respack = config["Core"]["defaultresource"]
