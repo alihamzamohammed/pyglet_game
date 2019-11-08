@@ -23,7 +23,7 @@ def resourceLoad():
     respack = config["Core"]["defaultresource"]
     global font
     font = "resource/" + respack + "/fonts/default.ttf"
-    cocos.pyglet.font.add_file(font)
+    #cocos.pyglet.font.add_file(font)
 
 def main():
     director.init(width=1280, height=720, caption="Game", fullscreen=False)
@@ -32,5 +32,4 @@ def main():
 if __name__=="__main__":
     configread(defaultconfigfile)
     resourceLoad()
-    print(font)
     main()  
