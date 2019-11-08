@@ -13,8 +13,14 @@ class BaseWindow(Layer):
 class loadingScreen(BaseWindow):
     def __init__(self):
         super(loadingScreen, self).__init__()
+        title = cocos.text.Label(
+            "Game Title",
+            font_name="Yoster Island",
+            font_size=32
+        )
+        title.position = 100, 100
+        self.add(title)
 
 
 if __name__=="__main__":
     print("This file cannot be run directly, please run main.py to start the game.")
-
