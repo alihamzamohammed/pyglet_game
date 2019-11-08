@@ -7,6 +7,7 @@ import configparser
 
 defaultconfigfile = "settings.ini"
 config = {}
+font = ""
 
 def configread(configFile):
     dict1 = {}
@@ -19,8 +20,9 @@ def configread(configFile):
         dict1 = {}
 
 def resourceLoad():
-    #configread(defaultconfigfile).get()
-    pass
+    respack = config["Core"]["defaultresource"]
+    global font
+    font = "resource/" + respack + "/fonts/default.ttf"
 
 def main():
     director.init(width=1280, height=720, caption="Game", fullscreen=False)
@@ -28,5 +30,5 @@ def main():
 
 if __name__=="__main__":
     configread(defaultconfigfile)
-    print(config)
+    print(font)
     main()  
