@@ -25,6 +25,6 @@ def main():
     director.run(scene.Scene(renderer.loadingScreen()))
 
 if __name__=="__main__":
-    configread()
+    configread(defaultconfigfile)
     print(config)
     main()  
