@@ -19,7 +19,8 @@ def configread(configFile):
         dict1 = {}
 
 def resourceLoad():
-    configread(defaultconfigfile).get()
+    #configread(defaultconfigfile).get()
+    pass
 
 def main():
     director.init(width=1280, height=720, caption="Game", fullscreen=False)
