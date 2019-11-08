@@ -14,7 +14,7 @@ def configread(configFile):
     conf.read(configFile)
     for section in conf.sections():
         for option in conf.options(section):
-            dict[option] = conf.get(section, option)
+            dict1[option] = conf.get(section, option)
         config[section] = dict1
         dict1 = {}
 
