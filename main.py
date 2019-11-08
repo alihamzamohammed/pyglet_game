@@ -10,7 +10,8 @@ config = {}
 
 def configread(configFile):
     dict1 = {}
-    conf = configparser.ConfigParser.read(configFile)
+    conf = configparser.ConfigParser
+    conf.read(configFile)
     for section in conf.sections():
         for option in section:
             dict[option] = conf.get(section, option)
