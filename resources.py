@@ -2,6 +2,8 @@ import main
 import cocos
 from cocos import text
 from fontTools import ttLib
+import logging
+from logging import addLog
 
 resourcePack = "default" 
 font = ""
@@ -30,7 +32,7 @@ def getResourcePack():
         resourcePack = main.config["Core"]["defaultresource"]
     else:
         resourcePack = "default"
-        print("No specified resource pack, using default!")
+        addLog("No specified resource pack, using default!", logging.loglevel["warning"])
 
 def fontLoad():
     if not resourcePack == "":
