@@ -5,6 +5,7 @@ from cocos import scene
 from cocos import text
 import renderer
 import configparser
+import fontTools
 
 defaultconfigfile = "settings.ini"
 config = {}
@@ -20,11 +21,6 @@ def configread(configFile):
         config[section] = temp
         temp = {}
 
-def resourceLoad():
-    respack = config["Core"]["defaultresource"]
-    global font
-    font = "resources\\" + respack + "\\fonts\\default.ttf"
-    cocos.text.pyglet.font.add_file(font)
 
 def main():
     director.init(width=1280, height=720, caption="Game", fullscreen=False)
