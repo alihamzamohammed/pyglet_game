@@ -2,12 +2,13 @@ import main
 import cocos
 from cocos import text
 from fontTools import ttLib
+
 resourcePack = "default" 
 font = ""
 
 FONT_SPECIFIER_NAME_ID = 4
 FONT_SPECIFIER_FAMILY_ID = 1
-def shortName( font ):
+def shortName(font):
     """Get the short name from the font's names table"""
     name = ""
     family = ""
@@ -27,7 +28,7 @@ def getResourcePack():
     global resourcePack
     resourcePack = main.config["Core"]["defaultresource"]
 
-def resourceLoad():
+def fontLoad():
     if not resourcePack == "":
         fontpath = "resources\\" + resourcePack + "\\fonts\\default.ttf"
         cocos.text.pyglet.font.add_file(fontpath)
@@ -36,3 +37,9 @@ def resourceLoad():
         font = shortName(tt)
     else:
         print("Resource pack error!")
+
+def resourceLoad():
+    """Loads all resources from the set resource pack"""
+    getResourcePack()
+    fontLoad()
+    

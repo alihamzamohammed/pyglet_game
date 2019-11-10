@@ -28,5 +28,4 @@ def main():
 if __name__=="__main__":
     configread(defaultconfigfile)
     resources.resourceLoad()
-    print(resources.font)
     main()  
