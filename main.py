@@ -29,6 +29,6 @@ def main():
 if __name__=="__main__":
     configread(defaultconfigfile)
     resources.resourceLoad()
-    logger.main()
+    logger.init()
     main()
     logger.addLog("Starting game.", logger.loglevel["info"])

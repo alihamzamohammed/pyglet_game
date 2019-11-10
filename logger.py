@@ -17,6 +17,6 @@ def addLog(message, level = loglevel["info"]):
             log.write(message)
             log.close()
 
-def main():
+def init():
     if main.config["Core"]["Log"] == True:
         logpath = main.config["Core"]["LogLocation"]
