@@ -21,7 +21,6 @@ def configread(configFile):
         config[section] = temp
         temp = {}
 
-
 def main():
     director.init(width=1280, height=720, caption="Game", fullscreen=False)
     director.run(scene.Scene(renderer.loadingScreen()))
@@ -29,4 +28,5 @@ def main():
 if __name__=="__main__":
     configread(defaultconfigfile)
     resources.resourceLoad()
+    print(resources.font)
     main()  
