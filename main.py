@@ -5,6 +5,7 @@ from cocos import scene
 from cocos import text
 import renderer
 import configparser
+import resources
 
 defaultconfigfile = "settings.ini"
 config = {}
@@ -27,5 +28,5 @@ def main():
 
 if __name__=="__main__":
     configread(defaultconfigfile)
-    resourceLoad()
+    resources.resourceLoad()
     main()  
