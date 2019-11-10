@@ -23,7 +23,7 @@ def configread(configFile):
 def resourceLoad():
     respack = config["Core"]["defaultresource"]
     global font
-    font = os.getcwd() + "resource/" + respack + "/fonts/default.ttf"
+    font = "resources\\" + respack + "\\fonts\\default.ttf"
     cocos.text.pyglet.font.add_file(font)
 
 def main():
