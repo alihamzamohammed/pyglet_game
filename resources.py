@@ -26,8 +26,8 @@ def shortName(font):
 
 def getResourcePack():
     global resourcePack
-    if not main.config == {}:
-        resourcePack = main.config["Core"]["defaultresource"]
+    if not main.configuration == {"null": True}:
+        resourcePack = main.configuration["Core"]["defaultresource"]
     else:
         resourcePack = "default"
         logger.addLog("No specified resource pack, using default!", logger.loglevel["warning"])
