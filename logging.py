@@ -15,5 +15,6 @@ def log(message, level = info):
             log.write(message)
             log.close()
 
-if main.config["Core"]["Log"] == True:
-    logpath = main.config["Core"]["LogLocation"]
+def main():
+    if main.config["Core"]["Log"] == True:
+        logpath = main.config["Core"]["LogLocation"]
