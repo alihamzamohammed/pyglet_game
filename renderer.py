@@ -4,6 +4,7 @@ from cocos import scene
 from cocos.layer import Layer
 from cocos.director import director
 import main
+import resources
 
 class BaseWindow(Layer):
 
@@ -15,7 +16,7 @@ class loadingScreen(BaseWindow):
         super(loadingScreen, self).__init__()
         title = cocos.text.Label(
             "Game Title",
-            font_name=main.font,
+            font_name=resources.font[1],
             font_size=32
         )
         title.position = 100, 100
