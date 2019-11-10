@@ -6,7 +6,7 @@ from cocos import text
 import renderer
 import configparser
 import resources
-import logging
+import logger
 
 defaultconfigfile = "settings.ini"
 config = {}
@@ -29,5 +29,6 @@ def main():
 if __name__=="__main__":
     configread(defaultconfigfile)
     resources.resourceLoad()
-    logging.main()
-    main()  
+    logger.main()
+    main()
+    logger.addLog("Starting game.", logger.loglevel["info"])
