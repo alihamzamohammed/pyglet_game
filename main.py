@@ -6,6 +6,7 @@ from cocos import text
 import renderer
 import configparser
 import resources
+import logging
 
 defaultconfigfile = "settings.ini"
 config = {}
@@ -28,4 +29,5 @@ def main():
 if __name__=="__main__":
     configread(defaultconfigfile)
     resources.resourceLoad()
+    logging.main()
     main()  
