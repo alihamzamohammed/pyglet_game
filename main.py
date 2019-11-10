@@ -5,7 +5,6 @@ from cocos import scene
 from cocos import text
 import renderer
 import configparser
-import fontTools
 
 defaultconfigfile = "settings.ini"
 config = {}
