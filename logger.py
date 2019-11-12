@@ -25,4 +25,4 @@ def init():
     global loglevel
     if cfg.configuration["Core"]["log"] == "True":
         logpath = cfg.configuration["Core"]["loglocation"]
-    addLog("New execution, at: " + str(datetime.datetime.now()) + "\n", True)
+    addLog("New execution, at: " + str(datetime.datetime.now()) + "\n", loglevel["info"], True)
