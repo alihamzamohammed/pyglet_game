@@ -20,7 +20,7 @@ def configread(configFile):
         temp = {}
 
 def main():
-    director.init(width=int(cfg.configuration["Core"]["defaultres"].split("x")[0]), height=int(cfg.configuration["Core"]["defaultres"].split("x")[1]), caption="Game", fullscreen=True)
+    director.init(width=int(cfg.configuration["Core"]["defaultres"].split("x")[0]), height=int(cfg.configuration["Core"]["defaultres"].split("x")[1]), caption="Game", fullscreen=bool(cfg.configuration["Core"]["fullscreen"]))
     director.run(scene.Scene(renderer.loadingScreen()))
 
 if __name__=="__main__":
