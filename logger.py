@@ -1,4 +1,4 @@
-import main
+import cfg
 import os
 
 logpath = ""
@@ -18,6 +18,6 @@ def addLog(message, level = loglevel["info"]):
             log.close()
 
 def init():
-    print(main.configuration)
-    #if main.configuration["Core"]["log"] == True:
-        #logpath = main.configuration["Core"]["LogLocation"]
+    print(cfg.configuration)
+    if cfg.configuration["Core"]["log"] == True:
+        logpath = cfg.configuration["Core"]["LogLocation"]

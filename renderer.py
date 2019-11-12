@@ -3,7 +3,6 @@ from cocos.text import Label
 from cocos import scene
 from cocos.layer import Layer
 from cocos.director import director
-import main
 import resources
 
 class BaseWindow(Layer):

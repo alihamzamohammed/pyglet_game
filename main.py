@@ -1,3 +1,4 @@
+import cfg
 import sys, os
 import cocos
 from cocos.director import director
@@ -15,7 +16,7 @@ def configread(configFile):
     for section in conf.sections():
         for option in conf.options(section):
             temp[option] = conf.get(section, option)
-        configuration[section] = temp
+        cfg.configuration[section] = temp
         temp = {}
 
 def main():
@@ -23,10 +24,10 @@ def main():
     director.run(scene.Scene(renderer.loadingScreen()))
 
 if __name__=="__main__":
+    cfg.init()
     defaultconfigfile = "settings.ini"
-    configuration = {}
     configread(defaultconfigfile)
-    print(configuration)
+    print(cfg.configuration)
     resources.resourceLoad()
     logger.init()
     main()

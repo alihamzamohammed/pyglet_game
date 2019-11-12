@@ -1,4 +1,4 @@
-import main
+import cfg
 import cocos
 from cocos import text
 from fontTools import ttLib
@@ -26,8 +26,8 @@ def shortName(font):
 
 def getResourcePack():
     global resourcePack
-    if not main.configuration == {}:
-        resourcePack = main.configuration["Core"]["defaultresource"]
+    if not cfg.configuration == {}:
+        resourcePack = cfg.configuration["Core"]["defaultresource"]
     else:
         resourcePack = "default"
         logger.addLog("No specified resource pack, using default!", logger.loglevel["warning"])
