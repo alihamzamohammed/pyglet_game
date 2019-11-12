@@ -17,7 +17,7 @@ def addLog(message, level = loglevel["info"], first = False):
     print(message)
     if not logpath == "":
             log = open(logpath, "a+")
-            log.write(message)
+            log.write("\n" + message)
             log.close()
 
 def init():
@@ -25,4 +25,4 @@ def init():
     global loglevel
     if cfg.configuration["Core"]["log"] == "True":
         logpath = cfg.configuration["Core"]["loglocation"]
-    addLog("New execution, at: " + str(datetime.datetime.now()) + "\n", loglevel["info"], True)
+    addLog("New execution, at: " + str(datetime.datetime.now()), loglevel["info"], True)
