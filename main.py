@@ -20,7 +20,7 @@ def configread(configFile):
         temp = {}
 
 def main():
-    director.init(width=1280, height=720, caption="Game", fullscreen=False)
+    director.init(width=int(cfg.configuration["Core"]["defaultres"].split("x")[0]), height=int(cfg.configuration["Core"]["defaultres"].split("x")[1]), caption="Game", fullscreen=True)
     director.run(scene.Scene(renderer.loadingScreen()))
 
 if __name__=="__main__":
@@ -31,3 +31,4 @@ if __name__=="__main__":
     logger.init()
     logger.addLog("Starting game.", logger.loglevel["info"])
     main()
+
