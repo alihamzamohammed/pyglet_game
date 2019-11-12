@@ -16,9 +16,12 @@ class loadingScreen(BaseWindow):
         title = cocos.text.Label(
             "Game Title",
             font_name=resources.font[1],
-            font_size=32
+            font_size=32,
+            anchor_y="top",
+            anchor_x="center"
         )
-        title.position = 100, 100
+        x, y = cocos.director.director.get_window_size()
+        title.position = x / 2, y * 0.95
         self.add(title)
 
 
