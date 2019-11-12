@@ -38,3 +38,13 @@ INFO: New execution, at: 2019-11-12 12:48:36.867503
 INFO: Starting game.
 INFO: New execution, at: 2019-11-12 12:58:56.851892
 INFO: Starting game.
+INFO: New execution, at: 2019-11-12 22:54:30.719345
+INFO: Starting game.
+INFO: New execution, at: 2019-11-12 22:54:59.658321
+INFO: Starting game.
+INFO: New execution, at: 2019-11-12 22:56:58.779286
+INFO: Starting game.
+INFO: New execution, at: 2019-11-12 22:59:40.988002
+INFO: Starting game.
+INFO: New execution, at: 2019-11-12 23:00:04.516923
+INFO: Starting game.INFO: Resolution is 1280x720INFO: Fullscreen is disabled
