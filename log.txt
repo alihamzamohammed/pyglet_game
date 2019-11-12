@@ -1,1 +1,3 @@
+INFO: Starting game.INFO: 
+New execution, at: 2019-11-12 11:58:20.545344
 INFO: Starting game.
