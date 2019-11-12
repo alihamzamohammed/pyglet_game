@@ -27,8 +27,7 @@ if __name__=="__main__":
     cfg.init()
     defaultconfigfile = "settings.ini"
     configread(defaultconfigfile)
-    print(cfg.configuration)
     resources.resourceLoad()
     logger.init()
-    main()
     logger.addLog("Starting game.", logger.loglevel["info"])
+    main()

@@ -18,6 +18,8 @@ def addLog(message, level = loglevel["info"]):
             log.close()
 
 def init():
-    print(cfg.configuration)
-    if cfg.configuration["Core"]["log"] == True:
-        logpath = cfg.configuration["Core"]["LogLocation"]
+    global logpath
+    global loglevel
+    if cfg.configuration["Core"]["log"] == "True":
+        logpath = cfg.configuration["Core"]["loglocation"]
+    print(logpath)
