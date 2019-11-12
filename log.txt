@@ -1,0 +1,6 @@
+
+
+INFO: New execution, at: 2019-11-12 23:03:01.493877
+INFO: Starting game.
+INFO: Resolution is 1280x720
+INFO: Fullscreen is disabled

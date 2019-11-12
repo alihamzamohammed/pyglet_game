@@ -28,7 +28,7 @@ def main():
         logger.addLog("Fullscreen is enabled", logger.loglevel["info"])
     else:
         logger.addLog("Fullscreen is disabled", logger.loglevel["info"])
-        
+
     director.init(width=reswidth, height=resheight, caption="Game", fullscreen=fullscreen)
     director.run(scene.Scene(renderer.loadingScreen()))
 
@@ -40,4 +40,3 @@ if __name__=="__main__":
     logger.init()
     logger.addLog("Starting game.", logger.loglevel["info"])
     main()
-
