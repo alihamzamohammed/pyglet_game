@@ -14,3 +14,18 @@ INFO: New execution, at: 2019-11-13 14:37:09.550706
 INFO: Starting game.
 INFO: Resolution is 1280x720
 INFO: Fullscreen is enabled
+
+INFO: New execution, at: 2019-11-13 14:40:44.230569
+INFO: Starting game.
+INFO: Resolution is 1280x720
+INFO: Fullscreen is disabled
+
+INFO: New execution, at: 2019-11-13 14:47:19.360673
+INFO: Starting game.
+INFO: Resolution is 1280x720
+INFO: Fullscreen is disabled
+
+INFO: New execution, at: 2019-11-13 15:33:59.703818
+INFO: Starting game.
+INFO: Resolution is 1280x720
+INFO: Fullscreen is disabled

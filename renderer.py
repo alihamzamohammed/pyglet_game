@@ -5,7 +5,7 @@ from cocos.layer import Layer
 from cocos.director import director
 import resources
 
-class BaseWindow(Layer):
+class BaseWindow(scene.Scene):
 
     def __init__(self):
         super(BaseWindow, self).__init__()
@@ -23,7 +23,6 @@ class loadingScreen(BaseWindow):
         x, y = cocos.director.director.get_window_size()
         title.position = x / 2, y * 0.95
         self.add(title)
-
 
 if __name__=="__main__":
     print("This file cannot be run directly, please run main.py to start the game.")

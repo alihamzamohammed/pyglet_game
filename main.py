@@ -30,7 +30,7 @@ def main():
         logger.addLog("Fullscreen is disabled", logger.loglevel["info"])
 
     director.init(width=reswidth, height=resheight, caption="Game", fullscreen=fullscreen)
-    director.run(scene.Scene(renderer.loadingScreen()))
+    director.run(renderer.loadingScreen())
 
 if __name__=="__main__":
     cfg.init()
