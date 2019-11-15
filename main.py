@@ -25,14 +25,20 @@ if __name__=="__main__":
     cfg.init()
     defaultconfigfile = "settings.ini"
     configread(defaultconfigfile)
+
     import logger
     logger.init()
+    
     reswidth = int(cfg.configuration["Core"]["defaultres"].split("x")[0])
     resheight = int(cfg.configuration["Core"]["defaultres"].split("x")[1])
     fullscreen = True if cfg.configuration["Core"]["fullscreen"] == "True" else False
     director.init(width=reswidth, height=resheight, caption="Game", fullscreen=fullscreen, autoscale=True)
+    
     import resources
     resources.resourceLoad()
+    
     logger.addLog("Starting game.", logger.loglevel["info"])
+    
     import renderer
+    
     main()
