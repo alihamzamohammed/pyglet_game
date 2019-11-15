@@ -42,3 +42,108 @@ INFO: New execution, at: 2019-11-15 11:38:01.314164
 INFO: Starting game.
 INFO: Resolution is 1280x720
 INFO: Fullscreen is disabled
+
+INFO: New execution, at: 2019-11-15 12:00:33.057379
+INFO: Starting game.
+INFO: Resolution is 1280x720
+INFO: Fullscreen is disabled
+
+INFO: New execution, at: 2019-11-15 12:00:51.239284
+INFO: Starting game.
+INFO: Resolution is 1280x720
+INFO: Fullscreen is disabled
+
+INFO: New execution, at: 2019-11-15 12:01:03.989763
+INFO: Starting game.
+INFO: Resolution is 1280x720
+INFO: Fullscreen is disabled
+
+INFO: New execution, at: 2019-11-15 12:03:04.462478
+INFO: Starting game.
+INFO: Resolution is 1280x720
+INFO: Fullscreen is disabled
+
+INFO: New execution, at: 2019-11-15 12:10:02.824669
+INFO: Starting game.
+INFO: Resolution is 1280x720
+INFO: Fullscreen is disabled
+
+INFO: New execution, at: 2019-11-15 12:11:34.587276
+INFO: Starting game.
+INFO: Resolution is 1280x720
+INFO: Fullscreen is disabled
+
+INFO: New execution, at: 2019-11-15 12:13:05.685717
+INFO: Starting game.
+INFO: Resolution is 1280x720
+INFO: Fullscreen is disabled
+
+INFO: New execution, at: 2019-11-15 12:13:36.954354
+INFO: Starting game.
+INFO: Resolution is 1280x720
+INFO: Fullscreen is disabled
+
+INFO: New execution, at: 2019-11-15 12:17:47.638553
+INFO: Starting game.
+INFO: Resolution is 1280x720
+INFO: Fullscreen is disabled
+
+INFO: New execution, at: 2019-11-15 12:21:42.106106
+INFO: Starting game.
+INFO: Resolution is 1280x720
+INFO: Fullscreen is disabled
+
+INFO: New execution, at: 2019-11-15 12:22:27.736268
+INFO: Starting game.
+INFO: Resolution is 1280x720
+INFO: Fullscreen is disabled
+
+INFO: New execution, at: 2019-11-15 12:22:57.424628
+INFO: Starting game.
+INFO: Resolution is 1280x720
+INFO: Fullscreen is disabled
+
+INFO: New execution, at: 2019-11-15 12:23:15.910980
+INFO: Starting game.
+INFO: Resolution is 1280x720
+INFO: Fullscreen is disabled
+
+INFO: New execution, at: 2019-11-15 12:23:28.860033
+INFO: Starting game.
+INFO: Resolution is 1280x720
+INFO: Fullscreen is disabled
+
+INFO: New execution, at: 2019-11-15 12:24:21.482655
+INFO: Starting game.
+INFO: Resolution is 1280x720
+INFO: Fullscreen is disabled
+
+INFO: New execution, at: 2019-11-15 12:24:53.997367
+INFO: Starting game.
+INFO: Resolution is 1280x720
+INFO: Fullscreen is disabled
+
+INFO: New execution, at: 2019-11-15 12:30:32.595654
+INFO: Starting game.
+INFO: Resolution is 1280x720
+INFO: Fullscreen is disabled
+
+INFO: New execution, at: 2019-11-15 12:30:51.075000
+INFO: Starting game.
+INFO: Resolution is 1280x720
+INFO: Fullscreen is disabled
+
+INFO: New execution, at: 2019-11-15 12:31:37.004202
+INFO: Starting game.
+INFO: Resolution is 1280x720
+INFO: Fullscreen is disabled
+
+INFO: New execution, at: 2019-11-15 12:31:50.942339
+INFO: Starting game.
+INFO: Resolution is 1280x720
+INFO: Fullscreen is disabled
+
+INFO: New execution, at: 2019-11-15 12:33:43.957078
+INFO: Starting game.
+INFO: Resolution is 1280x720
+INFO: Fullscreen is disabled
