@@ -19,12 +19,12 @@ class loadingScreen(BaseWindow):
         loadingTitle = cocos.text.Label(
             "Game Title",
             font_name=resources.font[1],
-            font_size=32,
+            font_size=40,
             anchor_y="top",
             anchor_x="center"
         )
         x, y = cocos.director.director.get_window_size()
-        loadingTitle.position = x / 2, y * 0.95
+        loadingTitle.position = x / 2, y * 0.72
         self.add(loadingTitle)
         loadingTitle.do(FadeIn(1))
 
