@@ -1,4 +1,4 @@
-import sys, os, configparser
+import os, configparser
 import cocos
 from cocos.director import director
 

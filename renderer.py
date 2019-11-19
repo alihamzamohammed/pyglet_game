@@ -5,7 +5,6 @@ from cocos import layer
 from cocos.actions import *
 from cocos.director import director
 import resources
-import time
 
 class BaseWindow(scene.Scene):
 
