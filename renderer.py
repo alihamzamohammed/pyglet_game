@@ -6,6 +6,16 @@ from cocos.actions import *
 from cocos.director import director
 import resources
 
+titleLabel = cocos.text.Label(
+    "Game Title",
+    font_name=resources.font[1],
+    font_size=40,
+    anchor_y="top",
+    anchor_x="center"
+)
+title = layer.Layer()
+title.add(titleLabel)
+
 class BaseWindow(scene.Scene):
 
     def __init__(self):
@@ -15,17 +25,10 @@ class loadingScreen(BaseWindow):
 
     def __init__(self):
         super(loadingScreen, self).__init__()
-        loadingTitle = cocos.text.Label(
-            "Game Title",
-            font_name=resources.font[1],
-            font_size=40,
-            anchor_y="top",
-            anchor_x="center"
-        )
         x, y = cocos.director.director.get_window_size()
-        loadingTitle.position = x / 2, y * 0.72
-        self.add(loadingTitle)
-        loadingTitle.do(FadeIn(1))
+        title.position = x / 2, y * 0.72
+        self.add(title)
+        title.do(FadeIn(1))
 
 if __name__=="__main__":
     print("This file cannot be run directly, please run main.py to start the game.")
