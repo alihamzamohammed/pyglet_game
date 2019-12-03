@@ -1,44 +1,47 @@
-import os, configparser
+import os
 import cocos
 from cocos.director import director
+import pyglet
+from pyglet import event
+import cfg
+cfg.init()
+defaultconfigfile = "settings.ini"
+cfg.configRead(defaultconfigfile)
 
-def configread(configFile):
-    temp = {}
-    conf = configparser.ConfigParser()
-    conf.read(configFile)
-    for section in conf.sections():
-        for option in conf.options(section):
-            temp[option] = conf.get(section, option)
-        cfg.configuration[section] = temp
-        temp = {}
+import logger
+logger.init()
+    
+reswidth, resheight = [int(res) for res in cfg.configuration["Core"]["defaultres"].split("x")]
+fullscreen = True if cfg.configuration["Core"]["fullscreen"] == "True" else False
+director.init(width=reswidth, height=resheight, caption="Game", fullscreen=fullscreen, autoscale=True)
+    
+import resources
+resources.resourceLoad() 
 
-def main():
-    logger.addLog("Resolution is " + str(reswidth) + "x" + str(resheight), logger.loglevel["info"])
-    if fullscreen == True:
-        logger.addLog("Fullscreen is enabled", logger.loglevel["info"])
-    else:
-        logger.addLog("Fullscreen is disabled", logger.loglevel["info"])
-    director.run(renderer.loadingScreen())
+import renderer
+
+class Game(object):
+
+    is_event_handler = True
+    evts = renderer.RendererEvents()
+
+    def startGame(self):
+        logger.addLog("Resolution is " + str(reswidth) + "x" + str(resheight), logger.loglevel["info"])
+        if fullscreen == True:
+            logger.addLog("Fullscreen is enabled", logger.loglevel["info"])
+        else:
+            logger.addLog("Fullscreen is disabled", logger.loglevel["info"])
+        director.run(renderer.loadingScreen())
+
+    def progressFinished(self):
+        print("Event registered, switching scenes!")
+        director.replace(renderer.MainMenu())
+
+    def __init__(self):
+        super(Game, self).__init__()
+        self.evts.push_handlers(self.progressFinished)
 
 if __name__=="__main__":
-    import cfg
-    cfg.init()
-    defaultconfigfile = "settings.ini"
-    configread(defaultconfigfile)
-
-    import logger
-    logger.init()
-    
-    reswidth = int(cfg.configuration["Core"]["defaultres"].split("x")[0])
-    resheight = int(cfg.configuration["Core"]["defaultres"].split("x")[1])
-    fullscreen = True if cfg.configuration["Core"]["fullscreen"] == "True" else False
-    director.init(width=reswidth, height=resheight, caption="Game", fullscreen=fullscreen, autoscale=True)
-    
-    import resources
-    resources.resourceLoad()
-    
     logger.addLog("Starting game.", logger.loglevel["info"])
-    
-    import renderer
-    
-    main()
+    game = Game()
+    game.startGame()

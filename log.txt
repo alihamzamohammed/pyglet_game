@@ -303,3 +303,238 @@ INFO: Init levels
 INFO: Init game modes
 INFO: Init resources
 INFO: Init items
+
+INFO: New execution, at: 2019-11-22 23:26:55.090170
+INFO: Starting game.
+
+INFO: New execution, at: 2019-11-22 23:28:48.368891
+INFO: Starting game.
+
+INFO: New execution, at: 2019-11-26 11:19:21.198429
+INFO: Starting game.
+
+INFO: New execution, at: 2019-11-26 11:19:45.956026
+INFO: Starting game.
+INFO: Resolution is 1280x720
+INFO: Fullscreen is disabled
+INFO: Init levels
+INFO: Init game modes
+INFO: Init resources
+INFO: Init items
+
+INFO: New execution, at: 2019-11-26 11:43:07.867813
+INFO: Starting game.
+INFO: Resolution is 1280x720
+INFO: Fullscreen is disabled
+INFO: Init levels
+INFO: Init game modes
+INFO: Init resources
+INFO: Init items
+
+INFO: New execution, at: 2019-11-26 11:44:09.895092
+INFO: Starting game.
+INFO: Resolution is 1280x720
+INFO: Fullscreen is disabled
+INFO: Init levels
+INFO: Init game modes
+INFO: Init resources
+INFO: Init items
+
+INFO: New execution, at: 2019-11-26 11:55:25.682931
+INFO: Starting game.
+INFO: Resolution is 1280x720
+INFO: Fullscreen is disabled
+
+INFO: New execution, at: 2019-11-26 12:14:24.662897
+INFO: Starting game.
+INFO: Resolution is 1280x720
+INFO: Fullscreen is disabled
+
+INFO: New execution, at: 2019-11-26 12:14:44.349266
+INFO: Starting game.
+INFO: Resolution is 1280x720
+INFO: Fullscreen is disabled
+INFO: Init levels
+INFO: Init game modes
+INFO: Init resources
+INFO: Init items
+
+INFO: New execution, at: 2019-11-26 12:33:18.528548
+INFO: Starting game.
+
+INFO: New execution, at: 2019-11-26 12:34:14.091771
+INFO: Starting game.
+
+INFO: New execution, at: 2019-11-26 12:38:52.017067
+INFO: Starting game.
+
+INFO: New execution, at: 2019-11-26 12:42:46.257836
+INFO: Starting game.
+
+INFO: New execution, at: 2019-11-26 12:47:21.120627
+INFO: Starting game.
+
+INFO: New execution, at: 2019-11-26 19:13:16.870327
+INFO: Starting game.
+INFO: Starting events framework
+
+INFO: New execution, at: 2019-11-26 19:30:20.763667
+INFO: Starting game.
+INFO: Starting events framework
+
+INFO: New execution, at: 2019-11-26 19:31:57.265468
+INFO: Starting game.
+INFO: Starting events framework
+
+INFO: New execution, at: 2019-11-26 19:34:34.105120
+INFO: Starting game.
+
+INFO: New execution, at: 2019-11-26 19:35:16.995323
+INFO: Starting game.
+
+INFO: New execution, at: 2019-11-26 19:36:00.645491
+INFO: Starting game.
+
+INFO: New execution, at: 2019-11-26 19:39:45.853360
+INFO: Starting game.
+
+INFO: New execution, at: 2019-11-26 19:53:35.124404
+INFO: Starting game.
+
+INFO: New execution, at: 2019-11-26 19:54:30.247646
+INFO: Starting game.
+
+INFO: New execution, at: 2019-11-26 19:56:00.926217
+INFO: Starting game.
+
+INFO: New execution, at: 2019-11-26 19:56:20.247137
+INFO: Starting game.
+
+INFO: New execution, at: 2019-11-26 20:00:51.025238
+INFO: Starting game.
+
+INFO: New execution, at: 2019-11-26 20:01:07.929064
+INFO: Starting game.
+
+INFO: New execution, at: 2019-11-26 20:09:00.168180
+INFO: Starting game.
+
+INFO: New execution, at: 2019-11-26 20:09:11.961702
+INFO: Starting game.
+
+INFO: New execution, at: 2019-11-26 20:09:54.865577
+INFO: Starting game.
+
+INFO: New execution, at: 2019-11-27 14:45:30.199013
+INFO: Starting game.
+
+INFO: New execution, at: 2019-11-27 14:49:01.583223
+INFO: Starting game.
+
+INFO: New execution, at: 2019-11-27 14:50:58.789211
+INFO: Starting game.
+INFO: Resolution is 1280x720
+INFO: Fullscreen is disabled
+
+INFO: New execution, at: 2019-11-27 14:51:36.503544
+INFO: Starting game.
+INFO: Resolution is 1280x720
+INFO: Fullscreen is disabled
+
+INFO: New execution, at: 2019-11-27 14:53:37.450026
+INFO: Starting game.
+
+INFO: New execution, at: 2019-11-27 14:57:54.885629
+INFO: Starting game.
+
+INFO: New execution, at: 2019-11-27 14:59:14.899848
+INFO: Starting game.
+
+INFO: New execution, at: 2019-11-27 14:59:33.023699
+INFO: Starting game.
+
+INFO: New execution, at: 2019-11-27 15:04:37.965365
+INFO: Starting game.
+
+INFO: New execution, at: 2019-11-27 15:05:11.745461
+INFO: Starting game.
+
+INFO: New execution, at: 2019-11-27 15:05:35.935083
+INFO: Starting game.
+
+INFO: New execution, at: 2019-11-27 15:06:32.184180
+INFO: Starting game.
+
+INFO: New execution, at: 2019-11-27 15:10:06.667470
+INFO: Starting game.
+INFO: Resolution is 1280x720
+INFO: Fullscreen is disabled
+INFO: Init levels
+INFO: Init game modes
+INFO: Init resources
+INFO: Init items
+
+INFO: New execution, at: 2019-11-27 15:11:49.165564
+INFO: Starting game.
+INFO: Resolution is 1280x720
+INFO: Fullscreen is disabled
+INFO: Init levels
+INFO: Init game modes
+INFO: Init resources
+INFO: Init items
+
+INFO: New execution, at: 2019-11-27 15:15:32.672152
+
+INFO: New execution, at: 2019-11-27 15:16:06.007580
+
+INFO: New execution, at: 2019-11-27 15:16:18.575246
+
+INFO: New execution, at: 2019-11-27 15:16:55.120886
+
+INFO: New execution, at: 2019-11-27 15:17:20.628951
+INFO: Starting game.
+
+INFO: New execution, at: 2019-11-27 15:20:05.969569
+INFO: Starting game.
+INFO: Resolution is 1280x720
+INFO: Fullscreen is disabled
+INFO: Init levels
+INFO: Init game modes
+INFO: Init resources
+INFO: Init items
+
+INFO: New execution, at: 2019-12-03 11:19:25.466416
+INFO: Starting game.
+INFO: Resolution is 1280x720
+INFO: Fullscreen is disabled
+INFO: Init levels
+INFO: Init game modes
+INFO: Init resources
+INFO: Init items
+
+INFO: New execution, at: 2019-12-03 11:20:27.426727
+INFO: Starting game.
+INFO: Resolution is 1280x720
+INFO: Fullscreen is disabled
+INFO: Init levels
+INFO: Init game modes
+INFO: Init resources
+INFO: Init items
+
+INFO: New execution, at: 2019-12-03 11:26:04.764761
+INFO: Starting game.
+INFO: Resolution is 1280x720
+INFO: Fullscreen is disabled
+INFO: Init levels
+INFO: Init game modes
+INFO: Init resources
+INFO: Init items
+
+INFO: New execution, at: 2019-12-03 11:26:22.433694
+INFO: Starting game.
+INFO: Resolution is 1280x720
+INFO: Fullscreen is disabled
+INFO: Init levels
+INFO: Init game modes
+INFO: Init resources
+INFO: Init items
