@@ -1,6 +1,7 @@
 import os
 import cocos
 from cocos.director import director
+from cocos.scenes import *
 import pyglet
 from pyglet import event
 import events
@@ -24,6 +25,7 @@ import renderer
 class Game(object):
 
     is_event_handler = True
+    #evts = events.RendererEvents()
 
     def startGame(self):
         logger.addLog("Resolution is " + str(reswidth) + "x" + str(resheight), logger.loglevel["info"])
@@ -35,13 +37,13 @@ class Game(object):
 
     def progressFinished(self):
         print("Event registered, switching scenes!")
-        director.replace(renderer.MainMenu())
-        return True
+        director.push(FadeTRTransition(renderer.MainMenu(), duration=2))
+        #return True
 
     def __init__(self):
         super(Game, self).__init__()
-        self.evts = events.RendererEvents()
-        self.evts.push_handlers(self)
+        #self.evts = events.RendererEvents()
+        events.rendererevents.push_handlers(self)
 
 if __name__=="__main__":
     logger.addLog("Starting game.", logger.loglevel["info"])

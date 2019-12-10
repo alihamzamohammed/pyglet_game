@@ -48,7 +48,7 @@ class loadingScreen(BaseWindow):
     def __init__(self):
         super(loadingScreen, self).__init__()
         x, y = cocos.director.director.get_window_size()
-        evts = events.RendererEvents()
+        #evts = events.RendererEvents()
         title.position = x / 2, y * 0.72
         self.add(title)
         title.do(FadeIn(1))      
@@ -63,7 +63,7 @@ class loadingScreen(BaseWindow):
         logger.addLog("Init items", logger.loglevel["info"])
         # check to see if all item packs are in item pack db, and if all item xml is without error
         # add item packs and individual items to multidimensional array
-        evts.onProgressFinished()
+        events.rendererevents.onProgressFinished()
         
 
 if __name__=="__main__":
