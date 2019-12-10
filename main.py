@@ -25,7 +25,6 @@ import renderer
 class Game(object):
 
     is_event_handler = True
-    #evts = events.RendererEvents()
 
     def startGame(self):
         logger.addLog("Resolution is " + str(reswidth) + "x" + str(resheight), logger.loglevel["info"])
@@ -33,16 +32,14 @@ class Game(object):
             logger.addLog("Fullscreen is enabled", logger.loglevel["info"])
         else:
             logger.addLog("Fullscreen is disabled", logger.loglevel["info"])
-        director.run(renderer.loadingScreen())
+        director.run(renderer.get_scene("loadingScreen"))
 
     def progressFinished(self):
         print("Event registered, switching scenes!")
-        director.push(FadeTRTransition(renderer.MainMenu(), duration=2))
-        #return True
+        director.replace(renderer.get_scene("MainMenu"))
 
     def __init__(self):
         super(Game, self).__init__()
-        #self.evts = events.RendererEvents()
         events.rendererevents.push_handlers(self)
 
 if __name__=="__main__":

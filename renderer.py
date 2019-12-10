@@ -65,6 +65,11 @@ class loadingScreen(BaseWindow):
         # add item packs and individual items to multidimensional array
         events.rendererevents.onProgressFinished()
         
+def get_scene(scene):
+    if scene == "loadingScreen":
+        return loadingScreen()
+    elif scene == "MainMenu":
+        return MainMenu()
 
 if __name__=="__main__":
     print("This file cannot be run directly, please run main.py to start the game.")
