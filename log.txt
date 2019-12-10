@@ -538,3 +538,166 @@ INFO: Init levels
 INFO: Init game modes
 INFO: Init resources
 INFO: Init items
+
+INFO: New execution, at: 2019-12-03 12:31:07.274347
+INFO: Starting game.
+
+INFO: New execution, at: 2019-12-03 12:31:37.043452
+INFO: Starting game.
+
+INFO: New execution, at: 2019-12-03 12:31:59.322490
+INFO: Starting game.
+INFO: Resolution is 1280x720
+INFO: Fullscreen is disabled
+INFO: Init levels
+INFO: Init game modes
+INFO: Init resources
+INFO: Init items
+
+INFO: New execution, at: 2019-12-04 22:15:38.662094
+INFO: Starting game.
+INFO: Resolution is 1280x720
+INFO: Fullscreen is disabled
+INFO: Init levels
+INFO: Init game modes
+INFO: Init resources
+INFO: Init items
+
+INFO: New execution, at: 2019-12-06 11:11:53.704897
+INFO: Starting game.
+INFO: Resolution is 1280x720
+INFO: Fullscreen is disabled
+INFO: Init levels
+INFO: Init game modes
+INFO: Init resources
+INFO: Init items
+
+INFO: New execution, at: 2019-12-06 11:14:35.566940
+INFO: Starting game.
+
+INFO: New execution, at: 2019-12-06 11:16:56.598454
+INFO: Starting game.
+INFO: Resolution is 1280x720
+INFO: Fullscreen is disabled
+INFO: Init levels
+INFO: Init game modes
+INFO: Init resources
+INFO: Init items
+
+INFO: New execution, at: 2019-12-06 11:20:37.757489
+INFO: Starting game.
+INFO: Resolution is 1280x720
+INFO: Fullscreen is disabled
+INFO: Init levels
+INFO: Init game modes
+INFO: Init resources
+INFO: Init items
+
+INFO: New execution, at: 2019-12-06 11:21:54.689022
+INFO: Starting game.
+INFO: Resolution is 1280x720
+INFO: Fullscreen is disabled
+INFO: Init levels
+INFO: Init game modes
+INFO: Init resources
+INFO: Init items
+
+INFO: New execution, at: 2019-12-06 11:22:23.563354
+INFO: Starting game.
+INFO: Resolution is 1280x720
+INFO: Fullscreen is disabled
+INFO: Init levels
+INFO: Init game modes
+INFO: Init resources
+INFO: Init items
+
+INFO: New execution, at: 2019-12-06 11:22:59.971020
+INFO: Starting game.
+INFO: Resolution is 1280x720
+INFO: Fullscreen is disabled
+INFO: Init levels
+INFO: Init game modes
+INFO: Init resources
+INFO: Init items
+
+INFO: New execution, at: 2019-12-06 11:25:59.031137
+INFO: Starting game.
+INFO: Resolution is 1280x720
+INFO: Fullscreen is disabled
+INFO: Init levels
+INFO: Init game modes
+INFO: Init resources
+INFO: Init items
+
+INFO: New execution, at: 2019-12-06 11:42:23.285103
+INFO: Starting game.
+INFO: Resolution is 1280x720
+INFO: Fullscreen is disabled
+INFO: Init levels
+INFO: Init game modes
+INFO: Init resources
+INFO: Init items
+
+INFO: New execution, at: 2019-12-06 11:43:58.827573
+INFO: Starting game.
+INFO: Resolution is 1280x720
+INFO: Fullscreen is disabled
+INFO: Init levels
+INFO: Init game modes
+INFO: Init resources
+INFO: Init items
+
+INFO: New execution, at: 2019-12-06 11:49:29.947686
+INFO: Starting game.
+INFO: Resolution is 1280x720
+INFO: Fullscreen is disabled
+INFO: Init levels
+
+INFO: New execution, at: 2019-12-06 11:59:06.717979
+INFO: Starting game.
+INFO: Resolution is 1280x720
+INFO: Fullscreen is disabled
+INFO: Init levels
+INFO: Init game modes
+INFO: Init resources
+INFO: Init items
+
+INFO: New execution, at: 2019-12-06 12:00:44.169114
+INFO: Starting game.
+INFO: Resolution is 1280x720
+INFO: Fullscreen is disabled
+INFO: Init levels
+INFO: Init game modes
+INFO: Init resources
+INFO: Init items
+
+INFO: New execution, at: 2019-12-06 12:01:21.028491
+INFO: Starting game.
+INFO: Resolution is 1280x720
+INFO: Fullscreen is disabled
+INFO: Init levels
+INFO: Init game modes
+INFO: Init resources
+INFO: Init items
+
+INFO: New execution, at: 2019-12-06 12:04:13.626066
+INFO: Starting game.
+INFO: Resolution is 1280x720
+INFO: Fullscreen is disabled
+INFO: Init levels
+INFO: Init game modes
+INFO: Init resources
+INFO: Init items
+
+INFO: New execution, at: 2019-12-06 12:04:36.827510
+INFO: Starting game.
+INFO: Resolution is 1280x720
+INFO: Fullscreen is disabled
+
+INFO: New execution, at: 2019-12-06 12:07:55.367668
+INFO: Starting game.
+
+INFO: New execution, at: 2019-12-06 12:08:15.759806
+INFO: Starting game.
+INFO: Resolution is 1280x720
+INFO: Fullscreen is disabled

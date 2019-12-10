@@ -47,4 +47,3 @@ def resourceLoad():
     getResourcePack()
     fontLoad()
     
-resourceLoad()

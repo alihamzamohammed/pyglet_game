@@ -20,18 +20,6 @@ titleLabel = cocos.text.Label(
 title = layer.Layer()
 title.add(titleLabel)
 
-class RendererEvents(pyglet.window.EventDispatcher):
-
-    def __init__(self):
-        super(RendererEvents, self).__init__()
-
-    def onProgressFinished(self):
-        print("Event dispatching!")
-        self.dispatch_event("progressFinished")
-        print("Event dispatched!")
-    
-RendererEvents.register_event_type("progressFinished")
-
 class BaseWindow(scene.Scene):
 
     def __init__(self):
@@ -60,7 +48,7 @@ class loadingScreen(BaseWindow):
     def __init__(self):
         super(loadingScreen, self).__init__()
         x, y = cocos.director.director.get_window_size()
-        evts = RendererEvents()
+        evts = events.RendererEvents()
         title.position = x / 2, y * 0.72
         self.add(title)
         title.do(FadeIn(1))      
