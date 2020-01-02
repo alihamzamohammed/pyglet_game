@@ -20,7 +20,7 @@ titleLabel = cocos.text.Label(
 title = layer.Layer()
 title.add(titleLabel)
 
-class BaseWindow(scene.Scene):
+class BaseWindow(layer.MultiplexLayer):
 
     def __init__(self):
         super(BaseWindow, self).__init__()

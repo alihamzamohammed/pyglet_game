@@ -1223,3 +1223,8 @@ INFO: Init levels
 INFO: Init game modes
 INFO: Init resources
 INFO: Init items
+
+INFO: New execution, at: 2020-01-02 15:35:59.379277
+INFO: Starting game.
+INFO: Resolution is 1280x720
+INFO: Fullscreen is disabled

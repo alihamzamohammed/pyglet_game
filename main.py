@@ -12,7 +12,7 @@ cfg.configRead(defaultconfigfile)
 
 import logger
 logger.init()
-    
+
 reswidth, resheight = [int(res) for res in cfg.configuration["Core"]["defaultres"].split("x")]
 fullscreen = True if cfg.configuration["Core"]["fullscreen"] == "True" else False
 director.init(width=reswidth, height=resheight, caption="Game", fullscreen=fullscreen, autoscale=True)
