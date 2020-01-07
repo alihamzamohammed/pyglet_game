@@ -1311,3 +1311,140 @@ INFO: Init levels
 INFO: Init game modes
 INFO: Init resources
 INFO: Init items
+
+INFO: New execution, at: 2020-01-07 11:52:40.296697
+INFO: Starting game.
+INFO: Resolution is 1280x720
+INFO: Fullscreen is disabled
+INFO: Init levels
+INFO: Init game modes
+INFO: Init resources
+INFO: Init items
+
+INFO: New execution, at: 2020-01-07 11:53:26.027833
+INFO: Starting game.
+INFO: Resolution is 1280x720
+INFO: Fullscreen is disabled
+INFO: Init levels
+INFO: Init game modes
+INFO: Init resources
+INFO: Init items
+
+INFO: New execution, at: 2020-01-07 11:55:09.131571
+
+INFO: New execution, at: 2020-01-07 11:55:49.077442
+INFO: Starting game.
+INFO: Resolution is 1280x720
+INFO: Fullscreen is disabled
+INFO: Init levels
+INFO: Init game modes
+INFO: Init resources
+INFO: Init items
+
+INFO: New execution, at: 2020-01-07 11:56:23.132666
+INFO: Starting game.
+INFO: Resolution is 1280x720
+INFO: Fullscreen is disabled
+INFO: Init levels
+INFO: Init game modes
+INFO: Init resources
+INFO: Init items
+
+INFO: New execution, at: 2020-01-07 11:59:38.509976
+INFO: Starting game.
+INFO: Resolution is 1280x720
+INFO: Fullscreen is disabled
+INFO: Init levels
+INFO: Init game modes
+INFO: Init resources
+INFO: Init items
+
+INFO: New execution, at: 2020-01-07 12:00:07.809182
+INFO: Starting game.
+INFO: Resolution is 1280x720
+INFO: Fullscreen is disabled
+INFO: Init levels
+INFO: Init game modes
+INFO: Init resources
+INFO: Init items
+
+INFO: New execution, at: 2020-01-07 12:01:44.991450
+INFO: Starting game.
+INFO: Resolution is 1280x720
+INFO: Fullscreen is disabled
+INFO: Init levels
+INFO: Init game modes
+INFO: Init resources
+INFO: Init items
+
+INFO: New execution, at: 2020-01-07 12:02:17.508066
+INFO: Starting game.
+INFO: Resolution is 1280x720
+INFO: Fullscreen is disabled
+INFO: Init levels
+INFO: Init game modes
+INFO: Init resources
+INFO: Init items
+
+INFO: New execution, at: 2020-01-07 12:04:06.742113
+INFO: Starting game.
+INFO: Resolution is 1280x720
+INFO: Fullscreen is disabled
+INFO: Init levels
+INFO: Init game modes
+INFO: Init resources
+INFO: Init items
+
+INFO: New execution, at: 2020-01-07 12:08:29.607647
+INFO: Starting game.
+INFO: Resolution is 1280x720
+INFO: Fullscreen is disabled
+INFO: Init levels
+INFO: Init game modes
+INFO: Init resources
+INFO: Init items
+
+INFO: New execution, at: 2020-01-07 12:11:41.501528
+INFO: Starting game.
+INFO: Resolution is 1280x720
+INFO: Fullscreen is disabled
+INFO: Init levels
+INFO: Init game modes
+INFO: Init resources
+INFO: Init items
+
+INFO: New execution, at: 2020-01-07 12:12:35.915892
+INFO: Starting game.
+INFO: Resolution is 1280x720
+INFO: Fullscreen is disabled
+INFO: Init levels
+INFO: Init game modes
+INFO: Init resources
+INFO: Init items
+
+INFO: New execution, at: 2020-01-07 12:14:33.637024
+INFO: Starting game.
+INFO: Resolution is 1280x720
+INFO: Fullscreen is disabled
+INFO: Init levels
+INFO: Init game modes
+INFO: Init resources
+INFO: Init items
+
+INFO: New execution, at: 2020-01-07 12:17:13.043019
+INFO: Starting game.
+INFO: Resolution is 1280x720
+INFO: Fullscreen is disabled
+INFO: Init levels
+INFO: Init game modes
+INFO: Init resources
+INFO: Init items
+
+INFO: New execution, at: 2020-01-07 12:19:44.902184
+INFO: Starting game.
+INFO: Resolution is 1280x720
+INFO: Fullscreen is disabled
+INFO: Init levels
+INFO: Init game modes
+INFO: Init resources
+INFO: Init items

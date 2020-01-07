@@ -11,15 +11,6 @@ import threading
 from pyglet import event
 import resources
 
-titleLabel = cocos.text.Label(
-    "Game Title",
-    font_name=resources.font[1],
-    font_size=40,
-    anchor_y="top",
-    anchor_x="center"
-)
-title = layer.Layer()
-title.add(titleLabel)
 
 class BaseWindow(scene.Scene):
 
@@ -48,16 +39,7 @@ class MainMenu(BaseWindow):
 
     def __init__(self):
         super(MainMenu, self).__init__()
-        #self.add(title)
-        #x, y = cocos.director.director.get_window_size()
-        #title.do(MoveTo(x / 2, y * 0.9), duration=4)
-        #label2 = Label(
-         #   "test1"
-        #)
-        #label2.position = 100, 100
-        #self.add(label2)
-        print("New scene loaded")
-        print(cocos.director.director.scene)
+
 
 class loadingScreen(BaseWindow):
 
@@ -65,8 +47,17 @@ class loadingScreen(BaseWindow):
 
     def __init__(self):
         super(loadingScreen, self).__init__()
+        titleLabel = cocos.text.Label(
+            "Game Title",
+            font_name=resources.font[1],
+            font_size=40,
+            anchor_y="top",
+            anchor_x="center"
+        )
+        title = layer.Layer()
         x, y = cocos.director.director.get_window_size()
         title.position = x / 2, y * 0.72
+        title.add(titleLabel)
         self.add(title)
         title.do(FadeIn(1))
         loadingThread = threading.Thread(target=game_loading)

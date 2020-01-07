@@ -38,7 +38,7 @@ class Game(object):
     def progressFinished(self):
         print("Event registered, switching scenes!")
         #t1 = threading.Thread
-        director.push(renderer.get_scene("MainMenu"))
+        director.replace(renderer.get_scene("MainMenu"))
         print(director.scene)
 
     def __init__(self):
