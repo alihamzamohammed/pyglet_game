@@ -48,7 +48,7 @@ class MainMenu(BaseWindow):
         super(MainMenu, self).__init__()
         x, y = cocos.director.director.get_window_size()
         self.add(titleLabel)
-        titleLabel.do(MoveTo((x / 2, y * 0.85), 0.75))
+        titleLabel.do(AccelDeccel(MoveTo((x / 2, y * 0.85), 2)))
 
 class loadingScreen(BaseWindow):
 
