@@ -32,14 +32,11 @@ class Game(object):
             logger.addLog("Fullscreen is enabled", logger.loglevel["info"])
         else:
             logger.addLog("Fullscreen is disabled", logger.loglevel["info"])
-        print(director)
         director.run(renderer.get_scene("loadingScreen"))
 
     def progressFinished(self):
-        print("Event registered, switching scenes!")
-        #t1 = threading.Thread
+        logger.addLog("Loading finished, displaying Main Menu", logger.loglevel["info"])
         director.replace(renderer.get_scene("MainMenu"))
-        print(director.scene)
 
     def __init__(self):
         super(Game, self).__init__()

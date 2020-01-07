@@ -18,9 +18,9 @@ class BaseWindow(scene.Scene):
         super(BaseWindow, self).__init__()
 
 def game_loading():
-    print("Game loading start")
+    logger.addLog("Starting game loading!", logger.loglevel["info"])
+    # Start loading, dispatch events when aspect of loading completed
     logger.addLog("Init levels", logger.loglevel["info"])
-    print(cocos.director.director.scene)
     # check to see if all levels are in level db, otherwise raise warning, and do not load
     # Render level thumbnails, and put them as sprite objects into array
     logger.addLog("Init game modes", logger.loglevel["info"])
@@ -54,15 +54,12 @@ class loadingScreen(BaseWindow):
             anchor_y="top",
             anchor_x="center"
         )
-        title = layer.Layer()
         x, y = cocos.director.director.get_window_size()
-        title.position = x / 2, y * 0.72
-        title.add(titleLabel)
-        self.add(title)
-        title.do(FadeIn(1))
+        titleLabel.position = x / 2, y * 0.72
+        self.add(titleLabel)
+        titleLabel.do(FadeIn(1))
         loadingThread = threading.Thread(target=game_loading)
         loadingThread.start()
-        print("Thread start called")
         
 def get_scene(scene):
     if scene == "loadingScreen":
