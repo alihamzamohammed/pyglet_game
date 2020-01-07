@@ -11,6 +11,13 @@ import threading
 from pyglet import event
 import resources
 
+titleLabel = cocos.text.Label(
+    "Game Title",
+    font_name=resources.font[1],
+    font_size=40,
+    anchor_y="top",
+    anchor_x="center"
+)
 
 class BaseWindow(scene.Scene):
 
@@ -39,7 +46,10 @@ class MainMenu(BaseWindow):
 
     def __init__(self):
         super(MainMenu, self).__init__()
-
+        x, y = cocos.director.director.get_window_size()
+        titleLabel.position = x / 2, y * 0.72
+        self.add(titleLabel)
+        titleLabel.do(MoveTo((x / 2, y * 0.85), 0.75))
 
 class loadingScreen(BaseWindow):
 
@@ -47,13 +57,6 @@ class loadingScreen(BaseWindow):
 
     def __init__(self):
         super(loadingScreen, self).__init__()
-        titleLabel = cocos.text.Label(
-            "Game Title",
-            font_name=resources.font[1],
-            font_size=40,
-            anchor_y="top",
-            anchor_x="center"
-        )
         x, y = cocos.director.director.get_window_size()
         titleLabel.position = x / 2, y * 0.72
         self.add(titleLabel)
