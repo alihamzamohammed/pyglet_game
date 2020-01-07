@@ -1,11 +1,12 @@
 import os
 import cocos
 from cocos.director import director
-from cocos.scenes import *
+from cocos.scene import *
 import pyglet
 from pyglet import event
 import events
 import cfg
+import threading
 cfg.init()
 defaultconfigfile = "settings.ini"
 cfg.configRead(defaultconfigfile)
@@ -25,7 +26,6 @@ import renderer
 class Game(object):
 
     is_event_handler = True
-
     def startGame(self):
         logger.addLog("Resolution is " + str(reswidth) + "x" + str(resheight), logger.loglevel["info"])
         if fullscreen == True:
@@ -38,6 +38,7 @@ class Game(object):
 
     def progressFinished(self):
         print("Event registered, switching scenes!")
+        #t1 = threading.Thread
         director.push(renderer.get_scene("MainMenu"))
         print(director.scene)
 

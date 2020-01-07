@@ -20,7 +20,7 @@ titleLabel = cocos.text.Label(
 title = layer.Layer()
 title.add(titleLabel)
 
-class BaseWindow(layer.MultiplexLayer):
+class BaseWindow(scene.Scene):
 
     def __init__(self):
         super(BaseWindow, self).__init__()
@@ -40,6 +40,7 @@ class MainMenu(BaseWindow):
         label2.position = 100, 100
         self.add(label2)
         print("New scene loaded")
+        print(cocos.director.director.scene)
 
 class loadingScreen(BaseWindow):
 
@@ -63,7 +64,6 @@ class loadingScreen(BaseWindow):
         logger.addLog("Init items", logger.loglevel["info"])
         # check to see if all item packs are in item pack db, and if all item xml is without error
         # add item packs and individual items to multidimensional array
-        events.rendererevents.onProgressFinished()
         
 def get_scene(scene):
     if scene == "loadingScreen":
