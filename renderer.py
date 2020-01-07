@@ -51,11 +51,11 @@ class MainMenu(BaseWindow):
         #self.add(title)
         #x, y = cocos.director.director.get_window_size()
         #title.do(MoveTo(x / 2, y * 0.9), duration=4)
-        label2 = Label(
-            "test1"
-        )
-        label2.position = 100, 100
-        self.add(label2)
+        #label2 = Label(
+         #   "test1"
+        #)
+        #label2.position = 100, 100
+        #self.add(label2)
         print("New scene loaded")
         print(cocos.director.director.scene)
 
