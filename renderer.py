@@ -20,9 +20,9 @@ titleLabel = cocos.text.Label(
 )
 
 class BaseWindow(scene.Scene):
-
     def __init__(self):
         super(BaseWindow, self).__init__()
+
 
 def game_loading():
     logger.addLog("Starting game loading!", logger.loglevel["info"])
@@ -40,8 +40,8 @@ def game_loading():
     # add item packs and individual items to multidimensional array
     events.rendererevents.onProgressFinished()
 
-class MainMenu(BaseWindow):
 
+class MainMenu(BaseWindow):
     is_event_handler = True
 
     def __init__(self):
@@ -50,8 +50,8 @@ class MainMenu(BaseWindow):
         self.add(titleLabel)
         titleLabel.do(AccelDeccel(MoveTo((x / 2, y * 0.85), 2)))
 
-class loadingScreen(BaseWindow):
 
+class loadingScreen(BaseWindow):
     is_event_handler = True
 
     def __init__(self):
@@ -62,12 +62,14 @@ class loadingScreen(BaseWindow):
         titleLabel.do(FadeIn(1))
         loadingThread = threading.Thread(target=game_loading)
         loadingThread.start()
-        
+
+
 def get_scene(scene):
     if scene == "loadingScreen":
         return loadingScreen()
     elif scene == "MainMenu":
         return MainMenu()
+
 
 if __name__=="__main__":
     print("This file cannot be run directly, please run main.py to start the game.")

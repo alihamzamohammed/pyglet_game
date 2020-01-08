@@ -6,7 +6,6 @@ import pyglet
 from pyglet import event
 import events
 import cfg
-import threading
 cfg.init()
 defaultconfigfile = "settings.ini"
 cfg.configRead(defaultconfigfile)
