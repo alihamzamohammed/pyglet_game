@@ -1,10 +1,12 @@
 import cfg
 import cocos
+import json
 from cocos import text
 from fontTools import ttLib
 import logger
 resourcePack = "default" 
 font = ""
+animations = {}
 
 FONT_SPECIFIER_NAME_ID = 4
 FONT_SPECIFIER_FAMILY_ID = 1
@@ -33,6 +35,7 @@ def getResourcePack():
         logger.addLog("No specified resource pack, using default!", logger.loglevel["warning"])
 
 def fontLoad():
+    global resourcePack
     if not resourcePack == "":
         fontpath = "resources\\" + resourcePack + "\\fonts\\default.ttf"
         cocos.text.pyglet.font.add_file(fontpath)
@@ -40,10 +43,28 @@ def fontLoad():
         global font
         font = shortName(tt)
     else:
-        print("Resource pack error!")
+        logger.addLog("Resource pack not found!", logger.loglevel["warning"])
+        # Switch to default resource pack
+
+def animLoad():
+    global resourcePack
+    if not resourcePack == "":
+        animpath = "resources\\" + resourcePack + "\\animations\\animations.json"
+        try:
+            with open(animpath, "r") as file:
+                global animations
+                animations = json.load(file)
+        except json.JSONDecodeError:
+            logger.addLog("Animation file not decodable", logger.loglevel["warning"])
+        except FileNotFoundError:
+            logger.addLog("Animation file not found!", logger.loglevel["warning"])
+            # Switch to default resource pack
+    else:
+        logger.addLog("Resource pack not found!", logger.loglevel["warning"])
 
 def resourceLoad():
     """Loads all resources from the set resource pack"""
     getResourcePack()
     fontLoad()
+    animLoad()
     
