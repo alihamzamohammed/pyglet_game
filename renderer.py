@@ -41,15 +41,16 @@ titleLabel = cocos.text.Label(
 
 class MainMenu(Menu):
 
-    def __init__(self, title='Main Menu'):
+    def __init__(self, title=""):
         super().__init__(title=title)
+        #self.title_label = Label("")
         x, y = cocos.director.director.get_window_size()
         menuitems = []
-        menuitems.append((MenuItem("Play", self.play)))
-        menuitems.append((MenuItem("Multiplayer", self.multiplayer)))
+        menuitems.append(MenuItem("Play", self.play))
+        menuitems.append(MenuItem("Multiplayer", self.multiplayer))
         menuitems.append(MenuItem("Settings", self.settings))
         menuitems.append(MenuItem("Quit Game", self.quit))
-        self.create_menu(menuitems, Blink(1, 1), Blink(1, 1), zoom_in())
+        self.create_menu(menuitems, zoom_in(), zoom_out())
         
     def play(self):
         pass
@@ -63,26 +64,6 @@ class MainMenu(Menu):
     def quit(self):
         pass
 
-    # class PlayButton(cocos.menu.MenuItem):
-
-    #     def __init__(self, label, callback_func, *args, **kwargs):
-    #             super().__init__(label, callback_func, *args, **kwargs)
-
-    # class SettingsButton(cocos.menu.MenuItem):
-
-    #     def __init__(self, label, callback_func, *args, **kwargs):
-    #             super().__init__(label, callback_func, *args, **kwargs)
-
-    # class MultiplayerButton(cocos.menu.MenuItem):
-
-    #     def __init__(self, label, callback_func, *args, **kwargs):
-    #             super().__init__(label, callback_func, *args, **kwargs)
-
-    # class ExitButton(cocos.menu.MenuItem):
-
-    #     def __init__(self, label, callback_func, *args, **kwargs):
-    #             super().__init__(label, callback_func, *args, **kwargs)
-
 
 '''Game scenes'''
 class BaseWindow(scene.Scene):
@@ -90,17 +71,15 @@ class BaseWindow(scene.Scene):
         super(BaseWindow, self).__init__()
 
 
-
 class MainMenuScreen(BaseWindow):
     is_event_handler = True
 
     def __init__(self):
-        super(MainMenu, self).__init__()
+        super(MainMenuScreen, self).__init__()
         x, y = cocos.director.director.get_window_size()
         self.add(titleLabel)
         titleLabel.do(AccelDeccel(MoveTo((x / 2, y * 0.85), 2)))
-        mainmenu = MainMenu()
-        self.add(mainmenu)
+        self.add(MainMenu(""))
 
 
 class loadingScreen(BaseWindow):
@@ -114,14 +93,6 @@ class loadingScreen(BaseWindow):
         titleLabel.do(FadeIn(1))
         loadingThread = threading.Thread(target=game_loading)
         loadingThread.start()
-
-
-def get_scene(scene):
-    if scene == "loadingScreen":
-        return loadingScreen()
-    elif scene == "MainMenu":
-        return MainMenu()
-
 
 if __name__=="__main__":
     print("This file cannot be run directly, please run main.py to start the game.")

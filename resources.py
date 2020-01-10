@@ -53,7 +53,7 @@ def animLoad():
         try:
             with open(animpath, "r") as file:
                 global animations
-                animations = json.load(file)
+                #animations = json.load(file)
         except json.JSONDecodeError:
             logger.addLog("Animation file not decodable", logger.loglevel["warning"])
         except FileNotFoundError:

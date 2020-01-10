@@ -31,11 +31,11 @@ class Game(object):
             logger.addLog("Fullscreen is enabled", logger.loglevel["info"])
         else:
             logger.addLog("Fullscreen is disabled", logger.loglevel["info"])
-        director.run(renderer.get_scene("loadingScreen"))
+        director.run(renderer.loadingScreen())
 
     def progressFinished(self):
         logger.addLog("Loading finished, displaying Main Menu", logger.loglevel["info"])
-        director.replace(renderer.get_scene("MainMenu"))
+        director.replace(renderer.MainMenuScreen())
 
     def __init__(self):
         super(Game, self).__init__()
