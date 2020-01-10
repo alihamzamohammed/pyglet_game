@@ -4,6 +4,7 @@ from cocos.text import Label
 from cocos import scene
 from cocos import layer
 from cocos.actions import *
+from cocos.menu import *
 from cocos.director import director
 import events
 import pyglet
@@ -11,19 +12,7 @@ import threading
 from pyglet import event
 import resources
 
-titleLabel = cocos.text.Label(
-    "Game Title",
-    font_name=resources.font[1],
-    font_size=40,
-    anchor_y="top",
-    anchor_x="center"
-)
-
-class BaseWindow(scene.Scene):
-    def __init__(self):
-        super(BaseWindow, self).__init__()
-
-
+'''Game loading code'''
 def game_loading():
     logger.addLog("Starting game loading!", logger.loglevel["info"])
     # Start loading, dispatch events when aspect of loading completed
@@ -41,7 +30,68 @@ def game_loading():
     events.rendererevents.onProgressFinished()
 
 
-class MainMenu(BaseWindow):
+'''Elements of windows'''
+titleLabel = cocos.text.Label(
+    "Game Title",
+    font_name=resources.font[1],
+    font_size=40,
+    anchor_y="top",
+    anchor_x="center"
+)
+
+class MainMenu(Menu):
+
+    def __init__(self, title='Main Menu'):
+        super().__init__(title=title)
+        x, y = cocos.director.director.get_window_size()
+        menuitems = []
+        menuitems.append((MenuItem("Play", self.play)))
+        menuitems.append((MenuItem("Multiplayer", self.multiplayer)))
+        menuitems.append(MenuItem("Settings", self.settings))
+        menuitems.append(MenuItem("Quit Game", self.quit))
+        self.create_menu(menuitems, Blink(1, 1), Blink(1, 1), zoom_in())
+        
+    def play(self):
+        pass
+
+    def multiplayer(self):
+        pass
+
+    def settings(self):
+        pass
+
+    def quit(self):
+        pass
+
+    # class PlayButton(cocos.menu.MenuItem):
+
+    #     def __init__(self, label, callback_func, *args, **kwargs):
+    #             super().__init__(label, callback_func, *args, **kwargs)
+
+    # class SettingsButton(cocos.menu.MenuItem):
+
+    #     def __init__(self, label, callback_func, *args, **kwargs):
+    #             super().__init__(label, callback_func, *args, **kwargs)
+
+    # class MultiplayerButton(cocos.menu.MenuItem):
+
+    #     def __init__(self, label, callback_func, *args, **kwargs):
+    #             super().__init__(label, callback_func, *args, **kwargs)
+
+    # class ExitButton(cocos.menu.MenuItem):
+
+    #     def __init__(self, label, callback_func, *args, **kwargs):
+    #             super().__init__(label, callback_func, *args, **kwargs)
+
+
+'''Game scenes'''
+class BaseWindow(scene.Scene):
+    def __init__(self):
+        super(BaseWindow, self).__init__()
+
+
+
+class MainMenuScreen(BaseWindow):
     is_event_handler = True
 
     def __init__(self):
@@ -49,6 +99,8 @@ class MainMenu(BaseWindow):
         x, y = cocos.director.director.get_window_size()
         self.add(titleLabel)
         titleLabel.do(AccelDeccel(MoveTo((x / 2, y * 0.85), 2)))
+        mainmenu = MainMenu()
+        self.add(mainmenu)
 
 
 class loadingScreen(BaseWindow):
