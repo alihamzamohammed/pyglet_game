@@ -43,7 +43,6 @@ class MainMenu(Menu):
 
     def __init__(self, title=""):
         super().__init__(title=title)
-        #self.title_label = Label("")
         x, y = cocos.director.director.get_window_size()
         menuitems = []
         menuitems.append(MenuItem("Play", self.play))
