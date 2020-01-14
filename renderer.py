@@ -49,7 +49,7 @@ class MainMenu(Menu):
         menuitems.append(MenuItem("Multiplayer", self.multiplayer))
         menuitems.append(MenuItem("Settings", self.settings))
         menuitems.append(MenuItem("Quit Game", self.quit))
-        self.create_menu(menuitems, zoom_in(), zoom_out())
+        self.create_menu(menuitems)
         
     def play(self):
         pass
