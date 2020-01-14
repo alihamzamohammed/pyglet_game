@@ -41,7 +41,8 @@ def fontLoad():
         cocos.text.pyglet.font.add_file(fontpath)
         tt = ttLib.TTFont(fontpath)
         global font
-        font = shortName(tt)
+        #font = shortName(tt)
+        font = "Arial"
     else:
         logger.addLog("Resource pack not found!", logger.loglevel["warning"])
         # Switch to default resource pack
