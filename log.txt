@@ -2171,6 +2171,7 @@ INFO: Init resources
 INFO: Init items
 INFO: Loading finished, displaying Main Menu
 
+<<<<<<< HEAD
 INFO: New execution, at: 2020-01-14 11:11:34.083273
 INFO: Starting game.
 INFO: Resolution is 1280x720
@@ -2216,6 +2217,11 @@ INFO: Init items
 INFO: Loading finished, displaying Main Menu
 
 INFO: New execution, at: 2020-01-14 11:22:49.155222
+=======
+INFO: New execution, at: 2020-01-10 15:00:16.873228
+
+INFO: New execution, at: 2020-01-10 15:01:36.464240
+>>>>>>> 321f13dc2bd8f6af9a0016b7065b892293e3a16c
 INFO: Starting game.
 INFO: Resolution is 1280x720
 INFO: Fullscreen is disabled
@@ -2226,7 +2232,11 @@ INFO: Init resources
 INFO: Init items
 INFO: Loading finished, displaying Main Menu
 
+<<<<<<< HEAD
 INFO: New execution, at: 2020-01-14 11:25:58.655872
+=======
+INFO: New execution, at: 2020-01-10 15:01:49.089991
+>>>>>>> 321f13dc2bd8f6af9a0016b7065b892293e3a16c
 INFO: Starting game.
 INFO: Resolution is 1280x720
 INFO: Fullscreen is disabled
@@ -2237,7 +2247,11 @@ INFO: Init resources
 INFO: Init items
 INFO: Loading finished, displaying Main Menu
 
+<<<<<<< HEAD
 INFO: New execution, at: 2020-01-14 11:28:22.050619
+=======
+INFO: New execution, at: 2020-01-10 15:19:39.836124
+>>>>>>> 321f13dc2bd8f6af9a0016b7065b892293e3a16c
 INFO: Starting game.
 INFO: Resolution is 1280x720
 INFO: Fullscreen is disabled
