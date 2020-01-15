@@ -54,8 +54,11 @@ class MainMenu(Menu):
         menuitems.append( MenuItem("Quit Game", self.quit) )
 
         self.create_menu(menuitems)
-        print("menu created")
         
+    def on_enter(self):
+        super().on_enter()
+        self.do(Delay(2) + FadeIn(10))
+    
     def play(self):
         pass
 
@@ -83,15 +86,9 @@ class MainMenuScreen(BaseWindow):
         x, y = cocos.director.director.get_window_size()
         self.add(titleLabel)
         titleLabel.do(AccelDeccel(MoveTo((x / 2, y * 0.85), 2)))
-        #mainmenu = MainMenu()
-        #self.add(mainmenu)
-        #mainmenu.position = 1000, 1000
-        #mainmenu.do(FadeIn(2))
-        labeltext = Label("test")
-        labeltext.position = 1000, 1000
-        self.add(labeltext)
-        #labeltext.do(FadeIn(2))
-        print("main menu added to scene")
+        mainmenu = MainMenu()
+        self.add(mainmenu)
+        mainmenu.position = 200, 200
 
 
 class loadingScreen(BaseWindow):
