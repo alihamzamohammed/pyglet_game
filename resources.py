@@ -3,6 +3,7 @@ import cocos
 import json
 from cocos import text
 from fontTools import ttLib
+import pyglet
 import logger
 resourcePack = "default" 
 font = ""
@@ -38,7 +39,7 @@ def fontLoad():
     global resourcePack
     if not resourcePack == "":
         fontpath = "resources\\" + resourcePack + "\\fonts\\default.ttf"
-        cocos.text.pyglet.font.add_file(fontpath)
+        pyglet.font.add_file(fontpath)
         tt = ttLib.TTFont(fontpath)
         global font
         font = shortName(tt)

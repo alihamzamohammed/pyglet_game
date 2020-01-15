@@ -8,6 +8,7 @@ from cocos.menu import *
 from cocos.director import director
 import events
 import pyglet
+import pyglet.gl
 import threading
 from pyglet import event
 import resources
@@ -44,12 +45,16 @@ class MainMenu(Menu):
     def __init__(self, title=""):
         super().__init__(title=title)
         x, y = cocos.director.director.get_window_size()
+
         menuitems = []
-        menuitems.append(MenuItem("Play", self.play))
-        menuitems.append(MenuItem("Multiplayer", self.multiplayer))
-        menuitems.append(MenuItem("Settings", self.settings))
-        menuitems.append(MenuItem("Quit Game", self.quit))
+
+        menuitems.append( MenuItem("Play", self.play) )
+        menuitems.append( MenuItem("Multiplayer", self.multiplayer) )
+        menuitems.append( MenuItem("Settings", self.settings) )
+        menuitems.append( MenuItem("Quit Game", self.quit) )
+
         self.create_menu(menuitems)
+        print("menu created")
         
     def play(self):
         pass
@@ -78,7 +83,15 @@ class MainMenuScreen(BaseWindow):
         x, y = cocos.director.director.get_window_size()
         self.add(titleLabel)
         titleLabel.do(AccelDeccel(MoveTo((x / 2, y * 0.85), 2)))
-        self.add(MainMenu(""))
+        #mainmenu = MainMenu()
+        #self.add(mainmenu)
+        #mainmenu.position = 1000, 1000
+        #mainmenu.do(FadeIn(2))
+        labeltext = Label("test")
+        labeltext.position = 1000, 1000
+        self.add(labeltext)
+        #labeltext.do(FadeIn(2))
+        print("main menu added to scene")
 
 
 class loadingScreen(BaseWindow):
@@ -90,8 +103,10 @@ class loadingScreen(BaseWindow):
         titleLabel.position = x / 2, y * 0.72
         self.add(titleLabel)
         titleLabel.do(FadeIn(1))
-        loadingThread = threading.Thread(target=game_loading)
-        loadingThread.start()
+
+    def on_enter(self):
+        super().on_enter()
+        game_loading()
 
 if __name__=="__main__":
     print("This file cannot be run directly, please run main.py to start the game.")

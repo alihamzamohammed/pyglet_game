@@ -1,6 +1,6 @@
 import os
 import pyglet
-pyglet.options["debug_gl"] = False
+#pyglet.options["debug_gl"] = False
 import cocos
 from cocos.director import director
 from cocos.scene import *
