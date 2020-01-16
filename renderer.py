@@ -5,6 +5,7 @@ from cocos import scene
 from cocos import layer
 from cocos.actions import *
 from cocos.menu import *
+from cocos.sprite import *
 from cocos.director import director
 import events
 import pyglet
@@ -12,6 +13,7 @@ import pyglet.gl
 import threading
 from pyglet import event
 import resources
+import time
 
 '''Game loading code'''
 def game_loading():
@@ -55,10 +57,31 @@ class MainMenu(Menu):
 
         self.create_menu(menuitems)
         
-    def on_enter(self):
-        super().on_enter()
-        self.do(Delay(2) + FadeIn(10))
+    #def on_enter(self):
+     #   super().on_enter()
+      #  self.do(Delay(2) + FadeIn(10))
     
+    # class menuItem(MenuItem):
+
+    #     def __init__(self, label, callback_func, *args, **kwargs):
+    #         super().__init__(label, callback_func, *args, **kwargs)
+        
+    #     def generateWidgets(self, pos_x, pos_y, font_item, font_item_selected):
+    #         super().generateWidgets(pos_x, pos_y, font_item, font_item_selected)
+    #         self.item = self.ImageLabel(self.label)
+    #         self.item_selected = self.ImageLabel(self.label)
+
+    #     class ImageLabel(layer.Layer):
+
+    #         def __init__(self, label):
+    #             super().__init__()
+    #             lbl = Label(label)
+    #             #self.add(lbl, z=1)
+    #             sprt = Sprite("image.png")
+    #             self.add(sprt, z=0)
+    #             self.content_width = sprt.width
+    #             self.content_height = sprt.height
+
     def play(self):
         pass
 
@@ -78,6 +101,19 @@ class BaseWindow(scene.Scene):
         super(BaseWindow, self).__init__()
 
 
+class MainMenuLayer(layer.Layer):
+
+    def __init__(self):
+        super().__init__()
+            #mainmenu = MainMenu()
+            #self.add(MainMenu())
+
+    def on_enter(self):
+        super().on_enter()
+        self.add(MainMenu(), z=1)
+        self.do(Delay(2) + FadeIn(1))
+
+
 class MainMenuScreen(BaseWindow):
     is_event_handler = True
 
@@ -86,9 +122,8 @@ class MainMenuScreen(BaseWindow):
         x, y = cocos.director.director.get_window_size()
         self.add(titleLabel)
         titleLabel.do(AccelDeccel(MoveTo((x / 2, y * 0.85), 2)))
-        mainmenu = MainMenu()
-        self.add(mainmenu)
-        mainmenu.position = 200, 200
+        mainmenulayer = MainMenuLayer()
+        self.add(mainmenulayer)
 
 
 class loadingScreen(BaseWindow):
