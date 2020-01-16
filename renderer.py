@@ -70,9 +70,7 @@ class mainMenu(layer.ColorLayer):
 
     def __init__(self):
         global x, y
-        super().__init__(100, 100, 100, 0, width=int(x * 0.4), height=int(y * 0.4))
-        nodes = 4
-        spacing = y / 0.05
+        super().__init__(100, 100, 100, 0, width=int(x * 0.4), height=int(y * 0.55))
         #self.add(MenuItem("hello", self.play))
         
 
@@ -115,9 +113,7 @@ class MainMenuScreen(BaseWindow):
         self.add(titleLabel)
         titleLabel.do(AccelDeccel(MoveTo((x / 2, y * 0.85), 2)))
         mainmenu = mainMenu()
-        #mainmenu.anchor_x = "center"
-        #mainmenu.anchor_y = "top"
-        mainmenu.position = (x / 2) - (mainmenu.width / 2), (y / 2) - (mainmenu.height / 2)
+        mainmenu.position = (x / 2) - (mainmenu.width / 2), (y * 0.4) - (mainmenu.height / 2)
         self.add(mainmenu)
         mainmenu.do(Delay(1) + FadeIn(2))
 
