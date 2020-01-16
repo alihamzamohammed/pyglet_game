@@ -56,18 +56,18 @@ class mainMenu(layer.ColorLayer):
             global x, y
             self.callbackfunc = callbackfunc
             bgImage = Sprite("image.png") # Replace with resource pack image
+            print(bgImage.width, bgImage.height)
             lbl = Label(label)
-            #bgImage.anchor_x = x / 2
-            #bgImage.anchor_y = y / 2
-            self.add(bgImage, z=0)
-            self.add(lbl, z=1)
-            self.anchor = (0, 0)
-            self.x = posx
-            self.y = posy
-            self.width = bgImage.width
-            self.height = bgImage.height
-            self.width_range = [int(self.x), int(self.x + self.width)]
-            self.height_range = [int(self.y), int(self.y + self.height)]
+
+            #bgImage.anchor_x=x/2
+            #bgImage.anchor_y=y/2
+            bgImage.x = 0
+            bgImage.y = 0
+            self.add(bgImage)
+
+
+            self.width_range = [int(bgImage.x), int(bgImage.x + bgImage.width)]
+            self.height_range = [int(bgImage.y), int(bgImage.y + bgImage.height)]
             print(self.width_range)
             print(self.height_range)
         
@@ -83,9 +83,8 @@ class mainMenu(layer.ColorLayer):
         super().__init__(100, 100, 100, 0, width=int(x * 0.4), height=int(y * 0.6))
         self.x = (x / 2) - (self.width / 2)
         self.y = (y * 0.42) - (self.height / 2)
-        print(self.x, self.y)
+#        print(self.x, self.y)
         playButton = self.menuItem("Play", self.play, self.x, self.y)
-        print(playButton.width_range, playButton.height_range)
         self.add(playButton, z=1)
 
     def on_enter(self):
