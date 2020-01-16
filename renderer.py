@@ -13,6 +13,7 @@ import pyglet.gl
 import threading
 from pyglet import event
 import resources
+import random
 import time
 
 x, y = director.get_window_size()
@@ -39,40 +40,53 @@ def game_loading():
 titleLabel = cocos.text.Label(
     "Game Title",
     font_name=resources.font[1],
-    font_size=40,
+    font_size=50,
     anchor_y="top",
     anchor_x="center"
 )
 
 class mainMenu(layer.ColorLayer):
 
-    # class MenuItem(layer.Layer):
-
-    #     is_event_handler = True
-
-    #     def __init__(self, label, callbackfunc):
-    #         super().__init__()
-    #         global x, y
-    #         self.callbackfunc = callbackfunc
-    #         bgImage = Sprite("image.png") # Replace with resource pack image
-    #         self.lbl  = Label(label)
-    #         bgImage.anchor_x = x / 2
-    #         bgImage.anchor_y = y / 2
-    #         self.add(bgImage, z=0)
-    #         self.add(self.lbl, z=0)
-    #         self.width_range = bgImage.x, bgImage.x + bgImage.width
-    #         self.height_range = bgImage.y, bgImage.y + bgImage.height
-
-    #     def on_mouse_motion(self, x, y):
-    #         if x in range(self.width_range) and y in range(self.height_range):
-    #             #self.callbackfunc()
-    #             self.lbl.element.text = "Hovered"
+    class menuItem(layer.Layer):
+        
+        is_event_handler = True
+        
+        def __init__(self, label, callbackfunc):
+            super().__init__()
+            global x, y
+            self.callbackfunc = callbackfunc
+            bgImage = Sprite("image.png") # Replace with resource pack image
+            lbl = Label(label)
+            #bgImage.anchor_x = x / 2
+            #bgImage.anchor_y = y / 2
+            self.add(bgImage, z=0)
+            self.add(lbl, z=1)
+            self.anchor = (0, 0)
+            self.x = 0
+            self.y = 0
+            self.width = bgImage.width
+            self.height = bgImage.height
+            self.width_range = [self.x, self.x + self.width]
+            self.height_range = [self.y, self.y + self.height]
+            print(self.width_range)
+            print(self.height_range)
+        
+        def on_mouse_motion(self, x, y, dx, dy):
+            if x in range(self.width_range[0], self.width_range[1]) and y in range(self.height_range[0], self.height_range[1]):
+                #self.callbackfunc()
+                #self.lbl.element.text = "Hovered"
+                #print("hovering over button" + str(random.randint(1, 100)))
+                print(x, y)
 
     def __init__(self):
         global x, y
-        super().__init__(100, 100, 100, 0, width=int(x * 0.4), height=int(y * 0.55))
-        #self.add(MenuItem("hello", self.play))
-        
+        super().__init__(100, 100, 100, 0, width=int(x * 0.4), height=int(y * 0.6))
+        playButton = self.menuItem("Play", self.play)
+        playButton.width_range = [playButton.x + self.x, playButton.x + self.x + playButton.width]
+        playButton.height_range = [playButton.y + self.y, playButton.y + self.y + playButton.height]
+        print(playButton.width_range, playButton.height_range)
+        self.add(playButton, z=1)
+
 
     def play(self):
         pass
@@ -93,17 +107,6 @@ class BaseWindow(scene.Scene):
         super(BaseWindow, self).__init__()
 
 
-""" class MainMenuLayer(layer.Layer):
-
-    def __init__(self):
-        super().__init__()
-
-    def on_enter(self):
-        super().on_enter()
-        self.add(MainMenu(), z=1)
-        self.do(Delay(2) + FadeIn(1))
- """
-
 class MainMenuScreen(BaseWindow):
     is_event_handler = True
 
@@ -111,11 +114,12 @@ class MainMenuScreen(BaseWindow):
         super(MainMenuScreen, self).__init__()
         global x, y
         self.add(titleLabel)
-        titleLabel.do(AccelDeccel(MoveTo((x / 2, y * 0.85), 2)))
+        titleLabel.do(AccelDeccel(MoveTo((x / 2, y * 0.9), 2)))
         mainmenu = mainMenu()
-        mainmenu.position = (x / 2) - (mainmenu.width / 2), (y * 0.4) - (mainmenu.height / 2)
+        mainmenu.position = (x / 2) - (mainmenu.width / 2), (y * 0.42) - (mainmenu.height / 2)
+        print((x*0.4)-(mainmenu.width/2))
         self.add(mainmenu)
-        mainmenu.do(Delay(1) + FadeIn(2))
+        mainmenu.do(Delay(0.5) + FadeIn(0.5))
 
 
 class loadingScreen(BaseWindow):
@@ -124,7 +128,7 @@ class loadingScreen(BaseWindow):
     def __init__(self):
         super(loadingScreen, self).__init__()
         x, y = cocos.director.director.get_window_size()
-        titleLabel.position = x / 2, y * 0.72
+        titleLabel.position = x / 2, y * 0.7
         self.add(titleLabel)
         titleLabel.do(FadeIn(1))
 
