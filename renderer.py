@@ -9,6 +9,7 @@ from cocos.sprite import *
 from cocos.director import director
 import events
 import pyglet
+from pyglet.text import Label
 import pyglet.gl
 import threading
 from pyglet import event
@@ -54,22 +55,26 @@ class mainMenu(layer.ColorLayer):
         def __init__(self, label, callbackfunc, posx, posy):
             super().__init__()
             global x, y
+            XZERO = -173
+            YZERO = -40
             self.callbackfunc = callbackfunc
             bgImage = Sprite("image.png") # Replace with resource pack image
-            print(bgImage.width, bgImage.height)
             lbl = Label(label)
 
-            #bgImage.anchor_x=x/2
-            #bgImage.anchor_y=y/2
-            bgImage.x = 0
-            bgImage.y = 0
-            self.add(bgImage)
+            self.x = XZERO + (x / 2) - (bgImage.width / 2)
+            self.y = YZERO + (y * 0.62) - (bgImage.height / 2)
 
+            self.width = bgImage.width
+            self.height = bgImage.height
 
-            self.width_range = [int(bgImage.x), int(bgImage.x + bgImage.width)]
-            self.height_range = [int(bgImage.y), int(bgImage.y + bgImage.height)]
-            print(self.width_range)
-            print(self.height_range)
+            lbl.x = ((self.x + self.width) / 2) - lbl.content_width
+            lbl.y = ((self.y + self.height) / 2) - lbl.content_height
+
+            self.add(bgImage, z = 0)
+            self.add(lbl, z = 1)
+
+            self.width_range = [int(self.x), int(self.x + self.width)]
+            self.height_range = [int(self.y), int(self.y + self.height)]
         
         def on_mouse_motion(self, x, y, dx, dy):
             if x in range(self.width_range[0], self.width_range[1]) and y in range(self.height_range[0], self.height_range[1]):
@@ -83,7 +88,8 @@ class mainMenu(layer.ColorLayer):
         super().__init__(100, 100, 100, 0, width=int(x * 0.4), height=int(y * 0.6))
         self.x = (x / 2) - (self.width / 2)
         self.y = (y * 0.42) - (self.height / 2)
-#        print(self.x, self.y)
+        print(self.x, self.y)
+        print(self.width, self.height)
         playButton = self.menuItem("Play", self.play, self.x, self.y)
         self.add(playButton, z=1)
 
