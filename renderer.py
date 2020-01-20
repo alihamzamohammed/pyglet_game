@@ -9,7 +9,6 @@ from cocos.sprite import *
 from cocos.director import director
 import events
 import pyglet
-from pyglet.text import Label
 import pyglet.gl
 import threading
 from pyglet import event
@@ -52,14 +51,15 @@ class mainMenu(layer.ColorLayer):
         
         is_event_handler = True
         
-        def __init__(self, label, callbackfunc, posx, posy):
+        def __init__(self, label, callbackfunc, posx, posy):#, buttonorder = 1):
             super().__init__()
             global x, y
             XZERO = -173
             YZERO = -40
             self.callbackfunc = callbackfunc
+            #self.buttonorder = buttonorder
             bgImage = Sprite("image.png") # Replace with resource pack image
-            lbl = Label(label)
+            self.lbl = Label(label, anchor_x="center", anchor_y="center")
 
             self.x = XZERO + (x / 2) - (bgImage.width / 2)
             self.y = YZERO + (y * 0.62) - (bgImage.height / 2)
@@ -67,21 +67,26 @@ class mainMenu(layer.ColorLayer):
             self.width = bgImage.width
             self.height = bgImage.height
 
-            lbl.x = ((self.x + self.width) / 2) - lbl.content_width
-            lbl.y = ((self.y + self.height) / 2) - lbl.content_height
-
             self.add(bgImage, z = 0)
-            self.add(lbl, z = 1)
+            self.add(self.lbl, z = 1)
 
-            self.width_range = [int(self.x), int(self.x + self.width)]
-            self.height_range = [int(self.y), int(self.y + self.height)]
+            self.width_range = [int(self.x + abs(XZERO)), int(self.x + abs(XZERO) + self.width)]
+            self.height_range = [int(self.y + abs(YZERO)), int(self.y + abs(YZERO) + self.height)]
         
         def on_mouse_motion(self, x, y, dx, dy):
             if x in range(self.width_range[0], self.width_range[1]) and y in range(self.height_range[0], self.height_range[1]):
-                #self.callbackfunc()
-                #self.lbl.element.text = "Hovered"
-                #print("hovering over button" + str(random.randint(1, 100)))
-                print(x, y)
+                self.lbl.element.text = "Hovered"
+            else:
+                self.lbl.element.text = "Play"
+
+        def on_mouse_press(self, x, y, buttons, modifiers):
+            if x in range(self.width_range[0], self.width_range[1]) and y in range(self.height_range[0], self.height_range[1]):
+                self.callbackfunc
+                self.lbl.element.text = "clicked"
+                
+        #def on_enter(self):
+         #   super().on_enter()
+          #  self.do(Delay(1) + FadeIn(1)) # Change with appropriate side swipe
 
     def __init__(self):
         global x, y
@@ -92,6 +97,7 @@ class mainMenu(layer.ColorLayer):
         print(self.width, self.height)
         playButton = self.menuItem("Play", self.play, self.x, self.y)
         self.add(playButton, z=1)
+        #playButton.do(FadeIn(1))
 
     def on_enter(self):
         super().on_enter()
