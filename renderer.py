@@ -55,7 +55,7 @@ class menuItem(layer.Layer):
         self.buttonorder = buttonorder
         self.eventName = eventName
         self.label = label
-        bgImage = Sprite("image.png") # Replace with resource pack image
+        self.bgImage = Sprite("image.png") # Replace with resource pack image
         self.lbl = Label(self.label, anchor_x="center", anchor_y="center")
         
         self.x = x / 2
@@ -67,43 +67,40 @@ class menuItem(layer.Layer):
             self.y = y * 0.36
         elif buttonorder == 4:
             self.y = y * 0.20        
+                
+        self.width = self.bgImage.width
+        self.height = self.bgImage.height
         
-        print(self.x, self.y)
-        
-        self.width = bgImage.width
-        self.height = bgImage.height
-        
-        self.add(bgImage, z = 0)
+        self.add(self.bgImage, z = 0)
         self.add(self.lbl, z = 1)
         
-        print(bgImage.width, bgImage.height)
-        
-        self.width_range = [int(self.x - (bgImage.width / 2)), int(self.x + (bgImage.width / 2))]
-        self.height_range = [int(self.y - (bgImage.height / 2)), int(self.y + (bgImage.height / 2))]
-        
-        print(self.width_range, self.height_range)
+        self.width_range = [int(self.x - (self.bgImage.width / 2)), int(self.x + (self.bgImage.width / 2))]
+        self.height_range = [int(self.y - (self.bgImage.height / 2)), int(self.y + (self.bgImage.height / 2))]
 
     def on_mouse_motion(self, x, y, dx, dy):
         if x in range(self.width_range[0], self.width_range[1]) and y in range(self.height_range[0], self.height_range[1]):
-            self.lbl.element.text = "Hovered"
+            self.bgImage.image = pyglet.resource.image("hovered.png")
         else:
-            self.lbl.element.text = self.label
+            self.bgImage.image = pyglet.resource.image("image.png")
 
     def on_mouse_press(self, x, y, buttons, modifiers):
         if x in range(self.width_range[0], self.width_range[1]) and y in range(self.height_range[0], self.height_range[1]):
             self.eventName()
-            self.lbl.element.text = "clicked"
+            self.bgImage.image = pyglet.resource.image("clicked.png")
+            self.lbl.element.color = (0, 0, 0, 255)
 
     def on_enter(self):
         super().on_enter()
         mvx = self.x
         mvy = self.y
+        # ODD
         if not self.buttonorder % 2 == 0:
             self.x = -self.width
-            self.do(Delay(1) + AccelDeccel(MoveTo((mvx, mvy), 1.5)))
+            self.do(Delay(0.7) + AccelDeccel(MoveTo((mvx, mvy), 1.5)))
+        # EVEN
         else:
             self.x = x + self.width
-            self.do(Delay(1) + AccelDeccel(MoveTo((mvx, mvy), 1.5)))
+            self.do(Delay(0.7) + AccelDeccel(MoveTo((mvx, mvy), 1.5)))
 
 '''Game scenes'''
 class BaseWindow(scene.Scene):
@@ -118,7 +115,7 @@ class MainMenuScreen(BaseWindow):
         super(MainMenuScreen, self).__init__()
         global x, y
         self.add(titleLabel)
-        titleLabel.do(AccelDeccel(MoveTo((x / 2, y * 0.9), 2)))
+        titleLabel.do(AccelDeccel(MoveTo((x / 2, y * 0.9), 1.5)))
         
         playButton = menuItem("Play Game", events.rendererevents.onPlayButtonClick, 1)
         multiplayerButton = menuItem("Multiplayer", events.rendererevents.onMultiplayerButtonClick, 2)
