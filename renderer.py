@@ -48,7 +48,7 @@ class menuItem(layer.Layer):
     
     is_event_handler = True
     
-    def __init__(self, label, eventName, buttonorder = 1): #, posx, posy):#, buttonorder = 1):
+    def __init__(self, label, eventName, buttonorder = 1):
         super().__init__()
         global x, y
 
