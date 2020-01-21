@@ -15,7 +15,8 @@ from pyglet import event
 import resources
 import random
 import time
-x, y = director.get_window_size()
+
+x, y = director.window.width, director.window.height
 
 '''Game loading code'''
 def game_loading():
@@ -51,6 +52,7 @@ class menuItem(layer.Layer):
     def __init__(self, label, eventName, buttonorder = 1):
         super().__init__()
         global x, y
+        #x, y = director.get_virtual_coordinates(x, y)
 
         self.buttonorder = buttonorder
         self.eventName = eventName
@@ -59,8 +61,8 @@ class menuItem(layer.Layer):
         self.lbl = Label(self.label, anchor_x="center", anchor_y="center")
         
         self.x = x / 2
-        TOPBTNPOS = 0.68
-        self.y = y * (TOPBTNPOS - (0.16 * (buttonorder - 1)))
+        self.TOPBTNPOS = 0.68
+        self.y = y * (self.TOPBTNPOS - (0.16 * (self.buttonorder - 1)))
                 
         self.width = self.bgImage.width
         self.height = self.bgImage.height
@@ -71,7 +73,18 @@ class menuItem(layer.Layer):
         self.width_range = [int(self.x - (self.bgImage.width / 2)), int(self.x + (self.bgImage.width / 2))]
         self.height_range = [int(self.y - (self.bgImage.height / 2)), int(self.y + (self.bgImage.height / 2))]
 
+        self.schedule_interval(self.setWH, 1)
+        self.resume_scheduler()
+
+    def setWH(self, dt):
+        x, y = director.window.width, director.window.height
+        self.width_range = [int((x / 2) - (self.bgImage.width / 2)), int((x / 2) + (self.bgImage.width / 2))]
+        self.height_range = [int((y * (self.TOPBTNPOS - (0.16 * (self.buttonorder - 1)))) - (self.bgImage.height / 2)), int((y * (self.TOPBTNPOS - (0.16 * (self.buttonorder - 1)))) + (self.bgImage.height / 2))]
+
+
     def on_mouse_motion(self, x, y, dx, dy):
+        #print(x, y)
+        #print(director.window.width, director.window.height)
         if x in range(self.width_range[0], self.width_range[1]) and y in range(self.height_range[0], self.height_range[1]):
             self.bgImage.image = pyglet.resource.image("hovered.png")
         else:

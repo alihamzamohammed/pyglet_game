@@ -15,7 +15,7 @@ logger.init()
 
 reswidth, resheight = [int(res) for res in cfg.configuration["Core"]["defaultres"].split("x")]
 fullscreen = True if cfg.configuration["Core"]["fullscreen"] == "True" else False
-director.init(width=reswidth, height=resheight, caption="Game", fullscreen=fullscreen, autoscale=True, resizable=True)
+director.init(width=1280, height=720, caption="Game", fullscreen=fullscreen, autoscale=True, resizable=True)
     
 import resources
 resources.resourceLoad() 
