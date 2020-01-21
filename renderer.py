@@ -91,7 +91,7 @@ class menuItem(layer.Layer):
 
     def on_mouse_press(self, x, y, buttons, modifiers):
         if x in range(self.width_range[0], self.width_range[1]) and y in range(self.height_range[0], self.height_range[1]):
-            self.callbackfunc
+            self.eventName()
             self.lbl.element.text = "clicked"
 
     def on_enter(self):
@@ -120,10 +120,10 @@ class MainMenuScreen(BaseWindow):
         self.add(titleLabel)
         titleLabel.do(AccelDeccel(MoveTo((x / 2, y * 0.9), 2)))
         
-        playButton = menuItem("Play Game", "", 1)
-        multiplayerButton = menuItem("Multiplayer", self.multiplayer, 2)
-        settingsButton = menuItem("Settings", self.settings, 3)
-        quitButton = menuItem("Quit Game", self.quit, 4)
+        playButton = menuItem("Play Game", events.rendererevents.onPlayButtonClick, 1)
+        multiplayerButton = menuItem("Multiplayer", events.rendererevents.onMultiplayerButtonClick, 2)
+        settingsButton = menuItem("Settings", events.rendererevents.onSettingsButtonClick, 3)
+        quitButton = menuItem("Quit Game", events.rendererevents.onQuitButtonClicked, 4)
 
         self.add(playButton)
         self.add(multiplayerButton)
