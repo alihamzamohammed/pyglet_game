@@ -4,6 +4,7 @@ import pickle
 from cocos import text
 from fontTools import ttLib
 import pyglet
+from cocos.actions import *
 import logger
 resourcePack = "default" 
 font = ""
@@ -50,12 +51,12 @@ def fontLoad():
 def animLoad():
     global resourcePack
     if not resourcePack == "":
-        animpath = "resources\\" + resourcePack + "\\animations\\animations.pkl"
+        animpath = "resources\\" + resourcePack + "\\animations\\animations.anim"
         try:
-            with open(animpath, "r") as file:
+            with open(animpath, "rb") as file:
                 global animations
-                #animations = json.load(file)
-        except p.JSONDecodeError:
+                #animations = pickle.load(file)
+        except pickle.PickleError:
             logger.addLog("Animation file not decodable", logger.loglevel["warning"])
         except FileNotFoundError:
             logger.addLog("Animation file not found!", logger.loglevel["warning"])
