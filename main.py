@@ -37,6 +37,18 @@ class Game(object):
         logger.addLog("Loading finished, displaying Main Menu", logger.loglevel["info"])
         director.replace(renderer.MainMenuScreen())
 
+    def playButtonClicked(self):
+        print("Play button clicked")
+
+    def multiplayerButtonClicked(self):
+        print("Multiplayer button clicked")
+
+    def settingsButtonClicked(self):
+        print("Settings button clicked")
+
+    def quitButtonClicked(self):
+        print("Quit button clicked")
+
     def __init__(self):
         super(Game, self).__init__()
         events.rendererevents.push_handlers(self)

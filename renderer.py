@@ -44,45 +44,16 @@ titleLabel = cocos.text.Label(
     anchor_x="center"
 )
 
-# class mainMenu(layer.ColorLayer):
-
-#         def __init__(self):
-#         global x, y
-#         super().__init__(100, 100, 100, 0, width=int(x * 0.4), height=int(y * 0.6))
-#         self.x = (x / 2) - (self.width / 2)
-#         self.y = (y * 0.42) - (self.height / 2)
-#         print(self.x, self.y)
-#         print(self.width, self.height)
-#         playButton = self.menuItem("Play", self.play, self.x, self.y)
-#         self.add(playButton, z=1)
-#         #playButton.do(FadeIn(1))
-
-#     def on_enter(self):
-#         super().on_enter()
-#         self.do(Delay(1) + FadeIn(2))
-
-#     def play(self):
-#         pass
-
-#     def multiplayer(self):
-#         pass
-
-#     def settings(self):
-#         pass
-
-#     def quit(self):
-#         pass
-
 class menuItem(layer.Layer):
     
     is_event_handler = True
     
-    def __init__(self, label, callbackfunc, buttonorder = 1): #, posx, posy):#, buttonorder = 1):
+    def __init__(self, label, eventName, buttonorder = 1): #, posx, posy):#, buttonorder = 1):
         super().__init__()
         global x, y
 
         self.buttonorder = buttonorder
-        self.callbackfunc = callbackfunc
+        self.eventName = eventName
         self.label = label
         bgImage = Sprite("image.png") # Replace with resource pack image
         self.lbl = Label(self.label, anchor_x="center", anchor_y="center")
@@ -149,7 +120,7 @@ class MainMenuScreen(BaseWindow):
         self.add(titleLabel)
         titleLabel.do(AccelDeccel(MoveTo((x / 2, y * 0.9), 2)))
         
-        playButton = menuItem("Play Game", self.play, 1)
+        playButton = menuItem("Play Game", "", 1)
         multiplayerButton = menuItem("Multiplayer", self.multiplayer, 2)
         settingsButton = menuItem("Settings", self.settings, 3)
         quitButton = menuItem("Quit Game", self.quit, 4)
