@@ -59,14 +59,8 @@ class menuItem(layer.Layer):
         self.lbl = Label(self.label, anchor_x="center", anchor_y="center")
         
         self.x = x / 2
-        if buttonorder == 1:
-            self.y = y * 0.68
-        elif buttonorder == 2:
-            self.y = y * 0.52
-        elif buttonorder == 3:
-            self.y = y * 0.36
-        elif buttonorder == 4:
-            self.y = y * 0.20        
+        TOPBTNPOS = 0.68
+        self.y = y * (TOPBTNPOS - (0.16 * (buttonorder - 1)))
                 
         self.width = self.bgImage.width
         self.height = self.bgImage.height
