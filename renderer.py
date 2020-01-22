@@ -7,6 +7,7 @@ from cocos.actions import *
 from cocos.menu import *
 from cocos.sprite import *
 from cocos.director import director
+import cfg
 import events
 import pyglet
 import pyglet.gl
@@ -17,6 +18,7 @@ import random
 import time
 
 x, y = director.window.width, director.window.height
+reswidth, resheight = [int(res) for res in cfg.configuration["Core"]["defaultres"].split("x")]
 
 '''Game loading code'''
 def game_loading():
@@ -72,19 +74,19 @@ class menuItem(layer.Layer):
         
         self.width_range = [int(self.x - (self.bgImage.width / 2)), int(self.x + (self.bgImage.width / 2))]
         self.height_range = [int(self.y - (self.bgImage.height / 2)), int(self.y + (self.bgImage.height / 2))]
-
+        
         self.schedule_interval(self.setWH, 1)
         self.resume_scheduler()
 
     def setWH(self, dt):
         x, y = director.window.width, director.window.height
-        self.width_range = [int((x / 2) - (self.bgImage.width / 2)), int((x / 2) + (self.bgImage.width / 2))]
-        self.height_range = [int((y * (self.TOPBTNPOS - (0.16 * (self.buttonorder - 1)))) - (self.bgImage.height / 2)), int((y * (self.TOPBTNPOS - (0.16 * (self.buttonorder - 1)))) + (self.bgImage.height / 2))]
+        scalex = x / reswidth
+        scaley = y / resheight
+        self.width_range = [int((x / 2) - ((self.bgImage.width * scalex) / 2)), int((x / 2) + ((self.bgImage.width * scalex) / 2))]
+        self.height_range = [int((y * (self.TOPBTNPOS - (0.16 * (self.buttonorder - 1)))) - ((self.bgImage.height * scaley) / 2)), int((y * (self.TOPBTNPOS - (0.16 * (self.buttonorder - 1)))) + ((self.bgImage.height * scaley) / 2))]
 
 
     def on_mouse_motion(self, x, y, dx, dy):
-        #print(x, y)
-        #print(director.window.width, director.window.height)
         if x in range(self.width_range[0], self.width_range[1]) and y in range(self.height_range[0], self.height_range[1]):
             self.bgImage.image = pyglet.resource.image("hovered.png")
         else:
