@@ -116,6 +116,23 @@ class BaseWindow(scene.Scene):
     def __init__(self):
         super(BaseWindow, self).__init__()
 
+class SettingsScreen(BaseWindow):
+
+    def __init__(self):
+        super().__init__() 
+        self.settingsLabel = cocos.text.Label(
+            "Settings",
+            font_name=resources.font[1],
+            font_size=50,
+            anchor_y="top",
+            anchor_x="center"
+        )
+        self.settingsLabel.position = x / 2, y / 2
+        self.add(self.settingsLabel)
+
+    def on_enter(self):
+        super().on_enter()
+
 
 class MainMenuScreen(BaseWindow):
     is_event_handler = True

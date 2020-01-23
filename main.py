@@ -3,6 +3,7 @@ import pyglet
 import cocos
 from cocos.director import director
 from cocos.scene import *
+from cocos.scenes import *
 from pyglet import event
 import events
 import cfg
@@ -44,6 +45,7 @@ class Game(object):
         print("Multiplayer button clicked")
 
     def settingsButtonClicked(self):
+        director.replace(FadeTransition(renderer.SettingsScreen(), duration = 5, color = (0, 0, 0)))
         print("Settings button clicked")
 
     def quitButtonClicked(self):
