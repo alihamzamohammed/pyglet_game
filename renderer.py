@@ -178,7 +178,7 @@ class VideoSettings(layer.ColorLayer):
 
     def showVideoScreen(self):
         self.active = True
-        self.doAccelDeccel((MoveTo((self.poscenter, self.y), duration = 0.5)))
+        self.do(AccelDeccel(MoveTo((self.poscenter, self.y), duration = 0.5)))
 
     def showSoundScreen(self):
         if self.active:
@@ -220,25 +220,25 @@ class SoundSettings(layer.ColorLayer):
 
     def showVideoScreen(self):
         if self.active:
-            self.do(MoveTo((self.posright, self.y), duration = 0.5))
+            self.do(AccelDeccel(MoveTo((self.posright, self.y), duration = 0.5)))
             self.active = False
         else:
             self.x = self.posright
 
     def showSoundScreen(self):
         self.active = True
-        self.do(MoveTo((self.poscenter, self.y), duration = 0.5))
+        self.do(AccelDeccel(MoveTo((self.poscenter, self.y), duration = 0.5)))
 
     def showExtensionsScreen(self):
         if self.active:
-            self.do(MoveTo((self.posleft, self.y), duration=0.5))
+            self.do(AccelDeccel(MoveTo((self.posleft, self.y), duration=0.5)))
             self.active = False
         else:
             self.x = self.posleft
 
     def showAboutScreen(self):
         if self.active:
-            self.do(MoveTo((self.posleft, self.y), duration=0.5))
+            self.do(AccelDeccel(MoveTo((self.posleft, self.y), duration=0.5)))
             self.active = False
         else:
             self.x = self.posleft
@@ -262,25 +262,25 @@ class ExtensionSettings(layer.ColorLayer):
         
     def showVideoScreen(self):
         if self.active:
-            self.do(MoveTo((self.posright, self.y), duration = 0.5))
+            self.do(AccelDeccel(MoveTo((self.posright, self.y), duration = 0.5)))
             self.active = False
         else:
             self.x = self.posright
 
     def showSoundScreen(self):
         if self.active:
-            self.do(MoveTo((self.posright, self.y), duration = 0.5))
+            self.do(AccelDeccel(MoveTo((self.posright, self.y), duration = 0.5)))
             self.active = False
         else:
             self.x = self.posright
 
     def showExtensionsScreen(self):
         self.active = True
-        self.do(MoveTo((self.poscenter, self.y), duration = 0.5))
+        self.do(AccelDeccel(MoveTo((self.poscenter, self.y), duration = 0.5)))
 
     def showAboutScreen(self):
         if self.active:
-            self.do(MoveTo((self.posleft, self.y), duration = 0.5))
+            self.do(AccelDeccel(MoveTo((self.posleft, self.y), duration = 0.5)))
             self.active = False
         else:
             self.x = self.posleft
@@ -305,29 +305,28 @@ class AboutSettings(layer.ColorLayer):
 
     def showVideoScreen(self):
         if self.active:
-            self.do(MoveTo((self.posright, self.y), duration = 0.5))
+            self.do(AccelDeccel(MoveTo((self.posright, self.y), duration = 0.5)))
             self.active = False
         else:
             self.x = self.posright
 
     def showSoundScreen(self):
         if self.active:
-            self.do(MoveTo((self.posright, self.y), duration = 0.5))
+            self.do(AccelDeccel(MoveTo((self.posright, self.y), duration = 0.5)))
             self.active = False
         else:
             self.x = self.posright
 
     def showExtensionsScreen(self):
         if self.active:
-            self.do(MoveTo((self.posright, self.y), duration = 0.5))
+            self.do(AccelDeccel(MoveTo((self.posright, self.y), duration = 0.5)))
             self.active = False
         else:
             self.x = self.posright
 
     def showAboutScreen(self):
         self.active = True
-        self.do(MoveTo((self.poscenter, self.y), duration = 0.5))
-
+        self.do(AccelDeccel(MoveTo((self.poscenter, self.y), duration = 0.5)))
 
 '''Game scenes'''
 class BaseWindow(scene.Scene):
