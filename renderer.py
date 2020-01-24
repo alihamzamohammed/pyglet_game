@@ -1,4 +1,5 @@
 import cocos
+import os
 import logger
 from cocos.text import Label
 from cocos import scene
@@ -59,7 +60,7 @@ class menuItem(layer.Layer):
         self.buttonorder = buttonorder
         self.eventName = eventName
         self.label = label
-        self.bgImage = Sprite("image.png") # Replace with resource pack image
+        self.bgImage = Sprite("menuButton.png") # Replace with resource pack image
         self.lbl = Label(self.label, anchor_x="center", anchor_y="center")
         
         self.x = x / 2
@@ -87,23 +88,17 @@ class menuItem(layer.Layer):
         self.width_range = [int((x / 2) - ((self.bgImage.width * scalex) / 2)), int((x / 2) + ((self.bgImage.width * scalex) / 2))]
         self.height_range = [int((y * (self.TOPBTNPOS - (0.16 * (self.buttonorder - 1)))) - ((self.bgImage.height * scaley) / 2)), int((y * (self.TOPBTNPOS - (0.16 * (self.buttonorder - 1)))) + ((self.bgImage.height * scaley) / 2))]
 
-
     def on_mouse_motion(self, x, y, dx, dy):
         if x in range(self.width_range[0], self.width_range[1]) and y in range(self.height_range[0], self.height_range[1]):
-            self.bgImage.image = pyglet.resource.image("hovered.png")
+            self.bgImage.image = pyglet.resource.image("menuButtonHovered.png")
         else:
-            self.bgImage.image = pyglet.resource.image("image.png")
+            self.bgImage.image = pyglet.resource.image("menuButton.png")
 
     def on_mouse_press(self, x, y, buttons, modifiers):
         if x in range(self.width_range[0], self.width_range[1]) and y in range(self.height_range[0], self.height_range[1]):
             self.eventName()
-            self.bgImage.image = pyglet.resource.image("clicked.png")
+            self.bgImage.image = pyglet.resource.image("menuButtonClicked.png")
             self.lbl.element.color = (0, 0, 0, 255)
-
-    #def on_enter(self):
-     #   super().on_enter()
-        #if self.call:
-         #   self.animate()
 
     def animate(self):
         mvx = self.x
@@ -117,7 +112,14 @@ class menuItem(layer.Layer):
             self.x = x + self.width
             self.do(Delay(0.7) + AccelDeccel(MoveTo((mvx, mvy), 1.5)))
 
+class sectionButtons(layer.Layer): 
 
+    
+
+    def __init__(self):
+        super().__init__()
+
+    
 '''Game scenes'''
 class BaseWindow(scene.Scene):
     def __init__(self):

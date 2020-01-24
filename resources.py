@@ -1,3 +1,4 @@
+import os
 import cfg
 import cocos
 import pickle
@@ -9,6 +10,7 @@ import logger
 resourcePack = "default" 
 font = ""
 animations = {}
+path = os.getcwd()
 
 FONT_SPECIFIER_NAME_ID = 4
 FONT_SPECIFIER_FAMILY_ID = 1
@@ -38,8 +40,9 @@ def getResourcePack():
 
 def fontLoad():
     global resourcePack
+    global path
     if not resourcePack == "":
-        fontpath = "resources\\" + resourcePack + "\\fonts\\default.ttf"
+        fontpath = path + "\\resources\\" + resourcePack + "\\fonts\\default.ttf"
         pyglet.font.add_file(fontpath)
         tt = ttLib.TTFont(fontpath)
         global font
@@ -50,8 +53,9 @@ def fontLoad():
 
 def animLoad():
     global resourcePack
+    global path
     if not resourcePack == "":
-        animpath = "resources\\" + resourcePack + "\\animations\\animations.anim"
+        animpath = path + "\\resources\\" + resourcePack + "\\animations\\animations.anim"
         try:
             with open(animpath, "rb") as file:
                 global animations
@@ -69,4 +73,7 @@ def resourceLoad():
     getResourcePack()
     fontLoad()
     animLoad()
+    pyglet.resource.path = [path + "\\resources\\" + resourcePack, path + "\\resources\\" + resourcePack + "\\images"]
+    pyglet.resource.reindex()
+    print(pyglet.resource.get_cached_image_names())
     
