@@ -75,5 +75,3 @@ def resourceLoad():
     animLoad()
     pyglet.resource.path = [path + "\\resources\\" + resourcePack, path + "\\resources\\" + resourcePack + "\\images"]
     pyglet.resource.reindex()
-    print(pyglet.resource.get_cached_image_names())
-    

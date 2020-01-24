@@ -52,11 +52,10 @@ class menuItem(layer.Layer):
     
     is_event_handler = True
     
-    def __init__(self, label, eventName, buttonorder = 1, call = False):
+    def __init__(self, label, eventName, buttonorder = 1):
         super().__init__()
         global x, y
         #x, y = director.get_virtual_coordinates(x, y)
-        self.call = call
         self.buttonorder = buttonorder
         self.eventName = eventName
         self.label = label
@@ -112,14 +111,26 @@ class menuItem(layer.Layer):
             self.x = x + self.width
             self.do(Delay(0.7) + AccelDeccel(MoveTo((mvx, mvy), 1.5)))
 
-class sectionButtons(layer.Layer): 
+class sectionButton(layer.Layer): 
 
-    
-
-    def __init__(self):
+    def __init__(self, label, eventName, buttonorder = 1):
         super().__init__()
+        global x, y
 
-    
+        self.buttonorder = buttonorder
+        self.eventName = eventName
+        
+        self.bgImage = Sprite("settingsCategoryButton.png")
+        self.lbl = Label(label, anchor_x="center", anchor_y="center")
+        SPACING = 0.06
+        totalx = (x / 2) - ((self.bgImage.width * 2) + (x * SPACING))
+
+        self.x = totalx + ((self.bgImage.width + (x * SPACING)) * (buttonorder - 1))
+        self.y = 500
+        
+        self.add(self.bgImage)
+        self.add(self.lbl)
+
 '''Game scenes'''
 class BaseWindow(scene.Scene):
     def __init__(self):
@@ -143,7 +154,17 @@ class SettingsScreen(BaseWindow):
         test.y = 100
         test.width = 1000
         test.height = 1000
-        self.add(test)
+        #self.add(test)
+
+        testButton = sectionButton("test", events.rendererevents.test(), 1)
+        test2 = sectionButton("test2", events.rendererevents.test(), 2)
+        test3 = sectionButton("test3", events.rendererevents.test(), 3)
+        test4 = sectionButton("test4", events.rendererevents.test(), 4)
+
+        self.add(testButton)
+        self.add(test2)
+        self.add(test3)
+        self.add(test4)
 
         self.add(self.settingsLabel)
 
@@ -167,6 +188,7 @@ class Test(layer.Layer):
         events.rendererevents.test()
 
 class MainMenuScreen(BaseWindow):
+
     is_event_handler = True
 
     def __init__(self):
@@ -198,6 +220,7 @@ class MainMenuScreen(BaseWindow):
         pass
 
 class loadingScreen(BaseWindow):
+
     is_event_handler = True
 
     def __init__(self):
