@@ -3,7 +3,7 @@ import pyglet
 class RendererEvents(pyglet.window.EventDispatcher):
 
     def __init__(self):
-        super(RendererEvents, self).__init__()
+        super().__init__()
 
     def onProgressFinished(self):
         self.dispatch_event("progressFinished")
@@ -48,7 +48,7 @@ class SettingsEvents(pyglet.window.EventDispatcher):
         self.dispatch_event("showAboutScreen")
     
 SettingsEvents.register_event_type("showVideoScreen")
-SettingsEvents.register_event_type("onSoundButtonClick")
+SettingsEvents.register_event_type("showSoundScreen")
 SettingsEvents.register_event_type("showExtensionsScreen")
 SettingsEvents.register_event_type("showAboutScreen")
 

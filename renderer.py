@@ -161,31 +161,173 @@ class sectionButton(layer.Layer):
 
 class VideoSettings(layer.ColorLayer):
 
+    is_event_handler = True
+
     def __init__(self):
         super().__init__(255, 255, 255, 255)
+        events.settingsevents.push_handlers(self)
         global x, y
         self.width = int(x * 0.75)
         self.height = int(y * 0.6)
         self.x = int((x / 2) - (self.width / 2))
         self.y = int((y * 0.37) - (self.height / 2))
+        self.active = True
+        self.posleft = int(-self.width)
+        self.poscenter = int((x / 2) - (self.width / 2))
+        self.posright = int(x)
 
-        
-    
+    def showVideoScreen(self):
+        self.active = True
+        self.doAccelDeccel((MoveTo((self.poscenter, self.y), duration = 0.5)))
+
+    def showSoundScreen(self):
+        if self.active:
+            self.do(AccelDeccel(MoveTo((self.posleft, self.y), duration = 0.5)))
+            self.active = False
+        else:
+            self.x = self.posleft
+
+    def showExtensionsScreen(self):
+        if self.active:
+            self.do(AccelDeccel(MoveTo((self.posleft, self.y), duration = 0.5)))
+            self.active = False
+        else:
+            self.x = self.posleft
+
+    def showAboutScreen(self):
+        if self.active:
+            self.do(AccelDeccel(MoveTo((self.posleft, self.y), duration = 0.5)))
+            self.active = False
+        else:
+            self.x = self.posleft    
 
 class SoundSettings(layer.ColorLayer):
 
-    def __init__(self):
-        super().__init__(255, 255, 255, 255)
-
-class ExpansionSettings(layer.ColorLayer):
+    is_event_handler = True
 
     def __init__(self):
-        super().__init__(255, 255, 255, 255)
+        super().__init__(0, 0, 255, 255)
+        events.settingsevents.push_handlers(self)
+        global x, y
+        self.width = int(x * 0.75)
+        self.height = int(y * 0.6)
+        self.posleft = int(-self.width)
+        self.poscenter = int((x / 2) - (self.width / 2))
+        self.posright = int(x)
+        self.x = self.posright
+        self.y = int((y * 0.37) - (self.height / 2))
+        self.active = False
+
+    def showVideoScreen(self):
+        if self.active:
+            self.do(MoveTo((self.posright, self.y), duration = 0.5))
+            self.active = False
+        else:
+            self.x = self.posright
+
+    def showSoundScreen(self):
+        self.active = True
+        self.do(MoveTo((self.poscenter, self.y), duration = 0.5))
+
+    def showExtensionsScreen(self):
+        if self.active:
+            self.do(MoveTo((self.posleft, self.y), duration=0.5))
+            self.active = False
+        else:
+            self.x = self.posleft
+
+    def showAboutScreen(self):
+        if self.active:
+            self.do(MoveTo((self.posleft, self.y), duration=0.5))
+            self.active = False
+        else:
+            self.x = self.posleft
+
+class ExtensionSettings(layer.ColorLayer):
+
+    is_event_handler = True
+
+    def __init__(self):
+        super().__init__(0, 255, 0, 255)
+        events.settingsevents.push_handlers(self)
+        global x, y
+        self.width = int(x * 0.75)
+        self.height = int(y * 0.6)
+        self.posleft = int(-self.width)
+        self.poscenter = int((x / 2) - (self.width / 2))
+        self.posright = int(x)
+        self.x = self.posright
+        self.y = int((y * 0.37) - (self.height / 2))
+        self.active = False
+        
+    def showVideoScreen(self):
+        if self.active:
+            self.do(MoveTo((self.posright, self.y), duration = 0.5))
+            self.active = False
+        else:
+            self.x = self.posright
+
+    def showSoundScreen(self):
+        if self.active:
+            self.do(MoveTo((self.posright, self.y), duration = 0.5))
+            self.active = False
+        else:
+            self.x = self.posright
+
+    def showExtensionsScreen(self):
+        self.active = True
+        self.do(MoveTo((self.poscenter, self.y), duration = 0.5))
+
+    def showAboutScreen(self):
+        if self.active:
+            self.do(MoveTo((self.posleft, self.y), duration = 0.5))
+            self.active = False
+        else:
+            self.x = self.posleft
+
 
 class AboutSettings(layer.ColorLayer):
 
+    is_event_handler = True
+
     def __init__(self):
-        super().__init__(255, 255, 255, 255)
+        super().__init__(255, 0, 0, 255)
+        events.settingsevents.push_handlers(self)
+        global x, y
+        self.width = int(x * 0.75)
+        self.height = int(y * 0.6)
+        self.posleft = int(-self.width)
+        self.poscenter = int((x / 2) - (self.width / 2))
+        self.posright = int(x)
+        self.x = self.posright
+        self.y = int((y * 0.37) - (self.height / 2))
+        self.active = False
+
+    def showVideoScreen(self):
+        if self.active:
+            self.do(MoveTo((self.posright, self.y), duration = 0.5))
+            self.active = False
+        else:
+            self.x = self.posright
+
+    def showSoundScreen(self):
+        if self.active:
+            self.do(MoveTo((self.posright, self.y), duration = 0.5))
+            self.active = False
+        else:
+            self.x = self.posright
+
+    def showExtensionsScreen(self):
+        if self.active:
+            self.do(MoveTo((self.posright, self.y), duration = 0.5))
+            self.active = False
+        else:
+            self.x = self.posright
+
+    def showAboutScreen(self):
+        self.active = True
+        self.do(MoveTo((self.poscenter, self.y), duration = 0.5))
+
 
 '''Game scenes'''
 class BaseWindow(scene.Scene):
@@ -222,7 +364,13 @@ class SettingsScreen(BaseWindow):
         self.add(settingsLabel)
 
         videoSettings = VideoSettings()
+        soundSettings = SoundSettings()
+        extensionSettings = ExtensionSettings()
+        aboutSettings = AboutSettings()
         self.add(videoSettings)
+        self.add(soundSettings)
+        self.add(extensionSettings)
+        self.add(aboutSettings)
 
     def on_enter(self):
         super().on_enter()
