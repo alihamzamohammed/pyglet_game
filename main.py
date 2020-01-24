@@ -51,7 +51,7 @@ class Game(object):
     def quitButtonClicked(self):
         print("Quit button clicked")
 
-    def testEvent(self):
+    def showMainMenu(self):
         director.replace(FadeTransition(renderer.MainMenuScreen(), duration = 1, color = (0, 0, 0)))
 
     def __init__(self):

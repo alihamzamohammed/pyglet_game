@@ -118,9 +118,8 @@ class sectionButton(layer.Layer):
         super().__init__()
         global x, y
 
-        self.buttonorder = buttonorder
         self.eventName = eventName
-        
+
         self.bgImage = Sprite("settingsCategoryButton.png")
         self.lbl = Label(label, anchor_x="center", anchor_y="center")
         
@@ -151,6 +150,12 @@ class sectionButton(layer.Layer):
         else:
             self.bgImage.image = pyglet.resource.image("settingsCategoryButton.png")
 
+    def on_mouse_press(self, x, y, buttons, modifiers):
+        if x in range(self.width_range[0], self.width_range[1]) and y in range(self.height_range[0], self.height_range[1]):
+            self.bgImage.image = pyglet.resource.image("settingsCategoryButtonClicked.png")
+            self.lbl.element.color = (0, 0, 0, 255)
+            self.eventName()
+
     def animate(self):
         self.do(Delay(5) + FadeIn(1))
 
@@ -163,36 +168,33 @@ class SettingsScreen(BaseWindow):
 
     def __init__(self):
         super().__init__() 
-        self.settingsLabel = cocos.text.Label(
+        global x, y
+        settingsLabel = cocos.text.Label(
             "Settings",
             font_name=resources.font[1],
             font_size=50,
             anchor_y="center",
             anchor_x="center"
         )
-        self.settingsLabel.position = x / 2, y * 0.9
+        settingsLabel.position = x / 2, y * 0.9
         
-        videoButton = sectionButton("Video", events.rendererevents.test(), 1)
-        test2 = sectionButton("Sound", events.rendererevents.test(), 2)
-        test3 = sectionButton("Expansion", events.rendererevents.test(), 3)
-        test4 = sectionButton("About", events.rendererevents.test(), 4)
+        videoButton = sectionButton("Video", events.rendererevents.backToMainMenu, 1)
+        soundButton = sectionButton("Sound", events.rendererevents.backToMainMenu, 2)
+        expansionButton = sectionButton("Expansion", events.rendererevents.backToMainMenu, 3)
+        aboutButton = sectionButton("About", events.rendererevents.backToMainMenu, 4)
+        backButton = sectionButton("Back", events.rendererevents.backToMainMenu)
+        backButton.x = x * 0.15
+        backButton.y = y * 0.89
 
         self.add(videoButton)
-        self.add(test2)
-        self.add(test3)
-        self.add(test4)
-
-        self.add(self.settingsLabel)
+        self.add(soundButton)
+        self.add(expansionButton)
+        self.add(aboutButton)
+        self.add(backButton)
+        self.add(settingsLabel)
 
     def on_enter(self):
         super().on_enter()
-    
-    def on_mouse_motion(self, x, y, dx, dy):
-        print("Moving")
-
-    def on_mouse_press(self, x, y, buttons, modifiers):
-        events.rendererevents.dispatch_event("test")
-
 
 class MainMenuScreen(BaseWindow):
 
