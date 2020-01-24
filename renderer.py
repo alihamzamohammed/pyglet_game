@@ -113,6 +113,8 @@ class menuItem(layer.Layer):
 
 class sectionButton(layer.Layer): 
 
+    is_event_handler = True
+
     def __init__(self, label, eventName, buttonorder = 1):
         super().__init__()
         global x, y
@@ -122,14 +124,26 @@ class sectionButton(layer.Layer):
         
         self.bgImage = Sprite("settingsCategoryButton.png")
         self.lbl = Label(label, anchor_x="center", anchor_y="center")
-        SPACING = 0.06
-        totalx = (x / 2) - ((self.bgImage.width * 2) + (x * SPACING))
-
-        self.x = totalx + ((self.bgImage.width + (x * SPACING)) * (buttonorder - 1))
-        self.y = 500
         
+        self.x = x * (0.2 * buttonorder)
+        self.y = y * 0.87
+        
+        self.width_range = [int(self.x - (self.bgImage.width / 2)), int(self.x + (self.bgImage.width / 2))]
+        self.height_range = [int(self.y - (self.bgImage.height / 2)), int(self.y + (self.bgImage.height / 2))]
+
         self.add(self.bgImage)
         self.add(self.lbl)
+
+        self.animate()
+
+    def on_mouse_motion(self, x, y, dx, dy):
+        if x in range(self.width_range[0], self.width_range[1]) and y in range(self.height_range[0], self.height_range[1]):
+            self.bgImage.image = pyglet.resource.image("settingsCategoryButtonHovered.png")
+        else:
+            self.bgImage.image = pyglet.resource.image("settingsCategoryButton.png")
+
+    def animate(self):
+        self.do(Delay(0.5) + FadeIn(0.5))
 
 '''Game scenes'''
 class BaseWindow(scene.Scene):
@@ -149,13 +163,6 @@ class SettingsScreen(BaseWindow):
         )
         self.settingsLabel.position = x / 2, y * 0.9
         
-        test = Test()
-        test.x = 100
-        test.y = 100
-        test.width = 1000
-        test.height = 1000
-        #self.add(test)
-
         testButton = sectionButton("test", events.rendererevents.test(), 1)
         test2 = sectionButton("test2", events.rendererevents.test(), 2)
         test3 = sectionButton("test3", events.rendererevents.test(), 3)
@@ -177,15 +184,6 @@ class SettingsScreen(BaseWindow):
     def on_mouse_press(self, x, y, buttons, modifiers):
         events.rendererevents.dispatch_event("test")
 
-class Test(layer.Layer):
-
-    is_event_handler = True
-
-    def __init__(self):
-        super().__init__()
-
-    def on_mouse_press(self, x, y, buttons, modifiers):
-        events.rendererevents.test()
 
 class MainMenuScreen(BaseWindow):
 
