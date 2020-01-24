@@ -55,16 +55,15 @@ class menuItem(layer.Layer):
     def __init__(self, label, eventName, buttonorder = 1):
         super().__init__()
         global x, y
-        #x, y = director.get_virtual_coordinates(x, y)
-        self.buttonorder = buttonorder
         self.eventName = eventName
         self.label = label
-        self.bgImage = Sprite("menuButton.png") # Replace with resource pack image
+        self.buttonorder = buttonorder
+        self.bgImage = Sprite("menuButton.png") # Replace with proper resource pack image
         self.lbl = Label(self.label, anchor_x="center", anchor_y="center")
         
         self.x = x / 2
         self.TOPBTNPOS = 0.68
-        self.y = y * (self.TOPBTNPOS - (0.16 * (self.buttonorder - 1)))
+        self.y = y * (self.TOPBTNPOS - (0.16 * (buttonorder - 1)))
                 
         self.width = self.bgImage.width
         self.height = self.bgImage.height
@@ -126,7 +125,7 @@ class sectionButton(layer.Layer):
         self.lbl = Label(label, anchor_x="center", anchor_y="center")
         
         self.x = x * (0.2 * buttonorder)
-        self.y = y * 0.87
+        self.y = y * 0.76
         
         self.width_range = [int(self.x - (self.bgImage.width / 2)), int(self.x + (self.bgImage.width / 2))]
         self.height_range = [int(self.y - (self.bgImage.height / 2)), int(self.y + (self.bgImage.height / 2))]
@@ -136,6 +135,16 @@ class sectionButton(layer.Layer):
 
         self.animate()
 
+        self.schedule_interval(self.setWH, 1)
+        self.resume_scheduler()
+
+    def setWH(self, dt):
+        x, y = director.window.width, director.window.height
+        scalex = x / reswidth
+        scaley = y / resheight
+        self.width_range = [int((self.x * scalex) - ((self.bgImage.width * scalex) / 2)), int((self.x * scalex) + ((self.bgImage.width * scalex) / 2))]
+        self.height_range = [int((self.y * scaley) - ((self.bgImage.height * scaley) / 2)), int((self.y * scaley) + ((self.bgImage.height * scaley) / 2))]
+
     def on_mouse_motion(self, x, y, dx, dy):
         if x in range(self.width_range[0], self.width_range[1]) and y in range(self.height_range[0], self.height_range[1]):
             self.bgImage.image = pyglet.resource.image("settingsCategoryButtonHovered.png")
@@ -143,7 +152,7 @@ class sectionButton(layer.Layer):
             self.bgImage.image = pyglet.resource.image("settingsCategoryButton.png")
 
     def animate(self):
-        self.do(Delay(0.5) + FadeIn(0.5))
+        self.do(Delay(5) + FadeIn(1))
 
 '''Game scenes'''
 class BaseWindow(scene.Scene):
@@ -163,12 +172,12 @@ class SettingsScreen(BaseWindow):
         )
         self.settingsLabel.position = x / 2, y * 0.9
         
-        testButton = sectionButton("test", events.rendererevents.test(), 1)
-        test2 = sectionButton("test2", events.rendererevents.test(), 2)
-        test3 = sectionButton("test3", events.rendererevents.test(), 3)
-        test4 = sectionButton("test4", events.rendererevents.test(), 4)
+        videoButton = sectionButton("Video", events.rendererevents.test(), 1)
+        test2 = sectionButton("Sound", events.rendererevents.test(), 2)
+        test3 = sectionButton("Expansion", events.rendererevents.test(), 3)
+        test4 = sectionButton("About", events.rendererevents.test(), 4)
 
-        self.add(testButton)
+        self.add(videoButton)
         self.add(test2)
         self.add(test3)
         self.add(test4)
@@ -204,18 +213,6 @@ class MainMenuScreen(BaseWindow):
         self.add(multiplayerButton)
         self.add(settingsButton)
         self.add(quitButton)
-
-    def play(self):
-        print("Play button pressed!")
-    
-    def multiplayer(self):
-        pass
-    
-    def settings(self):
-        pass
-
-    def quit(self):
-        pass
 
 class loadingScreen(BaseWindow):
 

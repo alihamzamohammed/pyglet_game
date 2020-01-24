@@ -16,7 +16,7 @@ logger.init()
 
 reswidth, resheight = [int(res) for res in cfg.configuration["Core"]["defaultres"].split("x")]
 fullscreen = True if cfg.configuration["Core"]["fullscreen"] == "True" else False
-director.init(width=reswidth, height=resheight, caption="Game", fullscreen=fullscreen, autoscale=True, resizable=False)
+director.init(width=reswidth, height=resheight, caption="Game", fullscreen=fullscreen, autoscale=True, resizable=True)
     
 import resources
 resources.resourceLoad() 
@@ -45,14 +45,14 @@ class Game(object):
         print("Multiplayer button clicked")
 
     def settingsButtonClicked(self):
-        director.replace(FadeTransition(renderer.SettingsScreen(), duration = 2, color = (0, 0, 0)))
+        director.replace(FadeTransition(renderer.SettingsScreen(), duration = 1, color = (0, 0, 0)))
         print("Settings button clicked")
 
     def quitButtonClicked(self):
         print("Quit button clicked")
 
     def testEvent(self):
-        director.replace(FadeTransition(renderer.MainMenuScreen(), duration = 2, color = (0, 0, 0)))
+        director.replace(FadeTransition(renderer.MainMenuScreen(), duration = 1, color = (0, 0, 0)))
 
     def __init__(self):
         super(Game, self).__init__()
