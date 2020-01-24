@@ -20,11 +20,15 @@ class RendererEvents(pyglet.window.EventDispatcher):
     def onQuitButtonClicked(self):
         self.dispatch_event("quitButtonClicked")
 
+    def test(self):
+        self.dispatch_event("testEvent")
+
 RendererEvents.register_event_type("progressFinished")
 RendererEvents.register_event_type("playButtonClicked")
 RendererEvents.register_event_type("multiplayerButtonClicked")
 RendererEvents.register_event_type("quitButtonClicked")
 RendererEvents.register_event_type("settingsButtonClicked")
 
+RendererEvents.register_event_type("testEvent")
 
 rendererevents = RendererEvents()

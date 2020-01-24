@@ -51,11 +51,11 @@ class menuItem(layer.Layer):
     
     is_event_handler = True
     
-    def __init__(self, label, eventName, buttonorder = 1):
+    def __init__(self, label, eventName, buttonorder = 1, call = False):
         super().__init__()
         global x, y
         #x, y = director.get_virtual_coordinates(x, y)
-
+        self.call = call
         self.buttonorder = buttonorder
         self.eventName = eventName
         self.label = label
@@ -75,6 +75,8 @@ class menuItem(layer.Layer):
         self.width_range = [int(self.x - (self.bgImage.width / 2)), int(self.x + (self.bgImage.width / 2))]
         self.height_range = [int(self.y - (self.bgImage.height / 2)), int(self.y + (self.bgImage.height / 2))]
         
+        self.animate()
+
         self.schedule_interval(self.setWH, 1)
         self.resume_scheduler()
 
@@ -98,8 +100,12 @@ class menuItem(layer.Layer):
             self.bgImage.image = pyglet.resource.image("clicked.png")
             self.lbl.element.color = (0, 0, 0, 255)
 
-    def on_enter(self):
-        super().on_enter()
+    #def on_enter(self):
+     #   super().on_enter()
+        #if self.call:
+         #   self.animate()
+
+    def animate(self):
         mvx = self.x
         mvy = self.y
         # ODD
@@ -110,6 +116,7 @@ class menuItem(layer.Layer):
         else:
             self.x = x + self.width
             self.do(Delay(0.7) + AccelDeccel(MoveTo((mvx, mvy), 1.5)))
+
 
 '''Game scenes'''
 class BaseWindow(scene.Scene):
@@ -124,15 +131,38 @@ class SettingsScreen(BaseWindow):
             "Settings",
             font_name=resources.font[1],
             font_size=50,
-            anchor_y="top",
+            anchor_y="center",
             anchor_x="center"
         )
-        self.settingsLabel.position = x / 2, y / 2
+        self.settingsLabel.position = x / 2, y * 0.9
+        
+        test = Test()
+        test.x = 100
+        test.y = 100
+        test.width = 1000
+        test.height = 1000
+        self.add(test)
+
         self.add(self.settingsLabel)
 
     def on_enter(self):
         super().on_enter()
+    
+    def on_mouse_motion(self, x, y, dx, dy):
+        print("Moving")
 
+    def on_mouse_press(self, x, y, buttons, modifiers):
+        events.rendererevents.dispatch_event("test")
+
+class Test(layer.Layer):
+
+    is_event_handler = True
+
+    def __init__(self):
+        super().__init__()
+
+    def on_mouse_press(self, x, y, buttons, modifiers):
+        events.rendererevents.test()
 
 class MainMenuScreen(BaseWindow):
     is_event_handler = True
