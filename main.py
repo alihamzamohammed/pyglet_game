@@ -26,6 +26,7 @@ import renderer
 class Game(object):
 
     is_event_handler = True
+    
     def startGame(self):
         logger.addLog("Resolution is " + str(reswidth) + "x" + str(resheight), logger.loglevel["info"])
         if fullscreen == True:

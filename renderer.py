@@ -159,6 +159,34 @@ class sectionButton(layer.Layer):
     def animate(self):
         self.do(Delay(5) + FadeIn(1))
 
+class VideoSettings(layer.ColorLayer):
+
+    def __init__(self):
+        super().__init__(255, 255, 255, 255)
+        global x, y
+        self.width = int(x * 0.75)
+        self.height = int(y * 0.6)
+        self.x = int((x / 2) - (self.width / 2))
+        self.y = int((y * 0.37) - (self.height / 2))
+
+        
+    
+
+class SoundSettings(layer.ColorLayer):
+
+    def __init__(self):
+        super().__init__(255, 255, 255, 255)
+
+class ExpansionSettings(layer.ColorLayer):
+
+    def __init__(self):
+        super().__init__(255, 255, 255, 255)
+
+class AboutSettings(layer.ColorLayer):
+
+    def __init__(self):
+        super().__init__(255, 255, 255, 255)
+
 '''Game scenes'''
 class BaseWindow(scene.Scene):
     def __init__(self):
@@ -178,10 +206,10 @@ class SettingsScreen(BaseWindow):
         )
         settingsLabel.position = x / 2, y * 0.9
         
-        videoButton = sectionButton("Video", events.rendererevents.backToMainMenu, 1)
-        soundButton = sectionButton("Sound", events.rendererevents.backToMainMenu, 2)
-        expansionButton = sectionButton("Expansion", events.rendererevents.backToMainMenu, 3)
-        aboutButton = sectionButton("About", events.rendererevents.backToMainMenu, 4)
+        videoButton = sectionButton("Video", events.settingsevents.onVideoButtonClick, 1)
+        soundButton = sectionButton("Sound", events.settingsevents.onSoundButtonClick, 2)
+        expansionButton = sectionButton("Expansion", events.settingsevents.onExtensionsButtonClick, 3)
+        aboutButton = sectionButton("About", events.settingsevents.onAboutButtonClick, 4)
         backButton = sectionButton("Back", events.rendererevents.backToMainMenu)
         backButton.x = x * 0.15
         backButton.y = y * 0.89
@@ -192,6 +220,9 @@ class SettingsScreen(BaseWindow):
         self.add(aboutButton)
         self.add(backButton)
         self.add(settingsLabel)
+
+        videoSettings = VideoSettings()
+        self.add(videoSettings)
 
     def on_enter(self):
         super().on_enter()
