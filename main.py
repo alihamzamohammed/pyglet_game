@@ -24,7 +24,7 @@ resources.resourceLoad()
 import renderer
 
 class Game(object):
-
+    
     is_event_handler = True
     
     def startGame(self):

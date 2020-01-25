@@ -167,16 +167,67 @@ class VideoSettings(layer.ColorLayer):
 
     is_event_handler = True
 
-    class test1(layer.ColorLayer):
+    class FullscreenButton(layer.Layer):
 
-        def __init__(self):
-            super().__init__(50, 50, 50, 255)
-            lbl = Label("test1", font_size=25, anchor_x="center", anchor_y="center", color=(100,100,100,255))
-            self.width = 300
-            self.height = 300
-            lbl.x = self.width / 2
-            lbl.y = self.height / 2
-            self.add(lbl, z=1)
+        is_event_handler = True
+
+        def __init__(self, pwidth, pheight, px, py):
+            super().__init__()
+            global x, y
+            self.px = px
+            self.py = py
+            self.lbl = Label("YES", anchor_x="center", anchor_y="center")
+            self.bgImage = Sprite("toggleButton.png")
+            self.active = True if cfg.configuration["Core"]["fullscreen"] == "True" else False
+            if self.active:
+                self.bgImage.image = pyglet.resource.image("toggledButton.png")
+                self.lbl.element.text = "YES"
+            else:
+                self.bgImage.image = pyglet.resource.image("toggleButton.png")
+                self.lbl.element.text = "NO"
+            self.width = self.bgImage.width
+            self.height = self.bgImage.height
+            self.x = pwidth * 0.9
+            self.y = pheight * 0.9
+            self.lbl.x = 0
+            self.lbl.y = 0
+            self.add(self.bgImage)
+            self.add(self.lbl)
+            self.width_range = [int(px + (self.x - (self.width / 2))), int(px + (self.x + (self.width / 2)))]
+            self.height_range = [int(py + (self.y - (self.height / 2))), int(py + (self.y + (self.height / 2)))]
+            self.schedule_interval(self.setWH, 1)
+            self.resume_scheduler()
+
+        def setWH(self, dt):
+            x, y = director.window.width, director.window.height
+            scalex = x / reswidth
+            scaley = y / resheight
+            self.width_range = [int((self.px * scalex) + ((self.x * scalex) - (self.width * scalex) / 2)), int((self.px * scalex) + ((self.x * scalex) + (self.width * scalex) / 2))]
+            self.height_range = [int((self.py * scaley) + ((self.y * scaley) - (self.height * scaley) / 2)), int((self.py * scaley) + ((self.y * scaley) + (self.height * scaley) / 2))]
+        
+        def on_mouse_motion(self, x, y, dx, dy):
+            if x in range(self.width_range[0], self.width_range[1]) and y in range(self.height_range[0], self.height_range[1]):
+                if self.active:
+                    self.bgImage.image = pyglet.resource.image("toggledButtonHovered.png")
+                else:
+                    self.bgImage.image = pyglet.resource.image("toggleButtonHovered.png")
+            else:
+                if self.active:
+                    self.bgImage.image = pyglet.resource.image("toggledButton.png")
+                else:
+                    self.bgImage.image = pyglet.resource.image("toggleButton.png")
+            
+        def on_mouse_press(self, x, y, buttons, modifiers):
+            if x in range(self.width_range[0], self.width_range[1]) and y in range(self.height_range[0], self.height_range[1]):
+                cfg.configuration["Core"]["fullscreen"] = str(not self.active)
+                self.active = not self.active
+                if self.active:
+                    self.bgImage.image = pyglet.resource.image("toggledButtonClicked.png")
+                    self.lbl.element.text = "YES"
+                else:
+                    self.bgImage.image = pyglet.resource.image("toggleButtonClicked.png")
+                    self.lbl.element.text = "NO"
+
 
     def __init__(self):
         super().__init__(255, 255, 255, 255)
@@ -190,10 +241,17 @@ class VideoSettings(layer.ColorLayer):
         self.posleft = int(-self.width)
         self.poscenter = int((x / 2) - (self.width / 2))
         self.posright = int(x)
-        test2 = self.test1()
-        test2.x = (self.width / 2) - (test2.width / 2)
-        test2.y = (self.height / 2) - (test2.height / 2)
-        self.add(test2)
+
+        fullscreenLabel = Label("Fullscreen", font_size=25, anchor_x="center", anchor_y="center", color=(100, 100, 100, 255))
+        fullscreenLabel.x = self.width * 0.1
+        fullscreenLabel.y = self.height * 0.9
+        fullscreenButton = self.FullscreenButton(self.width, self.height, self.x, self.y)
+        # test3 = self.test1(self.width, self.height)
+        # test3.x = (self.width / 2) - (test3.width / 2)
+        # test3.y = (self.height * 0.6) - (test3.height / 2)
+        # self.add(test3)
+        self.add(fullscreenButton)
+        self.add(fullscreenLabel)
 
     def showVideoScreen(self):
         self.active = True
@@ -321,8 +379,6 @@ class AboutSettings(layer.ColorLayer):
         self.x = self.posright
         self.y = int((y * 0.37) - (self.height / 2))
         self.active = False
-
-        
 
     def showVideoScreen(self):
         if self.active:
