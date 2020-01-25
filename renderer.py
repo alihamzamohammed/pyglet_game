@@ -114,11 +114,12 @@ class sectionButton(layer.Layer):
 
     is_event_handler = True
 
-    def __init__(self, label, eventName, buttonorder = 1):
+    def __init__(self, label, eventName, buttonorder = 1, active = False):
         super().__init__()
         global x, y
 
         self.eventName = eventName
+        self.active = active
 
         self.bgImage = Sprite("settingsCategoryButton.png")
         self.lbl = Label(label, anchor_x="center", anchor_y="center")
@@ -145,7 +146,9 @@ class sectionButton(layer.Layer):
         self.height_range = [int((self.y * scaley) - ((self.bgImage.height * scaley) / 2)), int((self.y * scaley) + ((self.bgImage.height * scaley) / 2))]
 
     def on_mouse_motion(self, x, y, dx, dy):
-        if x in range(self.width_range[0], self.width_range[1]) and y in range(self.height_range[0], self.height_range[1]):
+        if self.active:
+            self.bgImage.image = pyglet.resource.image("settingsCategoryButtonClicked.png")
+        elif x in range(self.width_range[0], self.width_range[1]) and y in range(self.height_range[0], self.height_range[1]):
             self.bgImage.image = pyglet.resource.image("settingsCategoryButtonHovered.png")
         else:
             self.bgImage.image = pyglet.resource.image("settingsCategoryButton.png")
@@ -153,6 +156,7 @@ class sectionButton(layer.Layer):
     def on_mouse_press(self, x, y, buttons, modifiers):
         if x in range(self.width_range[0], self.width_range[1]) and y in range(self.height_range[0], self.height_range[1]):
             self.bgImage.image = pyglet.resource.image("settingsCategoryButtonClicked.png")
+            self.active = True
             self.lbl.element.color = (0, 0, 0, 255)
             self.eventName()
 
@@ -162,6 +166,17 @@ class sectionButton(layer.Layer):
 class VideoSettings(layer.ColorLayer):
 
     is_event_handler = True
+
+    class test1(layer.ColorLayer):
+
+        def __init__(self):
+            super().__init__(50, 50, 50, 255)
+            lbl = Label("test1", font_size=25, anchor_x="center", anchor_y="center", color=(100,100,100,255))
+            self.width = 300
+            self.height = 300
+            lbl.x = self.width / 2
+            lbl.y = self.height / 2
+            self.add(lbl, z=1)
 
     def __init__(self):
         super().__init__(255, 255, 255, 255)
@@ -175,6 +190,10 @@ class VideoSettings(layer.ColorLayer):
         self.posleft = int(-self.width)
         self.poscenter = int((x / 2) - (self.width / 2))
         self.posright = int(x)
+        test2 = self.test1()
+        test2.x = (self.width / 2) - (test2.width / 2)
+        test2.y = (self.height / 2) - (test2.height / 2)
+        self.add(test2)
 
     def showVideoScreen(self):
         self.active = True
@@ -302,6 +321,8 @@ class AboutSettings(layer.ColorLayer):
         self.x = self.posright
         self.y = int((y * 0.37) - (self.height / 2))
         self.active = False
+
+        
 
     def showVideoScreen(self):
         if self.active:
