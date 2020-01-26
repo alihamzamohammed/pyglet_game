@@ -133,8 +133,6 @@ class sectionButton(layer.Layer):
         self.add(self.bgImage)
         self.add(self.lbl)
 
-        self.animate()
-
         self.schedule_interval(self.setWH, 1)
         self.resume_scheduler()
 
@@ -159,9 +157,6 @@ class sectionButton(layer.Layer):
             self.active = True
             self.lbl.element.color = (0, 0, 0, 255)
             self.eventName()
-
-    def animate(self):
-        self.do(Delay(5) + FadeIn(1))
 
 class MessagePopup(layer.ColorLayer):
 
