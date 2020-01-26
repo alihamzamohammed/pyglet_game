@@ -359,7 +359,7 @@ class SettingsScreen(scene.Scene):
         soundButton = sectionButton("Sound", events.settingsevents.onSoundButtonClick, 2)
         expansionButton = sectionButton("Expansion", events.settingsevents.onExtensionsButtonClick, 3)
         aboutButton = sectionButton("About", events.settingsevents.onAboutButtonClick, 4)
-        backButton = sectionButton("Back", events.rendererevents.backToMainMenu)
+        backButton = sectionButton("Back", events.mainmenuevents.backToMainMenu)
         backButton.x = x * 0.15
         backButton.y = y * 0.89
 

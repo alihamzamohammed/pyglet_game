@@ -17,13 +17,13 @@ logger.init()
 
 reswidth, resheight = [int(res) for res in cfg.configuration["Core"]["defaultres"].split("x")]
 fullscreen = True if cfg.configuration["Core"]["fullscreen"] == "True" else False
-vsync = True if cfg.configuration["Core"]["vsync"] == True else False
+vsync = True if cfg.configuration["Core"]["vsync"] == "True" else False
 director.init(width=reswidth, height=resheight, caption="Game", fullscreen=fullscreen, autoscale=True, resizable=True, vsync=vsync)
     
 import resources
 resources.resourceLoad() 
 
-import renderer
+import mainmenu
 import settings
 
 class Game(object):
@@ -36,11 +36,11 @@ class Game(object):
             logger.addLog("Fullscreen is enabled", logger.loglevel["info"])
         else:
             logger.addLog("Fullscreen is disabled", logger.loglevel["info"])
-        director.run(renderer.loadingScreen())
+        director.run(mainmenu.loadingScreen())
 
     def progressFinished(self):
         logger.addLog("Loading finished, displaying Main Menu", logger.loglevel["info"])
-        director.replace(renderer.MainMenuScreen())
+        director.replace(mainmenu.MainMenuScreen())
 
     def playButtonClicked(self):
         print("Play button clicked")
@@ -57,11 +57,11 @@ class Game(object):
 
     def showMainMenu(self):
         cfg.configWrite(defaultconfigfile)
-        director.replace(FadeTransition(renderer.MainMenuScreen(), duration = 1, color = (0, 0, 0)))
+        director.replace(FadeTransition(mainmenu.MainMenuScreen(), duration = 1, color = (0, 0, 0)))
 
     def __init__(self):
         super(Game, self).__init__()
-        events.rendererevents.push_handlers(self)
+        events.mainmenuevents.push_handlers(self)
 
 if __name__=="__main__":
     logger.addLog("Starting game.", logger.loglevel["info"])

@@ -36,7 +36,7 @@ def game_loading():
     logger.addLog("Init items", logger.loglevel["info"])
     # check to see if all item packs are in item pack db, and if all item xml is without error
     # add item packs and individual items to multidimensional array
-    events.rendererevents.onProgressFinished()
+    events.mainmenuevents.onProgressFinished()
 
 
 '''Elements of windows'''
@@ -127,10 +127,10 @@ class MainMenuScreen(BaseWindow):
         self.add(titleLabel)
         titleLabel.do(AccelDeccel(MoveTo((x / 2, y * 0.9), 1.5)))
         
-        playButton = menuItem("Play Game", events.rendererevents.onPlayButtonClick, 1)
-        multiplayerButton = menuItem("Multiplayer", events.rendererevents.onMultiplayerButtonClick, 2)
-        settingsButton = menuItem("Settings", events.rendererevents.onSettingsButtonClick, 3)
-        quitButton = menuItem("Quit Game", events.rendererevents.onQuitButtonClicked, 4)
+        playButton = menuItem("Play Game", events.mainmenuevents.onPlayButtonClick, 1)
+        multiplayerButton = menuItem("Multiplayer", events.mainmenuevents.onMultiplayerButtonClick, 2)
+        settingsButton = menuItem("Settings", events.mainmenuevents.onSettingsButtonClick, 3)
+        quitButton = menuItem("Quit Game", events.mainmenuevents.onQuitButtonClicked, 4)
 
         self.add(playButton)
         self.add(multiplayerButton)

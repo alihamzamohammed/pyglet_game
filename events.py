@@ -1,6 +1,6 @@
 import pyglet
 
-class RendererEvents(pyglet.window.EventDispatcher):
+class MainMenuEvents(pyglet.window.EventDispatcher):
 
     def __init__(self):
         super().__init__()
@@ -23,12 +23,12 @@ class RendererEvents(pyglet.window.EventDispatcher):
     def backToMainMenu(self):
         self.dispatch_event("showMainMenu")
 
-RendererEvents.register_event_type("progressFinished")
-RendererEvents.register_event_type("playButtonClicked")
-RendererEvents.register_event_type("multiplayerButtonClicked")
-RendererEvents.register_event_type("quitButtonClicked")
-RendererEvents.register_event_type("settingsButtonClicked")
-RendererEvents.register_event_type("showMainMenu")
+MainMenuEvents.register_event_type("progressFinished")
+MainMenuEvents.register_event_type("playButtonClicked")
+MainMenuEvents.register_event_type("multiplayerButtonClicked")
+MainMenuEvents.register_event_type("quitButtonClicked")
+MainMenuEvents.register_event_type("settingsButtonClicked")
+MainMenuEvents.register_event_type("showMainMenu")
 
 class SettingsEvents(pyglet.window.EventDispatcher):
 
@@ -52,5 +52,5 @@ SettingsEvents.register_event_type("showSoundScreen")
 SettingsEvents.register_event_type("showExtensionsScreen")
 SettingsEvents.register_event_type("showAboutScreen")
 
-rendererevents = RendererEvents()
+mainmenuevents = MainMenuEvents()
 settingsevents = SettingsEvents()
