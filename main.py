@@ -11,6 +11,7 @@ import cfg
 cfg.init()
 defaultconfigfile = "settings.ini"
 cfg.configRead(defaultconfigfile)
+import settings
 import time
 import logger
 logger.init()
@@ -48,7 +49,7 @@ class Game(object):
         print("Multiplayer button clicked")
 
     def settingsButtonClicked(self):
-        director.replace(FadeTransition(renderer.SettingsScreen(), duration = 1, color = (0, 0, 0)))
+        director.replace(FadeTransition(settings.SettingsScreen(), duration = 1, color = (0, 0, 0)))
         print("Settings button clicked")
 
     def quitButtonClicked(self):
