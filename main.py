@@ -11,7 +11,6 @@ import cfg
 cfg.init()
 defaultconfigfile = "settings.ini"
 cfg.configRead(defaultconfigfile)
-import settings
 import time
 import logger
 logger.init()
@@ -25,6 +24,7 @@ import resources
 resources.resourceLoad() 
 
 import renderer
+import settings
 
 class Game(object):
     
