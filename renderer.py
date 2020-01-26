@@ -242,8 +242,8 @@ class VideoSettings(layer.ColorLayer):
                     self.bgImage.image = pyglet.resource.image("toggleButton.png")
             
         def on_mouse_press(self, x, y, buttons, modifiers):
-            messagePopup.showMessage("Your game must be restarted in order to apply these settings.")
             if x in range(self.width_range[0], self.width_range[1]) and y in range(self.height_range[0], self.height_range[1]):
+                messagePopup.showMessage("Your game must be restarted in order to apply these settings.")
                 self.setting = str(not self.active)
                 self.active = not self.active
                 if self.active:
