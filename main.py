@@ -1,4 +1,5 @@
 import os
+import sys
 import pyglet
 import cocos
 from cocos.director import director
@@ -16,7 +17,8 @@ logger.init()
 
 reswidth, resheight = [int(res) for res in cfg.configuration["Core"]["defaultres"].split("x")]
 fullscreen = True if cfg.configuration["Core"]["fullscreen"] == "True" else False
-director.init(width=reswidth, height=resheight, caption="Game", fullscreen=fullscreen, autoscale=True, resizable=True)
+vsync = True if cfg.configuration["Core"]["vsync"] == True else False
+director.init(width=reswidth, height=resheight, caption="Game", fullscreen=fullscreen, autoscale=True, resizable=True, vsync=vsync)
     
 import resources
 resources.resourceLoad() 
@@ -50,9 +52,10 @@ class Game(object):
         print("Settings button clicked")
 
     def quitButtonClicked(self):
-        print("Quit button clicked")
+        sys.exit()
 
     def showMainMenu(self):
+        cfg.configWrite(defaultconfigfile)
         director.replace(FadeTransition(renderer.MainMenuScreen(), duration = 1, color = (0, 0, 0)))
 
     def __init__(self):

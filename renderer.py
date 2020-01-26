@@ -163,6 +163,29 @@ class sectionButton(layer.Layer):
     def animate(self):
         self.do(Delay(5) + FadeIn(1))
 
+class MessagePopup(layer.ColorLayer):
+
+    def __init__(self):
+        super().__init__(50, 50, 50, 255)
+        global x, y
+        self.width = int(x)
+        self.height = int(y * 0.1)
+        self.x = 0
+        self.y = int(-self.height)
+        self.lbl = Label("message", font_size = 18, anchor_y = "center")
+        self.lbl.x = int(self.width * 0.05)
+        self.lbl.y = int(self.height / 2)
+        self.active = False
+        self.add(self.lbl)
+    
+    def showMessage(self, message):
+        if not self.active:
+            self.lbl.element.text = message
+            self.do(AccelDeccel(MoveTo((int(self.x), 0), duration = 0.5)))
+            self.active = True
+
+messagePopup = MessagePopup()
+
 class VideoSettings(layer.ColorLayer):
 
     is_event_handler = True
@@ -218,6 +241,7 @@ class VideoSettings(layer.ColorLayer):
                     self.bgImage.image = pyglet.resource.image("toggleButton.png")
             
         def on_mouse_press(self, x, y, buttons, modifiers):
+            messagePopup.showMessage("Your game must be restarted in order to apply these settings.")
             if x in range(self.width_range[0], self.width_range[1]) and y in range(self.height_range[0], self.height_range[1]):
                 cfg.configuration["Core"]["fullscreen"] = str(not self.active)
                 self.active = not self.active
@@ -246,10 +270,7 @@ class VideoSettings(layer.ColorLayer):
         fullscreenLabel.x = self.width * 0.1
         fullscreenLabel.y = self.height * 0.9
         fullscreenButton = self.FullscreenButton(self.width, self.height, self.x, self.y)
-        # test3 = self.test1(self.width, self.height)
-        # test3.x = (self.width / 2) - (test3.width / 2)
-        # test3.y = (self.height * 0.6) - (test3.height / 2)
-        # self.add(test3)
+        
         self.add(fullscreenButton)
         self.add(fullscreenLabel)
 
@@ -447,6 +468,8 @@ class SettingsScreen(BaseWindow):
         self.add(soundSettings)
         self.add(extensionSettings)
         self.add(aboutSettings)
+
+        self.add(messagePopup)
 
     def on_enter(self):
         super().on_enter()

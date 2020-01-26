@@ -9,6 +9,14 @@ def configRead(configFile):
         configuration[section] = temp
         temp = {}
 
+def configWrite(configFile):
+    import configparser
+    conf = configparser.ConfigParser()
+    conf.read_dict(configuration)
+    with open(configFile, "w") as file:
+        conf.write(file)
+    file.close()
+        
 
 def init():
     global configuration

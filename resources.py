@@ -7,7 +7,7 @@ from fontTools import ttLib
 import pyglet
 from cocos.actions import *
 import logger
-resourcePack = "default" 
+resourcePack = "default"
 font = ""
 animations = {}
 path = os.getcwd()
