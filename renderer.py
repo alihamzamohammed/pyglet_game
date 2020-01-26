@@ -175,6 +175,7 @@ class MessagePopup(layer.ColorLayer):
         self.lbl = Label("message", font_size = 18, anchor_y = "center")
         self.lbl.x = int(self.width * 0.05)
         self.lbl.y = int(self.height / 2)
+        self.add(self.lbl)
         self.active = False
     
     def showMessage(self, message):
@@ -189,18 +190,19 @@ class VideoSettings(layer.ColorLayer):
 
     is_event_handler = True
 
-    class FullscreenButton(layer.Layer):
+    class ToggleButton(layer.Layer):
 
         is_event_handler = True
 
-        def __init__(self, pwidth, pheight, px, py):
+        def __init__(self, pwidth, pheight, px, py, selfx, selfy, setting):
             super().__init__()
             global x, y
             self.px = px
             self.py = py
+            self.setting = setting
             self.lbl = Label("YES", anchor_x="center", anchor_y="center")
             self.bgImage = Sprite("toggleButton.png")
-            self.active = True if cfg.configuration["Core"]["fullscreen"] == "True" else False
+            self.active = True if self.setting == "True" else False
             if self.active:
                 self.bgImage.image = pyglet.resource.image("toggledButton.png")
                 self.lbl.element.text = "YES"
@@ -209,8 +211,8 @@ class VideoSettings(layer.ColorLayer):
                 self.lbl.element.text = "NO"
             self.width = self.bgImage.width
             self.height = self.bgImage.height
-            self.x = pwidth * 0.9
-            self.y = pheight * 0.9
+            self.x = pwidth * selfx
+            self.y = pheight * selfy
             self.lbl.x = 0
             self.lbl.y = 0
             self.add(self.bgImage)
@@ -242,7 +244,7 @@ class VideoSettings(layer.ColorLayer):
         def on_mouse_press(self, x, y, buttons, modifiers):
             messagePopup.showMessage("Your game must be restarted in order to apply these settings.")
             if x in range(self.width_range[0], self.width_range[1]) and y in range(self.height_range[0], self.height_range[1]):
-                cfg.configuration["Core"]["fullscreen"] = str(not self.active)
+                self.setting = str(not self.active)
                 self.active = not self.active
                 if self.active:
                     self.bgImage.image = pyglet.resource.image("toggledButtonClicked.png")
@@ -265,13 +267,20 @@ class VideoSettings(layer.ColorLayer):
         self.poscenter = int((x / 2) - (self.width / 2))
         self.posright = int(x)
 
-        fullscreenLabel = Label("Fullscreen", font_size=25, anchor_x="center", anchor_y="center", color=(100, 100, 100, 255))
-        fullscreenLabel.x = self.width * 0.1
+        fullscreenLabel = Label("Fullscreen", font_size=25, anchor_x="left", anchor_y="center", color=(100, 100, 100, 255))
+        fullscreenLabel.x = self.width * 0.05
         fullscreenLabel.y = self.height * 0.9
-        fullscreenButton = self.FullscreenButton(self.width, self.height, self.x, self.y)
+        fullscreenButton = self.ToggleButton(self.width, self.height, self.x, self.y, 0.9, 0.9, cfg.configuration["Core"]["fullscreen"])
+
+        vsyncLabel = Label("VSync", font_size=25, anchor_x="left", anchor_y="center", color=(100, 100, 100, 255))
+        vsyncLabel.x = self.width * 0.05
+        vsyncLabel.y = self.height * 0.7
+        vsyncButton = self.ToggleButton(self.width, self.height, self.x, self.y, 0.9, 0.7, cfg.configuration["Core"]["vsync"])
         
         self.add(fullscreenButton)
         self.add(fullscreenLabel)
+        self.add(vsyncButton)
+        self.add(vsyncLabel)
 
     def showVideoScreen(self):
         self.active = True
