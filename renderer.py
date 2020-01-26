@@ -176,11 +176,6 @@ class MessagePopup(layer.ColorLayer):
         self.lbl.x = int(self.width * 0.05)
         self.lbl.y = int(self.height / 2)
         self.active = False
-        self.closeButton = Sprite("closeButton.png")
-        self.closeButton.x = int(self.width * 0.9)
-        self.closeButton.y = int(self.height * 0.9)
-        
-        self.add(self.lbl)
     
     def showMessage(self, message):
         if not self.active:
