@@ -69,6 +69,7 @@ class sectionButton(layer.Layer):
             self.lbl.element.color = (0, 0, 0, 255)
             self.eventName()
 
+
 class MessagePopup(layer.ColorLayer):
 
     def __init__(self):
@@ -169,8 +170,8 @@ class VideoSettings(layer.ColorLayer):
 
     is_event_handler = True
 
-    def __init__(self):
-        super().__init__(255, 255, 255, 255)
+    def __init__(self):        
+        super().__init__(100, 100, 100, 100)
         events.settingsevents.push_handlers(self)
         global x, y
         self.width = int(x * 0.75)
@@ -182,17 +183,17 @@ class VideoSettings(layer.ColorLayer):
         self.poscenter = int((x / 2) - (self.width / 2))
         self.posright = int(x)
 
-        fullscreenLabel = Label("Fullscreen", font_size=25, anchor_x="left", anchor_y="center", color=(100, 100, 100, 255))
+        fullscreenLabel = Label("Fullscreen", font_size=25, anchor_x="left", anchor_y="center", color=(255, 255, 255, 255))
         fullscreenLabel.x = self.width * 0.05
         fullscreenLabel.y = self.height * 0.9
         fullscreenButton = ToggleButton(self, 0.9, 0.9, cfg.configuration, section = "Core", option = "fullscreen", command = director.window.set_fullscreen)
 
-        vsyncLabel = Label("VSync", font_size=25, anchor_x="left", anchor_y="center", color=(100, 100, 100, 255))
+        vsyncLabel = Label("VSync", font_size=25, anchor_x="left", anchor_y="center", color=(255, 255, 255, 255))
         vsyncLabel.x = self.width * 0.05
         vsyncLabel.y = self.height * 0.7
         vsyncButton = ToggleButton(self, 0.9, 0.7, cfg.configuration, section = "Core", option = "vsync", command = director.window.set_vsync)
 
-        showfpsLabel = Label("Show FPS", font_size=25, anchor_x="left", anchor_y="center", color=(100, 100, 100, 255))
+        showfpsLabel = Label("Show FPS", font_size=25, anchor_x="left", anchor_y="center", color=(255, 255, 255, 255))
         showfpsLabel.x = self.width * 0.05
         showfpsLabel.y = self.height * 0.5
         showfpsButton = ToggleButton(self, 0.9, 0.5, cfg.configuration, section = "Core", option = "showfps", command = director.set_show_FPS)
@@ -228,6 +229,7 @@ class VideoSettings(layer.ColorLayer):
             self.active = False
         else:
             self.x = self.posleft    
+
 
 class SoundSettings(layer.ColorLayer):
 

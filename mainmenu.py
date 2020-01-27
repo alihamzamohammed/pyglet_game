@@ -112,12 +112,7 @@ class menuItem(layer.Layer):
 
 
 '''Game scenes'''
-class BaseWindow(scene.Scene):
-    def __init__(self):
-        super(BaseWindow, self).__init__()
-
-
-class MainMenuScreen(BaseWindow):
+class MainMenuScreen(scene.Scene):
 
     is_event_handler = True
 
@@ -137,7 +132,7 @@ class MainMenuScreen(BaseWindow):
         self.add(settingsButton)
         self.add(quitButton)
 
-class loadingScreen(BaseWindow):
+class loadingScreen(scene.Scene):
 
     is_event_handler = True
 
