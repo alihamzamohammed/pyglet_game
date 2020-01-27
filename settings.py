@@ -70,6 +70,48 @@ class sectionButton(layer.Layer):
             self.eventName()
 
 
+class TextBox(layer.Layer):
+
+    #is_event_handler = True
+
+    def __init__(self, parent, selfx, selfy, default_text = ""):
+        super().__init__()
+        self.px = parent.x
+        self.py = parent.y
+        self.x = selfx
+        self.y = selfy
+        self.inputLabel = Label(default_text, font_size = 20, anchor_x = "center", anchor_y = "center", color=(0, 0, 0, 255))
+        self.bgImage = Sprite("textBox.png")
+        self.width = self.bgImage.width
+        self.height = self.bgImage.height
+        self.active = False
+        self.add(self.bgImage)
+        self.add(self.inputLabel)
+        self.width_range = []
+        self.height_range = []
+        #self.schedule_interval(self.setWH, 1)
+        #self.resume_scheduler()
+        print(self.width_range, self.height_range)
+        print(self.x, self.y)
+        print(self.width, self.height)
+
+    def setWH(self, dt):
+        x, y = director.window.width, director.window.height
+        scalex = x / reswidth
+        scaley = y / resheight
+        self.width_range = [int((self.px * scalex) + ((self.x * scalex) - (self.width * scalex) / 2)), int((self.px * scalex) + ((self.x * scalex) + (self.width * scalex) / 2))]
+        self.height_range = [int((self.py * scaley) + ((self.y * scaley) - (self.height * scaley) / 2)), int((self.py * scaley) + ((self.y * scaley) + (self.height * scaley) / 2))]
+
+    def on_mouse_motion(self, x, y, dx, dy):
+        print(x, y)
+        if x in range(self.width_range[0], self.width_range[1]) and y in range(self.height_range[0], self.height_range[1]):
+            self.bgImage.image = pyglet.resource.image("textBoxHovered.png")
+        else:
+            self.bgImage.image = pyglet.resource.image("textBox.png")
+
+    def get_text(self):
+        return self.inputLabel.element.text
+
 class MessagePopup(layer.ColorLayer):
 
     def __init__(self):
@@ -170,6 +212,23 @@ class VideoSettings(layer.ColorLayer):
 
     is_event_handler = True
 
+    class ResolutionInput(layer.Layer):
+
+        def __init__(self, parent):
+            super().__init__()
+            lblWidth = TextBox(self, 0, 0, "1280")
+            seperator = Label("X", anchor_x = "center", anchor_y = "center", font_size = 15, color = (255, 255, 255, 255))
+            seperator.x = lblWidth.width
+            seperator.y = 0
+            self.width = (lblWidth.width * 2)
+            self.height = lblWidth.height
+            lblHeight = TextBox(self, self.width, 0, "720")
+            self.x = parent.width - (self.width + (parent.width * 0.1))        
+            self.y = parent.height * 0.3
+            self.add(lblWidth)
+            self.add(seperator)
+            self.add(lblHeight)
+
     def __init__(self):        
         super().__init__(100, 100, 100, 100)
         events.settingsevents.push_handlers(self)
@@ -198,12 +257,19 @@ class VideoSettings(layer.ColorLayer):
         showfpsLabel.y = self.height * 0.5
         showfpsButton = ToggleButton(self, 0.9, 0.5, cfg.configuration, section = "Core", option = "showfps", command = director.set_show_FPS)
 
+        resInputLabel = Label("Resolution", font_size=25, anchor_x="left", anchor_y="center", color=(255, 255, 255, 255))
+        resInputLabel.x = self.width * 0.05
+        resInputLabel.y = self.height * 0.3
+        resInput = self.ResolutionInput(self)
+
         self.add(fullscreenButton)
         self.add(fullscreenLabel)
         self.add(vsyncButton)
         self.add(vsyncLabel)
         self.add(showfpsButton)
         self.add(showfpsLabel)
+        self.add(resInput)
+        self.add(resInputLabel)
 
     def showVideoScreen(self):
         self.active = True
