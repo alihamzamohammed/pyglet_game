@@ -93,9 +93,10 @@ class MessagePopup(layer.ColorLayer):
 messagePopup = MessagePopup()
 
 class ToggleButton(layer.Layer):
+
     is_event_handler = True
 
-    def __init__(self, parent, selfx, selfy, setting, command = None, restartGame = False):
+    def __init__(self, parent, selfx, selfy, configDict, section, option, command = None, restartGame = False):
         super().__init__()
         global x, y
         self.px = parent.x
@@ -103,11 +104,13 @@ class ToggleButton(layer.Layer):
         pwidth = parent.width
         pheight = parent.height
         self.command = command
-        self.setting = setting
+        self.configDict = configDict
+        self.section = section
+        self.option = option
         self.restartGame = restartGame
         self.lbl = Label("YES", anchor_x="center", anchor_y="center")
         self.bgImage = Sprite("toggleButton.png")
-        self.active = True if self.setting == "True" else False
+        self.active = True if self.configDict[self.section][self.option] == "True" else False
         if self.active:
             self.bgImage.image = pyglet.resource.image("toggledButton.png")
             self.lbl.element.text = "YES"
@@ -150,10 +153,8 @@ class ToggleButton(layer.Layer):
         if x in range(self.width_range[0], self.width_range[1]) and y in range(self.height_range[0], self.height_range[1]):
             if self.restartGame:
                 messagePopup.showMessage("Your game must be restarted in order to apply these settings.")
-            self.setting = str(not self.active)
-            
             self.active = not self.active
-            print(self.active, self.setting)
+            self.configDict[self.section][self.option] = str(self.active)
             if callable(self.command):
                 self.command(self.active)
             if self.active:
@@ -184,17 +185,17 @@ class VideoSettings(layer.ColorLayer):
         fullscreenLabel = Label("Fullscreen", font_size=25, anchor_x="left", anchor_y="center", color=(100, 100, 100, 255))
         fullscreenLabel.x = self.width * 0.05
         fullscreenLabel.y = self.height * 0.9
-        fullscreenButton = ToggleButton(self, 0.9, 0.9, cfg.configuration["Core"]["fullscreen"], command = director.window.set_fullscreen)
+        fullscreenButton = ToggleButton(self, 0.9, 0.9, cfg.configuration, section = "Core", option = "fullscreen", command = director.window.set_fullscreen)
 
         vsyncLabel = Label("VSync", font_size=25, anchor_x="left", anchor_y="center", color=(100, 100, 100, 255))
         vsyncLabel.x = self.width * 0.05
         vsyncLabel.y = self.height * 0.7
-        vsyncButton = ToggleButton(self, 0.9, 0.7, cfg.configuration["Core"]["vsync"], command = director.window.set_vsync)
+        vsyncButton = ToggleButton(self, 0.9, 0.7, cfg.configuration, section = "Core", option = "vsync", command = director.window.set_vsync)
 
         showfpsLabel = Label("Show FPS", font_size=25, anchor_x="left", anchor_y="center", color=(100, 100, 100, 255))
         showfpsLabel.x = self.width * 0.05
         showfpsLabel.y = self.height * 0.5
-        showfpsButton = ToggleButton(self, 0.9, 0.5, cfg.configuration["Core"]["showfps"], command = director.set_show_FPS)
+        showfpsButton = ToggleButton(self, 0.9, 0.5, cfg.configuration, section = "Core", option = "showfps", command = director.set_show_FPS)
 
         self.add(fullscreenButton)
         self.add(fullscreenLabel)
