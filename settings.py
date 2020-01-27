@@ -91,16 +91,17 @@ class MessagePopup(layer.ColorLayer):
             self.active = True
 
 messagePopup = MessagePopup()
+
 class ToggleButton(layer.Layer):
     is_event_handler = True
 
-    def __init__(self, selfx, selfy, setting, command = None, restartGame = False):
+    def __init__(self, parent, selfx, selfy, setting, command = None, restartGame = False):
         super().__init__()
         global x, y
-        self.px = self.parent.x
-        self.py = self.parent.y
-        pwidth = self.parent.width
-        pheight = self.parent.height
+        self.px = parent.x
+        self.py = parent.y
+        pwidth = parent.width
+        pheight = parent.height
         self.command = command
         self.setting = setting
         self.restartGame = restartGame
@@ -121,8 +122,8 @@ class ToggleButton(layer.Layer):
         self.lbl.y = 0
         self.add(self.bgImage)
         self.add(self.lbl)
-        self.width_range = [int(px + (self.x - (self.width / 2))), int(px + (self.x + (self.width / 2)))]
-        self.height_range = [int(py + (self.y - (self.height / 2))), int(py + (self.y + (self.height / 2)))]
+        self.width_range = [int(self.px + (self.x - (self.width / 2))), int(self.px + (self.x + (self.width / 2)))]
+        self.height_range = [int(self.py + (self.y - (self.height / 2))), int(self.py + (self.y + (self.height / 2)))]
         self.schedule_interval(self.setWH, 1)
         self.resume_scheduler()
 
@@ -181,13 +182,18 @@ class VideoSettings(layer.ColorLayer):
         fullscreenLabel = Label("Fullscreen", font_size=25, anchor_x="left", anchor_y="center", color=(100, 100, 100, 255))
         fullscreenLabel.x = self.width * 0.05
         fullscreenLabel.y = self.height * 0.9
-        fullscreenButton = ToggleButton(0.9, 0.9, cfg.configuration["Core"]["fullscreen"], command = director.window.set_fullscreen)
+        fullscreenButton = ToggleButton(self, 0.9, 0.9, cfg.configuration["Core"]["fullscreen"], command = director.window.set_fullscreen)
 
         vsyncLabel = Label("VSync", font_size=25, anchor_x="left", anchor_y="center", color=(100, 100, 100, 255))
         vsyncLabel.x = self.width * 0.05
         vsyncLabel.y = self.height * 0.7
-        vsyncButton = ToggleButton(0.9, 0.7, cfg.configuration["Core"]["vsync"], command = director.window.set_vsync)
-        
+        vsyncButton = ToggleButton(self, 0.9, 0.7, cfg.configuration["Core"]["vsync"], command = director.window.set_vsync)
+
+        showfpsLabel = Label("Show FPS", font_size=25, anchor_x="left", anchor_y="center", color=(100, 100, 100, 255))
+        showfpsLabel.x = self.width * 0.05
+        showfpsLabel.y = self.height * 0.5
+        showfpsButton = ToggleButton(self, 0.9, 0.5, cfg.configuration["Core"]["showfps"], command = director.set_show_FPS)
+
         self.add(fullscreenButton)
         self.add(fullscreenLabel)
         self.add(vsyncButton)
