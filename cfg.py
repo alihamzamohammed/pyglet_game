@@ -13,10 +13,11 @@ def configWrite(configFile):
     import configparser
     conf = configparser.ConfigParser()
     conf.read_dict(configuration)
-    with open(configFile, "w") as file:
+    with open(configFile, "r+") as file:
+        print(configuration)
         conf.write(file)
+        print(file.read())
     file.close()
-        
 
 def init():
     global configuration

@@ -151,7 +151,9 @@ class ToggleButton(layer.Layer):
             if self.restartGame:
                 messagePopup.showMessage("Your game must be restarted in order to apply these settings.")
             self.setting = str(not self.active)
+            
             self.active = not self.active
+            print(self.active, self.setting)
             if callable(self.command):
                 self.command(self.active)
             if self.active:
@@ -198,6 +200,8 @@ class VideoSettings(layer.ColorLayer):
         self.add(fullscreenLabel)
         self.add(vsyncButton)
         self.add(vsyncLabel)
+        self.add(showfpsButton)
+        self.add(showfpsLabel)
 
     def showVideoScreen(self):
         self.active = True

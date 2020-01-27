@@ -56,6 +56,7 @@ class Game(object):
         director.terminate_app = True
 
     def showMainMenu(self):
+        global defaultconfigfile
         cfg.configWrite(defaultconfigfile)
         director.replace(FadeTransition(mainmenu.MainMenuScreen(), duration = 1, color = (0, 0, 0)))
 
