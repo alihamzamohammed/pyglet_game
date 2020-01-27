@@ -53,7 +53,7 @@ class Game(object):
         print("Settings button clicked")
 
     def quitButtonClicked(self):
-        sys.exit()
+        director.terminate_app = True
 
     def showMainMenu(self):
         cfg.configWrite(defaultconfigfile)

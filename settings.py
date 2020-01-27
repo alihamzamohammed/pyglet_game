@@ -91,74 +91,79 @@ class MessagePopup(layer.ColorLayer):
             self.active = True
 
 messagePopup = MessagePopup()
+class ToggleButton(layer.Layer):
+    is_event_handler = True
+
+    def __init__(self, selfx, selfy, setting, command = None, restartGame = False):
+        super().__init__()
+        global x, y
+        self.px = self.parent.x
+        self.py = self.parent.y
+        pwidth = self.parent.width
+        pheight = self.parent.height
+        self.command = command
+        self.setting = setting
+        self.restartGame = restartGame
+        self.lbl = Label("YES", anchor_x="center", anchor_y="center")
+        self.bgImage = Sprite("toggleButton.png")
+        self.active = True if self.setting == "True" else False
+        if self.active:
+            self.bgImage.image = pyglet.resource.image("toggledButton.png")
+            self.lbl.element.text = "YES"
+        else:
+            self.bgImage.image = pyglet.resource.image("toggleButton.png")
+            self.lbl.element.text = "NO"
+        self.width = self.bgImage.width
+        self.height = self.bgImage.height
+        self.x = pwidth * selfx
+        self.y = pheight * selfy
+        self.lbl.x = 0
+        self.lbl.y = 0
+        self.add(self.bgImage)
+        self.add(self.lbl)
+        self.width_range = [int(px + (self.x - (self.width / 2))), int(px + (self.x + (self.width / 2)))]
+        self.height_range = [int(py + (self.y - (self.height / 2))), int(py + (self.y + (self.height / 2)))]
+        self.schedule_interval(self.setWH, 1)
+        self.resume_scheduler()
+
+    def setWH(self, dt):
+        x, y = director.window.width, director.window.height
+        scalex = x / reswidth
+        scaley = y / resheight
+        self.width_range = [int((self.px * scalex) + ((self.x * scalex) - (self.width * scalex) / 2)), int((self.px * scalex) + ((self.x * scalex) + (self.width * scalex) / 2))]
+        self.height_range = [int((self.py * scaley) + ((self.y * scaley) - (self.height * scaley) / 2)), int((self.py * scaley) + ((self.y * scaley) + (self.height * scaley) / 2))]
+    
+    def on_mouse_motion(self, x, y, dx, dy):
+        if x in range(self.width_range[0], self.width_range[1]) and y in range(self.height_range[0], self.height_range[1]):
+            if self.active:
+                self.bgImage.image = pyglet.resource.image("toggledButtonHovered.png")
+            else:
+                self.bgImage.image = pyglet.resource.image("toggleButtonHovered.png")
+        else:
+            if self.active:
+                self.bgImage.image = pyglet.resource.image("toggledButton.png")
+            else:
+                self.bgImage.image = pyglet.resource.image("toggleButton.png")
+        
+    def on_mouse_press(self, x, y, buttons, modifiers):
+        if x in range(self.width_range[0], self.width_range[1]) and y in range(self.height_range[0], self.height_range[1]):
+            if self.restartGame:
+                messagePopup.showMessage("Your game must be restarted in order to apply these settings.")
+            self.setting = str(not self.active)
+            self.active = not self.active
+            if callable(self.command):
+                self.command(self.active)
+            if self.active:
+                self.bgImage.image = pyglet.resource.image("toggledButtonClicked.png")
+                self.lbl.element.text = "YES"
+            else:
+                self.bgImage.image = pyglet.resource.image("toggleButtonClicked.png")
+                self.lbl.element.text = "NO"
+
 
 class VideoSettings(layer.ColorLayer):
 
     is_event_handler = True
-
-    class ToggleButton(layer.Layer):
-
-        is_event_handler = True
-
-        def __init__(self, pwidth, pheight, px, py, selfx, selfy, setting):
-            super().__init__()
-            global x, y
-            self.px = px
-            self.py = py
-            self.setting = setting
-            self.lbl = Label("YES", anchor_x="center", anchor_y="center")
-            self.bgImage = Sprite("toggleButton.png")
-            self.active = True if self.setting == "True" else False
-            if self.active:
-                self.bgImage.image = pyglet.resource.image("toggledButton.png")
-                self.lbl.element.text = "YES"
-            else:
-                self.bgImage.image = pyglet.resource.image("toggleButton.png")
-                self.lbl.element.text = "NO"
-            self.width = self.bgImage.width
-            self.height = self.bgImage.height
-            self.x = pwidth * selfx
-            self.y = pheight * selfy
-            self.lbl.x = 0
-            self.lbl.y = 0
-            self.add(self.bgImage)
-            self.add(self.lbl)
-            self.width_range = [int(px + (self.x - (self.width / 2))), int(px + (self.x + (self.width / 2)))]
-            self.height_range = [int(py + (self.y - (self.height / 2))), int(py + (self.y + (self.height / 2)))]
-            self.schedule_interval(self.setWH, 1)
-            self.resume_scheduler()
-
-        def setWH(self, dt):
-            x, y = director.window.width, director.window.height
-            scalex = x / reswidth
-            scaley = y / resheight
-            self.width_range = [int((self.px * scalex) + ((self.x * scalex) - (self.width * scalex) / 2)), int((self.px * scalex) + ((self.x * scalex) + (self.width * scalex) / 2))]
-            self.height_range = [int((self.py * scaley) + ((self.y * scaley) - (self.height * scaley) / 2)), int((self.py * scaley) + ((self.y * scaley) + (self.height * scaley) / 2))]
-        
-        def on_mouse_motion(self, x, y, dx, dy):
-            if x in range(self.width_range[0], self.width_range[1]) and y in range(self.height_range[0], self.height_range[1]):
-                if self.active:
-                    self.bgImage.image = pyglet.resource.image("toggledButtonHovered.png")
-                else:
-                    self.bgImage.image = pyglet.resource.image("toggleButtonHovered.png")
-            else:
-                if self.active:
-                    self.bgImage.image = pyglet.resource.image("toggledButton.png")
-                else:
-                    self.bgImage.image = pyglet.resource.image("toggleButton.png")
-            
-        def on_mouse_press(self, x, y, buttons, modifiers):
-            if x in range(self.width_range[0], self.width_range[1]) and y in range(self.height_range[0], self.height_range[1]):
-                messagePopup.showMessage("Your game must be restarted in order to apply these settings.")
-                self.setting = str(not self.active)
-                self.active = not self.active
-                if self.active:
-                    self.bgImage.image = pyglet.resource.image("toggledButtonClicked.png")
-                    self.lbl.element.text = "YES"
-                else:
-                    self.bgImage.image = pyglet.resource.image("toggleButtonClicked.png")
-                    self.lbl.element.text = "NO"
-
 
     def __init__(self):
         super().__init__(255, 255, 255, 255)
@@ -176,12 +181,12 @@ class VideoSettings(layer.ColorLayer):
         fullscreenLabel = Label("Fullscreen", font_size=25, anchor_x="left", anchor_y="center", color=(100, 100, 100, 255))
         fullscreenLabel.x = self.width * 0.05
         fullscreenLabel.y = self.height * 0.9
-        fullscreenButton = self.ToggleButton(self.width, self.height, self.x, self.y, 0.9, 0.9, cfg.configuration["Core"]["fullscreen"])
+        fullscreenButton = ToggleButton(0.9, 0.9, cfg.configuration["Core"]["fullscreen"], command = director.window.set_fullscreen)
 
         vsyncLabel = Label("VSync", font_size=25, anchor_x="left", anchor_y="center", color=(100, 100, 100, 255))
         vsyncLabel.x = self.width * 0.05
         vsyncLabel.y = self.height * 0.7
-        vsyncButton = self.ToggleButton(self.width, self.height, self.x, self.y, 0.9, 0.7, cfg.configuration["Core"]["vsync"])
+        vsyncButton = ToggleButton(0.9, 0.7, cfg.configuration["Core"]["vsync"], command = director.window.set_vsync)
         
         self.add(fullscreenButton)
         self.add(fullscreenLabel)
@@ -254,6 +259,7 @@ class SoundSettings(layer.ColorLayer):
             self.active = False
         else:
             self.x = self.posleft
+
 
 class ExtensionSettings(layer.ColorLayer):
 
@@ -369,7 +375,6 @@ class SettingsScreen(scene.Scene):
         self.add(aboutButton)
         self.add(backButton)
         self.add(settingsLabel)
-
         videoSettings = VideoSettings()
         soundSettings = SoundSettings()
         extensionSettings = ExtensionSettings()
