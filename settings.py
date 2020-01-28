@@ -244,13 +244,13 @@ class VideoSettings(layer.ColorLayer):
         def __init__(self, parent):
             super().__init__()
             reswidth, resheight = [int(res) for res in cfg.configuration["Core"]["defaultres"].split("x")]
-            self.lblWidth = TextBox(self, 0, 0, default_text=reswidth, charLimit=4)
+            self.lblWidth = TextBox(self, 0, 0, default_text=str(reswidth), charLimit=4)
             seperator = Label("X", anchor_x = "center", anchor_y = "center", font_size = 15, color = (255, 255, 255, 255))
             seperator.x = self.lblWidth.width
             seperator.y = 0
             self.width = (self.lblWidth.width * 2)
             self.height = self.lblWidth.height
-            self.lblHeight = TextBox(self, self.width, 0, default_text=resheight, charLimit=4)
+            self.lblHeight = TextBox(self, self.width, 0, default_text=str(resheight), charLimit=4)
             self.x = parent.width - (self.width + (parent.width * 0.1))        
             self.y = parent.height * 0.3
             self.lblWidth.parentx = parent.x + self.x
