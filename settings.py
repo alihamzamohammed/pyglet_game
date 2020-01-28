@@ -95,6 +95,7 @@ class TextBox(layer.Layer):
         self.height_range = [int((self.parenty + self.y) - (self.bgImage.height / 2)), int((self.parenty + self.y) + (self.bgImage.height / 2))]
         self.schedule_interval(self.setWH, 1)
         self.resume_scheduler()
+        self.changed = False
         print(self.width_range, self.height_range)
         print(self.x, self.y)
         print(self.width, self.height)
@@ -123,14 +124,16 @@ class TextBox(layer.Layer):
                 self.bgImage.image = pyglet.resource.image("textBox.png")
 
     def on_key_press(self, key, modifiers):
-        if isinstance(symbol_string(key)[-1], int):
-            print(symbol_string(key)[-1])
-        if self.active and isinstance(symbol_string(key)[-1], int):
-            self.inputLabel.element.text = self.inputLabel.element.text + symbol_string(key)
+        try:
+            if self.active:
+                num = int(symbol_string(key)[-1])
+                self.inputLabel.element.text = self.inputLabel.element.text + symbol_string(key)[-1]
+                if len(self.inputLabel.element.text) > (self.charLimit - 1):
+                    self.active = False
+                    self.bgImage.image = pyglet.resource.image("textBox.png")
+                    self.changed = True
+        except ValueError:
             pass
-            if len(self.inputLabel.element.text) > (self.charLimit + 1):
-                self.active = False
-                self.bgImage.image = pyglet.resource.image("textBox.png")
 
 
     def get_text(self):
@@ -240,22 +243,28 @@ class VideoSettings(layer.ColorLayer):
 
         def __init__(self, parent):
             super().__init__()
-            lblWidth = TextBox(self, 0, 0, "1280", 4)
+            self.lblWidth = TextBox(self, 0, 0, "1280", 4)
             seperator = Label("X", anchor_x = "center", anchor_y = "center", font_size = 15, color = (255, 255, 255, 255))
-            seperator.x = lblWidth.width
+            seperator.x = self.lblWidth.width
             seperator.y = 0
-            self.width = (lblWidth.width * 2)
-            self.height = lblWidth.height
-            lblHeight = TextBox(self, self.width, 0, "720", 4)
+            self.width = (self.lblWidth.width * 2)
+            self.height = self.lblWidth.height
+            self.lblHeight = TextBox(self, self.width, 0, "720", 4)
             self.x = parent.width - (self.width + (parent.width * 0.1))        
             self.y = parent.height * 0.3
-            lblWidth.parentx = parent.x + self.x
-            lblWidth.parenty = parent.y + self.y
-            lblHeight.parentx = parent.x + self.x
-            lblHeight.parenty = parent.y + self.y
-            self.add(lblWidth)
+            self.lblWidth.parentx = parent.x + self.x
+            self.lblWidth.parenty = parent.y + self.y
+            self.lblHeight.parentx = parent.x + self.x
+            self.lblHeight.parenty = parent.y + self.y
+            self.add(self.lblWidth)
             self.add(seperator)
-            self.add(lblHeight)
+            self.add(self.lblHeight)
+            self.schedule_interval(changed, 0.5)
+            self.resume_scheduler()
+        
+        def changed(self):
+            if self.lblWidth.changed or self.lblHeight.changed:
+                messagePopup.showMessage("Your game needs to be restarted for these changes to take effect.")
 
     def __init__(self):        
         super().__init__(100, 100, 100, 100)

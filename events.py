@@ -47,10 +47,18 @@ class SettingsEvents(pyglet.window.EventDispatcher):
     def onAboutButtonClick(self):
         self.dispatch_event("showAboutScreen")
     
+    def onResWidthChange(self, value):
+        self.dispatch_event("resWidthChanged")
+    
+    def onResHeightChange(self, value):
+        self.dispatch_event("resHeightChanged")
+    
 SettingsEvents.register_event_type("showVideoScreen")
 SettingsEvents.register_event_type("showSoundScreen")
 SettingsEvents.register_event_type("showExtensionsScreen")
 SettingsEvents.register_event_type("showAboutScreen")
+SettingsEvents.register_event_type("resWidthChanged")
+SettingsEvents.register_event_type("resHeightChanged")
 
 mainmenuevents = MainMenuEvents()
 settingsevents = SettingsEvents()
