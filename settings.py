@@ -265,7 +265,7 @@ class VideoSettings(layer.ColorLayer):
         def changed(self, dt):
             if self.lblWidth.changed or self.lblHeight.changed:
                 messagePopup.showMessage("Your game needs to be restarted for these changes to take effect.")
-                cfg.configuration["Core"]["resolution"] = str(self.lblWidth.get_text()) + "x" + str(self.lblHeight.get_text())
+                cfg.configuration["Core"]["defaultres"] = str(self.lblWidth.get_text()) + "x" + str(self.lblHeight.get_text())
 
     def __init__(self):        
         super().__init__(100, 100, 100, 100)
