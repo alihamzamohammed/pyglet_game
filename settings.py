@@ -75,7 +75,7 @@ class TextBox(layer.Layer):
 
     is_event_handler = True
 
-    def __init__(self, parent, selfx, selfy, event, default_text = "", charLimit = 1):
+    def __init__(self, parent, selfx, selfy, default_text = "", charLimit = 1):
         super().__init__()
         self.px = parent.x
         self.py = parent.y
@@ -243,13 +243,13 @@ class VideoSettings(layer.ColorLayer):
 
         def __init__(self, parent):
             super().__init__()
-            self.lblWidth = TextBox(self, 0, 0, "1280", 4)
+            self.lblWidth = TextBox(self, 0, 0, default_text="1280", charLimit=4)
             seperator = Label("X", anchor_x = "center", anchor_y = "center", font_size = 15, color = (255, 255, 255, 255))
             seperator.x = self.lblWidth.width
             seperator.y = 0
             self.width = (self.lblWidth.width * 2)
             self.height = self.lblWidth.height
-            self.lblHeight = TextBox(self, self.width, 0, "720", 4)
+            self.lblHeight = TextBox(self, self.width, 0, default_text="720", charLimit=4)
             self.x = parent.width - (self.width + (parent.width * 0.1))        
             self.y = parent.height * 0.3
             self.lblWidth.parentx = parent.x + self.x
@@ -262,7 +262,7 @@ class VideoSettings(layer.ColorLayer):
             self.schedule_interval(self.changed, 0.5)
             self.resume_scheduler()
         
-        def changed(self):
+        def changed(self, dt):
             if self.lblWidth.changed or self.lblHeight.changed:
                 messagePopup.showMessage("Your game needs to be restarted for these changes to take effect.")
                 cfg.configuration["Core"]["resolution"] = str(self.lblWidth.get_text()) + "x" + str(self.lblHeight.get_text())
