@@ -8,6 +8,7 @@ from cocos.actions import *
 from cocos.menu import *
 from cocos.sprite import *
 from cocos.director import director
+from pyglet.window.key import symbol_string
 import cfg
 import events
 import pyglet
@@ -72,14 +73,15 @@ class sectionButton(layer.Layer):
 
 class TextBox(layer.Layer):
 
-    #is_event_handler = True
+    is_event_handler = True
 
-    def __init__(self, parent, selfx, selfy, default_text = ""):
+    def __init__(self, parent, selfx, selfy, default_text = "", charLimit = 1):
         super().__init__()
         self.px = parent.x
         self.py = parent.y
         self.x = selfx
         self.y = selfy
+        self.charLimit = charLimit
         self.inputLabel = Label(default_text, font_size = 20, anchor_x = "center", anchor_y = "center", color=(0, 0, 0, 255))
         self.bgImage = Sprite("textBox.png")
         self.width = self.bgImage.width
@@ -87,10 +89,12 @@ class TextBox(layer.Layer):
         self.active = False
         self.add(self.bgImage)
         self.add(self.inputLabel)
-        self.width_range = []
-        self.height_range = []
-        #self.schedule_interval(self.setWH, 1)
-        #self.resume_scheduler()
+        self.parentx = 0
+        self.parenty = 0
+        self.width_range = [int((self.parentx + self.x) - (self.bgImage.width / 2)), int((self.parentx + self.x) + (self.bgImage.width / 2))]
+        self.height_range = [int((self.parenty + self.y) - (self.bgImage.height / 2)), int((self.parenty + self.y) + (self.bgImage.height / 2))]
+        self.schedule_interval(self.setWH, 1)
+        self.resume_scheduler()
         print(self.width_range, self.height_range)
         print(self.x, self.y)
         print(self.width, self.height)
@@ -99,15 +103,35 @@ class TextBox(layer.Layer):
         x, y = director.window.width, director.window.height
         scalex = x / reswidth
         scaley = y / resheight
-        self.width_range = [int((self.px * scalex) + ((self.x * scalex) - (self.width * scalex) / 2)), int((self.px * scalex) + ((self.x * scalex) + (self.width * scalex) / 2))]
-        self.height_range = [int((self.py * scaley) + ((self.y * scaley) - (self.height * scaley) / 2)), int((self.py * scaley) + ((self.y * scaley) + (self.height * scaley) / 2))]
+        self.width_range = [int((self.parentx * scalex) + ((self.x * scalex) - (self.width * scalex) / 2)), int((self.parentx * scalex) + ((self.x * scalex) + (self.width * scalex) / 2))]
+        self.height_range = [int((self.parenty * scaley) + ((self.y * scaley) - (self.height * scaley) / 2)), int((self.parenty * scaley) + ((self.y * scaley) + (self.height * scaley) / 2))]
 
     def on_mouse_motion(self, x, y, dx, dy):
-        print(x, y)
-        if x in range(self.width_range[0], self.width_range[1]) and y in range(self.height_range[0], self.height_range[1]):
-            self.bgImage.image = pyglet.resource.image("textBoxHovered.png")
-        else:
-            self.bgImage.image = pyglet.resource.image("textBox.png")
+        if not self.active:
+            if x in range(self.width_range[0], self.width_range[1]) and y in range(self.height_range[0], self.height_range[1]):
+                self.bgImage.image = pyglet.resource.image("textBoxHovered.png")
+            else:
+                self.bgImage.image = pyglet.resource.image("textBox.png")
+
+    def on_mouse_press(self, x, y, buttons, modifiers):
+            if x in range(self.width_range[0], self.width_range[1]) and y in range(self.height_range[0], self.height_range[1]):
+                self.active = True
+                self.bgImage.image = pyglet.resource.image("textBoxEntered.png")
+                self.inputLabel.element.text = ""
+            else:
+                self.active = False
+                self.bgImage.image = pyglet.resource.image("textBox.png")
+
+    def on_key_press(self, key, modifiers):
+        if isinstance(symbol_string(key)[-1], int):
+            print(symbol_string(key)[-1])
+        if self.active and isinstance(symbol_string(key)[-1], int):
+            self.inputLabel.element.text = self.inputLabel.element.text + symbol_string(key)
+            pass
+            if len(self.inputLabel.element.text) > (self.charLimit + 1):
+                self.active = False
+                self.bgImage.image = pyglet.resource.image("textBox.png")
+
 
     def get_text(self):
         return self.inputLabel.element.text
@@ -216,15 +240,19 @@ class VideoSettings(layer.ColorLayer):
 
         def __init__(self, parent):
             super().__init__()
-            lblWidth = TextBox(self, 0, 0, "1280")
+            lblWidth = TextBox(self, 0, 0, "1280", 4)
             seperator = Label("X", anchor_x = "center", anchor_y = "center", font_size = 15, color = (255, 255, 255, 255))
             seperator.x = lblWidth.width
             seperator.y = 0
             self.width = (lblWidth.width * 2)
             self.height = lblWidth.height
-            lblHeight = TextBox(self, self.width, 0, "720")
+            lblHeight = TextBox(self, self.width, 0, "720", 4)
             self.x = parent.width - (self.width + (parent.width * 0.1))        
             self.y = parent.height * 0.3
+            lblWidth.parentx = parent.x + self.x
+            lblWidth.parenty = parent.y + self.y
+            lblHeight.parentx = parent.x + self.x
+            lblHeight.parenty = parent.y + self.y
             self.add(lblWidth)
             self.add(seperator)
             self.add(lblHeight)
