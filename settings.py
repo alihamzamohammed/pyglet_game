@@ -96,9 +96,6 @@ class TextBox(layer.Layer):
         self.schedule_interval(self.setWH, 1)
         self.resume_scheduler()
         self.changed = False
-        print(self.width_range, self.height_range)
-        print(self.x, self.y)
-        print(self.width, self.height)
 
     def setWH(self, dt):
         x, y = director.window.width, director.window.height
@@ -138,6 +135,7 @@ class TextBox(layer.Layer):
 
     def get_text(self):
         return self.inputLabel.element.text
+
 
 class MessagePopup(layer.ColorLayer):
 
