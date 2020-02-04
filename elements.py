@@ -8,6 +8,10 @@ from cocos.sprite import *
 
 import resources
 import events
+import cfg
+
+x, y = director.window.width, director.window.height
+reswidth, resheight = [int(res) for res in cfg.configuration["Core"]["defaultres"].split("x")]
 
 titleLabel = cocos.text.Label(
     "Game Title",
