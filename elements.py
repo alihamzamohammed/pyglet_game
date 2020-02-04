@@ -21,7 +21,7 @@ titleLabel = cocos.text.Label(
     anchor_x="center"
 )
 
-"""Main Menu Button. Sized and aligned to fit on the main menu, as title buttons. Hardcoded to only use 4, but can be extended and used elsewhere."""
+"""Main Menu Button. Sized and aligned to fit vertically on the game's main menu, as title buttons. Hardcoded to only use 4, but can be extended and used elsewhere."""
 class MainMenuButton(layer.Layer):
     
     is_event_handler = True
