@@ -46,7 +46,7 @@ class MessagePopup(layer.ColorLayer):
         self.lbl.y = int(self.height / 2)
         self.add(self.lbl)
         self.active = False
-    
+
     def showMessage(self, message):
         if not self.active:
             self.lbl.element.text = message
@@ -62,10 +62,10 @@ class SettingsToggleButton(elements.ToggleButton):
     def __init__(self, parent, selfx, selfy, configDict, section, option, command = None, restartGame = False):
         super().__init__(parent, selfx, selfy, configDict, section, option, command)
         self.restartGame = restartGame
-        self.schedule(checkChanged)
+        self.schedule(self.checkChanged)
         self.resume_scheduler()
 
-    def checkChanged(self):
+    def checkChanged(self, dt):
         if self.changed:
             messagePopup.showMessage("Your game must be restarted in order to apply these settings.")
 
