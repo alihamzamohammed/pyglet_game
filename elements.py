@@ -202,6 +202,7 @@ class sectionButton(layer.Layer):
             self.lbl.element.color = (0, 0, 0, 255)
             self.eventName()
 
+
 """Toggle Button. For toggling a setting on or off. Can alter a value in a dictionary and run a command simultaneously."""
 class ToggleButton(layer.Layer):
 
@@ -218,7 +219,6 @@ class ToggleButton(layer.Layer):
         self.configDict = configDict
         self.section = section
         self.option = option
-        # !self.restartGame = restartGame
         self.lbl = Label("YES", anchor_x="center", anchor_y="center")
         self.bgImage = Sprite("toggleButton.png")
         self.active = True if self.configDict[self.section][self.option] == "True" else False
