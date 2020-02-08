@@ -22,54 +22,14 @@ import time
 x, y = director.window.width, director.window.height
 reswidth, resheight = [int(res) for res in cfg.configuration["Core"]["defaultres"].split("x")]
 
-class sectionButton(layer.Layer): 
 
-    is_event_handler = True
+class SettingsSectionButton(elements.sectionButton):
 
-    def __init__(self, label, eventName, buttonorder = 1, active = False):
-        super().__init__()
+    def __init__(self, label, eventName, active = False, buttonorder = 1):
+        super().__init__(label, eventName, active)
         global x, y
-
-        self.eventName = eventName
-        self.active = active
-
-        self.bgImage = Sprite("settingsCategoryButton.png")
-        self.lbl = Label(label, anchor_x="center", anchor_y="center")
-        
         self.x = x * (0.2 * buttonorder)
         self.y = y * 0.76
-        
-        self.width_range = [int(self.x - (self.bgImage.width / 2)), int(self.x + (self.bgImage.width / 2))]
-        self.height_range = [int(self.y - (self.bgImage.height / 2)), int(self.y + (self.bgImage.height / 2))]
-
-        self.add(self.bgImage)
-        self.add(self.lbl)
-
-        self.schedule_interval(self.setWH, 1)
-        self.resume_scheduler()
-        
-    def setWH(self, dt):
-        x, y = director.window.width, director.window.height
-        scalex = x / reswidth
-        scaley = y / resheight
-        self.width_range = [int((self.x * scalex) - ((self.bgImage.width * scalex) / 2)), int((self.x * scalex) + ((self.bgImage.width * scalex) / 2))]
-        self.height_range = [int((self.y * scaley) - ((self.bgImage.height * scaley) / 2)), int((self.y * scaley) + ((self.bgImage.height * scaley) / 2))]
-
-    def on_mouse_motion(self, x, y, dx, dy):
-        if self.active:
-            self.bgImage.image = pyglet.resource.image("settingsCategoryButtonClicked.png")
-        elif x in range(self.width_range[0], self.width_range[1]) and y in range(self.height_range[0], self.height_range[1]):
-            self.bgImage.image = pyglet.resource.image("settingsCategoryButtonHovered.png")
-        else:
-            self.bgImage.image = pyglet.resource.image("settingsCategoryButton.png")
-
-    def on_mouse_press(self, x, y, buttons, modifiers):
-        if x in range(self.width_range[0], self.width_range[1]) and y in range(self.height_range[0], self.height_range[1]):
-            self.bgImage.image = pyglet.resource.image("settingsCategoryButtonClicked.png")
-            self.active = True
-            self.lbl.element.color = (0, 0, 0, 255)
-            self.eventName()
-
 
 
 class MessagePopup(layer.ColorLayer):
@@ -184,7 +144,7 @@ class VideoSettings(layer.ColorLayer):
             self.width = (self.txtBoxWidth.width * 2)
             self.height = self.txtBoxWidth.height
             self.txtBxHeight = elements.TextBox(self, self.width, 0, default_text=str(resheight), charLimit=4)
-            self.x = parent.width - (self.width + (parent.width * 0.1))        
+            self.x = parent.width - (self.width + (parent.width * 0.1))
             self.y = parent.height * 0.3
             self.txtBoxWidth.parentx = parent.x + self.x
             self.txtBoxWidth.parenty = parent.y + self.y
@@ -195,7 +155,7 @@ class VideoSettings(layer.ColorLayer):
             self.add(self.txtBxHeight)
             self.schedule_interval(self.changed, 0.5)
             self.resume_scheduler()
-        
+
         def changed(self, dt):
             if self.txtBoxWidth.changed or self.txtBxHeight.changed:
                 messagePopup.showMessage("Your game needs to be restarted for these changes to take effect.")
@@ -266,7 +226,7 @@ class VideoSettings(layer.ColorLayer):
             self.do(AccelDeccel(MoveTo((self.posleft, self.y), duration = 0.5)))
             self.active = False
         else:
-            self.x = self.posleft    
+            self.x = self.posleft
 
 #TODO: Sound settings
 class SoundSettings(layer.ColorLayer):

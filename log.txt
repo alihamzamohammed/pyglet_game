@@ -10509,3 +10509,6 @@ INFO: Init game modes
 INFO: Init resources
 INFO: Init items
 INFO: Loading finished, displaying Main Menu
+
+INFO: New execution, at: 2020-02-08 11:30:55.485757
+WARNING: Animation file not found!

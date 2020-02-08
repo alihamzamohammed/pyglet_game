@@ -151,3 +151,52 @@ class TextBox(layer.Layer):
     def get_text(self):
         return self.inputLabel.element.text
 
+
+
+class sectionButton(layer.Layer):
+
+    is_event_handler = True
+
+    def __init__(self, label, eventName, active = False):
+        super().__init__()
+        global x, y
+
+        self.eventName = eventName
+        self.active = active
+
+        self.bgImage = Sprite("settingsCategoryButton.png")
+        self.lbl = Label(label, anchor_x="center", anchor_y="center")
+
+        self.x = 0
+        self.y = 0
+
+        self.width_range = [int(self.x - (self.bgImage.width / 2)), int(self.x + (self.bgImage.width / 2))]
+        self.height_range = [int(self.y - (self.bgImage.height / 2)), int(self.y + (self.bgImage.height / 2))]
+
+        self.add(self.bgImage)
+        self.add(self.lbl)
+
+        self.schedule_interval(self.setWH, 1)
+        self.resume_scheduler()
+        
+    def setWH(self, dt):
+        x, y = director.window.width, director.window.height
+        scalex = x / reswidth
+        scaley = y / resheight
+        self.width_range = [int((self.x * scalex) - ((self.bgImage.width * scalex) / 2)), int((self.x * scalex) + ((self.bgImage.width * scalex) / 2))]
+        self.height_range = [int((self.y * scaley) - ((self.bgImage.height * scaley) / 2)), int((self.y * scaley) + ((self.bgImage.height * scaley) / 2))]
+
+    def on_mouse_motion(self, x, y, dx, dy):
+        if self.active:
+            self.bgImage.image = pyglet.resource.image("settingsCategoryButtonClicked.png")
+        elif x in range(self.width_range[0], self.width_range[1]) and y in range(self.height_range[0], self.height_range[1]):
+            self.bgImage.image = pyglet.resource.image("settingsCategoryButtonHovered.png")
+        else:
+            self.bgImage.image = pyglet.resource.image("settingsCategoryButton.png")
+
+    def on_mouse_press(self, x, y, buttons, modifiers):
+        if x in range(self.width_range[0], self.width_range[1]) and y in range(self.height_range[0], self.height_range[1]):
+            self.bgImage.image = pyglet.resource.image("settingsCategoryButtonClicked.png")
+            self.active = True
+            self.lbl.element.color = (0, 0, 0, 255)
+            self.eventName()
