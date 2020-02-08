@@ -153,6 +153,7 @@ class TextBox(layer.Layer):
 
 
 # TODO: Active and non-active checking
+"""Section Button. For activating a section of a page"""
 class sectionButton(layer.Layer):
 
     is_event_handler = True
@@ -201,6 +202,7 @@ class sectionButton(layer.Layer):
             self.lbl.element.color = (0, 0, 0, 255)
             self.eventName()
 
+"""Toggle Button. For toggling a setting on or off. Can alter a value in a dictionary and run a command simultaneously."""
 class ToggleButton(layer.Layer):
 
     is_event_handler = True
