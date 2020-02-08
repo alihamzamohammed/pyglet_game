@@ -220,6 +220,7 @@ class ToggleButton(layer.Layer):
         self.lbl = Label("YES", anchor_x="center", anchor_y="center")
         self.bgImage = Sprite("toggleButton.png")
         self.active = True if self.configDict[self.section][self.option] == "True" else False
+        self.changed = False
         if self.active:
             self.bgImage.image = pyglet.resource.image("toggledButton.png")
             self.lbl.element.text = "YES"
@@ -261,6 +262,7 @@ class ToggleButton(layer.Layer):
     def on_mouse_press(self, x, y, buttons, modifiers):
         if x in range(self.width_range[0], self.width_range[1]) and y in range(self.height_range[0], self.height_range[1]):
             self.active = not self.active
+            self.changed = True
             self.configDict[self.section][self.option] = str(self.active)
             if callable(self.command):
                 self.command(self.active)
