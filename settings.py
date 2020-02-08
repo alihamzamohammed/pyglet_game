@@ -8,13 +8,13 @@ from cocos.actions import *
 from cocos.menu import *
 from cocos.sprite import *
 from cocos.director import director
-from pyglet.window.key import symbol_string
 import cfg
 import events
 import pyglet
 import pyglet.gl
 import threading
 from pyglet import event
+import elements
 import resources
 import random
 import time
@@ -70,71 +70,6 @@ class sectionButton(layer.Layer):
             self.lbl.element.color = (0, 0, 0, 255)
             self.eventName()
 
-
-class TextBox(layer.Layer):
-
-    is_event_handler = True
-
-    def __init__(self, parent, selfx, selfy, default_text = "", charLimit = 1):
-        super().__init__()
-        self.px = parent.x
-        self.py = parent.y
-        self.x = selfx
-        self.y = selfy
-        self.charLimit = charLimit
-        self.inputLabel = Label(default_text, font_size = 20, anchor_x = "center", anchor_y = "center", color=(0, 0, 0, 255))
-        self.bgImage = Sprite("textBox.png")
-        self.width = self.bgImage.width
-        self.height = self.bgImage.height
-        self.active = False
-        self.add(self.bgImage)
-        self.add(self.inputLabel)
-        self.parentx = 0
-        self.parenty = 0
-        self.width_range = [int((self.parentx + self.x) - (self.bgImage.width / 2)), int((self.parentx + self.x) + (self.bgImage.width / 2))]
-        self.height_range = [int((self.parenty + self.y) - (self.bgImage.height / 2)), int((self.parenty + self.y) + (self.bgImage.height / 2))]
-        self.schedule_interval(self.setWH, 1)
-        self.resume_scheduler()
-        self.changed = False
-
-    def setWH(self, dt):
-        x, y = director.window.width, director.window.height
-        scalex = x / reswidth
-        scaley = y / resheight
-        self.width_range = [int((self.parentx * scalex) + ((self.x * scalex) - (self.width * scalex) / 2)), int((self.parentx * scalex) + ((self.x * scalex) + (self.width * scalex) / 2))]
-        self.height_range = [int((self.parenty * scaley) + ((self.y * scaley) - (self.height * scaley) / 2)), int((self.parenty * scaley) + ((self.y * scaley) + (self.height * scaley) / 2))]
-
-    def on_mouse_motion(self, x, y, dx, dy):
-        if not self.active:
-            if x in range(self.width_range[0], self.width_range[1]) and y in range(self.height_range[0], self.height_range[1]):
-                self.bgImage.image = pyglet.resource.image("textBoxHovered.png")
-            else:
-                self.bgImage.image = pyglet.resource.image("textBox.png")
-
-    def on_mouse_press(self, x, y, buttons, modifiers):
-            if x in range(self.width_range[0], self.width_range[1]) and y in range(self.height_range[0], self.height_range[1]):
-                self.active = True
-                self.bgImage.image = pyglet.resource.image("textBoxEntered.png")
-                self.inputLabel.element.text = ""
-            else:
-                self.active = False
-                self.bgImage.image = pyglet.resource.image("textBox.png")
-
-    def on_key_press(self, key, modifiers):
-        try:
-            if self.active:
-                num = int(symbol_string(key)[-1])
-                self.inputLabel.element.text = self.inputLabel.element.text + symbol_string(key)[-1]
-                if len(self.inputLabel.element.text) > (self.charLimit - 1):
-                    self.active = False
-                    self.bgImage.image = pyglet.resource.image("textBox.png")
-                    self.changed = True
-        except ValueError:
-            pass
-
-
-    def get_text(self):
-        return self.inputLabel.element.text
 
 
 class MessagePopup(layer.ColorLayer):
@@ -204,7 +139,7 @@ class ToggleButton(layer.Layer):
         scaley = y / resheight
         self.width_range = [int((self.px * scalex) + ((self.x * scalex) - (self.width * scalex) / 2)), int((self.px * scalex) + ((self.x * scalex) + (self.width * scalex) / 2))]
         self.height_range = [int((self.py * scaley) + ((self.y * scaley) - (self.height * scaley) / 2)), int((self.py * scaley) + ((self.y * scaley) + (self.height * scaley) / 2))]
-    
+
     def on_mouse_motion(self, x, y, dx, dy):
         if x in range(self.width_range[0], self.width_range[1]) and y in range(self.height_range[0], self.height_range[1]):
             if self.active:
@@ -216,7 +151,7 @@ class ToggleButton(layer.Layer):
                 self.bgImage.image = pyglet.resource.image("toggledButton.png")
             else:
                 self.bgImage.image = pyglet.resource.image("toggleButton.png")
-        
+
     def on_mouse_press(self, x, y, buttons, modifiers):
         if x in range(self.width_range[0], self.width_range[1]) and y in range(self.height_range[0], self.height_range[1]):
             if self.restartGame:
@@ -242,13 +177,13 @@ class VideoSettings(layer.ColorLayer):
         def __init__(self, parent):
             super().__init__()
             reswidth, resheight = [int(res) for res in cfg.configuration["Core"]["defaultres"].split("x")]
-            self.txtBoxWidth = TextBox(self, 0, 0, default_text=str(reswidth), charLimit=4)
+            self.txtBoxWidth = elements.TextBox(self, 0, 0, default_text=str(reswidth), charLimit=4)
             seperator = Label("X", anchor_x = "center", anchor_y = "center", font_size = 15, color = (255, 255, 255, 255))
             seperator.x = self.txtBoxWidth.width
             seperator.y = 0
             self.width = (self.txtBoxWidth.width * 2)
             self.height = self.txtBoxWidth.height
-            self.txtBxHeight = TextBox(self, self.width, 0, default_text=str(resheight), charLimit=4)
+            self.txtBxHeight = elements.TextBox(self, self.width, 0, default_text=str(resheight), charLimit=4)
             self.x = parent.width - (self.width + (parent.width * 0.1))        
             self.y = parent.height * 0.3
             self.txtBoxWidth.parentx = parent.x + self.x
@@ -333,7 +268,7 @@ class VideoSettings(layer.ColorLayer):
         else:
             self.x = self.posleft    
 
-
+#TODO: Sound settings
 class SoundSettings(layer.ColorLayer):
 
     is_event_handler = True
@@ -376,7 +311,7 @@ class SoundSettings(layer.ColorLayer):
         else:
             self.x = self.posleft
 
-
+#TODO: Extension settings
 class ExtensionSettings(layer.ColorLayer):
 
     is_event_handler = True
@@ -419,7 +354,7 @@ class ExtensionSettings(layer.ColorLayer):
         else:
             self.x = self.posleft
 
-
+#TODO: About settings
 class AboutSettings(layer.ColorLayer):
 
     is_event_handler = True
