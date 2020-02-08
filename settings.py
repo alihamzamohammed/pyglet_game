@@ -372,11 +372,11 @@ class SettingsScreen(scene.Scene):
         )
         settingsLabel.position = x / 2, y * 0.9
         
-        videoButton = sectionButton("Video", events.settingsevents.onVideoButtonClick, 1)
-        soundButton = sectionButton("Sound", events.settingsevents.onSoundButtonClick, 2)
-        expansionButton = sectionButton("Expansion", events.settingsevents.onExtensionsButtonClick, 3)
-        aboutButton = sectionButton("About", events.settingsevents.onAboutButtonClick, 4)
-        backButton = sectionButton("Back", events.mainmenuevents.backToMainMenu)
+        videoButton = SettingsSectionButton("Video", events.settingsevents.onVideoButtonClick, 1)
+        soundButton = SettingsSectionButton("Sound", events.settingsevents.onSoundButtonClick, 2)
+        expansionButton = SettingsSectionButton("Expansion", events.settingsevents.onExtensionsButtonClick, 3)
+        aboutButton = SettingsSectionButton("About", events.settingsevents.onAboutButtonClick, 4)
+        backButton = SettingsSectionButton("Back", events.mainmenuevents.backToMainMenu)
         backButton.x = x * 0.15
         backButton.y = y * 0.89
 
