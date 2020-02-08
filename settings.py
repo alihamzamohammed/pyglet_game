@@ -55,6 +55,7 @@ class MessagePopup(layer.ColorLayer):
 
 messagePopup = MessagePopup()
 
+# TODO: Move to elements.py
 class ToggleButton(layer.Layer):
 
     is_event_handler = True
@@ -372,10 +373,10 @@ class SettingsScreen(scene.Scene):
         )
         settingsLabel.position = x / 2, y * 0.9
         
-        videoButton = SettingsSectionButton("Video", events.settingsevents.onVideoButtonClick, 1)
-        soundButton = SettingsSectionButton("Sound", events.settingsevents.onSoundButtonClick, 2)
-        expansionButton = SettingsSectionButton("Expansion", events.settingsevents.onExtensionsButtonClick, 3)
-        aboutButton = SettingsSectionButton("About", events.settingsevents.onAboutButtonClick, 4)
+        videoButton = SettingsSectionButton("Video", events.settingsevents.onVideoButtonClick, buttonorder = 1, active = True)
+        soundButton = SettingsSectionButton("Sound", events.settingsevents.onSoundButtonClick, buttonorder = 2)
+        expansionButton = SettingsSectionButton("Expansion", events.settingsevents.onExtensionsButtonClick, buttonorder = 3)
+        aboutButton = SettingsSectionButton("About", events.settingsevents.onAboutButtonClick, buttonorder = 4)
         backButton = SettingsSectionButton("Back", events.mainmenuevents.backToMainMenu)
         backButton.x = x * 0.15
         backButton.y = y * 0.89

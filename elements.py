@@ -152,7 +152,7 @@ class TextBox(layer.Layer):
         return self.inputLabel.element.text
 
 
-
+# TODO: Active and non-active checking
 class sectionButton(layer.Layer):
 
     is_event_handler = True
