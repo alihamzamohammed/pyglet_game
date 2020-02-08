@@ -200,3 +200,73 @@ class sectionButton(layer.Layer):
             self.active = True
             self.lbl.element.color = (0, 0, 0, 255)
             self.eventName()
+
+class ToggleButton(layer.Layer):
+
+    is_event_handler = True
+
+    def __init__(self, parent, selfx, selfy, configDict, section, option, command = None):
+        super().__init__()
+        global x, y
+        self.px = parent.x
+        self.py = parent.y
+        pwidth = parent.width
+        pheight = parent.height
+        self.command = command
+        self.configDict = configDict
+        self.section = section
+        self.option = option
+        # !self.restartGame = restartGame
+        self.lbl = Label("YES", anchor_x="center", anchor_y="center")
+        self.bgImage = Sprite("toggleButton.png")
+        self.active = True if self.configDict[self.section][self.option] == "True" else False
+        if self.active:
+            self.bgImage.image = pyglet.resource.image("toggledButton.png")
+            self.lbl.element.text = "YES"
+        else:
+            self.bgImage.image = pyglet.resource.image("toggleButton.png")
+            self.lbl.element.text = "NO"
+        self.width = self.bgImage.width
+        self.height = self.bgImage.height
+        self.x = pwidth * selfx
+        self.y = pheight * selfy
+        self.lbl.x = 0
+        self.lbl.y = 0
+        self.add(self.bgImage)
+        self.add(self.lbl)
+        self.width_range = [int(self.px + (self.x - (self.width / 2))), int(self.px + (self.x + (self.width / 2)))]
+        self.height_range = [int(self.py + (self.y - (self.height / 2))), int(self.py + (self.y + (self.height / 2)))]
+        self.schedule_interval(self.setWH, 1)
+        self.resume_scheduler()
+
+    def setWH(self, dt):
+        x, y = director.window.width, director.window.height
+        scalex = x / reswidth
+        scaley = y / resheight
+        self.width_range = [int((self.px * scalex) + ((self.x * scalex) - (self.width * scalex) / 2)), int((self.px * scalex) + ((self.x * scalex) + (self.width * scalex) / 2))]
+        self.height_range = [int((self.py * scaley) + ((self.y * scaley) - (self.height * scaley) / 2)), int((self.py * scaley) + ((self.y * scaley) + (self.height * scaley) / 2))]
+
+    def on_mouse_motion(self, x, y, dx, dy):
+        if x in range(self.width_range[0], self.width_range[1]) and y in range(self.height_range[0], self.height_range[1]):
+            if self.active:
+                self.bgImage.image = pyglet.resource.image("toggledButtonHovered.png")
+            else:
+                self.bgImage.image = pyglet.resource.image("toggleButtonHovered.png")
+        else:
+            if self.active:
+                self.bgImage.image = pyglet.resource.image("toggledButton.png")
+            else:
+                self.bgImage.image = pyglet.resource.image("toggleButton.png")
+
+    def on_mouse_press(self, x, y, buttons, modifiers):
+        if x in range(self.width_range[0], self.width_range[1]) and y in range(self.height_range[0], self.height_range[1]):
+            self.active = not self.active
+            self.configDict[self.section][self.option] = str(self.active)
+            if callable(self.command):
+                self.command(self.active)
+            if self.active:
+                self.bgImage.image = pyglet.resource.image("toggledButtonClicked.png")
+                self.lbl.element.text = "YES"
+            else:
+                self.bgImage.image = pyglet.resource.image("toggleButtonClicked.png")
+                self.lbl.element.text = "NO"

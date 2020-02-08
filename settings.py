@@ -55,78 +55,19 @@ class MessagePopup(layer.ColorLayer):
 
 messagePopup = MessagePopup()
 
-# TODO: Move to elements.py
-class ToggleButton(layer.Layer):
+class SettingsToggleButton(elements.ToggleButton):
 
     is_event_handler = True
 
     def __init__(self, parent, selfx, selfy, configDict, section, option, command = None, restartGame = False):
-        super().__init__()
-        global x, y
-        self.px = parent.x
-        self.py = parent.y
-        pwidth = parent.width
-        pheight = parent.height
-        self.command = command
-        self.configDict = configDict
-        self.section = section
-        self.option = option
+        super().__init__(parent, selfx, selfy, configDict, section, option, command)
         self.restartGame = restartGame
-        self.lbl = Label("YES", anchor_x="center", anchor_y="center")
-        self.bgImage = Sprite("toggleButton.png")
-        self.active = True if self.configDict[self.section][self.option] == "True" else False
-        if self.active:
-            self.bgImage.image = pyglet.resource.image("toggledButton.png")
-            self.lbl.element.text = "YES"
-        else:
-            self.bgImage.image = pyglet.resource.image("toggleButton.png")
-            self.lbl.element.text = "NO"
-        self.width = self.bgImage.width
-        self.height = self.bgImage.height
-        self.x = pwidth * selfx
-        self.y = pheight * selfy
-        self.lbl.x = 0
-        self.lbl.y = 0
-        self.add(self.bgImage)
-        self.add(self.lbl)
-        self.width_range = [int(self.px + (self.x - (self.width / 2))), int(self.px + (self.x + (self.width / 2)))]
-        self.height_range = [int(self.py + (self.y - (self.height / 2))), int(self.py + (self.y + (self.height / 2)))]
-        self.schedule_interval(self.setWH, 1)
+        self.schedule(checkChanged)
         self.resume_scheduler()
 
-    def setWH(self, dt):
-        x, y = director.window.width, director.window.height
-        scalex = x / reswidth
-        scaley = y / resheight
-        self.width_range = [int((self.px * scalex) + ((self.x * scalex) - (self.width * scalex) / 2)), int((self.px * scalex) + ((self.x * scalex) + (self.width * scalex) / 2))]
-        self.height_range = [int((self.py * scaley) + ((self.y * scaley) - (self.height * scaley) / 2)), int((self.py * scaley) + ((self.y * scaley) + (self.height * scaley) / 2))]
-
-    def on_mouse_motion(self, x, y, dx, dy):
-        if x in range(self.width_range[0], self.width_range[1]) and y in range(self.height_range[0], self.height_range[1]):
-            if self.active:
-                self.bgImage.image = pyglet.resource.image("toggledButtonHovered.png")
-            else:
-                self.bgImage.image = pyglet.resource.image("toggleButtonHovered.png")
-        else:
-            if self.active:
-                self.bgImage.image = pyglet.resource.image("toggledButton.png")
-            else:
-                self.bgImage.image = pyglet.resource.image("toggleButton.png")
-
-    def on_mouse_press(self, x, y, buttons, modifiers):
-        if x in range(self.width_range[0], self.width_range[1]) and y in range(self.height_range[0], self.height_range[1]):
-            if self.restartGame:
-                messagePopup.showMessage("Your game must be restarted in order to apply these settings.")
-            self.active = not self.active
-            self.configDict[self.section][self.option] = str(self.active)
-            if callable(self.command):
-                self.command(self.active)
-            if self.active:
-                self.bgImage.image = pyglet.resource.image("toggledButtonClicked.png")
-                self.lbl.element.text = "YES"
-            else:
-                self.bgImage.image = pyglet.resource.image("toggleButtonClicked.png")
-                self.lbl.element.text = "NO"
+    def checkChanged(self):
+        if self.changed:
+            messagePopup.showMessage("Your game must be restarted in order to apply these settings.")
 
 
 class VideoSettings(layer.ColorLayer):
@@ -178,17 +119,17 @@ class VideoSettings(layer.ColorLayer):
         fullscreenLabel = Label("Fullscreen", font_size=25, anchor_x="left", anchor_y="center", color=(255, 255, 255, 255))
         fullscreenLabel.x = self.width * 0.05
         fullscreenLabel.y = self.height * 0.9
-        fullscreenButton = ToggleButton(self, 0.9, 0.9, cfg.configuration, section = "Core", option = "fullscreen", command = director.window.set_fullscreen)
+        fullscreenButton = SettingsToggleButton(self, 0.9, 0.9, cfg.configuration, section = "Core", option = "fullscreen", command = director.window.set_fullscreen)
 
         vsyncLabel = Label("VSync", font_size=25, anchor_x="left", anchor_y="center", color=(255, 255, 255, 255))
         vsyncLabel.x = self.width * 0.05
         vsyncLabel.y = self.height * 0.7
-        vsyncButton = ToggleButton(self, 0.9, 0.7, cfg.configuration, section = "Core", option = "vsync", command = director.window.set_vsync)
+        vsyncButton = SettingsToggleButton(self, 0.9, 0.7, cfg.configuration, section = "Core", option = "vsync", command = director.window.set_vsync)
 
         showfpsLabel = Label("Show FPS", font_size=25, anchor_x="left", anchor_y="center", color=(255, 255, 255, 255))
         showfpsLabel.x = self.width * 0.05
         showfpsLabel.y = self.height * 0.5
-        showfpsButton = ToggleButton(self, 0.9, 0.5, cfg.configuration, section = "Core", option = "showfps", command = director.set_show_FPS)
+        showfpsButton = SettingsToggleButton(self, 0.9, 0.5, cfg.configuration, section = "Core", option = "showfps", command = director.set_show_FPS, restartGame=True)
 
         resInputLabel = Label("Resolution", font_size=25, anchor_x="left", anchor_y="center", color=(255, 255, 255, 255))
         resInputLabel.x = self.width * 0.05
@@ -362,7 +303,7 @@ class AboutSettings(layer.ColorLayer):
 class SettingsScreen(scene.Scene):
 
     def __init__(self):
-        super().__init__() 
+        super().__init__()
         global x, y
         settingsLabel = cocos.text.Label(
             "Settings",
@@ -372,7 +313,7 @@ class SettingsScreen(scene.Scene):
             anchor_x="center"
         )
         settingsLabel.position = x / 2, y * 0.9
-        
+
         videoButton = SettingsSectionButton("Video", events.settingsevents.onVideoButtonClick, buttonorder = 1, active = True)
         soundButton = SettingsSectionButton("Sound", events.settingsevents.onSoundButtonClick, buttonorder = 2)
         expansionButton = SettingsSectionButton("Expansion", events.settingsevents.onExtensionsButtonClick, buttonorder = 3)
