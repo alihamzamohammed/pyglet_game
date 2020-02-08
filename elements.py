@@ -38,7 +38,7 @@ class MainMenuButton(layer.Layer):
         self.x = x / 2
         self.TOPBTNPOS = 0.68
         self.y = y * (self.TOPBTNPOS - (0.16 * (buttonorder - 1)))
-                
+        
         self.width = self.bgImage.width
         self.height = self.bgImage.height
         

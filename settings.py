@@ -47,7 +47,7 @@ class sectionButton(layer.Layer):
 
         self.schedule_interval(self.setWH, 1)
         self.resume_scheduler()
-
+        
     def setWH(self, dt):
         x, y = director.window.width, director.window.height
         scalex = x / reswidth
@@ -242,31 +242,31 @@ class VideoSettings(layer.ColorLayer):
         def __init__(self, parent):
             super().__init__()
             reswidth, resheight = [int(res) for res in cfg.configuration["Core"]["defaultres"].split("x")]
-            self.lblWidth = TextBox(self, 0, 0, default_text=str(reswidth), charLimit=4)
+            self.txtBoxWidth = TextBox(self, 0, 0, default_text=str(reswidth), charLimit=4)
             seperator = Label("X", anchor_x = "center", anchor_y = "center", font_size = 15, color = (255, 255, 255, 255))
-            seperator.x = self.lblWidth.width
+            seperator.x = self.txtBoxWidth.width
             seperator.y = 0
-            self.width = (self.lblWidth.width * 2)
-            self.height = self.lblWidth.height
-            self.lblHeight = TextBox(self, self.width, 0, default_text=str(resheight), charLimit=4)
+            self.width = (self.txtBoxWidth.width * 2)
+            self.height = self.txtBoxWidth.height
+            self.txtBxHeight = TextBox(self, self.width, 0, default_text=str(resheight), charLimit=4)
             self.x = parent.width - (self.width + (parent.width * 0.1))        
             self.y = parent.height * 0.3
-            self.lblWidth.parentx = parent.x + self.x
-            self.lblWidth.parenty = parent.y + self.y
-            self.lblHeight.parentx = parent.x + self.x
-            self.lblHeight.parenty = parent.y + self.y
-            self.add(self.lblWidth)
+            self.txtBoxWidth.parentx = parent.x + self.x
+            self.txtBoxWidth.parenty = parent.y + self.y
+            self.txtBxHeight.parentx = parent.x + self.x
+            self.txtBxHeight.parenty = parent.y + self.y
+            self.add(self.txtBoxWidth)
             self.add(seperator)
-            self.add(self.lblHeight)
+            self.add(self.txtBxHeight)
             self.schedule_interval(self.changed, 0.5)
             self.resume_scheduler()
         
         def changed(self, dt):
-            if self.lblWidth.changed or self.lblHeight.changed:
+            if self.txtBoxWidth.changed or self.txtBxHeight.changed:
                 messagePopup.showMessage("Your game needs to be restarted for these changes to take effect.")
-                cfg.configuration["Core"]["defaultres"] = str(self.lblWidth.get_text()) + "x" + str(self.lblHeight.get_text())
+                cfg.configuration["Core"]["defaultres"] = str(self.txtBoxWidth.get_text()) + "x" + str(self.txtBxHeight.get_text())
 
-    def __init__(self):        
+    def __init__(self):
         super().__init__(100, 100, 100, 100)
         events.settingsevents.push_handlers(self)
         global x, y
