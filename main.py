@@ -21,17 +21,17 @@ vsync = True if cfg.configuration["Core"]["vsync"] == "True" else False
 showfps = True if cfg.configuration["Core"]["showfps"] == "True" else False
 director.init(width=reswidth, height=resheight, caption="Game", fullscreen=fullscreen, autoscale=True, resizable=True, vsync=vsync)
 director.set_show_FPS(showfps)
-    
+
 import resources
-resources.resourceLoad() 
+resources.resourceLoad()
 
 import mainmenu
 import settings
 
 class Game(object):
-    
+
     is_event_handler = True
-    
+
     def startGame(self):
         logger.addLog("Resolution is " + str(reswidth) + "x" + str(resheight), logger.loglevel["info"])
         if fullscreen == True:

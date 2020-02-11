@@ -55,7 +55,7 @@ class MainMenuScreen(scene.Scene):
         global x, y
         self.add(gameTitle)
         gameTitle.do(AccelDeccel(MoveTo((x / 2, y * 0.9), 1.5)))
-        
+
         playButton = elements.MainMenuButton("Play Game", events.mainmenuevents.onPlayButtonClick, 1)
         multiplayerButton = elements.MainMenuButton("Multiplayer", events.mainmenuevents.onMultiplayerButtonClick, 2)
         settingsButton = elements.MainMenuButton("Settings", events.mainmenuevents.onSettingsButtonClick, 3)
