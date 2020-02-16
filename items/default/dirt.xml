@@ -1,8 +1,11 @@
 <?xml version="1.0" ?>
 <resource>
-<imageatlas size="64x64" file="dirt.png">
-<!--Add images for each frame in dirt.png-->
-</imageatlas>
-<tileset>
-</tileset>
+    <imageatlas size="64x64" file="dirt.png">
+        <image id="dirti" offset="0,0" />
+    </imageatlas>
+    <tileset>
+        <tile id="dirt">
+            <image ref="dirti" />
+        </tile>
+    </tileset>
 </resource>
