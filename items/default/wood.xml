@@ -4,7 +4,7 @@
         <image id="woodi" offset="0,0" />
     </imageatlas>
     <tileset>
-        <tile id="dirt">
+        <tile id="wood">
             <image ref="woodi" />
         </tile>
     </tileset>

@@ -1,0 +1,11 @@
+<?xml version="1.0" ?>
+<resource>
+    <imageatlas size="64x64" file="stone.png">
+        <image id="stonei" offset="0,0" />
+    </imageatlas>
+    <tileset>
+        <tile id="stone">
+            <image ref="stone" />
+        </tile>
+    </tileset>
+</resource>

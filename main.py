@@ -45,6 +45,8 @@ class Game(object):
         director.replace(mainmenu.MainMenuScreen())
 
     def playButtonClicked(self):
+        import gametest
+        director.replace(gametest.scene)
         print("Play button clicked")
 
     def multiplayerButtonClicked(self):

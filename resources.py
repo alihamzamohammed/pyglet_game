@@ -73,5 +73,5 @@ def resourceLoad():
     getResourcePack()
     fontLoad()
     animLoad()
-    pyglet.resource.path = [path + "\\resources\\" + resourcePack, path + "\\resources\\" + resourcePack + "\\images"]
+    pyglet.resource.path = [path + "\\resources\\" + resourcePack, path + "\\resources\\" + resourcePack + "\\images", path + "\\items\\"]
     pyglet.resource.reindex()

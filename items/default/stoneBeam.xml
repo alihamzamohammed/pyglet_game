@@ -4,7 +4,7 @@
         <image id="stoneBeami" offset="0,0" />
     </imageatlas>
     <tileset>
-        <tile id="woodBeam">
+        <tile id="stoneBeam">
             <image ref="stoneBeami" />
         </tile>
     </tileset>
