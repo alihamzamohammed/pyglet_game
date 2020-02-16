@@ -1,0 +1,6 @@
+<?xml version="1.0" ?>
+<itempack required="True">
+<name>Transparency Pack</name>
+<description>This item pack adds see through items to the game, providing a solid but transparent barrier.</description>
+<thumbnail>thumbnail.png</thumbnail>
+</itempack>
