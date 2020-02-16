@@ -1,0 +1,9 @@
+<!-- TODO: Whether this file needs to exist or whether it will be combined with dirt.png for auto placement of grass and dirt is somehting to be decided later-->
+<?xml version=1 ?>
+<resource>
+<imageatlas size="64x64" file="grass.png">
+<!--Add images for each frame in grass.png-->
+</imageatlas>
+<tileset>
+</tileset>
+</resource>

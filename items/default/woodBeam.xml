@@ -1,0 +1,8 @@
+<?xml version=1 ?>
+<resource>
+<imageatlas size="64x64" file="woodBeam.png">
+<!--Add images for each frame in woodBeam.png-->
+</imageatlas>
+<tileset>
+</tileset>
+</resource>
