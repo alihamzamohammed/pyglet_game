@@ -1,5 +1,5 @@
 <?xml version="1.0" ?>
-<itempack removable="False">
+<itempack required="True">
 <name>Default</name>
 <description>This is the default item pack that comes with the game. It includes default block items, that can be built upon by other custom items. Please do not remove this item pack.</description>
 <thumbnail>thumbnail.png</thumbnail>
