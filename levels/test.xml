@@ -20,10 +20,10 @@
         </column>
         <column>
             <cell tile="grass:grass" />>
-            <cell tile="dirt:dirt">
+            <cell tile="dirt:dirt" />
+            <cell>
                 <property name="player_start" type="bool" value="True" />
             </cell>
-            <cell />
             <cell />
             <cell />
             <cell />
