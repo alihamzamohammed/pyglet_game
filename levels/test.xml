@@ -19,32 +19,34 @@
             <cell tile="stone:stone" />
         </column>
         <column>
-            <cell />
-            <cell />
-            <cell />
-            <cell />
-            <cell />
-            <cell />
-            <cell />
-            <cell />
             <cell tile="grass:grass">
                 <property name="player_start" type="bool" value="True" />
             </cell>
             <cell tile="dirt:dirt" />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
         </column>
         <column>
-            <cell />
-            <cell />
-            <cell />
-            <cell />
-            <cell />
-            <cell />
-            <cell />
-            <cell />
             <cell tile="grass:grass" />
             <cell tile="dirt:dirt" />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
         </column>
         <column>
+            <cell tile="grass:grass" />
+            <cell tile="dirt:dirt" />
             <cell />
             <cell />
             <cell tile="wood:wood"/>
@@ -53,56 +55,54 @@
             <cell tile="dirt:dirt" />
             <cell />
             <cell />
-            <cell tile="grass:grass" />
-            <cell tile="dirt:dirt" />
         </column>
         <column>
-            <cell />
-            <cell />
-            <cell />
-            <cell />
-            <cell />
-            <cell />
-            <cell />
-            <cell />
             <cell tile="grass:grass" />
             <cell tile="dirt:dirt" />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
         </column>
         <column>
-            <cell />
-            <cell />
-            <cell />
-            <cell />
-            <cell />
-            <cell />
-            <cell />
-            <cell />
             <cell tile="grass:grass" />
             <cell tile="dirt:dirt" />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
         </column>
         <column>
-            <cell />
-            <cell />
-            <cell />
-            <cell />
-            <cell />
-            <cell />
-            <cell />
-            <cell />
             <cell tile="grass:grass" />
             <cell tile="dirt:dirt" />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
         </column>
         <column>
-            <cell />
-            <cell />
-            <cell />
-            <cell />
-            <cell />
-            <cell />
-            <cell />
-            <cell />
             <cell tile="grass:grass" />
             <cell tile="dirt:dirt" />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
         </column>
         <column>
             <cell tile="stone:stone" />
