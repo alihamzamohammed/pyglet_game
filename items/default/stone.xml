@@ -5,7 +5,7 @@
     </imageatlas>
     <tileset>
         <tile id="stone">
-            <image ref="stone" />
+            <image ref="stonei" />
         </tile>
     </tileset>
 </resource>
