@@ -50,9 +50,9 @@
             <cell />
             <cell />
             <cell tile="wood:wood"/>
-            <cell tile="woodBeam:woodBeam" />
-            <cell tile="stoneBeam:stoneBeam" />
-            <cell tile="dirt:dirt" />
+            <cell />
+            <cell />
+            <cell />
             <cell />
             <cell />
         </column>
@@ -61,7 +61,31 @@
             <cell tile="grass:grass" />
             <cell />
             <cell />
+            <cell tile="wood:wood" />
             <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+        </column>
+        <column>
+            <cell tile="dirt:dirt" />
+            <cell tile="grass:grass" />
+            <cell />
+            <cell />
+            <cell tile="wood:wood" />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+        </column>
+        <column>
+            <cell tile="dirt:dirt" />
+            <cell tile="grass:grass" />
+            <cell />
+            <cell />
+            <cell tile="wood:wood" />
             <cell />
             <cell />
             <cell />
