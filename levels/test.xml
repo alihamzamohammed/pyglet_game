@@ -45,8 +45,8 @@
             <cell />
         </column>
         <column>
-            <cell tile="grass:grass" />
             <cell tile="dirt:dirt" />
+            <cell tile="grass:grass" />
             <cell />
             <cell />
             <cell tile="wood:wood"/>
