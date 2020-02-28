@@ -5,7 +5,7 @@
     <requires file="items/default/dirt.xml" namespace="dirt" />
     <requires file="items/default/woodBeam.xml" namespace="woodBeam" />
     <requires file="items/default/stoneBeam.xml" namespace="stoneBeam" />
-    <rectmap id="walls" origin="0,0,0" tile_size="64x64">
+    <rectmap id="walls" origin="0,0,0" tile_size="32x32">
         <column>
             <cell tile="stone:stone" />
             <cell tile="stone:stone" />
