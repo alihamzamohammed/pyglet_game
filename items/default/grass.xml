@@ -1,6 +1,6 @@
 <?xml version="1.0" ?>
 <resource>
-    <imageatlas size="64x64" file="grass.png">
+    <imageatlas size="32x32" file="grass.png">
         <image id="grassi" offset="0,0" />
     </imageatlas>
     <tileset>
