@@ -31,7 +31,7 @@ class PlatformerController(actions.Action):
         vy += self.GRAVITY * dt
         if self.on_ground and keyboard[key.SPACE]:
             vy = self.JUMP_SPEED
-        
+
         dx = vx * dt
         dy = vy * dt
 
