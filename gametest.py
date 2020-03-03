@@ -83,10 +83,10 @@ class scene(Scene):
 
         def __init__(self, r, g, b, a, width=None, height=None):
             super().__init__(r, g, b, a, width=width, height=height)
-            lbl = cocos.text.Label("Test Level", font_size=40, anchor_x="center", anchor_y="center")
-            lbl.x = self.width / 2
-            lbl.y = self.height / 2
-            self.add(lbl, z=3)
+            self.lbl = cocos.text.Label("Test Level", font_size=40, anchor_x="center", anchor_y="center")
+            self.lbl.x = self.width / 2
+            self.lbl.y = self.height / 2
+            self.add(self.lbl, z=3)
 
     def __init__(self):
         super().__init__()
@@ -95,8 +95,8 @@ class scene(Scene):
         i = self.intro(0, 0, 0, 0)
         self.add(i, z=2)
         i.do(cocos.actions.FadeIn(0.1) + cocos.actions.Delay(2) + cocos.actions.FadeOut(1))
-        #for child in i.children:
-            #child.do(cocos.actions.FadeIn(0.1) + cocos.actions.Delay(2) + cocos.actions.FadeOut(1))
+        i.lbl.do(cocos.actions.FadeIn(0.1) + cocos.actions.Delay(2) + cocos.actions.FadeOut(1))
+
 
 keyboard = key.KeyStateHandler()
 cocos.director.director.window.push_handlers(keyboard)
