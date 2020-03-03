@@ -18,6 +18,9 @@ class PlatformerController(actions.Action):
     MOVE_SPEED = 200
     JUMP_SPEED = 800
     GRAVITY = -1200
+    movement = False
+    active = False
+    slowdown = False
 
     def start(self):
         self.target.velocity = (0, 0)
@@ -28,7 +31,39 @@ class PlatformerController(actions.Action):
             return
         vx, vy = self.target.velocity
 
-        vx = (keyboard[key.RIGHT] - keyboard[key.LEFT]) * self.MOVE_SPEED
+        #vx = (keyboard[key.RIGHT] - keyboard[key.LEFT]) * self.MOVE_SPEED
+        #print(keyboard[key.RIGHT], keyboard[key.LEFT])
+
+        if not self.slowdown:
+            if keyboard[key.RIGHT] > 0 or keyboard[key.LEFT] > 0:
+                self.active = True
+            else:
+                self.active = False
+
+            if self.active:
+                self.movement = True
+                self.slowdown = False
+            else:
+                self.slowdown = True
+                self.movement = False
+
+            if self.movement:
+                vx = (keyboard[key.RIGHT] - keyboard[key.LEFT]) * self.MOVE_SPEED
+
+        else:
+            if vx == 0:
+                self.slowdown = False
+            else:
+                if vx > 0:
+                    vx -= 10
+                else:
+                    vx += 10
+
+        print("Active:", self.active)
+        print("Movement:", self.movement)
+        print("Slowdown:", self.slowdown)
+        print("Speed:", str(vx))
+
         vy += self.GRAVITY * dt
         if self.on_ground and keyboard[key.SPACE]:
             vy = self.JUMP_SPEED
