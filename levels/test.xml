@@ -36,7 +36,7 @@
             <cell tile="dirt:dirt" />
             <cell tile="grass:grass" />
             <cell>
-                <!--<property name="player_start" type="bool" value="True" />-->
+                <property name="player_start" type="bool" value="True" />
             </cell>
             <cell />
             <cell />
@@ -141,7 +141,7 @@
             <cell />
             <cell />
             <cell tile="wood:wood" />
-            <cell ><property name="player_start" type="bool" value="True" /></cell>
+            <cell />
             <cell />
             <cell />
             <cell />
@@ -1915,7 +1915,7 @@
             <cell />
             <cell />
             <cell />
-            <cell tile="cloud:cloud" />
+            <cell />
             <cell />
             <cell />
             <cell />
@@ -1940,7 +1940,7 @@
             <cell />
             <cell />
             <cell />
-            <cell tile="cloud:cloud" />
+            <cell />
             <cell />
             <cell />
             <cell />
