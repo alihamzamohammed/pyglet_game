@@ -6,6 +6,7 @@ from pyglet.window import key
 from cocos.scene import *
 from cocos.layer import *
 from cocos import tiles, actions, mapcolliders
+import cfg
 path = os.getcwd()
 
 pyglet.resource.path.append(path + "\\items\\default")

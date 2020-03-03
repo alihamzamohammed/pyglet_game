@@ -72,3 +72,7 @@ if __name__=="__main__":
     logger.addLog("Starting game.", logger.loglevel["info"])
     game = Game()
     game.startGame()
+    '''Hello
+    hgulglygyu
+    hjbljiighlb
+    '''

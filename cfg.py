@@ -1,5 +1,6 @@
 def configRead(configFile):
     import configparser
+    from pyglet.window import key
     temp = {}
     conf = configparser.ConfigParser()
     conf.read(configFile)
@@ -8,6 +9,9 @@ def configRead(configFile):
             temp[option] = conf.get(section, option)
         configuration[section] = temp
         temp = {}
+    # TODO: Add in dict string conversion to pyglet.window.key
+    #for i in range(len(configuration["Controls"])):
+    #    configuration["Controls"][i] == keys[i]
 
 def configWrite(configFile):
     import configparser
@@ -18,6 +22,8 @@ def configWrite(configFile):
     file.close()
 
 def init():
+    import pyglet.window.key
     global configuration
     configuration = {}
-    
+    # TODO: Add in dict string conversion to pyglet.window.key
+    #global keys
