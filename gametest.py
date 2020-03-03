@@ -95,7 +95,7 @@ class scene(Scene):
         i = self.intro(0, 0, 0, 0)
         self.add(i, z=2)
         i.do(cocos.actions.FadeIn(0.1) + cocos.actions.Delay(2) + cocos.actions.FadeOut(1))
-        i.lbl.do(cocos.actions.FadeIn(0.1) + cocos.actions.Delay(2) + cocos.actions.FadeOut(1))
+        i.lbl.do(cocos.actions.FadeIn(0.1) + cocos.actions.Delay(1.8) + cocos.actions.FadeOut(1))
 
 
 keyboard = key.KeyStateHandler()
