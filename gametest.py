@@ -90,8 +90,8 @@ class scene(Scene):
         self.add(scroller, z=1)
         i = self.intro(0, 0, 0, 0)
         self.add(i, z=2)
-        i.do(cocos.actions.FadeIn(0.1) + cocos.actions.Delay(4) + cocos.actions.FadeOut(1))
-        i.lbl.do(cocos.actions.Delay(1) + cocos.actions.FadeIn(0.5) + cocos.actions.Delay(1.8) + cocos.actions.FadeOut(1))
+        i.do(cocos.actions.FadeIn(0.1) + cocos.actions.Delay(3) + cocos.actions.FadeOut(1))
+        i.lbl.do(cocos.actions.FadeOut(0.1) + cocos.actions.Delay(1) + cocos.actions.FadeIn(0.5) + cocos.actions.Delay(1.3) + cocos.actions.FadeOut(1))
 
 
 keyboard = key.KeyStateHandler()
