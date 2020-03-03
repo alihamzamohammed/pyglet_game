@@ -4,5 +4,3 @@ import xml.etree as et
 
 class Level():
     pass
-
-cocos.tiles.load()

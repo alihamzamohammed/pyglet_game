@@ -58,6 +58,8 @@ player.do(PlatformerController())
 scroller = ScrollingManager()
 fullmap = tiles.load("levels/test.xml")
 tilemap_walls = fullmap["walls"]
+tilemap_decorations = fullmap["decorations"]
+scroller.add(tilemap_decorations, z=-1)
 scroller.add(tilemap_walls, z=0)
 scroller.add(player_layer, z=1)
 
@@ -71,9 +73,28 @@ player.position = r.center
 mapcollider = mapcolliders.RectMapCollider(velocity_on_bump="slide")
 player.collision_handler = mapcolliders.make_collision_handler(mapcollider, tilemap_walls)
 
-scene = Scene()
-scene.add(ColorLayer(100, 120, 150, 255), z=0)
-scene.add(scroller, z=1)
+#scene = Scene()
+#scene.add(ColorLayer(100, 120, 150, 255), z=0)
+#scene.add(scroller, z=1)
+
+class scene(Scene):
+
+    class intro(ColorLayer):
+
+        def __init__(self, r, g, b, a, width=None, height=None):
+            super().__init__(r, g, b, a, width=width, height=height)
+            lbl = cocos.text.Label("Test Level", font_size=40, anchor_x="center", anchor_y="center")
+            lbl.x = self.x / 2
+            lbl.y = self.y / 2
+            self.add(lbl)
+
+    def __init__(self):
+        super().__init__()
+        self.add(ColorLayer(100, 120, 150, 255), z=0)
+        self.add(scroller, z=1)
+        i = self.intro(0, 0, 0, 0)
+        self.add(i, z=2)
+        i.do(cocos.actions.Delay(2) + cocos.actions.FadeOut(1))
 
 keyboard = key.KeyStateHandler()
 cocos.director.director.window.push_handlers(keyboard)
