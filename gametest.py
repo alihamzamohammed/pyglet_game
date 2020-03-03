@@ -56,11 +56,6 @@ class PlatformerController(actions.Action):
             elif vx < 0:
                 vx += self.SLOWDOWN
 
-        # DEBUG: print("Active:", self.active)
-        # DEBUG: print("Movement:", self.movement)
-        # DEBUG: print("Slowdown:", self.slowdown)
-        # DEBUG: print("Speed:", str(vx))
-
         vy += self.GRAVITY * dt
         if self.on_ground and keyboard[key.SPACE]:
             vy = self.JUMP_SPEED
