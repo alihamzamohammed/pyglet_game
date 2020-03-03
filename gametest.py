@@ -73,10 +73,6 @@ player.position = r.center
 mapcollider = mapcolliders.RectMapCollider(velocity_on_bump="slide")
 player.collision_handler = mapcolliders.make_collision_handler(mapcollider, tilemap_walls)
 
-#scene = Scene()
-#scene.add(ColorLayer(100, 120, 150, 255), z=0)
-#scene.add(scroller, z=1)
-
 class scene(Scene):
 
     class intro(ColorLayer):
@@ -94,8 +90,8 @@ class scene(Scene):
         self.add(scroller, z=1)
         i = self.intro(0, 0, 0, 0)
         self.add(i, z=2)
-        i.do(cocos.actions.FadeIn(0.1) + cocos.actions.Delay(2) + cocos.actions.FadeOut(1))
-        i.lbl.do(cocos.actions.FadeIn(0.1) + cocos.actions.Delay(1.8) + cocos.actions.FadeOut(1))
+        i.do(cocos.actions.FadeIn(0.1) + cocos.actions.Delay(4) + cocos.actions.FadeOut(1))
+        i.lbl.do(cocos.actions.Delay(1) + cocos.actions.FadeIn(0.5) + cocos.actions.Delay(1.8) + cocos.actions.FadeOut(1))
 
 
 keyboard = key.KeyStateHandler()
