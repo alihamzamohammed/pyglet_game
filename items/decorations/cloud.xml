@@ -1,0 +1,11 @@
+<?xml version="1.0" ?>
+<resource>
+    <imageatlas size="32x32" file="cloud.png">
+        <image id="cloudi" offset="0,0" />
+    </imageatlas>
+    <tileset>
+        <tile id="cloud">
+            <image ref="cloudi" />
+        </tile>
+    </tileset>
+</resource>
