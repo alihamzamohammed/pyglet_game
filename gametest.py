@@ -19,7 +19,7 @@ class PlatformerController(actions.Action):
     JUMP_SPEED = 800
     GRAVITY = -1200
     SLOWDOWN = 0.1 * MOVE_SPEED
-    slowdownthreshold = 0
+    slowdownthreshold = [0, 0]
     active = False
     slowdown = False
 
@@ -42,21 +42,20 @@ class PlatformerController(actions.Action):
 
             if self.active:
                 vx = (keyboard[key.RIGHT] - keyboard[key.LEFT]) * self.MOVE_SPEED
-                if self.slowdownthreshold < 1:
+                if self.slowdownthreshold[0] < 0.9:
                     self.slowdownthreshold += 0.1
-
         else:
-            if dt > 0.5:
-                return
+            self.slowdownthreshold[1] = self.slowdownthreshold[0]
+            self.slowdownthreshold[0] = 0
             if keyboard[key.RIGHT] > 0 or keyboard[key.LEFT] > 0:
                 self.active = True
                 self.slowdown = False
             elif vx == 0:
                 self.slowdown = False
             elif vx > 0:
-                vx -= self.SLOWDOWN
+                vx -= (self.SLOWDOWN / self.slowdownthreshold[1])
             elif vx < 0:
-                vx += self.SLOWDOWN
+                vx += (self.SLOWDOWN / self.slowdownthreshold[1])
 
         vy += self.GRAVITY * dt
         if self.on_ground and keyboard[key.SPACE]:
