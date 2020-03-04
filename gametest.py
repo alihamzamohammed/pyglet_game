@@ -19,6 +19,7 @@ class PlatformerController(actions.Action):
     JUMP_SPEED = 800
     GRAVITY = -1200
     SLOWDOWN = 0.1 * MOVE_SPEED
+    slowdownthreshold = 0
     active = False
     slowdown = False
 
@@ -30,10 +31,7 @@ class PlatformerController(actions.Action):
         if dt > 0.1:
             return
         vx, vy = self.target.velocity
-
-        #vx = (keyboard[key.RIGHT] - keyboard[key.LEFT]) * self.MOVE_SPEED
-        #print(keyboard[key.RIGHT], keyboard[key.LEFT])
-
+        print(self.slowdownthreshold)
         if not self.slowdown:
             if keyboard[key.RIGHT] > 0 or keyboard[key.LEFT] > 0:
                 self.active = True
@@ -44,8 +42,12 @@ class PlatformerController(actions.Action):
 
             if self.active:
                 vx = (keyboard[key.RIGHT] - keyboard[key.LEFT]) * self.MOVE_SPEED
+                if self.slowdownthreshold < 1:
+                    self.slowdownthreshold += 0.1
 
         else:
+            if dt > 0.5:
+                return
             if keyboard[key.RIGHT] > 0 or keyboard[key.LEFT] > 0:
                 self.active = True
                 self.slowdown = False
@@ -122,8 +124,3 @@ class scene(Scene):
 
 keyboard = key.KeyStateHandler()
 cocos.director.director.window.push_handlers(keyboard)
-
-def on_key_press(key, modifier):
-    if key == pyglet.window.key.D:
-        tilemap_walls.set_debug(True)
-cocos.director.director.window.push_handlers(on_key_press)
