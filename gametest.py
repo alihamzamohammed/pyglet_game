@@ -43,10 +43,11 @@ class PlatformerController(actions.Action):
             if self.active:
                 vx = (keyboard[key.RIGHT] - keyboard[key.LEFT]) * self.MOVE_SPEED
                 if self.slowdownthreshold[0] < 0.9:
-                    self.slowdownthreshold += 0.1
+                    self.slowdownthreshold[0] += 0.1
         else:
-            self.slowdownthreshold[1] = self.slowdownthreshold[0]
-            self.slowdownthreshold[0] = 0
+            if not self.slowdownthreshold[0] == 0:
+                self.slowdownthreshold[1] = self.slowdownthreshold[0]
+                self.slowdownthreshold[0] = 0
             if keyboard[key.RIGHT] > 0 or keyboard[key.LEFT] > 0:
                 self.active = True
                 self.slowdown = False
