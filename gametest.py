@@ -32,8 +32,6 @@ class PlatformerController(actions.Action):
             return
         vx, vy = self.target.velocity
 
-        print(vx)
-
         if not self.slowdown:
             if keyboard[key.RIGHT] > 0 or keyboard[key.LEFT] > 0:
                 self.active = True
@@ -58,8 +56,12 @@ class PlatformerController(actions.Action):
                 self.slowdownthreshold[1] = 0
             elif vx > 0:
                 vx -= (self.SLOWDOWN / self.slowdownthreshold[1])
+                if vx < 0:
+                    vx = 0
             elif vx < 0:
                 vx += (self.SLOWDOWN / self.slowdownthreshold[1])
+                if vx > 0:
+                    vx = 0
 
         vy += self.GRAVITY * dt
         if self.on_ground and keyboard[key.SPACE]:
