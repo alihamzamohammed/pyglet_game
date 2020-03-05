@@ -90,7 +90,10 @@ player_layer.add(player)
 player.do(PlatformerController())
 
 scroller = ScrollingManager()
-fullmap = tiles.load("levels/test/level.xml")
+try:
+    fullmap = tiles.load("levels/test/level.xml")
+except Exception as e:
+    print("Exception caught:", str(e))
 tilemap_walls = fullmap["walls"]
 tilemap_decorations = fullmap["decorations"]
 scroller.add(tilemap_decorations, z=-1)
