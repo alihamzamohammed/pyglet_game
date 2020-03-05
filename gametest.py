@@ -90,7 +90,7 @@ player_layer.add(player)
 player.do(PlatformerController())
 
 scroller = ScrollingManager()
-fullmap = tiles.load("levels/test/test.xml")
+fullmap = tiles.load("levels/test/level.xml")
 tilemap_walls = fullmap["walls"]
 tilemap_decorations = fullmap["decorations"]
 scroller.add(tilemap_decorations, z=-1)
