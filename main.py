@@ -45,7 +45,7 @@ class Game(object):
         director.replace(mainmenu.MainMenuScreen())
 
     def playButtonClicked(self):
-        import renderer, freeplay
+        import renderer, modes.freeplay
         director.replace(FadeTransition(renderer.scene("levels/test/level.xml", freeplay.main()), duration = 1))
         print("Play button clicked")
 
