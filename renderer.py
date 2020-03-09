@@ -8,6 +8,7 @@ from cocos.layer import *
 from cocos import tiles, actions, mapcolliders
 import cfg
 import pause
+import logger
 path = os.getcwd()
 
 pyglet.resource.path.append(path + "\\items\\default")
@@ -113,7 +114,7 @@ def loadMap(level):
         player.collision_handler = mapcolliders.make_collision_handler(mapcollider, tilemap_walls)
 
     except Exception as e:
-        print("An exception was caught rendering the provided level\n Exception:", str(e))
+        logger.addLog("An error was caught rendering the level.\n" + e, logger.loglevel["error"])
 
 class scene(Scene):
 
