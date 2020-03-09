@@ -87,10 +87,15 @@ class PlatformerController(actions.Action):
 
         self.target.position = new.center
 
-        scroller.set_focus(*new.center) # PROBLEM: Sets focus on centre for scroller, means scroller is always centered on player position.
+        #scroller.set_focus(*new.center) 
+        # PROBLEM: Sets focus on centre for scroller, means scroller is always centered on player position.
         # !: Need to find another solution for this
         # FIX: Add another action class which constantly sets focus of scroller on player spirte center, as it was determined through cocos' InterpreterLayer that .position is a property of the spirte.
         # FIX: As keyboard is a variable, it can be imported form the other module
+
+def setScroller():
+    global scroller
+    scroller.set_focus(*self.target.position) # ~: Testing new action
 
 def loadMap(level):
     global scroller
@@ -98,7 +103,7 @@ def loadMap(level):
         player_layer = ScrollableLayer()
         player = cocos.sprite.Sprite("player.png")
         player_layer.add(player)
-        player.do(PlatformerController())
+        player.do(PlatformerController() + cocos.actions.CallFunc(setScroller))
         scroller = ScrollingManager()
 
         fullmap = tiles.load(level)
