@@ -45,8 +45,8 @@ class Game(object):
         director.replace(mainmenu.MainMenuScreen())
 
     def playButtonClicked(self):
-        import gametest
-        director.replace(FadeTransition(gametest.scene("levels/test/level.xml"), duration = 1))
+        import renderer
+        director.replace(FadeTransition(renderer.scene("levels/test/level.xml"), duration = 1))
         print("Play button clicked")
 
     def multiplayerButtonClicked(self):

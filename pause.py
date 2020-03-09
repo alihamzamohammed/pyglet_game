@@ -13,10 +13,11 @@ class PauseScreen(ColorLayer):
     is_event_handler = True
 
     def __init__(self, width=None, height=None):
+        x, y = cocos.director.director.get_window_size()
         super().__init__(0, 0, 0, 50, width=width, height=height)
         self.title = Label("Paused", font_size=50, anchor_x="center", anchor_y="center", font_name=resources.font)
-        self.title.x = self.width / 2
-        self.title.y = self.height * 0.72
+        self.title.x = x / 2
+        self.title.y = y * 0.72
         self.add(self.title)
 
     def on_key_press(self, key, modifiers):
