@@ -89,6 +89,8 @@ class PlatformerController(actions.Action):
 
         scroller.set_focus(*new.center) # PROBLEM: Sets focus on centre for scroller, means scroller is always centered on player position.
         # !: Need to find another solution for this
+        # FIX: Add another action class which constantly sets focus of scroller on player spirte center, as it was determined through cocos' InterpreterLayer that .position is a property of the spirte.
+        # FIX: As keyboard is a variable, it can be imported form the other module
 
 def loadMap(level):
     global scroller
