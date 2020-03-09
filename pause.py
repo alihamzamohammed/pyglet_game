@@ -20,7 +20,7 @@ class PauseScreen(ColorLayer):
         self.add(self.title)
 
     def on_key_press(self, key, modifiers):
-        if self.visible and key == k.symbol_string(k.ESCAPE):
+        if self.visible and key == k.symbol_string(k.P):
             self.parent.remove(self)
 
     def on_enter(self):
