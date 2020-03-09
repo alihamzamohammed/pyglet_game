@@ -87,7 +87,8 @@ class PlatformerController(actions.Action):
 
         self.target.position = new.center
 
-        scroller.set_focus(*new.center)
+        scroller.set_focus(*new.center) # PROBLEM: Sets focus on centre for scroller, means scroller is always centered on player position.
+        # !: Need to find another solution for this
 
 def loadMap(level):
     global scroller
