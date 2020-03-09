@@ -15,6 +15,9 @@ pyglet.resource.path.append(path + "\\items\\default")
 pyglet.resource.path.append(path + "\\levels")
 pyglet.resource.reindex()
 
+# PROBLEM: PlatformerController needs global access to scroller and keyboard when in a separate game mode source code file, as these cannot be passed as parameters.
+# PROBLEM: This means that they need to be passed by reference, and this is only done thorugh global variables in Python.
+# FIX: This can be solved by having game mode source code files import these modules from renderer.py, but as these are in subroutines, code will need to be refactored.
 class PlatformerController(actions.Action):
     on_ground = True
     MOVE_SPEED = 200
