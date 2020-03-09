@@ -28,17 +28,22 @@ class PlatformerController(actions.Action):
     active = False
     slowdown = False
 
+    def __init__(self, scroller, keyboard):
+        super().__init__()
+        self.scroller = scroller
+        self.keyboard = keyboard
+
     def start(self):
         self.target.velocity = (0, 0)
 
     def step(self, dt):
-        global keyboard, scroller
+        #global keyboard, scroller
         if dt > 0.1:
             return
         vx, vy = self.target.velocity
 
         if not self.slowdown:
-            if keyboard[k.RIGHT] > 0 or keyboard[k.LEFT] > 0:
+            if self.keyboard[k.RIGHT] > 0 or self.keyboard[k.LEFT] > 0:
                 self.active = True
                 self.slowdown = False
             else:
@@ -87,7 +92,7 @@ class PlatformerController(actions.Action):
 
         self.target.position = new.center
 
-        #scroller.set_focus(*new.center) 
+        self.scroller.set_focus(*new.center)
         # PROBLEM: Sets focus on centre for scroller, means scroller is always centered on player position.
         # !: Need to find another solution for this
 
@@ -97,8 +102,8 @@ def loadMap(level):
         player_layer = ScrollableLayer()
         player = cocos.sprite.Sprite("player.png")
         player_layer.add(player)
-        player.do(PlatformerController())
         scroller = ScrollingManager()
+        player.do(PlatformerController())
 
         fullmap = tiles.load(level)
 
@@ -119,7 +124,8 @@ def loadMap(level):
         player.collision_handler = mapcolliders.make_collision_handler(mapcollider, tilemap_walls)
 
     except Exception as e:
-        logger.addLog("An error was caught rendering the level.\n" + e, logger.loglevel["error"])
+        # TODO: logger.addLog("An error was caught rendering the level.\n" + e, logger.loglevel["error"])
+        print(e)
 
 class scene(Scene):
 
