@@ -20,7 +20,7 @@ class PauseScreen(ColorLayer):
         self.title.x = x / 2
         self.title.y = y * 0.72
 
-        self.quitButton = elements.MainMenuButton("Quit Level", events.mainmenuevents.backToMainMenu, 1)
+        self.quitButton = elements.MainMenuButton("Quit Level", events.mainmenuevents.backToMainMenu, 1, False)
 
         self.opacity = 150
         self.isvisible = False
