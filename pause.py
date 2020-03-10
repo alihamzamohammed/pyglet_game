@@ -26,7 +26,7 @@ class PauseScreen(ColorLayer):
     def on_key_press(self, key, modifiers):
         if key == k.P:
             print("p")
-            if self.isvisible:
+            if not self.isvisible:
                 self.do(FadeIn(0.5))
             else:
                 self.do(FadeOut(0.5))
