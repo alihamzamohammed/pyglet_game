@@ -27,7 +27,7 @@ class MainMenuButton(layer.Layer):
 
     is_event_handler = True
 
-    def __init__(self, label, eventName, buttonorder = 1):
+    def __init__(self, label, eventName, buttonorder = 1, animate=True):
         super().__init__()
         global x, y
         self.eventName = eventName
@@ -49,7 +49,8 @@ class MainMenuButton(layer.Layer):
         self.width_range = [int(self.x - (self.bgImage.width / 2)), int(self.x + (self.bgImage.width / 2))]
         self.height_range = [int(self.y - (self.bgImage.height / 2)), int(self.y + (self.bgImage.height / 2))]
 
-        self.animate()
+        if animate:
+            self.animate()
 
         self.schedule_interval(self.setWH, 1)
         self.resume_scheduler()
