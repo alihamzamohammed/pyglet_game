@@ -20,7 +20,7 @@ class PauseScreen(ColorLayer):
         self.title.x = x / 2
         self.title.y = y * 0.72
 
-        self.quitButton = elements.MainMenuButton("Quit Level", events.mainmenuevents.backToMainMenu, 1, False)
+        self.quitButton = elements.MainMenuButton("Quit Level", events.mainmenuevents.backToMainMenu, 2, False)
 
         self.opacity = 150
         self.isvisible = False
@@ -31,6 +31,7 @@ class PauseScreen(ColorLayer):
         self.do(FadeOut(0.01))
         self.title.do(FadeOut(0.01))
         list(map(lambda element: element.do(FadeOut(0.01)), self.quitButton.get_children()))
+        events.mainmenuevents.push_handlers(self.showMainMenu)
 
     def on_key_press(self, key, modifiers):
         if key == k.P:
@@ -43,5 +44,11 @@ class PauseScreen(ColorLayer):
                 self.title.do(FadeOut(0.5))
                 list(map(lambda element: element.do(FadeOut(0.5)), self.quitButton.get_children()))
             self.isvisible = not self.isvisible
+
+    def showMainMenu(self):
+        self.isvisible = False
+        self.do(FadeOut(0.01))
+        self.title.do(FadeOut(0.01))
+        list(map(lambda element: element.do(FadeOut(0.01)), self.quitButton.get_children()))
 
 pauseScreen = PauseScreen(0, 0, 0, 150)
