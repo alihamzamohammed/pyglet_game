@@ -14,7 +14,7 @@ class PauseScreen(ColorLayer):
 
     def __init__(self, r, g, b, a, width=None, height=None):
         x, y = cocos.director.director.get_window_size()
-        director.window.push_handlers(self.on_key_press)
+        #director.window.push_handlers(self.on_key_press)
         super().__init__(r, g, b, a, width=width, height=height)
         self.title = Label("Paused", font_size=50, anchor_x="center", anchor_y="center", font_name=resources.font)
         self.title.x = x / 2
@@ -25,6 +25,7 @@ class PauseScreen(ColorLayer):
         self.do(FadeOut(0.01))
 
     def on_key_press(self, key, modifiers):
+        print(key)
         if key == k.symbol_string(k.P): # PROBLEM: This if statement is not running, even though it should logicaly make sense
             print("p")
             if self.isvisible:
