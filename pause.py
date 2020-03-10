@@ -30,18 +30,18 @@ class PauseScreen(ColorLayer):
 
         self.do(FadeOut(0.01))
         self.title.do(FadeOut(0.01))
-        self.quitButton.do(FadeOut(0.01))
+        (element.do(FadeOut(0.01)) for element in self.quitButton.get_children())
 
     def on_key_press(self, key, modifiers):
         if key == k.P:
             if not self.isvisible:
                 self.do(FadeTo(150, 0.5))
                 self.title.do(FadeIn(0.5))
-                self.quitButton.do(FadeIn(0.5))
+                (element.do(FadeIn(0.5)) for element in self.quitButton.get_children())
             else:
                 self.do(FadeTo(0, 0.5))
                 self.title.do(FadeOut(0.5))
-                self.quitButton.do(FadeOut(0.5))
+                (element.do(FadeOut(0.5)) for element in self.quitButton.get_children())
             self.isvisible = not self.isvisible
 
 pauseScreen = PauseScreen(0, 0, 0, 150)
