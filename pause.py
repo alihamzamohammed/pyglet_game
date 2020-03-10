@@ -26,9 +26,10 @@ class PauseScreen(ColorLayer):
     def on_key_press(self, key, modifiers):
         if key == k.P:
             if not self.isvisible:
-                self.do(FadeIn(0.5)) # PROBLEM: FadeIn and FadeOut affect opacity of the target class, in this case PauseScreen, prventing it from being translucent.
+                self.do(FadeTo(100, 0.5)) # PROBLEM: FadeIn and FadeOut affect opacity of the target class, in this case PauseScreen, prventing it from being translucent.
+                                          # FIX: Solved by using FadeTo to fade to a specific alpha value
             else:
-                self.do(FadeOut(0.5))
+                self.do(FadeTo(0, 0.5))
             self.isvisible = not self.isvisible
 
 pauseScreen = PauseScreen(0, 0, 0, 100)
