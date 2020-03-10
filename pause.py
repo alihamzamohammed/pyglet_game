@@ -25,8 +25,7 @@ class PauseScreen(ColorLayer):
         self.do(FadeOut(0.01))
 
     def on_key_press(self, key, modifiers):
-        print(key) # FIX: This line shows that the key parameter returns a value for the value of key, not string: P is 65362, not P. Code will be changed hence
-        if key == k.symbol_string(k.P): # PROBLEM: This if statement is not running, even though it should logicaly make sense
+        if key == k.P: # FIX: This should work
             print("p")
             if self.isvisible:
                 self.do(FadeIn(0.5))
