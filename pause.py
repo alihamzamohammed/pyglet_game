@@ -18,7 +18,7 @@ class PauseScreen(ColorLayer):
         self.title = Label("Paused", font_size=50, anchor_x="center", anchor_y="center", font_name=resources.font)
         self.title.x = x / 2
         self.title.y = y * 0.72
-        self.opacity = 100
+        self.opacity = 150
         self.add(self.title)
         self.isvisible = False
         self.do(FadeOut(0.01))
@@ -26,9 +26,9 @@ class PauseScreen(ColorLayer):
     def on_key_press(self, key, modifiers):
         if key == k.P:
             if not self.isvisible:
-                self.do(AccelDeccel(FadeTo(100, 0.5)))
+                self.do(FadeTo(150, 0.5))
             else:
-                self.do(AccelDeccel(FadeTo(0, 0.5)))
+                self.do(FadeTo(0, 0.5))
             self.isvisible = not self.isvisible
 
-pauseScreen = PauseScreen(0, 0, 0, 100)
+pauseScreen = PauseScreen(0, 0, 0, 150)
