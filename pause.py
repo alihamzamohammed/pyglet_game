@@ -6,6 +6,7 @@ from cocos.sprite import *
 from cocos.actions import *
 import elements
 import resources
+import events
 from pyglet.window import key as k
 
 class PauseScreen(ColorLayer):
@@ -18,20 +19,29 @@ class PauseScreen(ColorLayer):
         self.title = Label("Paused", font_size=50, anchor_x="center", anchor_y="center", font_name=resources.font)
         self.title.x = x / 2
         self.title.y = y * 0.72
+
+        self.quitButton = elements.MainMenuButton("Quit Level", events.mainmenuevents.backToMainMenu, 1)
+
         self.opacity = 150
-        self.add(self.title)
         self.isvisible = False
+
+        self.add(self.title)
+        self.add(self.quitButton)
+
         self.do(FadeOut(0.01))
         self.title.do(FadeOut(0.01))
+        self.quitButton.do(FadeOut(0.01))
 
     def on_key_press(self, key, modifiers):
         if key == k.P:
             if not self.isvisible:
                 self.do(FadeTo(150, 0.5))
                 self.title.do(FadeIn(0.5))
+                self.quitButton.do(FadeIn(0.5))
             else:
                 self.do(FadeTo(0, 0.5))
                 self.title.do(FadeOut(0.5))
+                self.quitButton.do(FadeOut(0.5))
             self.isvisible = not self.isvisible
 
 pauseScreen = PauseScreen(0, 0, 0, 150)
