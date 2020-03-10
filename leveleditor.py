@@ -6,8 +6,14 @@ from cocos.sprite import *
 from cocos.tiles import *
 from cocos.text import *
 import xml.etree as et
+import logger
+
+
+def loadLevel(lvl):
+    pass
 
 class LevelEditor(Scene):
 
-    def __init__(self):
+    def __init__(self, level):
         super().__init__()
+        loadLevel(level)
