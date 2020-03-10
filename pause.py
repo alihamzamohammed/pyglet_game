@@ -31,7 +31,7 @@ class PauseScreen(ColorLayer):
                 self.title.do(FadeIn(0.5))
             else:
                 self.do(FadeTo(0, 0.5))
-                self.title.do(FadeIn(0.5))
+                self.title.do(FadeOut(0.5))
             self.isvisible = not self.isvisible
 
 pauseScreen = PauseScreen(0, 0, 0, 150)
