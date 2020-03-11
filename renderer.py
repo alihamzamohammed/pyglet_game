@@ -10,6 +10,7 @@ from xml import etree as et
 import cfg
 import pause
 import logger
+import events
 path = os.getcwd()
 
 pyglet.resource.path.append(path + "\\items\\default")
@@ -59,15 +60,10 @@ class scene(Scene):
             self.lbl.y = self.height / 2
             self.add(self.lbl, z=3)
 
-    # def on_key_press(self, key, modifiers):
-    #     if key == k.P and not pause.pauseScreen in self.get_children():
-    #         print("P key pressed")
-    #         self.add(pause.pauseScreen, z=10)
-
     def __init__(self, level, gamemode):
         super().__init__()
+        events.mainmenuevents.push_handlers(self.showMainMenu)
         global scroller
-        #director.window.push_handlers(self.on_key_press)
         loadLvl(level, gamemode)
         self.add(ColorLayer(100, 120, 150, 255), z=0)
         self.add(scroller, z=1)
@@ -76,6 +72,10 @@ class scene(Scene):
         self.add(pause.pauseScreen, z=10)
         i.do(cocos.actions.FadeIn(0.1) + cocos.actions.Delay(3) + cocos.actions.FadeOut(1))
         i.lbl.do(cocos.actions.FadeOut(0.1) + cocos.actions.Delay(0.5) + cocos.actions.FadeIn(0.5) + cocos.actions.Delay(1) + cocos.actions.FadeOut(1))
+
+    def showMainMenu(self):
+        for child in self.get_children():
+            self.remove(child) # FIX: This is a hopeful fix to the lag and duplication issues. By removing all children from the scene, it should help, as cocos should handle garbage collection
 
 
 scroller = ScrollingManager()
