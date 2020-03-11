@@ -76,7 +76,8 @@ class scene(Scene):
     def showMainMenu(self):
         if not self.get_children() == []:
             for child in self.get_children():
-                self.remove(child)
+                self.remove(child) # BUG: This does not work, just occurs in a blink as the children are removed and do not have the time to animate out.
+                # BUG: This DOES NOT solve duplication as the original sprites still exist.
 
 
 scroller = ScrollingManager()
