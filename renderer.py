@@ -74,13 +74,9 @@ class scene(Scene):
         i.lbl.do(cocos.actions.FadeOut(0.1) + cocos.actions.Delay(0.5) + cocos.actions.FadeIn(0.5) + cocos.actions.Delay(1) + cocos.actions.FadeOut(1))
 
     def showMainMenu(self):
-        self.do(cocos.actions.Delay(2) + cocos.actions.CallFunc(self.removeChildren))
-
-    def removeChildren(self):
-        if not self.get_children() == []: # ~: This is here to check if the scene has any children. If it does not, then the module has not been imported yet, and the scene not used, and the scene contains no children
+        if not self.get_children() == []:
             for child in self.get_children():
-                self.remove(child) # FIX: This is a hopeful fix to the lag and duplication issues. By removing all children from the scene, it should help, as cocos should handle garbage collection
-
+                self.remove(child)
 
 
 scroller = ScrollingManager()
