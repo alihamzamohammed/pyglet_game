@@ -67,17 +67,23 @@ class scene(Scene):
         loadLvl(level, gamemode)
         self.add(ColorLayer(100, 120, 150, 255), z=0)
         self.add(scroller, z=1)
-        i = self.intro(0, 0, 0, 0)
-        self.add(i, z=2)
+        self.i = self.intro(0, 0, 0, 0)
+        self.add(self.i, z=2)
         self.add(pause.pauseScreen, z=10)
-        i.do(cocos.actions.FadeIn(0.1) + cocos.actions.Delay(3) + cocos.actions.FadeOut(1))
-        i.lbl.do(cocos.actions.FadeOut(0.1) + cocos.actions.Delay(0.5) + cocos.actions.FadeIn(0.5) + cocos.actions.Delay(1) + cocos.actions.FadeOut(1))
+        self.i.do(cocos.actions.FadeIn(0.1) + cocos.actions.Delay(3) + cocos.actions.FadeOut(1))
+        self.i.lbl.do(cocos.actions.FadeOut(0.1) + cocos.actions.Delay(0.5) + cocos.actions.FadeIn(0.5) + cocos.actions.Delay(1) + cocos.actions.FadeOut(1))
 
     def showMainMenu(self):
-        if not self.get_children() == []:
-            for child in self.get_children():
-                self.remove(child) # BUG: This does not work, just occurs in a blink as the children are removed and do not have the time to animate out.
-                # BUG: This DOES NOT solve duplication as the original sprites still exist.
+        # DEBUG: if not self.get_children() == []:
+        # DEBUG:     for child in self.get_children():
+        # DEBUG:         self.remove(child) # BUG: This does not work, just occurs in a blink as the children are removed and do not have the time to animate out.
+        # DEBUG:         # BUG: This DOES NOT solve duplication as the original sprites still exist.
+        for child in scroller.get_children():
+            child.kill()
+        scroller.kill()
+        self.lbl.kill()
+        self.i.kill()
+
 
 
 scroller = ScrollingManager()
