@@ -28,6 +28,9 @@ resources.resourceLoad()
 import mainmenu
 import settings
 
+import renderer
+renderer.init()
+
 class Game(object):
 
     is_event_handler = True
@@ -45,9 +48,10 @@ class Game(object):
         director.replace(mainmenu.MainMenuScreen())
 
     def playButtonClicked(self):
-        import renderer
+        #import renderer
         from modes import freeplay
-        director.replace(FadeTransition(renderer.scene("levels/test/level.xml", freeplay.main()), duration = 1))
+        renderer.scene.run("levels/test/level.xml", freeplay.main())
+        director.replace(FadeTransition(renderer.scene(), duration = 1))
         print("Play button clicked")
 
     def multiplayerButtonClicked(self):

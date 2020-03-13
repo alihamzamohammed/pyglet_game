@@ -17,12 +17,23 @@ pyglet.resource.path.append(path + "\\items\\default")
 pyglet.resource.path.append(path + "\\levels")
 pyglet.resource.reindex()
 
+def init():
+    global scroller
+    global player_layer
+    global player
+    player_layer = ScrollableLayer()
+    player = cocos.sprite.Sprite("player.png")
+    player_layer.add(player)
+    scroller = ScrollingManager()
+
 def loadLvl(level, gamemode):
     global scroller
+    global player_layer
+    global player
     try:
-        player_layer = ScrollableLayer()
-        player = cocos.sprite.Sprite("player.png")
-        player_layer.add(player)
+        #player_layer = ScrollableLayer()
+        #player = cocos.sprite.Sprite("player.png")
+        #player_layer.add(player)
         player.do(gamemode)
 
         fullmap = tiles.load(level)
@@ -50,7 +61,6 @@ def loadLvl(level, gamemode):
 class scene(Scene):
 
     is_event_handler=True
-
     class intro(ColorLayer):
 
         def __init__(self, r, g, b, a, width=None, height=None):
@@ -60,32 +70,22 @@ class scene(Scene):
             self.lbl.y = self.height / 2
             self.add(self.lbl, z=3)
 
-    def __init__(self, level, gamemode):
+    def __init__(self):  #, level, gamemode):
         super().__init__()
-        events.mainmenuevents.push_handlers(self.showMainMenu)
+        #events.mainmenuevents.push_handlers(self.showMainMenu)
         global scroller
-        loadLvl(level, gamemode)
         self.add(ColorLayer(100, 120, 150, 255), z=0)
         self.add(scroller, z=1)
         self.i = self.intro(0, 0, 0, 0)
         self.add(self.i, z=2)
         self.add(pause.pauseScreen, z=10)
+
+    def run(self, level, gamemode):
+        loadLvl(level, gamemode)
+
+    def on_enter(self):
         self.i.do(cocos.actions.FadeIn(0.1) + cocos.actions.Delay(3) + cocos.actions.FadeOut(1))
         self.i.lbl.do(cocos.actions.FadeOut(0.1) + cocos.actions.Delay(0.5) + cocos.actions.FadeIn(0.5) + cocos.actions.Delay(1) + cocos.actions.FadeOut(1))
 
-    def showMainMenu(self):
-        # DEBUG: if not self.get_children() == []:
-        # DEBUG:     for child in self.get_children():
-        # DEBUG:         self.remove(child) # BUG: This does not work, just occurs in a blink as the children are removed and do not have the time to animate out.
-        # DEBUG:         # BUG: This DOES NOT solve duplication as the original sprites still exist.
-        for child in scroller.get_children():
-            child.kill()
-        scroller.kill()
-        self.lbl.kill()
-        self.i.kill()
-
-
-
-scroller = ScrollingManager()
 keyboard = k.KeyStateHandler()
 cocos.director.director.window.push_handlers(keyboard)
