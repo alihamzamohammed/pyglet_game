@@ -54,6 +54,7 @@ class MainMenuScreen(scene.Scene):
         super(MainMenuScreen, self).__init__()
         global x, y
         self.add(gameTitle)
+        self.do(Delay(1) + CallFunc(events.mainmenuevents.mainMenuShowing))
         gameTitle.do(AccelDeccel(MoveTo((x / 2, y * 0.9), 1.5)))
 
         playButton = elements.MainMenuButton("Play Game", events.mainmenuevents.onPlayButtonClick, 1)
