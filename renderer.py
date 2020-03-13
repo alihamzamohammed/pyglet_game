@@ -46,8 +46,8 @@ def loadLvl(level, gamemode):
         tilemap_walls = fullmap["walls"]
         tilemap_decorations = fullmap["decorations"]
 
-        scroller.add(tilemap_walls, z=-1)
-        scroller.add(tilemap_decorations, z=0)
+        scroller.add(tilemap_decorations, z=-1)
+        scroller.add(tilemap_walls, z=0)
         scroller.add(player_layer, z=1)
 
         start = tilemap_walls.find_cells(player_start=True)[0]
