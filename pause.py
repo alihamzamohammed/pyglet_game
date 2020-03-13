@@ -50,6 +50,5 @@ class PauseScreen(ColorLayer):
         self.do(FadeOut(0.01))
         self.title.do(FadeOut(0.01))
         list(map(lambda element: element.do(FadeOut(0.01)), self.quitButton.get_children()))
-    # PROBLEM: When the pause menu is used to quit to the main menu, the scene is not destroyed by the renderer, causing the game to duplicate assets and cause a TON of lag. This needs to be fixed
 
 pauseScreen = PauseScreen(0, 0, 0, 150)

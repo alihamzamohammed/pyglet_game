@@ -22,6 +22,9 @@ class MainMenuEvents(pyglet.window.EventDispatcher):
 
     def backToMainMenu(self):
         self.dispatch_event("showMainMenu")
+    
+    def mainMenuShowing(self):
+        self.dispatch_event("mainMenuIsShowing")
 
 MainMenuEvents.register_event_type("progressFinished")
 MainMenuEvents.register_event_type("playButtonClicked")
@@ -29,12 +32,13 @@ MainMenuEvents.register_event_type("multiplayerButtonClicked")
 MainMenuEvents.register_event_type("quitButtonClicked")
 MainMenuEvents.register_event_type("settingsButtonClicked")
 MainMenuEvents.register_event_type("showMainMenu")
+MainMenuEvents.register_event_type("mainMenuIsShowing")
 
 class SettingsEvents(pyglet.window.EventDispatcher):
 
     def __init__(self):
         super().__init__()
-    
+
     def onVideoButtonClick(self):
         self.dispatch_event("showVideoScreen")
 
@@ -46,7 +50,7 @@ class SettingsEvents(pyglet.window.EventDispatcher):
 
     def onAboutButtonClick(self):
         self.dispatch_event("showAboutScreen")
-        
+
 SettingsEvents.register_event_type("showVideoScreen")
 SettingsEvents.register_event_type("showSoundScreen")
 SettingsEvents.register_event_type("showExtensionsScreen")

@@ -78,7 +78,7 @@ class scene(Scene):
 
     def __init__(self, level, gamemode):
         super().__init__()
-        events.mainmenuevents.push_handlers(self.showMainMenu)
+        events.mainmenuevents.push_handlers(self.mainMenuIsShowing)
         global scroller
         self.add(ColorLayer(100, 120, 150, 255), z=0)
         self.add(scroller, z=1)
@@ -90,7 +90,7 @@ class scene(Scene):
         self.i.lbl.do(cocos.actions.FadeOut(0.1) + cocos.actions.Delay(0.5) + cocos.actions.FadeIn(0.5) + cocos.actions.Delay(1) + cocos.actions.FadeOut(1))
 
 
-    def showMainMenu(self):
+    def mainMenuIsShowing(self):
         if not self.get_children() == []:
             global fullmap
             global scroller

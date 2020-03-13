@@ -68,6 +68,7 @@ class Game(object):
         global defaultconfigfile
         cfg.configWrite(defaultconfigfile)
         director.replace(FadeTransition(mainmenu.MainMenuScreen(), duration = 1, color = (0, 0, 0)))
+        events.mainmenuevents.mainMenuShowing()
 
     def __init__(self):
         super(Game, self).__init__()
