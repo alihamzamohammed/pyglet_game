@@ -35,6 +35,7 @@ def loadLvl(level, gamemode):
     global start
     global r
     global mapcollider
+    global tilemap_decorations, tilemap_walls
     try:
         #player_layer = ScrollableLayer()
         #player = cocos.sprite.Sprite("player.png")
@@ -42,9 +43,11 @@ def loadLvl(level, gamemode):
         gamemoderun = player.do(gamemode)
 
         fullmap = tiles.load(level)
+        tilemap_walls = fullmap["walls"]
+        tilemap_decorations = fullmap["decorations"]
 
-        scroller.add(fullmap["decorations"], z=-1)
-        scroller.add(fullmap["walls"], z=0)
+        scroller.add(tilemap_walls, z=-1)
+        scroller.add(tilemap_decorations, z=0)
         scroller.add(player_layer, z=1)
 
         start = tilemap_walls.find_cells(player_start=True)[0]
@@ -75,7 +78,7 @@ class scene(Scene):
 
     def __init__(self, level, gamemode):
         super().__init__()
-        #events.mainmenuevents.push_handlers(self.showMainMenu)
+        events.mainmenuevents.push_handlers(self.showMainMenu)
         global scroller
         self.add(ColorLayer(100, 120, 150, 255), z=0)
         self.add(scroller, z=1)
@@ -93,16 +96,22 @@ class scene(Scene):
             global scroller
             global player
             global player_layer
-            global gamemodedo
+            global gamemoderun
             global r
             global mapcollider
             global start
-            player.remove_action(gamemodedo)
+            global tilemap_decorations, tilemap_walls
+            player.remove_action(gamemoderun)
             for child in scroller.get_children():
                 scroller.remove(child)
             fullmap = None
             start = None
             mapcollider = None
+            tilemap_walls = None
+            tilemap_decorations = None
+            for child in self.get_children():
+                self.remove(child)
+
 
 
 keyboard = k.KeyStateHandler()
