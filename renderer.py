@@ -84,6 +84,7 @@ class scene(Scene):
         loadLvl(level, gamemode)
 
     def on_enter(self):
+        super().__init__()
         self.i.do(cocos.actions.FadeIn(0.1) + cocos.actions.Delay(3) + cocos.actions.FadeOut(1))
         self.i.lbl.do(cocos.actions.FadeOut(0.1) + cocos.actions.Delay(0.5) + cocos.actions.FadeIn(0.5) + cocos.actions.Delay(1) + cocos.actions.FadeOut(1))
 

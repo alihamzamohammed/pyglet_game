@@ -50,7 +50,7 @@ class Game(object):
     def playButtonClicked(self):
         #import renderer
         from modes import freeplay
-        renderer.scene.run("levels/test/level.xml", freeplay.main())
+        renderer.loadLvl("levels/test/level.xml", freeplay.main())
         director.replace(FadeTransition(renderer.scene(), duration = 1))
         print("Play button clicked")
 
