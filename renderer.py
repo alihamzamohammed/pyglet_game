@@ -70,7 +70,7 @@ class scene(Scene):
             self.lbl.y = self.height / 2
             self.add(self.lbl, z=3)
 
-    def __init__(self):  #, level, gamemode):
+    def __init__(self, level, gamemode):
         super().__init__()
         #events.mainmenuevents.push_handlers(self.showMainMenu)
         global scroller
@@ -78,15 +78,16 @@ class scene(Scene):
         self.add(scroller, z=1)
         self.i = self.intro(0, 0, 0, 0)
         self.add(self.i, z=2)
-        self.add(pause.pauseScreen, z=10)
-
-    def run(self, level, gamemode):
         loadLvl(level, gamemode)
-
-    def on_enter(self):
-        super().__init__()
+        self.add(pause.pauseScreen, z=10)
         self.i.do(cocos.actions.FadeIn(0.1) + cocos.actions.Delay(3) + cocos.actions.FadeOut(1))
         self.i.lbl.do(cocos.actions.FadeOut(0.1) + cocos.actions.Delay(0.5) + cocos.actions.FadeIn(0.5) + cocos.actions.Delay(1) + cocos.actions.FadeOut(1))
+
+    #def run(self, level, gamemode):
+     #   loadLvl(level, gamemode)
+
+    #def on_enter(self):
+     #   super().__init__()
 
 keyboard = k.KeyStateHandler()
 cocos.director.director.window.push_handlers(keyboard)
