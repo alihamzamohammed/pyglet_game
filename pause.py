@@ -50,5 +50,5 @@ class PauseScreen(ColorLayer):
         self.do(FadeOut(0.01))
         self.title.do(FadeOut(0.01))
         list(map(lambda element: element.do(FadeOut(0.01)), self.quitButton.get_children()))
-
+        # ?: With the new event "mainMenuShowing", this may not need to be here, as the fade is taken care of by the scene transition anyways, at which point the pause menu will be removed from the renderer anyways
 pauseScreen = PauseScreen(0, 0, 0, 150)
