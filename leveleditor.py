@@ -9,8 +9,11 @@ import xml.etree as et
 import logger
 
 
-def loadLevel(lvl):
-    pass
+def loadLevel(lvlPath):
+    try:
+        with open(lvlPath) as lvl:
+            xmllvl = et.ElementTree.fromstring(lvl)
+
 
 class LevelEditor(Scene):
 

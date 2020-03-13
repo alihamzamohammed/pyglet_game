@@ -1,4 +1,5 @@
-<?xml version="1.0" ?><resource>
+<?xml version="1.0" ?>
+<resource>
     <requires file="items/default/grass.xml" namespace="grass" />
     <requires file="items/default/wood.xml" namespace="wood" />
     <requires file="items/default/stone.xml" namespace="stone" />
