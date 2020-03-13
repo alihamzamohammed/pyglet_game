@@ -30,18 +30,21 @@ def loadLvl(level, gamemode):
     global scroller
     global player_layer
     global player
+    global fullmap
+    global gamemoderun
+    global start
+    global r
+    global mapcollider
     try:
         #player_layer = ScrollableLayer()
         #player = cocos.sprite.Sprite("player.png")
         #player_layer.add(player)
-        player.do(gamemode)
+        gamemoderun = player.do(gamemode)
 
         fullmap = tiles.load(level)
 
-        tilemap_walls = fullmap["walls"]
-        tilemap_decorations = fullmap["decorations"]
-        scroller.add(tilemap_decorations, z=-1)
-        scroller.add(tilemap_walls, z=0)
+        scroller.add(fullmap["decorations"], z=-1)
+        scroller.add(fullmap["walls"], z=0)
         scroller.add(player_layer, z=1)
 
         start = tilemap_walls.find_cells(player_start=True)[0]
@@ -83,11 +86,24 @@ class scene(Scene):
         self.i.do(cocos.actions.FadeIn(0.1) + cocos.actions.Delay(3) + cocos.actions.FadeOut(1))
         self.i.lbl.do(cocos.actions.FadeOut(0.1) + cocos.actions.Delay(0.5) + cocos.actions.FadeIn(0.5) + cocos.actions.Delay(1) + cocos.actions.FadeOut(1))
 
-    #def run(self, level, gamemode):
-     #   loadLvl(level, gamemode)
 
-    #def on_enter(self):
-     #   super().__init__()
+    def showMainMenu(self):
+        if not self.get_children() == []:
+            global fullmap
+            global scroller
+            global player
+            global player_layer
+            global gamemodedo
+            global r
+            global mapcollider
+            global start
+            player.remove_action(gamemodedo)
+            for child in scroller.get_children():
+                scroller.remove(child)
+            fullmap = None
+            start = None
+            mapcollider = None
+
 
 keyboard = k.KeyStateHandler()
 cocos.director.director.window.push_handlers(keyboard)
