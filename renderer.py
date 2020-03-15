@@ -78,7 +78,7 @@ class scene(Scene):
             self.title.y = self.height * 0.55
             self.desc.x = self.width / 2
             self.desc.y = self.height * 0.4
-            self.add(self.lbl, z=3)
+            self.add(self.title, z=3)
             self.add(self.desc, z=3)
 
     def __init__(self, level, gamemode):
