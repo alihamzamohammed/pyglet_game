@@ -89,7 +89,6 @@ class scene(Scene):
         self.i.do(cocos.actions.FadeIn(0.1) + cocos.actions.Delay(3) + cocos.actions.FadeOut(1))
         self.i.lbl.do(cocos.actions.FadeOut(0.1) + cocos.actions.Delay(0.5) + cocos.actions.FadeIn(0.5) + cocos.actions.Delay(1) + cocos.actions.FadeOut(1))
 
-
     def mainMenuIsShowing(self):
         if not self.get_children() == []:
             global fullmap
@@ -111,8 +110,6 @@ class scene(Scene):
             tilemap_decorations = None
             for child in self.get_children():
                 self.remove(child)
-
-
 
 keyboard = k.KeyStateHandler()
 cocos.director.director.window.push_handlers(keyboard)

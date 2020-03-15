@@ -13203,3 +13203,63 @@ INFO: Init game modes
 INFO: Init resources
 INFO: Init items
 INFO: Loading finished, displaying Main Menu
+
+INFO: New execution, at: 2020-03-13 12:38:00.216145
+WARNING: Animation file not found!
+INFO: Starting game.
+INFO: Resolution is 1280x720
+INFO: Fullscreen is disabled
+INFO: Starting game loading!
+INFO: Init levels
+INFO: Init game modes
+INFO: Init resources
+INFO: Init items
+INFO: Loading finished, displaying Main Menu
+
+INFO: New execution, at: 2020-03-13 12:39:33.126245
+WARNING: Animation file not found!
+INFO: Starting game.
+INFO: Resolution is 1280x720
+INFO: Fullscreen is disabled
+INFO: Starting game loading!
+INFO: Init levels
+INFO: Init game modes
+INFO: Init resources
+INFO: Init items
+INFO: Loading finished, displaying Main Menu
+
+INFO: New execution, at: 2020-03-13 17:44:08.852894
+WARNING: Animation file not found!
+INFO: Starting game.
+INFO: Resolution is 1280x720
+INFO: Fullscreen is disabled
+INFO: Starting game loading!
+INFO: Init levels
+INFO: Init game modes
+INFO: Init resources
+INFO: Init items
+INFO: Loading finished, displaying Main Menu
+
+INFO: New execution, at: 2020-03-15 17:43:57.874275
+WARNING: Animation file not found!
+INFO: Starting game.
+INFO: Resolution is 1280x720
+INFO: Fullscreen is disabled
+INFO: Starting game loading!
+INFO: Init levels
+INFO: Init game modes
+INFO: Init resources
+INFO: Init items
+INFO: Loading finished, displaying Main Menu
+
+INFO: New execution, at: 2020-03-15 17:44:34.405531
+WARNING: Animation file not found!
+INFO: Starting game.
+INFO: Resolution is 1280x720
+INFO: Fullscreen is disabled
+INFO: Starting game loading!
+INFO: Init levels
+INFO: Init game modes
+INFO: Init resources
+INFO: Init items
+INFO: Loading finished, displaying Main Menu

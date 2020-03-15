@@ -12,7 +12,7 @@ import logger
 def loadLevel(lvlPath):
     try:
         with open(lvlPath) as lvl:
-            xmllvl = et.ElementTree.fromstring(lvl)
+            xmllvl = et.ElementTree.parse(lvl)
 
 
 class LevelEditor(Scene):
