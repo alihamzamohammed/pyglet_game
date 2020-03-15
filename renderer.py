@@ -11,10 +11,11 @@ import cfg
 import pause
 import logger
 import events
+from levels import levels
 path = os.getcwd()
 
-pyglet.resource.path.append(path + "\\items\\default")
-pyglet.resource.path.append(path + "\\levels")
+#pyglet.resource.path.append(path + "\\items\\default")
+#pyglet.resource.path.append(path + "\\levels")
 pyglet.resource.reindex()
 
 def init():
@@ -42,7 +43,7 @@ def loadLvl(level, gamemode):
         #player_layer.add(player)
         gamemoderun = player.do(gamemode)
 
-        fullmap = tiles.load(level)
+        fullmap = tiles.load(level.datapath)
         tilemap_walls = fullmap["walls"]
         tilemap_decorations = fullmap["decorations"]
 
@@ -78,6 +79,11 @@ class scene(Scene):
 
     def __init__(self, level, gamemode):
         super().__init__()
+        if not isinstance(level, levels.Level):
+            return None
+        # DEBUG
+        print(level.name, level.desc, level.data, level.datapath, level.background, level.tags)
+        
         events.mainmenuevents.push_handlers(self.mainMenuIsShowing)
         global scroller
         self.add(ColorLayer(100, 120, 150, 255), z=0)
