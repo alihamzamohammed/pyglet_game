@@ -72,25 +72,30 @@ class scene(Scene):
 
         def __init__(self, r, g, b, a, width=None, height=None):
             super().__init__(r, g, b, a, width=width, height=height)
-            self.lbl = cocos.text.Label("Test Level", font_size=40, anchor_x="center", anchor_y="center")
-            self.lbl.x = self.width / 2
-            self.lbl.y = self.height / 2
+            self.title = cocos.text.Label("lvl", font_size=40, anchor_x="center", anchor_y="center")
+            self.desc = cocos.text.Label("desc", font_size=30, anchor_x="center", anchor_y="center")
+            self.title.x = self.width / 2
+            self.title.y = self.height * 0.55
+            self.desc.x = self.width / 2
+            self.desc.y = self.height * 0.4
             self.add(self.lbl, z=3)
+            self.add(self.desc, z=3)
 
     def __init__(self, level, gamemode):
         super().__init__()
-        if not isinstance(level, levels.Level):
+        self.level = level
+        self.gamemode = gamemode
+        if not isinstance(self.level, levels.Level):
             return None
-        # DEBUG
-        print(level.name, level.desc, level.data, level.datapath, level.background, level.tags)
-        
         events.mainmenuevents.push_handlers(self.mainMenuIsShowing)
         global scroller
         self.add(ColorLayer(100, 120, 150, 255), z=0)
         self.add(scroller, z=1)
         self.i = self.intro(0, 0, 0, 0)
+        self.i.title.element.text = level.name
+        self.i.desc.element.text = str(gamemode)
         self.add(self.i, z=2)
-        loadLvl(level, gamemode)
+        loadLvl(self.level, self.gamemode)
         self.add(pause.pauseScreen, z=10)
         self.i.do(cocos.actions.FadeIn(0.1) + cocos.actions.Delay(3) + cocos.actions.FadeOut(1))
         self.i.lbl.do(cocos.actions.FadeOut(0.1) + cocos.actions.Delay(0.5) + cocos.actions.FadeIn(0.5) + cocos.actions.Delay(1) + cocos.actions.FadeOut(1))
