@@ -20,11 +20,11 @@ class Level():
             if item.tag == "name":
                 self.name = item.text
             elif item.tag == "desc" or item.tag == "description":
-                self.desc == item.text
+                self.desc = item.text
             elif item.tag == "data":
-                self.data == et.parse(item.text)
+                self.data = et.parse(item.text)
             elif item.tag == "background":
-                self.background == item.text
+                self.background = item.text
             else:
                 self.tags[item.tag] = item.text
             self.tags.update(self._lvl.getroot().attrib)
