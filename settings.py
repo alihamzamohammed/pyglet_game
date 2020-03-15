@@ -66,7 +66,7 @@ class SettingsToggleButton(elements.ToggleButton):
         self.resume_scheduler()
 
     def checkChanged(self, dt):
-        if self.changed:
+        if self.changed and self.restartGame:
             messagePopup.showMessage("Your game must be restarted in order to apply these settings.")
 
 
@@ -129,7 +129,7 @@ class VideoSettings(layer.ColorLayer):
         showfpsLabel = Label("Show FPS", font_size=25, anchor_x="left", anchor_y="center", color=(255, 255, 255, 255))
         showfpsLabel.x = self.width * 0.05
         showfpsLabel.y = self.height * 0.5
-        showfpsButton = SettingsToggleButton(self, 0.9, 0.5, cfg.configuration, section = "Core", option = "showfps", command = director.set_show_FPS, restartGame=True)
+        showfpsButton = SettingsToggleButton(self, 0.9, 0.5, cfg.configuration, section = "Core", option = "showfps", command = director.set_show_FPS)
 
         resInputLabel = Label("Resolution", font_size=25, anchor_x="left", anchor_y="center", color=(255, 255, 255, 255))
         resInputLabel.x = self.width * 0.05
