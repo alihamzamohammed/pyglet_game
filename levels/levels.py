@@ -32,6 +32,9 @@ class Level():
     def __repr__(self):
         return self.data
 
+    def __str__(self):
+        return self.name
+
 class LevelCorrupt(Exception):
     pass
 

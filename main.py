@@ -58,7 +58,7 @@ class Game(object):
         print("Multiplayer button clicked")
         from levels import levels as l
         x = l.Level("levels/test")
-        print(x)
+        print(str(x))
 
     def settingsButtonClicked(self):
         director.replace(FadeTransition(settings.SettingsScreen(), duration = 1, color = (0, 0, 0)))
