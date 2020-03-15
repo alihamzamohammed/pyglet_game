@@ -22,7 +22,7 @@ class Level():
             elif item.tag == "desc" or item.tag == "description":
                 self.desc = item.text
             elif item.tag == "data":
-                self.data = et.parse(item.text)
+                self.data = et.parse(os.path.join(self.folder, item.text))
             elif item.tag == "background":
                 self.background = item.text
             else:
