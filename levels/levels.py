@@ -30,7 +30,6 @@ class Level():
             self.tags.update(self._lvl.getroot().attrib)
 
     def __repr__(self):
-        super.__repr__()
         return self.data
 
 class LevelCorrupt(Exception):
