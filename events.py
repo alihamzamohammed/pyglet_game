@@ -56,5 +56,20 @@ SettingsEvents.register_event_type("showSoundScreen")
 SettingsEvents.register_event_type("showExtensionsScreen")
 SettingsEvents.register_event_type("showAboutScreen")
 
+class PauseScreenEvents(pyglet.window.EventDispatcher):
+
+    def __init__(self):
+        super().__init__()
+
+    def onPauseScreenAppear(self):
+        self.dispatch_event("pauseScreenShowing")
+
+    def onPauseScreenDisappear(self):
+        self.dispatch_event("pauseScreenNotShowing")
+
+PauseScreenEvents.register_event_type("pauseScreenShowing")
+PauseScreenEvents.register_event_type("pauseScreenNotShowing")
+
+pausescreenevents = PauseScreenEvents()
 mainmenuevents = MainMenuEvents()
 settingsevents = SettingsEvents()

@@ -88,6 +88,7 @@ class scene(Scene):
         if not isinstance(self.level, levels.Level):
             return None
         events.mainmenuevents.push_handlers(self.mainMenuIsShowing)
+        events.pausescreenevents.push_handlers(self.pauseScreenNotShowing, self.pauseScreenShowing)
         global scroller
         self.add(ColorLayer(100, 120, 150, 255), z=0)
         self.add(scroller, z=1)
@@ -106,22 +107,32 @@ class scene(Scene):
             global fullmap
             global scroller
             global player
-            global player_layer
+            #global player_layer
             global gamemoderun
-            global r
-            global mapcollider
-            global start
-            global tilemap_decorations, tilemap_walls
+            #global r
+            #global mapcollider
+            #global start
+            #global tilemap_decorations, tilemap_walls
             player.remove_action(gamemoderun)
             for child in scroller.get_children():
                 scroller.remove(child)
             fullmap = None
-            start = None
-            mapcollider = None
-            tilemap_walls = None
-            tilemap_decorations = None
+            # ?: These may not need to be deleted?
+            # start = None
+            # mapcollider = None
+            # tilemap_walls = None
+            # tilemap_decorations = None
             for child in self.get_children():
                 self.remove(child)
+
+    def pauseScreenShowing(self):
+        global player
+        player.pause()
+
+    def pauseScreenNotShowing(self):
+        global player
+        player.resume()
+
 
 keyboard = k.KeyStateHandler()
 cocos.director.director.window.push_handlers(keyboard)
