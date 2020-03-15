@@ -44,7 +44,8 @@ class PauseScreen(ColorLayer):
                 self.do(FadeTo(0, 0.5))
                 self.title.do(FadeOut(0.5))
                 list(map(lambda element: element.do(FadeOut(0.5)), self.quitButton.get_children()))
-                events.pausescreenevents.onPauseScreenDisappear()
+                if not self.get_ancestor() == None:
+                    events.pausescreenevents.onPauseScreenDisappear()
             self.isvisible = not self.isvisible
 
     def showMainMenu(self):
