@@ -14,9 +14,6 @@ import events
 from levels import levels
 path = os.getcwd()
 
-#pyglet.resource.path.append(path + "\\items\\default")
-#pyglet.resource.path.append(path + "\\levels")
-pyglet.resource.reindex()
 
 def init():
     global scroller
@@ -38,9 +35,6 @@ def loadLvl(level, gamemode):
     global mapcollider
     global tilemap_decorations, tilemap_walls
     try:
-        #player_layer = ScrollableLayer()
-        #player = cocos.sprite.Sprite("player.png")
-        #player_layer.add(player)
         gamemoderun = player.do(gamemode)
 
         fullmap = tiles.load(level.datapath)
@@ -65,15 +59,15 @@ def loadLvl(level, gamemode):
         # TODO: logger.addLog("An error was caught rendering the level.\n" + e, logger.loglevel["error"])
         print(e)
 
-class scene(Scene):
+class Renderer(Scene):
 
     is_event_handler=True
-    class intro(ColorLayer):
+    class LevelIntro(ColorLayer):
 
-        def __init__(self, r, g, b, a, width=None, height=None):
+        def __init__(self, name, desc, r, g, b, a, width=None, height=None):
             super().__init__(r, g, b, a, width=width, height=height)
-            self.title = cocos.text.Label("lvl", font_size=40, anchor_x="center", anchor_y="center")
-            self.desc = cocos.text.Label("desc", font_size=30, anchor_x="center", anchor_y="center")
+            self.title = cocos.text.Label(name, font_size=40, anchor_x="center", anchor_y="center")
+            self.desc = cocos.text.Label(desc, font_size=30, anchor_x="center", anchor_y="center")
             self.title.x = self.width / 2
             self.title.y = self.height * 0.55
             self.desc.x = self.width / 2
@@ -92,37 +86,25 @@ class scene(Scene):
         global scroller
         self.add(ColorLayer(100, 120, 150, 255), z=0)
         self.add(scroller, z=1)
-        self.i = self.intro(0, 0, 0, 0)
-        self.i.title.element.text = level.name
-        self.i.desc.element.text = str(gamemode)
-        self.add(self.i, z=2)
+        self.intro = self.LevelIntro(level.name, str(gamemode), 0, 0, 0, 0)
+        self.add(self.intro, z=2)
         loadLvl(self.level, self.gamemode)
         self.add(pause.pauseScreen, z=10)
         pause.pauseScreen.mainMenu = False
-        self.i.do(cocos.actions.FadeIn(0.1) + cocos.actions.Delay(3) + cocos.actions.FadeOut(1))
-        self.i.title.do(cocos.actions.FadeOut(0.1) + cocos.actions.Delay(0.5) + cocos.actions.FadeIn(0.5) + cocos.actions.Delay(1.5) + cocos.actions.FadeOut(1))
-        self.i.desc.do(cocos.actions.FadeOut(0.1) + cocos.actions.Delay(1) + cocos.actions.FadeIn(0.5) + cocos.actions.Delay(1) + cocos.actions.FadeOut(1))
+        self.intro.do(cocos.actions.FadeIn(0.1) + cocos.actions.Delay(3) + cocos.actions.FadeOut(1))
+        self.intro.title.do(cocos.actions.FadeOut(0.1) + cocos.actions.Delay(0.5) + cocos.actions.FadeIn(0.5) + cocos.actions.Delay(1.5) + cocos.actions.FadeOut(1))
+        self.intro.desc.do(cocos.actions.FadeOut(0.1) + cocos.actions.Delay(1) + cocos.actions.FadeIn(0.5) + cocos.actions.Delay(1) + cocos.actions.FadeOut(1))
 
     def mainMenuIsShowing(self):
         if not self.get_children() == []:
             global fullmap
             global scroller
             global player
-            #global player_layer
             global gamemoderun
-            #global r
-            #global mapcollider
-            #global start
-            #global tilemap_decorations, tilemap_walls
             player.remove_action(gamemoderun)
             for child in scroller.get_children():
                 scroller.remove(child)
             fullmap = None
-            # ?: These may not need to be deleted?
-            # start = None
-            # mapcollider = None
-            # tilemap_walls = None
-            # tilemap_decorations = None
             for child in self.get_children():
                 self.remove(child)
 
