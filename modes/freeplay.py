@@ -74,10 +74,36 @@ class PlatformerController(actions.Action):
         self.target.position = new.center
 
         scroller.set_focus(*new.center)
-        # PROBLEM: Sets focus on centre for scroller, means scroller is always centered on player position.
-        # !: Need to find another solution for this
-        # FIX: This code is now in another module, and is importing the required modules from renderer.
 
 def main():
     return PlatformerController()
-    # FIX: The main subroutine is called by the game, and is supposed to return the class for game level rendering, as well as be able to run any additional initialisation code required by the game mode.
+
+# ~: Game modes can use the main() subroutine to run other subroutines and init other sprites and make them do stuff. Here, because scroller is imported,
+# ~: the game mode can add as many layers as it wants to the scroller, and they will render and display to the player, without any modification to renderer.py, or having to globalise and import more classes.
+# ~: Sprites and layers can be added to scroller when start() runs, which marks the official start of the renderer displaying things
+# ~: This allows for almost unlimited functionality to be added.
+
+# PROBLEM: To allow items to use custom code, they must be able to override code declared in game modes. For example, code for a tramplonine needs to modify the gravity value when
+# PROBLEM: detecting bounce on top of the trampoline. This will need extra code to check if the player is on top of the trampoline, and supply a modified gravity value if that is the case,
+# PROBLEM: otherwise run the code as normal. This would mean delegating movement on each axis to its own subroutine, supplying required values through parameters, and using decorators to
+# PROBLEM: modify the parameter when called. This could allow a bounce function to run with a modified value.
+
+# PROBLEM: This seems to be the best solution, but requires decorators to be declared even when the decorator function does not exist.
+
+# # EXAMPLE CODE:
+
+# # CODE FROM ITEM PACK
+# def bounce_modifier(func, call):
+#     def inner(value):
+#         if call.block == "trampoline":
+#             value = 2
+#         elif call.block == "sponge":
+#             value = 0.5
+#         func(value)
+#     return inner
+
+# @bounce_modifier(self)
+# def bounce(self, value):
+#     vy += value * dt
+#     if self.on_ground and keyboard[k.SPACE]:
+#         vy = self.JUMP_SPEED
