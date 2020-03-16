@@ -86,24 +86,39 @@ def main():
 # PROBLEM: To allow items to use custom code, they must be able to override code declared in game modes. For example, code for a tramplonine needs to modify the gravity value when
 # PROBLEM: detecting bounce on top of the trampoline. This will need extra code to check if the player is on top of the trampoline, and supply a modified gravity value if that is the case,
 # PROBLEM: otherwise run the code as normal. This would mean delegating movement on each axis to its own subroutine, supplying required values through parameters, and using decorators to
-# PROBLEM: modify the parameter when called. This could allow a bounce function to run with a modified value.
+# PROBLEM: modify the parameter when called. This could allow a bounce function to run with a modified value. In this way, game modes which choose to disable jumping can still do so.
 
 # PROBLEM: This seems to be the best solution, but requires decorators to be declared even when the decorator function does not exist.
 
-# # EXAMPLE CODE:
+# TODO: EXAMPLE CODE:
 
-# # CODE FROM ITEM PACK
-# def bounce_modifier(func, call):
-#     def inner(value):
-#         if call.block == "trampoline":
-#             value = 2
-#         elif call.block == "sponge":
-#             value = 0.5
-#         func(value)
-#     return inner
+# TODO: THIS IS CODE FROM ITEM PACK
+# TODO: def bounce_modifier(call):
+# TODO:     def bounce(func):
+# TODO:         def inner(value):
+# TODO:             if call.block_underneath == "trampoline":
+# TODO:                 value = 2
+# TODO:             elif call.block_underneath == "sponge":
+# TODO:                 value = 0.5
+# TODO:             else:
+# TODO:                 value = 1
+# TODO:             func(value)
+# TODO:         return inner
+# TODO:     return bounce
 
-# @bounce_modifier(self)
-# def bounce(self, value):
-#     vy += value * dt
-#     if self.on_ground and keyboard[k.SPACE]:
-#         vy = self.JUMP_SPEED
+# TODO: from item_pack import *      <-- This will override the default function, which does nothing
+
+# TODO: def bounce_modifier(call):
+# TODO:     def bounce(func):
+# TODO:         def inner(value):
+# TODO:             func(value)
+# TODO:         return inner
+# TODO:     return bounce
+
+# TODO: @bounce_modifier(self)
+# TODO: def bounce(value):
+# TODO:     vy += value * dt
+# TODO:     if self.on_ground and keyboard[k.SPACE]:
+# TODO:         vy = self.JUMP_SPEED
+
+# TODO: bounce(self.GRAVITY)
