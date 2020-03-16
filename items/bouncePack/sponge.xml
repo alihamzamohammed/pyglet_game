@@ -1,0 +1,12 @@
+<?xml version="1.0" ?>
+<resource>
+    <imageatlas size="32x32" file="sponge.png">
+        <image id="spongei" offset="0,0" />
+    </imageatlas>
+    <tileset>
+        <tile id="sponge">
+            <image ref="spongei" />
+            <property name="bounce_multiplier" type="float" value="0.5" />
+        </tile>
+    </tileset>
+</resource>

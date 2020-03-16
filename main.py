@@ -37,7 +37,7 @@ class Game(object):
 
     def startGame(self):
         logger.addLog("Resolution is " + str(reswidth) + "x" + str(resheight), logger.loglevel["info"])
-        if fullscreen == True:
+        if fullscreen:
             logger.addLog("Fullscreen is enabled", logger.loglevel["info"])
         else:
             logger.addLog("Fullscreen is disabled", logger.loglevel["info"])
@@ -48,6 +48,7 @@ class Game(object):
         director.replace(mainmenu.MainMenuScreen())
 
     def playButtonClicked(self):
+        # DEBUG: Debug code, not for final version
         from modes import freeplay
         from levels import levels
         director.replace(FadeTransition(renderer.Renderer(levels.Level("levels/test"), freeplay.main()), duration = 1))
@@ -55,6 +56,7 @@ class Game(object):
 
     def multiplayerButtonClicked(self):
         print("Multiplayer button clicked")
+        # DEBUG: Debug code, not for final version
         from levels import levels as l
         x = l.Level("levels/test")
         print(str(x))
