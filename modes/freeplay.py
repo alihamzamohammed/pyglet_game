@@ -83,7 +83,7 @@ def main():
 # ~: Sprites and layers can be added to scroller when start() runs, which marks the official start of the renderer displaying things
 # ~: This allows for almost unlimited functionality to be added.
 
-# PROBLEM: To allow items to use custom code, they must be able to override code declared in game modes. For example, code for a tramplonine needs to modify the gravity value when
+# PROBLEM: To allow items to use custom code, they must be able to override code declared in game modes. For example, code for a trampoline needs to modify the gravity value when
 # PROBLEM: detecting bounce on top of the trampoline. This will need extra code to check if the player is on top of the trampoline, and supply a modified gravity value if that is the case,
 # PROBLEM: otherwise run the code as normal. This would mean delegating movement on each axis to its own subroutine, supplying required values through parameters, and using decorators to
 # PROBLEM: modify the parameter when called. This could allow a bounce function to run with a modified value. In this way, game modes which choose to disable jumping can still do so.
@@ -106,14 +106,9 @@ def main():
 # TODO:         return inner
 # TODO:     return bounce
 
-# TODO: from item_pack import *      <-- This will override the default function, which does nothing
+# TODO: from item_pack import *         <-- This will override the default function, which does nothing
 
-# TODO: def bounce_modifier(call):
-# TODO:     def bounce(func):
-# TODO:         def inner(value):
-# TODO:             func(value)
-# TODO:         return inner
-# TODO:     return bounce
+# TODO: bounce_modifier = lambda x: lambda y: y   <-- This is the function that will be overridden
 
 # TODO: @bounce_modifier(self)
 # TODO: def bounce(value):
