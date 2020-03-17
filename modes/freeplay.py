@@ -1,8 +1,11 @@
 import cocos
 import pyglet
 from cocos import *
+import importlib
 from pyglet.window import key as k
 from renderer import scroller, keyboard
+
+bounce_modifier = lambda x: x
 
 class PlatformerController(actions.Action):
     on_ground = True
@@ -16,6 +19,7 @@ class PlatformerController(actions.Action):
 
     def start(self):
         self.target.velocity = (0, 0)
+        #importlib.importmodule(scroller)
 
     def step(self, dt):
         global keyboard, scroller
@@ -74,6 +78,7 @@ class PlatformerController(actions.Action):
 
         scroller.set_focus(*new.center)
 
+    @bounce_modifier
     def bounce(self, value, original):
         if self.on_ground and keyboard[k.SPACE]:
             return value
@@ -114,7 +119,7 @@ def main():
 # TODO:         return inner
 # TODO:     return bounce
 
-# TODO: from item_pack import *         <-- This will override the default function, which does nothing
+# TODO: from item_pack import *                   <-- This will override the default function, which does nothing
 
 # TODO: bounce_modifier = lambda x: lambda y: y   <-- This is the function that will be overridden
 
