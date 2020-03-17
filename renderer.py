@@ -14,7 +14,6 @@ import events
 from levels import levels
 path = os.getcwd()
 
-
 def init():
     global scroller
     global player_layer
@@ -35,8 +34,6 @@ def loadLvl(level, gamemode):
     global mapcollider
     global tilemap_decorations, tilemap_walls
     try:
-        #gamemoderun = player.do(gamemode)
-
         fullmap = tiles.load(level.datapath)
         tilemap_walls = fullmap["walls"]
         tilemap_decorations = fullmap["decorations"]

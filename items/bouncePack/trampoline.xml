@@ -7,6 +7,7 @@
         <tile id="trampoline">
             <image ref="trampolinei" />
             <property name="bounce_multiplier" type="float" value="2" />
+            <property name="sourcecode" type="unicode" value="bouncePack.py" />
         </tile>
     </tileset>
 </resource>
