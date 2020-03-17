@@ -5,7 +5,6 @@ import importlib
 from pyglet.window import key as k
 from renderer import scroller, keyboard
 
-bounce_modifier = lambda x: x
 
 class PlatformerController(actions.Action):
     on_ground = True
@@ -78,6 +77,12 @@ class PlatformerController(actions.Action):
         self.target.position = new.center
 
         scroller.set_focus(*new.center)
+
+    def bounce_modifier(func):
+        def inner(self, value, original):
+            print(value, original)
+            func(self, value, original)
+        return inner
 
     @bounce_modifier
     def bounce(self, value, original):
