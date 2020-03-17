@@ -35,7 +35,7 @@ def loadLvl(level, gamemode):
     global mapcollider
     global tilemap_decorations, tilemap_walls
     try:
-        gamemoderun = player.do(gamemode)
+        #gamemoderun = player.do(gamemode)
 
         fullmap = tiles.load(level.datapath)
         tilemap_walls = fullmap["walls"]
@@ -54,6 +54,8 @@ def loadLvl(level, gamemode):
 
         mapcollider = mapcolliders.RectMapCollider(velocity_on_bump="slide")
         player.collision_handler = mapcolliders.make_collision_handler(mapcollider, tilemap_walls)
+
+        gamemoderun = player.do(gamemode)
 
     except Exception as e:
         # TODO: logger.addLog("An error was caught rendering the level.\n" + e, logger.loglevel["error"])

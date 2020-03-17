@@ -19,6 +19,7 @@ class PlatformerController(actions.Action):
 
     def start(self):
         self.target.velocity = (0, 0)
+        from renderer import fullmap
         #importlib.importmodule(scroller)
 
     def step(self, dt):

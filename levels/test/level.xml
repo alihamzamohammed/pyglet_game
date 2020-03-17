@@ -7,6 +7,8 @@
     <requires file="items/default/woodBeam.xml" namespace="woodBeam" />
     <requires file="items/default/stoneBeam.xml" namespace="stoneBeam" />
     <requires file="items/decorations/cloud.xml" namespace="cloud" />
+    <requires file="items/bouncePack/trampoline.xml" namespace="trampoline" />
+    <requires file="items/bouncePack/sponge.xml" namespace="sponge" />
     <rectmap id="walls" origin="0,0,0" tile_size="32x32">
         <column>
             <cell tile="stone:stone" />
@@ -337,7 +339,7 @@
         </column>
         <column>
             <cell tile="dirt:dirt" />>
-            <cell tile="grass:grass" />
+            <cell tile="trampoline:trampoline" />
             <cell />
             <cell />
             <cell />
@@ -362,7 +364,7 @@
         </column>
         <column>
             <cell tile="dirt:dirt" />>
-            <cell tile="grass:grass" />
+            <cell tile="sponge:sponge" />
             <cell />
             <cell />
             <cell />
