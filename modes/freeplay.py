@@ -5,7 +5,6 @@ import importlib
 from pyglet.window import key as k
 from renderer import scroller, keyboard
 
-
 class PlatformerController(actions.Action):
     on_ground = True
     MOVE_SPEED = 200
