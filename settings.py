@@ -148,6 +148,7 @@ class VideoSettings(layer.ColorLayer):
     def showVideoScreen(self):
         self.active = True
         self.do(AccelDeccel(MoveTo((self.poscenter, self.y), duration = 0.5)))
+        self.parent.videoButton.active = True
 
     def showSoundScreen(self):
         if self.active:
@@ -155,6 +156,7 @@ class VideoSettings(layer.ColorLayer):
             self.active = False
         else:
             self.x = self.posleft
+        self.parent.videoButton.active = False
 
     def showExtensionsScreen(self):
         if self.active:
@@ -162,6 +164,7 @@ class VideoSettings(layer.ColorLayer):
             self.active = False
         else:
             self.x = self.posleft
+        self.parent.videoButton.active = False
 
     def showAboutScreen(self):
         if self.active:
@@ -169,6 +172,7 @@ class VideoSettings(layer.ColorLayer):
             self.active = False
         else:
             self.x = self.posleft
+        self.parent.videoButton.active = False
 
 #TODO: Sound settings
 class SoundSettings(layer.ColorLayer):
@@ -194,10 +198,12 @@ class SoundSettings(layer.ColorLayer):
             self.active = False
         else:
             self.x = self.posright
+        self.parent.soundButton.active = False
 
     def showSoundScreen(self):
         self.active = True
         self.do(AccelDeccel(MoveTo((self.poscenter, self.y), duration = 0.5)))
+        self.parent.soundButton.active = True
 
     def showExtensionsScreen(self):
         if self.active:
@@ -205,6 +211,7 @@ class SoundSettings(layer.ColorLayer):
             self.active = False
         else:
             self.x = self.posleft
+        self.parent.soundButton.active = False
 
     def showAboutScreen(self):
         if self.active:
@@ -212,6 +219,7 @@ class SoundSettings(layer.ColorLayer):
             self.active = False
         else:
             self.x = self.posleft
+        self.parent.soundButton.active = False
 
 #TODO: Extension settings
 class ExtensionSettings(layer.ColorLayer):
@@ -237,6 +245,7 @@ class ExtensionSettings(layer.ColorLayer):
             self.active = False
         else:
             self.x = self.posright
+        self.parent.extensionButton.active = False
 
     def showSoundScreen(self):
         if self.active:
@@ -244,10 +253,12 @@ class ExtensionSettings(layer.ColorLayer):
             self.active = False
         else:
             self.x = self.posright
+        self.parent.extensionButton.active = False
 
     def showExtensionsScreen(self):
         self.active = True
         self.do(AccelDeccel(MoveTo((self.poscenter, self.y), duration = 0.5)))
+        self.parent.extensionButton.active = True
 
     def showAboutScreen(self):
         if self.active:
@@ -255,6 +266,7 @@ class ExtensionSettings(layer.ColorLayer):
             self.active = False
         else:
             self.x = self.posleft
+        self.parent.extensionButton.active = False
 
 #TODO: About settings
 class AboutSettings(layer.ColorLayer):
@@ -280,6 +292,7 @@ class AboutSettings(layer.ColorLayer):
             self.active = False
         else:
             self.x = self.posright
+        self.parent.aboutButton.active = False
 
     def showSoundScreen(self):
         if self.active:
@@ -287,6 +300,7 @@ class AboutSettings(layer.ColorLayer):
             self.active = False
         else:
             self.x = self.posright
+        self.parent.aboutButton.active = False
 
     def showExtensionsScreen(self):
         if self.active:
@@ -294,10 +308,12 @@ class AboutSettings(layer.ColorLayer):
             self.active = False
         else:
             self.x = self.posright
+        self.parent.aboutButton.active = False
 
     def showAboutScreen(self):
         self.active = True
         self.do(AccelDeccel(MoveTo((self.poscenter, self.y), duration = 0.5)))
+        self.parent.aboutButton.active = True
 
 
 class SettingsScreen(scene.Scene):
@@ -328,10 +344,12 @@ class SettingsScreen(scene.Scene):
         self.add(aboutButton)
         self.add(backButton)
         self.add(settingsLabel)
+
         videoSettings = VideoSettings()
         soundSettings = SoundSettings()
         extensionSettings = ExtensionSettings()
         aboutSettings = AboutSettings()
+
         self.add(videoSettings)
         self.add(soundSettings)
         self.add(extensionSettings)
