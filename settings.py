@@ -319,7 +319,7 @@ class SettingsScreen(scene.Scene):
 
         self.videoButton = SettingsSectionButton("Video", events.settingsevents.onVideoButtonClick, buttonorder = 1, active = True)
         self.soundButton = SettingsSectionButton("Sound", events.settingsevents.onSoundButtonClick, buttonorder = 2)
-        self.extensionButton = SettingsSectionButton("extension", events.settingsevents.onExtensionsButtonClick, buttonorder = 3)
+        self.extensionButton = SettingsSectionButton("Expansion", events.settingsevents.onExtensionsButtonClick, buttonorder = 3)
         self.aboutButton = SettingsSectionButton("About", events.settingsevents.onAboutButtonClick, buttonorder = 4)
         backButton = SettingsSectionButton("Back", events.mainmenuevents.backToMainMenu)
         backButton.x = x * 0.15

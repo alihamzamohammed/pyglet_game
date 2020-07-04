@@ -34,7 +34,7 @@ class MainMenuButton(layer.Layer):
         self.label = label
         self.buttonorder = buttonorder
         self.bgImage = Sprite("menuButton.png") # Replace with proper resource pack image
-        self.lbl = Label(self.label, anchor_x="center", anchor_y="center")
+        self.lbl = Label(self.label, anchor_x="center", anchor_y="center", dpi=110)
 
         self.x = x / 2
         self.TOPBTNPOS = 0.68
@@ -167,7 +167,7 @@ class sectionButton(layer.Layer):
         self.active = active
 
         self.bgImage = Sprite("settingsCategoryButton.png")
-        self.lbl = Label(label, anchor_x="center", anchor_y="center")
+        self.lbl = Label(label, anchor_x="center", anchor_y="center", dpi=110)
 
         self.x = 0
         self.y = 0
@@ -191,10 +191,13 @@ class sectionButton(layer.Layer):
     def on_mouse_motion(self, x, y, dx, dy):
         if self.active:
             self.bgImage.image = pyglet.resource.image("settingsCategoryButtonClicked.png")
+            self.lbl.element.color = (0, 0, 0, 255)
         elif x in range(self.width_range[0], self.width_range[1]) and y in range(self.height_range[0], self.height_range[1]):
             self.bgImage.image = pyglet.resource.image("settingsCategoryButtonHovered.png")
+            self.lbl.element.color = (255, 255, 255, 255)
         else:
             self.bgImage.image = pyglet.resource.image("settingsCategoryButton.png")
+            self.lbl.element.color = (255, 255, 255, 255)
 
     def on_mouse_press(self, x, y, buttons, modifiers):
         if x in range(self.width_range[0], self.width_range[1]) and y in range(self.height_range[0], self.height_range[1]):
@@ -220,7 +223,7 @@ class ToggleButton(layer.Layer):
         self.configDict = configDict
         self.section = section
         self.option = option
-        self.lbl = Label("YES", anchor_x="center", anchor_y="center")
+        self.lbl = Label("YES", anchor_x="center", anchor_y="center", dpi=105)
         self.bgImage = Sprite("toggleButton.png")
         self.active = True if self.configDict[self.section][self.option] == "True" else False
         self.changed = False
