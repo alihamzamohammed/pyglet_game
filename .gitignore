@@ -32,3 +32,8 @@ __pycache__/gametest.cpython-37.pyc
 __pycache__/pause.cpython-37.pyc
 modes/__pycache__/freeplay.cpython-37.pyc
 levels/__pycache__/levels.cpython-37.pyc
+levels/__pycache__/levels.cpython-36.pyc
+__pycache__/elements.cpython-36.pyc
+__pycache__/mainmenu.cpython-36.pyc
+__pycache__/pause.cpython-36.pyc
+__pycache__/settings.cpython-36.pyc
