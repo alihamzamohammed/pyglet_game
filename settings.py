@@ -274,6 +274,12 @@ class AboutSettings(layer.ColorLayer):
         self.y = int((y * 0.37) - (self.height / 2))
         self.active = False
 
+        aboutInfo = Label("Written and programmed by\nAli Hamza Mohammed\n\nWORK IN PROGRESS", anchor_x="center", anchor_y="center", font_size=35, multiline=True, width=(self.width * 0.8), align="center")
+        aboutInfo.x = self.width / 2
+        aboutInfo.y = self.height / 2
+        self.add(aboutInfo)
+
+
     def showVideoScreen(self):
         if self.active:
             self.do(AccelDeccel(MoveTo((self.posright, self.y), duration = 0.5)))
