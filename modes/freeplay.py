@@ -60,6 +60,7 @@ class PlatformerController(actions.Action):
         vy += self.GRAVITY * dt
         vy = self.bounce(self.JUMP_SPEED, vy)
 
+
         dx = vx * dt
         dy = vy * dt
 
@@ -77,13 +78,13 @@ class PlatformerController(actions.Action):
 
         scroller.set_focus(*new.center)
 
-    def bounce_modifier(func):
-        def inner(self, value, original):
-            print(value, original)
-            func(self, value, original)
-        return inner
+    #def bounce_modifier(func):
+    #    def inner(self, value, original):
+    #        print(value, original)
+    #        func(self, value, original)
+    #    return inner
 
-    @bounce_modifier
+    #@bounce_modifier
     def bounce(self, value, original):
         if self.on_ground and keyboard[k.SPACE]:
             return value

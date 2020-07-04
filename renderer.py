@@ -115,6 +115,5 @@ class Renderer(Scene):
         global player
         player.resume()
 
-
 keyboard = k.KeyStateHandler()
 cocos.director.director.window.push_handlers(keyboard)

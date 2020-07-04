@@ -26,4 +26,6 @@ def init():
     global configuration
     configuration = {}
     # TODO: Add in dict string conversion to pyglet.window.key
+    global loadedLevel
+    loadedLevel = None
     #global keys

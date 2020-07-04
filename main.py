@@ -51,7 +51,8 @@ class Game(object):
         # DEBUG: Debug code, not for final version
         from modes import freeplay
         from levels import levels
-        director.replace(FadeTransition(renderer.Renderer(levels.Level("levels/test"), freeplay.main()), duration = 1))
+        lvl = levels.levelLoad("levels/test")
+        director.replace(FadeTransition(renderer.Renderer(lvl, freeplay.main()), duration = 1))
         print("Play button clicked")
 
     def multiplayerButtonClicked(self):
@@ -72,6 +73,7 @@ class Game(object):
         global defaultconfigfile
         cfg.configWrite(defaultconfigfile)
         director.replace(FadeTransition(mainmenu.MainMenuScreen(), duration = 1, color = (0, 0, 0)))
+        cfg.loadedLevel = None
 
     def __init__(self):
         super(Game, self).__init__()

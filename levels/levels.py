@@ -2,6 +2,7 @@ import cocos
 import pyglet
 import xml.etree.ElementTree as et
 import os
+import cfg
 
 class Level():
 
@@ -41,3 +42,9 @@ class LevelCorrupt(Exception):
 
 class DependencyNotFound(Exception):
     pass
+
+
+def levelLoad(lvlstr):
+    load = Level(lvlstr)
+    cfg.loadedLevel = load
+    return load

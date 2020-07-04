@@ -1,7 +1,7 @@
 <?xml version="1.0" ?>
 <level>
     <name>Test Level</name>
-    <description>Test Level</description>
+    <description>This level is for testing purposes</description>
     <data>level.xml</data>
     <background></background>
 </level>
