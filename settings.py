@@ -148,7 +148,6 @@ class VideoSettings(layer.ColorLayer):
     def showVideoScreen(self):
         self.active = True
         self.do(AccelDeccel(MoveTo((self.poscenter, self.y), duration = 0.5)))
-        self.parent.videoButton.active = True
 
     def showSoundScreen(self):
         if self.active:
@@ -156,7 +155,6 @@ class VideoSettings(layer.ColorLayer):
             self.active = False
         else:
             self.x = self.posleft
-        self.parent.videoButton.active = False
 
     def showExtensionsScreen(self):
         if self.active:
@@ -164,7 +162,6 @@ class VideoSettings(layer.ColorLayer):
             self.active = False
         else:
             self.x = self.posleft
-        self.parent.videoButton.active = False
 
     def showAboutScreen(self):
         if self.active:
@@ -172,7 +169,6 @@ class VideoSettings(layer.ColorLayer):
             self.active = False
         else:
             self.x = self.posleft
-        self.parent.videoButton.active = False
 
 #TODO: Sound settings
 class SoundSettings(layer.ColorLayer):
@@ -198,12 +194,10 @@ class SoundSettings(layer.ColorLayer):
             self.active = False
         else:
             self.x = self.posright
-        self.parent.soundButton.active = False
 
     def showSoundScreen(self):
         self.active = True
         self.do(AccelDeccel(MoveTo((self.poscenter, self.y), duration = 0.5)))
-        self.parent.soundButton.active = True
 
     def showExtensionsScreen(self):
         if self.active:
@@ -211,7 +205,6 @@ class SoundSettings(layer.ColorLayer):
             self.active = False
         else:
             self.x = self.posleft
-        self.parent.soundButton.active = False
 
     def showAboutScreen(self):
         if self.active:
@@ -219,7 +212,6 @@ class SoundSettings(layer.ColorLayer):
             self.active = False
         else:
             self.x = self.posleft
-        self.parent.soundButton.active = False
 
 #TODO: Extension settings
 class ExtensionSettings(layer.ColorLayer):
@@ -245,7 +237,6 @@ class ExtensionSettings(layer.ColorLayer):
             self.active = False
         else:
             self.x = self.posright
-        self.parent.extensionButton.active = False
 
     def showSoundScreen(self):
         if self.active:
@@ -253,12 +244,10 @@ class ExtensionSettings(layer.ColorLayer):
             self.active = False
         else:
             self.x = self.posright
-        self.parent.extensionButton.active = False
 
     def showExtensionsScreen(self):
         self.active = True
         self.do(AccelDeccel(MoveTo((self.poscenter, self.y), duration = 0.5)))
-        self.parent.extensionButton.active = True
 
     def showAboutScreen(self):
         if self.active:
@@ -266,7 +255,6 @@ class ExtensionSettings(layer.ColorLayer):
             self.active = False
         else:
             self.x = self.posleft
-        self.parent.extensionButton.active = False
 
 #TODO: About settings
 class AboutSettings(layer.ColorLayer):
@@ -292,7 +280,6 @@ class AboutSettings(layer.ColorLayer):
             self.active = False
         else:
             self.x = self.posright
-        self.parent.aboutButton.active = False
 
     def showSoundScreen(self):
         if self.active:
@@ -300,7 +287,6 @@ class AboutSettings(layer.ColorLayer):
             self.active = False
         else:
             self.x = self.posright
-        self.parent.aboutButton.active = False
 
     def showExtensionsScreen(self):
         if self.active:
@@ -308,15 +294,15 @@ class AboutSettings(layer.ColorLayer):
             self.active = False
         else:
             self.x = self.posright
-        self.parent.aboutButton.active = False
 
     def showAboutScreen(self):
         self.active = True
         self.do(AccelDeccel(MoveTo((self.poscenter, self.y), duration = 0.5)))
-        self.parent.aboutButton.active = True
 
 
 class SettingsScreen(scene.Scene):
+
+    is_event_handler = True
 
     def __init__(self):
         super().__init__()
@@ -329,19 +315,20 @@ class SettingsScreen(scene.Scene):
             anchor_x="center"
         )
         settingsLabel.position = x / 2, y * 0.9
+        events.settingsevents.push_handlers(self)
 
-        videoButton = SettingsSectionButton("Video", events.settingsevents.onVideoButtonClick, buttonorder = 1, active = True)
-        soundButton = SettingsSectionButton("Sound", events.settingsevents.onSoundButtonClick, buttonorder = 2)
-        expansionButton = SettingsSectionButton("Expansion", events.settingsevents.onExtensionsButtonClick, buttonorder = 3)
-        aboutButton = SettingsSectionButton("About", events.settingsevents.onAboutButtonClick, buttonorder = 4)
+        self.videoButton = SettingsSectionButton("Video", events.settingsevents.onVideoButtonClick, buttonorder = 1, active = True)
+        self.soundButton = SettingsSectionButton("Sound", events.settingsevents.onSoundButtonClick, buttonorder = 2)
+        self.extensionButton = SettingsSectionButton("extension", events.settingsevents.onExtensionsButtonClick, buttonorder = 3)
+        self.aboutButton = SettingsSectionButton("About", events.settingsevents.onAboutButtonClick, buttonorder = 4)
         backButton = SettingsSectionButton("Back", events.mainmenuevents.backToMainMenu)
         backButton.x = x * 0.15
         backButton.y = y * 0.89
 
-        self.add(videoButton)
-        self.add(soundButton)
-        self.add(expansionButton)
-        self.add(aboutButton)
+        self.add(self.videoButton)
+        self.add(self.soundButton)
+        self.add(self.extensionButton)
+        self.add(self.aboutButton)
         self.add(backButton)
         self.add(settingsLabel)
 
@@ -359,3 +346,33 @@ class SettingsScreen(scene.Scene):
 
     def on_enter(self):
         super().on_enter()
+
+    def showVideoScreen(self):
+        self.videoButton.active = True
+        self.soundButton.active = False
+        self.extensionButton.active = False
+        self.aboutButton.active = False
+        print("1")
+        
+    def showSoundScreen(self):
+        self.videoButton.active = False
+        self.soundButton.active = True
+        self.extensionButton.active = False
+        self.aboutButton.active = False    
+        print("2")
+
+    def showExtensionsScreen(self):
+        self.videoButton.active = False
+        self.soundButton.active = False
+        self.extensionButton.active = True
+        self.aboutButton.active = False
+        print("3")
+
+    def showAboutScreen(self):
+        self.videoButton.active = False
+        self.soundButton.active = False
+        self.extensionButton.active = False
+        self.aboutButton.active = True
+        print("4")
+
+        
