@@ -6,6 +6,9 @@ from pyglet.window import key as k
 from renderer import scroller, keyboard
 
 class PlatformerController(actions.Action):
+    name = "Free Play"
+    desc = "A game mode for freely roaming the level."
+
     on_ground = True
     MOVE_SPEED = 200
     JUMP_SPEED = 800

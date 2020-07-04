@@ -85,7 +85,7 @@ class Renderer(Scene):
         global scroller
         self.add(ColorLayer(100, 120, 150, 255), z=0)
         self.add(scroller, z=1)
-        self.intro = self.LevelIntro(level.name, str(gamemode), 0, 0, 0, 0)
+        self.intro = self.LevelIntro(level.name, gamemode.name, 0, 0, 0, 0)
         self.add(self.intro, z=2)
         loadLvl(self.level, self.gamemode)
         self.add(pause.pauseScreen, z=10)
