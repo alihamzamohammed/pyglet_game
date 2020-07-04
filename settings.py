@@ -352,27 +352,21 @@ class SettingsScreen(scene.Scene):
         self.soundButton.active = False
         self.extensionButton.active = False
         self.aboutButton.active = False
-        print("1")
         
     def showSoundScreen(self):
         self.videoButton.active = False
         self.soundButton.active = True
         self.extensionButton.active = False
         self.aboutButton.active = False    
-        print("2")
 
     def showExtensionsScreen(self):
         self.videoButton.active = False
         self.soundButton.active = False
         self.extensionButton.active = True
         self.aboutButton.active = False
-        print("3")
 
     def showAboutScreen(self):
         self.videoButton.active = False
         self.soundButton.active = False
         self.extensionButton.active = False
         self.aboutButton.active = True
-        print("4")
-
-        
