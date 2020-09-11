@@ -38,3 +38,14 @@ __pycache__/mainmenu.cpython-36.pyc
 __pycache__/pause.cpython-36.pyc
 __pycache__/settings.cpython-36.pyc
 modes/__pycache__/freeplay.cpython-36.pyc
+__pycache__/cfg.cpython-38.pyc
+__pycache__/elements.cpython-38.pyc
+__pycache__/events.cpython-38.pyc
+__pycache__/logger.cpython-38.pyc
+__pycache__/mainmenu.cpython-38.pyc
+__pycache__/pause.cpython-38.pyc
+__pycache__/renderer.cpython-38.pyc
+__pycache__/resources.cpython-38.pyc
+__pycache__/settings.cpython-38.pyc
+levels/__pycache__/levels.cpython-38.pyc
+modes/__pycache__/freeplay.cpython-38.pyc
