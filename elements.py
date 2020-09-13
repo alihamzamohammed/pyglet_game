@@ -65,8 +65,10 @@ class MainMenuButton(layer.Layer):
     def on_mouse_motion(self, x, y, dx, dy):
         if x in range(self.width_range[0], self.width_range[1]) and y in range(self.height_range[0], self.height_range[1]):
             self.bgImage.image = pyglet.resource.image("menuButtonHovered.png")
+            self.lbl.element.color = (255, 255, 255, 255)
         else:
             self.bgImage.image = pyglet.resource.image("menuButton.png")
+            self.lbl.element.color = (255, 255, 255, 255)
 
     def on_mouse_press(self, x, y, buttons, modifiers):
         if x in range(self.width_range[0], self.width_range[1]) and y in range(self.height_range[0], self.height_range[1]):

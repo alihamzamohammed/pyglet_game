@@ -20,7 +20,8 @@ class PauseScreen(ColorLayer):
         self.title.x = x / 2
         self.title.y = y * 0.72
 
-        self.quitButton = elements.MainMenuButton("Quit Level", events.mainmenuevents.backToMainMenu, 2, False)
+        self.quitButton = elements.MainMenuButton("Quit Level", events.mainmenuevents.backToMainMenu, 3, False)
+        self.resumeButton = elements.MainMenuButton("Resume Game", self.resumeGame, 2, False)
 
         self.opacity = 150
         self.isvisible = False
@@ -28,23 +29,18 @@ class PauseScreen(ColorLayer):
 
         self.add(self.title)
         self.add(self.quitButton)
+        self.add(self.resumeButton)
 
-        self.do(FadeOut(0.01))
-        self.title.do(FadeOut(0.01))
-        list(map(lambda element: element.do(FadeOut(0.01)), self.quitButton.get_children()))
+        self.elementFadeOut(0.01)
         events.mainmenuevents.push_handlers(self.showMainMenu)
 
     def on_key_press(self, key, modifiers):
         if key == k.P:
             if not self.isvisible:
-                self.do(FadeTo(150, 0.5))
-                self.title.do(FadeIn(0.5))
-                list(map(lambda element: element.do(FadeIn(0.5)), self.quitButton.get_children()))
+                self.elementFadeIn(0.5)
                 events.pausescreenevents.onPauseScreenAppear()
             else:
-                self.do(FadeTo(0, 0.5))
-                self.title.do(FadeOut(0.5))
-                list(map(lambda element: element.do(FadeOut(0.5)), self.quitButton.get_children()))
+                self.elementFadeOut(0.5)
                 if not self.mainMenu:
                     events.pausescreenevents.onPauseScreenDisappear()
             self.isvisible = not self.isvisible
@@ -52,8 +48,25 @@ class PauseScreen(ColorLayer):
     def showMainMenu(self):
         self.isvisible = False
         self.mainMenu = True
-        self.do(FadeOut(0.01))
-        self.title.do(FadeOut(0.01))
-        list(map(lambda element: element.do(FadeOut(0.01)), self.quitButton.get_children()))
+        self.elementFadeOut(0.01)
         # ?: With the new event "mainMenuShowing", this may not need to be here, as the fade is taken care of by the scene transition anyways, at which point the pause menu will be removed from the renderer anyways
+
+    def resumeGame(self):
+        self.elementFadeOut(0.5)
+        if not self.mainMenu:
+            events.pausescreenevents.onPauseScreenDisappear()
+        self.isvisible = False
+
+    def elementFadeIn(self, duration):
+        self.do(FadeTo(150, duration))
+        self.title.do(FadeIn(duration))
+        for el in self.get_children():  
+            list(map(lambda element: element.do(FadeIn(duration)), el.get_children()))
+
+    def elementFadeOut(self, duration):
+        self.do(FadeTo(0, duration))
+        self.title.do(FadeOut(duration))
+        for el in self.get_children():
+            list(map(lambda element: element.do(FadeOut(duration)), el.get_children()))
+
 pauseScreen = PauseScreen(0, 0, 0, 150)
