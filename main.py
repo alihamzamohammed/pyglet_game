@@ -59,10 +59,7 @@ class Game(object):
 
     def multiplayerButtonClicked(self):
         print("Multiplayer button clicked")
-        # DEBUG: Debug code, not for final version
-        from levels import levels as l
-        x = l.Level("levels/test")
-        print(str(x))
+        logger.addLog("Multiplayer not yet implemented!")
 
     def settingsButtonClicked(self):
         director.replace(FadeTransition(settings.SettingsScreen(), duration = 1, color = (0, 0, 0)))
