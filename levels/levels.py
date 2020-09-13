@@ -23,20 +23,33 @@ class Level():
         for item in list(self._lvl.getroot()):
             if item.tag == "name":
                 self.name = item.text
-            elif item.tag == "desc" or item.tag == "description":
+            if item.tag == "desc" or item.tag == "description":
                 self.desc = item.text
-            elif item.tag == "data":
+            if item.tag == "data":
                 if os.path.isfile(os.path.join(self.folder, item.text)):
                     self.datapath = os.path.join(self.folder, item.text)
                     self.data = et.parse(self.datapath)
                 else:
                     raise DependencyNotFound(item.text + " is listed as a dependency of " + self.folder + " but was not found, level will not be loaded!")
                     return None
-            elif item.tag == "background":
-                self.background = item.text
-            else:
-                self.tags[item.tag] = item.text
+            if item.tag == "background":
+                if item.text == None:
+                    self.background = (100, 120, 150, 255)
+                elif "png" in item.text or "jpg" in item.text:
+                    self.background = os.getcwd() + "\\" + self.folder + "\\" + item.text
+                elif any(char.isdigit() for char in item.text) and "," in item.text:
+                    self.background = tuple(item.text)
+            self.tags[item.tag] = item.text
             self.tags.update(self._lvl.getroot().attrib)
+            if not hasattr(self, "name"):
+                self.name = "Level"
+            if not hasattr(self, "desc"):
+                self.desc = "No description"
+            if not hasattr(self, "data") or hasattr(self, "datapath"):
+                raise LevelCorrupt("Level " + self.folder + " has no content, level will not be loaded!")
+                return None
+            if not hasttr(self, "background"):
+                self.background = (100, 120, 150, 255)
 
     def __str__(self):
         return self.name

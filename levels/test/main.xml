@@ -3,5 +3,5 @@
     <name>Test Level</name>
     <description>This level is for testing purposes</description>
     <data>level.xml</data>
-    <background></background>
+    <background>bg.jpg</background>
 </level>

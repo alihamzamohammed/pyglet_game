@@ -83,7 +83,13 @@ class Renderer(Scene):
         events.mainmenuevents.push_handlers(self.mainMenuIsShowing)
         events.pausescreenevents.push_handlers(self.pauseScreenNotShowing, self.pauseScreenShowing)
         global scroller
-        self.add(ColorLayer(100, 120, 150, 255), z=0)
+        if isinstance(level.background, str):
+            bgLayer = Layer()
+            bgImage = cocos.sprite.Sprite(level.background)
+            bgLayer.add(bgImage)
+            self.add(bgLayer, z=0)
+        elif isinstance(level.background, tuple):
+            self.add(ColorLayer(level.background[0], level.background[1], level.background[2], level.background[3]), z=0)
         self.add(scroller, z=1)
         self.intro = self.LevelIntro(level.name, gamemode.name, 0, 0, 0, 0)
         self.add(self.intro, z=2)

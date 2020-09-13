@@ -1,0 +1,7 @@
+<?xml version="1.0" ?>
+<level>
+    <name>Welcome</name>
+    <description>A welcome level to explore the functionality of the game.</description>
+    <data>level.xml</data>
+    <background></background>
+</level>
