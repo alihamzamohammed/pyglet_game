@@ -30,7 +30,7 @@ class Level():
                     self.datapath = os.path.join(self.folder, item.text)
                     self.data = et.parse(self.datapath)
                 else:
-                    raise LevelCorrupt(item.text + " is listed as a dependency of " + self.folder + " but was not found, level will not be loaded!")
+                    raise DependencyNotFound(item.text + " is listed as a dependency of " + self.folder + " but was not found, level will not be loaded!")
                     return None
             elif item.tag == "background":
                 self.background = item.text
@@ -48,7 +48,9 @@ class LevelCorrupt(Exception):
         
 
 class DependencyNotFound(Exception):
-    pass
+    
+    def __init__(self, message, *args, **kwargs):
+        self.message = message
 
 def levelLoad(lvlstr):
     load = levels[lvlstr]
@@ -64,4 +66,6 @@ def init():
             try:
                 levels[lvlfolder] = Level(folder[2:] + lvlfolder)
             except LevelCorrupt as e:
+                logger.addLog(e.message, logger.loglevel["warning"])
+            except DependencyNotFound as e:
                 logger.addLog(e.message, logger.loglevel["warning"])
