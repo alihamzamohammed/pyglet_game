@@ -31,6 +31,9 @@ import settings
 import renderer
 renderer.init()
 
+from levels import levels
+levels.init()
+
 class Game(object):
 
     is_event_handler = True
@@ -50,8 +53,7 @@ class Game(object):
     def playButtonClicked(self):
         # DEBUG: Debug code, not for final version
         from modes import freeplay
-        from levels import levels
-        lvl = levels.levelLoad("levels/test")
+        lvl = levels.levelLoad("test")
         director.replace(FadeTransition(renderer.Renderer(lvl, freeplay.main()), duration = 1))
         print("Play button clicked")
 
