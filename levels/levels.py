@@ -56,12 +56,10 @@ def init():
     global levels
     levels = {}
     folder = "//levels//"
-    for lvlfolder in [x[1] for x in os.walk(os.getcwd() + folder)]:
-        if lvlfolder is not []:
-            for lvl in lvlfolder:
-                if lvl is not "" or not "__pycache__":
-                    try:
-                        levels[lvl] = Level(folder[2:] + lvl)
-                    except LevelCorrupt as e:
-                        logger.addLog(e.message, logger.loglevel["warning"])
+    for lvlfolder in [f.name for f in os.scandir(os.getcwd() + folder) if f.is_dir()]:
+        if lvlfolder is not "__pycache__":
+            try:
+                levels[lvlfolder] = Level(folder[2:] + lvlfolder)
+            except LevelCorrupt as e:
+                logger.addLog(e.message, logger.loglevel["warning"])
     #print(str(levels))
