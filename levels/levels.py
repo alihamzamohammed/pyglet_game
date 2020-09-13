@@ -11,11 +11,13 @@ class Level():
         super().__init__()
         self.folder = folder
         if not os.path.exists(self.folder):
-            raise LevelCorrupt("Folder not found! Level not loaded!")
+            raise LevelCorrupt("Folder not found! Level will not be loaded!")
+            return None
         if "main.xml" in os.listdir(self.folder):
             self.main = os.path.join(self.folder, "main.xml")
         else:
             raise LevelCorrupt("main.xml not found in Level " + self.folder + ", level will not be loaded!")
+            return None
         self._lvl = et.parse(self.main)
         self.tags = {}
         for item in list(self._lvl.getroot()):
@@ -24,16 +26,17 @@ class Level():
             elif item.tag == "desc" or item.tag == "description":
                 self.desc = item.text
             elif item.tag == "data":
-                self.datapath = os.path.join(self.folder, item.text)
-                self.data = et.parse(self.datapath)
+                if os.path.isfile(os.path.join(self.folder, item.text)):
+                    self.datapath = os.path.join(self.folder, item.text)
+                    self.data = et.parse(self.datapath)
+                else:
+                    raise LevelCorrupt(item.text + " is listed as a dependency of " + self.folder + " but was not found, level will not be loaded!")
+                    return None
             elif item.tag == "background":
                 self.background = item.text
             else:
                 self.tags[item.tag] = item.text
             self.tags.update(self._lvl.getroot().attrib)
-
-    #def __repr__(self):
-     #   return self.data
 
     def __str__(self):
         return self.name
@@ -62,4 +65,3 @@ def init():
                 levels[lvlfolder] = Level(folder[2:] + lvlfolder)
             except LevelCorrupt as e:
                 logger.addLog(e.message, logger.loglevel["warning"])
-    #print(str(levels))

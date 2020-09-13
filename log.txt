@@ -14497,3 +14497,34 @@ INFO: Init game modes
 INFO: Init resources
 INFO: Init items
 INFO: Loading finished, displaying Main Menu
+
+INFO: New execution, at: 2020-09-13 21:11:33.790601
+WARNING: Animation file not found!
+WARNING: main.xml not found in Level levels//test2, level will not be loaded!
+WARNING: main.xml not found in Level levels//test3, level will not be loaded!
+WARNING: main.xml not found in Level levels//__pycache__, level will not be loaded!
+INFO: Starting game.
+INFO: Resolution is 1280x720
+INFO: Fullscreen is disabled
+INFO: Starting game loading!
+INFO: Init levels
+INFO: Init game modes
+INFO: Init resources
+INFO: Init items
+INFO: Loading finished, displaying Main Menu
+
+INFO: New execution, at: 2020-09-13 21:12:03.949662
+WARNING: Animation file not found!
+WARNING: leveeel.xml is listed as a dependency of levels//test but was not found, level will not be loaded!
+WARNING: main.xml not found in Level levels//test2, level will not be loaded!
+WARNING: main.xml not found in Level levels//test3, level will not be loaded!
+WARNING: main.xml not found in Level levels//__pycache__, level will not be loaded!
+INFO: Starting game.
+INFO: Resolution is 1280x720
+INFO: Fullscreen is disabled
+INFO: Starting game loading!
+INFO: Init levels
+INFO: Init game modes
+INFO: Init resources
+INFO: Init items
+INFO: Loading finished, displaying Main Menu
