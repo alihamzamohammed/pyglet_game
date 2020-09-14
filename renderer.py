@@ -33,11 +33,13 @@ def loadLvl(level, gamemode):
     global r
     global mapcollider
     global tilemap_decorations, tilemap_walls
+    global bgLayer
     try:
         fullmap = tiles.load(level.datapath)
         tilemap_walls = fullmap["walls"]
         tilemap_decorations = fullmap["decorations"]
 
+        scroller.add(bgLayer, z=-2)
         scroller.add(tilemap_decorations, z=-1)
         scroller.add(tilemap_walls, z=0)
         scroller.add(player_layer, z=1)
@@ -83,13 +85,14 @@ class Renderer(Scene):
         events.mainmenuevents.push_handlers(self.mainMenuIsShowing)
         events.pausescreenevents.push_handlers(self.pauseScreenNotShowing, self.pauseScreenShowing)
         global scroller
+        global bgLayer
         if isinstance(level.background, str):
             bgLayer = ScrollableLayer()
             bgLayer.parallax = 0.5
             bgImage = cocos.sprite.Sprite(level.background)
             bgLayer.add(bgImage)
             #self.add(bgLayer, z=0)
-            scroller.add(bgLayer, z=-10)
+            #scroller.add(bgLayer, z=-10)
         elif isinstance(level.background, tuple):
             self.add(ColorLayer(level.background[0], level.background[1], level.background[2], level.background[3]), z=0)
         self.add(scroller, z=1)
