@@ -4,4 +4,5 @@
     <description>A welcome level to explore the functionality of the game.</description>
     <data>level.xml</data>
     <background></background>
+    <thumbnail></thumbnail>
 </level>

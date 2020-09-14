@@ -38,6 +38,8 @@ class Level():
                     self.background = item.text
                 elif any(char.isdigit() for char in item.text) and "," in item.text:
                     self.background = tuple(item.text)
+            if item.tag == "thumbnail":
+                self.thumbnail = item.text
             self.tags[item.tag] = item.text
             self.tags.update(self._lvl.getroot().attrib)
         if not hasattr(self, "name"):
