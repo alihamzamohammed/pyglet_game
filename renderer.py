@@ -12,6 +12,7 @@ import pause
 import logger
 import events
 import levels
+import modes
 path = os.getcwd()
 
 def init():
@@ -54,7 +55,7 @@ def loadLvl(level, gamemode):
         mapcollider = mapcolliders.RectMapCollider(velocity_on_bump="slide")
         player.collision_handler = mapcolliders.make_collision_handler(mapcollider, tilemap_walls)
 
-        gamemoderun = player.do(gamemode)
+        gamemoderun = player.do(gamemode.main())
 
     except Exception as e:
         # TODO: logger.addLog("An error was caught rendering the level.\n" + e, logger.loglevel["error"])
@@ -96,7 +97,7 @@ class Renderer(Scene):
         self.add(scroller, z=1)
         self.intro = self.LevelIntro(level.name, gamemode.name, 0, 0, 0, 0)
         self.add(self.intro, z=2)
-        loadLvl(self.level, self.gamemode)
+        loadLvl(self.level, self.gamemode.module)
         self.add(pause.pauseScreen, z=10)
         pause.pauseScreen.mainMenu = False
         self.intro.do(cocos.actions.FadeIn(0.1) + cocos.actions.Delay(3) + cocos.actions.FadeOut(1))
