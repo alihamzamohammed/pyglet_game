@@ -218,6 +218,11 @@ class ExtensionSettings(layer.ColorLayer):
 
     is_event_handler = True
 
+    class ExtensionList(Layer):
+
+        def __init__(self):
+            super().__init__()
+            
     def __init__(self):
         super().__init__(0, 255, 0, 255)
         events.settingsevents.push_handlers(self)
