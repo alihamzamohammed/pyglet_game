@@ -91,8 +91,6 @@ class Renderer(Scene):
             bgLayer.parallax = 0.5
             bgImage = cocos.sprite.Sprite(level.background)
             bgLayer.add(bgImage)
-            #self.add(bgLayer, z=0)
-            #scroller.add(bgLayer, z=-10)
         elif isinstance(level.background, tuple):
             self.add(ColorLayer(level.background[0], level.background[1], level.background[2], level.background[3]), z=0)
         self.add(scroller, z=1)
