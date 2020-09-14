@@ -15506,3 +15506,68 @@ INFO: Init resources
 INFO: Init items
 INFO: Item pack Transparency Pack at path items//transparencyPack has no declared items.
 INFO: Loading finished, displaying Main Menu
+
+INFO: New execution, at: 2020-09-14 15:01:40.149051
+WARNING: Animation file not found!
+INFO: Starting game.
+INFO: Resolution is 1280x720
+INFO: Fullscreen is disabled
+INFO: Starting game loading!
+INFO: Init levels
+INFO: Init game modes
+WARNING: Game mode test1.py is not properly structured, game mode will not be loaded!
+INFO: PlatformerController does not exist in game mode test2, game mode will not be loaded!
+INFO: Init resources
+INFO: Init items
+INFO: Item pack Transparency Pack at path items//transparencyPack has no declared items.
+INFO: Loading finished, displaying Main Menu
+
+INFO: New execution, at: 2020-09-14 15:02:03.642931
+WARNING: Animation file not found!
+INFO: Starting game.
+INFO: Resolution is 1280x720
+INFO: Fullscreen is disabled
+INFO: Starting game loading!
+INFO: Init levels
+INFO: Init game modes
+WARNING: Game mode test1.py is not properly structured, game mode will not be loaded!
+WARNING: PlatformerController does not exist in game mode test2, game mode will not be loaded!
+INFO: Init resources
+INFO: Init items
+INFO: Item pack Transparency Pack at path items//transparencyPack has no declared items.
+INFO: Loading finished, displaying Main Menu
+
+INFO: New execution, at: 2020-09-14 15:07:57.670042
+INFO: Starting game.
+INFO: Resolution is 1280x720
+INFO: Fullscreen is disabled
+INFO: Starting game loading!
+INFO: Init levels
+INFO: Init game modes
+WARNING: Game mode test1.py is not properly structured, game mode will not be loaded!
+WARNING: PlatformerController does not exist in game mode test2, game mode will not be loaded!
+INFO: Init resources
+INFO: Init items
+INFO: Item pack Transparency Pack at path items//transparencyPack has no declared items.
+INFO: Loading finished, displaying Main Menu
+
+INFO: New execution, at: 2020-09-14 15:11:54.396827
+
+INFO: New execution, at: 2020-09-14 15:12:21.844962
+
+INFO: New execution, at: 2020-09-14 15:13:23.521386
+INFO: Init resources
+
+INFO: New execution, at: 2020-09-14 15:13:39.439350
+INFO: Init resources
+INFO: Starting game.
+INFO: Resolution is 1280x720
+INFO: Fullscreen is disabled
+INFO: Starting game loading!
+INFO: Init levels
+INFO: Init game modes
+WARNING: Game mode test1.py is not properly structured, game mode will not be loaded!
+WARNING: PlatformerController does not exist in game mode test2, game mode will not be loaded!
+INFO: Init items
+INFO: Item pack Transparency Pack at path items//transparencyPack has no declared items.
+INFO: Loading finished, displaying Main Menu

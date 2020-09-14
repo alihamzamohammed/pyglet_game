@@ -37,5 +37,7 @@ def init():
                 module = importlib.import_module("modes." + mode)
                 gamemodes[mode] = GameMode(module)
             except PlatformerControllerNotFound:
-                logger.addLog("PlatformerController does not exist in game mode " + mode + ", game mode will not be loaded!")
+                logger.addLog("PlatformerController does not exist in game mode " + mode + ", game mode will not be loaded!", logger.loglevel["warning"])
                 continue
+            except ModuleNotFoundError:
+                logger.addLog("Game mode " + mode + " is not properly structured, game mode will not be loaded!", logger.loglevel["warning"])

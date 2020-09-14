@@ -37,9 +37,7 @@ def game_loading():
     # render game mode metadata and add to multidimensional array dict
     import modes
     modes.init()
-
-    logger.addLog("Init resources", logger.loglevel["info"])
-    # complete
+    
     logger.addLog("Init items", logger.loglevel["info"])
     # check to see if all item packs are in item pack db, and if all item xml is without error
     # add item packs and individual items to multidimensional array

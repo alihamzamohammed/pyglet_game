@@ -73,5 +73,8 @@ def resourceLoad():
     getResourcePack()
     fontLoad()
     animLoad()
-    pyglet.resource.path = [path + "\\resources\\" + resourcePack, path + "\\resources\\" + resourcePack + "\\images", path + "\\items\\"]
+    #if pyglet.resource.path is []:
+    pyglet.resource.path = [path + "\\resources\\" + resourcePack, path + "\\resources\\" + resourcePack + "\\images"]
+    # TODO: Add code to check if resource pack is being switched or initialisation of resource pack. Maybe through another function, with new resource pack as argument?
+    # TODO: Will need to be tested on 2 resource packs, and switching mechanism in-game.
     pyglet.resource.reindex()

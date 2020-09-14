@@ -22,8 +22,10 @@ showfps = True if cfg.configuration["Core"]["showfps"] == "True" else False
 director.init(width=reswidth, height=resheight, caption="Game", fullscreen=fullscreen, autoscale=True, resizable=True, vsync=vsync)
 director.set_show_FPS(showfps)
 
+logger.addLog("Init resources", logger.loglevel["info"])
 import resources
 resources.resourceLoad()
+
 
 import mainmenu
 import settings
