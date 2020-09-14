@@ -4,4 +4,6 @@
     <description>Includes placeable items that make players bounce</description>
     <thumbnail>thumbnail.png</thumbnail>
     <required type="sourcecode">bouncePack.py</required>
+    <item>trampoline.xml</item>
+    <item>sponge.xml</item>
 </itempack>

@@ -35,7 +35,6 @@ class Level():
                 elif "png" in item.text or "jpg" in item.text:
                     pyglet.resource.path.append(os.getcwd() + "\\" + self.folder)
                     pyglet.resource.reindex()
-                    print(pyglet.resource.path)
                     self.background = item.text
                 elif any(char.isdigit() for char in item.text) and "," in item.text:
                     self.background = tuple(item.text)

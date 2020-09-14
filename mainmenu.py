@@ -31,7 +31,7 @@ def game_loading():
     # Render level thumbnails, and put them as sprite objects into array
     from levels import levels
     levels.init()
-    
+
     logger.addLog("Init game modes", logger.loglevel["info"])
     # check to see if all game modes exist in game mode db
     # render game mode metadata and add to multidimensional array dict
@@ -40,6 +40,8 @@ def game_loading():
     logger.addLog("Init items", logger.loglevel["info"])
     # check to see if all item packs are in item pack db, and if all item xml is without error
     # add item packs and individual items to multidimensional array
+    from items import items
+    items.init()
     events.mainmenuevents.onProgressFinished()
 
 

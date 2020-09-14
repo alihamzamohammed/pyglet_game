@@ -1,6 +1,7 @@
 <?xml version="1.0" ?>
 <itempack required="True">
-<name>Decorations</name>
-<description>Includes decorations to add to your levels.</description>
-<thumbnail>thumbnail.png</thumbnail>
+    <name>Decorations</name>
+    <description>Includes decorations to add to your levels.</description>
+    <thumbnail>thumbnail.png</thumbnail>
+    <item>cloud.xml</item>
 </itempack>

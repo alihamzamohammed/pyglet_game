@@ -1,6 +1,12 @@
 <?xml version="1.0" ?>
 <itempack required="True">
-<name>Default</name>
-<description>This is the default item pack that comes with the game. It includes default block items, that can be built upon by other custom items. Please do not remove this item pack.</description>
-<thumbnail>thumbnail.png</thumbnail>
+    <name>Default</name>
+    <description>This is the default item pack that comes with the game. It includes default block items, that can be built upon by other custom items. Please do not remove this item pack.</description>
+    <thumbnail>thumbnail.png</thumbnail>
+    <item>dirt.xml</item>
+    <item>grass.xml</item>
+    <item>stone.xml</item>
+    <item>stoneBeam.xml</item>
+    <item>wood.xml</item>
+    <item>woodBeam.xml</item>
 </itempack>
