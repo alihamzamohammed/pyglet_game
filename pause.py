@@ -7,6 +7,7 @@ from cocos.actions import *
 import elements
 import resources
 import events
+import cfg
 from pyglet.window import key as k
 
 class PauseScreen(ColorLayer):
@@ -49,6 +50,7 @@ class PauseScreen(ColorLayer):
         self.isvisible = False
         self.mainMenu = True
         self.elementFadeOut(0.01)
+        cfg.loadedLevel = None
         # ?: With the new event "mainMenuShowing", this may not need to be here, as the fade is taken care of by the scene transition anyways, at which point the pause menu will be removed from the renderer anyways
 
     def resumeGame(self):

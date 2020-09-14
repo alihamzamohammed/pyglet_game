@@ -47,6 +47,8 @@ class ItemPack():
         if not hasattr(self, "background"):
             self.background = (100, 120, 150, 255)
 
+    def __str__(self):
+        return self.name
 
 class ItemPackCorrupt(Exception):
     

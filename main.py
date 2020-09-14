@@ -31,8 +31,8 @@ import settings
 import renderer
 renderer.init()
 
-from levels import levels
-from items import items
+import levels
+import items
 
 class Game(object):
 

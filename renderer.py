@@ -11,7 +11,7 @@ import cfg
 import pause
 import logger
 import events
-from levels import levels
+import levels
 path = os.getcwd()
 
 def init():
