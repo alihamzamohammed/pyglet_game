@@ -74,7 +74,7 @@ def init():
     levels = {}
     folder = "//levels//"
     for lvlfolder in [f.name for f in os.scandir(os.getcwd() + folder) if f.is_dir()]:
-        if lvlfolder is not "__pycache__":
+        if lvlfolder != "__pycache__":
             try:
                 levels[lvlfolder] = Level(folder[2:] + lvlfolder)
             except LevelCorrupt as e:

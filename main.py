@@ -32,7 +32,7 @@ import renderer
 renderer.init()
 
 from levels import levels
-levels.init()
+
 
 class Game(object):
 

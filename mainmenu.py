@@ -29,6 +29,9 @@ def game_loading():
     logger.addLog("Init levels", logger.loglevel["info"])
     # check to see if all levels are in level db, otherwise raise warning, and do not load
     # Render level thumbnails, and put them as sprite objects into array
+    from levels import levels
+    levels.init()
+    
     logger.addLog("Init game modes", logger.loglevel["info"])
     # check to see if all game modes exist in game mode db
     # render game mode metadata and add to multidimensional array dict
