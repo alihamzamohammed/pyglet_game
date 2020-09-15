@@ -15720,3 +15720,5 @@ WARNING: Game mode test1.py is not properly structured, game mode will not be lo
 DEBUG: Init items
 INFO: Item pack Transparency Pack at path items//transparencyPack has no declared items.
 DEBUG: Loading finished, displaying Main Menu
+WARNING: Game mode test1.py is not properly structured, game mode will not be loaded!
+INFO: Item pack Transparency Pack at path items//transparencyPack has no declared items.
