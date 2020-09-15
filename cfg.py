@@ -46,6 +46,8 @@ def init():
     configuration = {}
     global loadedLevel
     loadedLevel = None
+    global loadedGameMode
+    loadedGameMode = None
     global keys
     keys = {
         "A": k.A, "AMPERSAND": k.AMPERSAND, "APOSTROPHE": k.APOSTROPHE, "ASCIICIRCUM": k.ASCIICIRCUM, 

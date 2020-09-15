@@ -51,6 +51,7 @@ class PauseScreen(ColorLayer):
         self.mainMenu = True
         self.elementFadeOut(0.01)
         cfg.loadedLevel = None
+        cfg.loadedGameMode = None
         # ?: With the new event "mainMenuShowing", this may not need to be here, as the fade is taken care of by the scene transition anyways, at which point the pause menu will be removed from the renderer anyways
 
     def resumeGame(self):

@@ -56,7 +56,7 @@ class Game(object):
     def playButtonClicked(self):
         # DEBUG: Debug code, not for final version
         lvl = levels.levelLoad("test")
-        director.replace(FadeTransition(renderer.Renderer(lvl, modes.gamemodes["freeplay"]), duration = 1))
+        director.replace(FadeTransition(renderer.Renderer(lvl, modes.loadGameMode(modes.gamemodes["freeplay"])), duration = 1))
         print("Play button clicked")
 
     def multiplayerButtonClicked(self):

@@ -18,7 +18,7 @@ def shortName(font):
     """Get the short name from the font's names table"""
     name = ""
     family = ""
-    for record in font['name'].names:
+    for record in font["name"].names:
         if b'\x00' in record.string:
             name_str = record.string.decode('utf-16-be')
         else:   

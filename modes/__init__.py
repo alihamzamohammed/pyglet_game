@@ -4,6 +4,7 @@ import os
 import importlib
 import sys
 import logger
+import cfg
 
 class GameMode():
 
@@ -27,6 +28,16 @@ class GameMode():
 
 class PlatformerControllerNotFound(Exception):
     pass
+
+class InvalidGameModeException(Exception):
+    pass
+
+def loadGameMode(gameMode):
+    if not isinstance(gameMode, GameMode):
+        raise InvalidGameModeException
+    else:
+        cfg.loadedGameMode = gameMode
+        return gameMode
 
 def init():
     global gamemodes
