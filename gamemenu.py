@@ -15,6 +15,8 @@ import modes
 import events
 import elements # TODO: All elements in this class will be moved over, maybe?
 
+import scaling
+
 x, y = director.window.width, director.window.height
 reswidth, resheight = [int(res) for res in cfg.configuration["Core"]["defaultres"].split("x")]
 
@@ -65,8 +67,10 @@ class smallButton(Layer):
         #self.height_range = [int(((self.py * scaley) + (self.y * scaley)) - ((self.bgImage.height * scaley) / 2)), int(((self.py * scaley) + (self.y * scaley)) + ((self.bgImage.height * scaley) / 2))]
         #self.width_range = [int((self.px + self.x) - (self.bgImage.width / 2)), int((self.px + self.x) + (self.bgImage.width / 2))]
         #self.height_range = [int((self.py + self.y) - (self.bgImage.height / 2)), int((self.py + self.y) + (self.bgImage.width / 2))]
-        nmin = director.get_virtual_coordinates(int((self.px + self.x) - (self.bgImage.width / 2)), int((self.py + self.y) - (self.bgImage.height / 2)))
-        nmax = director.get_virtual_coordinates(int((self.px + self.x) + (self.bgImage.width / 2)), int((self.py + self.y) + (self.bgImage.width / 2)))
+        #nmin = director.get_virtual_coordinates(int((self.px + self.x) - (self.bgImage.width / 2)), int((self.py + self.y) - (self.bgImage.height / 2)))
+        #nmax = director.get_virtual_coordinates(int((self.px + self.x) + (self.bgImage.width / 2)), int((self.py + self.y) + (self.bgImage.width / 2)))
+        nmin = scaling.sc(int((self.px + self.x) - (self.bgImage.width / 2)), int((self.py + self.y) - (self.bgImage.height / 2)), self.bgImage.width, self.bgImage.height)
+        nmax = scaling.sc(int((self.px + self.x) + (self.bgImage.width / 2)), int((self.py + self.y) + (self.bgImage.width / 2)), self.bgImage.width, self.bgImage.height)
         self.width_range = [int(nmin[0]), int(nmax[0])]
         self.height_range = [int(nmin[1]), int(nmax[1])]
 
@@ -74,8 +78,8 @@ class smallButton(Layer):
         if self.active:
             self.bgImage.image = pyglet.resource.image("smallButtonClicked.png")
             self.lbl.element.color = (0, 0, 0, 255)
-        #elif x in range(self.width_range[0], self.width_range[1]) and y in range(self.height_range[0], self.height_range[1]):
-        elif self.bgImage.contains(x, y):
+        elif x in range(self.width_range[0], self.width_range[1]) and y in range(self.height_range[0], self.height_range[1]):
+        #elif self.bgImage.contains(x, y):
             self.bgImage.image = pyglet.resource.image("smallButtonHovered.png")
             self.lbl.element.color = (255, 255, 255, 255)
         else:
@@ -83,8 +87,8 @@ class smallButton(Layer):
             self.lbl.element.color = (255, 255, 255, 255)
 
     def on_mouse_press(self, x, y, buttons, modifiers):
-        #if x in range(self.width_range[0], self.width_range[1]) and y in range(self.height_range[0], self.height_range[1]):
-        if self.bgImage.contains(x, y):
+        if x in range(self.width_range[0], self.width_range[1]) and y in range(self.height_range[0], self.height_range[1]):
+        #if self.bgImage.contains(x, y):
             self.bgImage.image = pyglet.resource.image("smallButtonClicked.png")
             self.active = True
             self.lbl.element.color = (0, 0, 0, 255)
