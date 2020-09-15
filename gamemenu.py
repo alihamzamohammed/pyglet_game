@@ -59,8 +59,8 @@ class smallButton(Layer):
 
     def setWH(self, dt):
         x, y = director.window.width, director.window.height
-        nmin = sc.scale(int((self.px + self.x) - (self.bgImage.width / 2)), int((self.py + self.y) - (self.bgImage.height / 2)), self.bgImage.width, self.bgImage.height)
-        nmax = sc.scale(int((self.px + self.x) + (self.bgImage.width / 2)), int((self.py + self.y) + (self.bgImage.width / 2)), self.bgImage.width, self.bgImage.height)
+        nmin = sc.scale(int((self.px + self.x) - (self.bgImage.width / 2)), int((self.py + self.y) - (self.bgImage.height / 2)))
+        nmax = sc.scale(int((self.px + self.x) + (self.bgImage.width / 2)), int((self.py + self.y) + (self.bgImage.width / 2)))
         self.width_range = [int(nmin[0]), int(nmax[0])]
         self.height_range = [int(nmin[1]), int(nmax[1])]
 
@@ -87,16 +87,16 @@ class GameMenu(Scene):
 
     def __init__(self):
         super().__init__()
-        global x, y, title
-        title.position = x * 0.04, y * 0.94
+        global title
+        title.position = reswidth * 0.04, resheight * 0.94
         self.add(title)
         modeBoxes = []
         for modeName, mode in modes.gamemodes.items():
             modeBox = GameModeBox(mode)
             modeBoxes.append(modeBox)
         for i in range(len(modeBoxes)):
-            modeBoxes[i].x = ((x * 0.8) // 4) * (((i + 1) / 4) - ((i) // 4)) * 4
-            modeBoxes[i].y = y * (0.6 - (i // 4) * 0.47)
+            modeBoxes[i].x = ((reswidth * 0.8) // 4) * (((i + 1) / 4) - ((i) // 4)) * 4
+            modeBoxes[i].y = resheight * (0.6 - (i // 4) * 0.47)
             modeBoxes[i].delay = 2 + i
             modeBoxes[i].update_positions()
             self.add(modeBoxes[i])
