@@ -22,3 +22,6 @@ def scale(x, y):
     # This module and function is exclusively for caluclating scaled coordinates when the window is maximised or minimised. 
     # This function will return a scaled x and y coordinate pair from a x and y pair true to the original resolution
     
+
+    # TODO: This all messes up when res is changed in settings, because settings res writes directly to config file, and config file 
+    # TODO: settings are used to calculate current resolution. This can be remedied by not pulling res settings directly from config file.
