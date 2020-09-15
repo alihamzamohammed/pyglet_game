@@ -74,7 +74,8 @@ class smallButton(Layer):
         if self.active:
             self.bgImage.image = pyglet.resource.image("smallButtonClicked.png")
             self.lbl.element.color = (0, 0, 0, 255)
-        elif x in range(self.width_range[0], self.width_range[1]) and y in range(self.height_range[0], self.height_range[1]):
+        #elif x in range(self.width_range[0], self.width_range[1]) and y in range(self.height_range[0], self.height_range[1]):
+        elif self.bgImage.contains(x, y):
             self.bgImage.image = pyglet.resource.image("smallButtonHovered.png")
             self.lbl.element.color = (255, 255, 255, 255)
         else:
@@ -82,7 +83,8 @@ class smallButton(Layer):
             self.lbl.element.color = (255, 255, 255, 255)
 
     def on_mouse_press(self, x, y, buttons, modifiers):
-        if x in range(self.width_range[0], self.width_range[1]) and y in range(self.height_range[0], self.height_range[1]):
+        #if x in range(self.width_range[0], self.width_range[1]) and y in range(self.height_range[0], self.height_range[1]):
+        if self.bgImage.contains(x, y):
             self.bgImage.image = pyglet.resource.image("smallButtonClicked.png")
             self.active = True
             self.lbl.element.color = (0, 0, 0, 255)
