@@ -15722,3 +15722,16 @@ INFO: Item pack Transparency Pack at path items//transparencyPack has no declare
 DEBUG: Loading finished, displaying Main Menu
 WARNING: Game mode test1.py is not properly structured, game mode will not be loaded!
 INFO: Item pack Transparency Pack at path items//transparencyPack has no declared items.
+
+DEBUG: New execution, at: 2020-09-15 14:01:26.070478
+DEBUG: Init resources
+DEBUG: Starting game.
+DEBUG: Resolution is 1280x720
+DEBUG: Fullscreen is disabled
+DEBUG: Starting game loading!
+DEBUG: Init levels
+DEBUG: Init game modes
+WARNING: Game mode test1.py is not properly structured, game mode will not be loaded!
+DEBUG: Init items
+INFO: Item pack Transparency Pack at path items//transparencyPack has no declared items.
+DEBUG: Loading finished, displaying Main Menu
