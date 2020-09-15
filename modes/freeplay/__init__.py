@@ -16,6 +16,7 @@ class PlatformerController(actions.Action):
     slowdownthreshold = [0, 0]
     active = False
     slowdown = False
+    global RIGHTKEY, LEFTKEY, JUMPKEY
     RIGHTKEY = cfg.configuration["Controls"]["right"]
     LEFTKEY = cfg.configuration["Controls"]["left"]
     JUMPKEY = cfg.configuration["Controls"]["jump"]
@@ -32,7 +33,7 @@ class PlatformerController(actions.Action):
         vx, vy = self.target.velocity
 
         if not self.slowdown:
-            if keyboard[k.D] > 0 or keyboard[k.A] > 0:
+            if keyboard[RIGHTKEY] > 0 or keyboard[LEFTKEY] > 0:
                 self.active = True
                 self.slowdown = False
             else:
@@ -40,14 +41,14 @@ class PlatformerController(actions.Action):
                 self.slowdown = True
 
             if self.active:
-                vx = (keyboard[k.D] - keyboard[k.A]) * self.MOVE_SPEED
+                vx = (keyboard[RIGHTKEY] - keyboard[LEFTKEY]) * self.MOVE_SPEED
                 if self.slowdownthreshold[0] < 0.9:
                     self.slowdownthreshold[0] += 0.1
         else:
             if not self.slowdownthreshold[0] == 0:
                 self.slowdownthreshold[1] = self.slowdownthreshold[0]
                 self.slowdownthreshold[0] = 0
-            if keyboard[k.D] > 0 or keyboard[k.A] > 0:
+            if keyboard[RIGHTKEY] > 0 or keyboard[LEFTKEY] > 0:
                 self.active = True
                 self.slowdown = False
             elif vx == 0:
@@ -91,7 +92,8 @@ class PlatformerController(actions.Action):
 
     #@bounce_modifier
     def bounce(self, value, original):
-        if self.on_ground and keyboard[k.SPACE]:
+        global JUMPKEY
+        if self.on_ground and keyboard[JUMPKEY]:
             return value
         else:
             return original
