@@ -58,8 +58,10 @@ class MainMenuButton(layer.Layer):
 
     def setWH(self, dt):
         x, y = director.window.width, director.window.height
-        nmin = sc.scale(int((x / 2) - (self.bgImage.width / 2)), int((y * (self.TOPBTNPOS - (0.16 * (self.buttonorder - 1)))) - (self.bgImage.height / 2)))
-        nmax = sc.scale(int((x / 2) + (self.bgImage.width / 2)), int((y * (self.TOPBTNPOS - (0.16 * (self.buttonorder - 1)))) + (self.bgImage.height / 2)))
+        #nmin = sc.scale(int((x / 2) - (self.bgImage.width / 2)), int((y * (self.TOPBTNPOS - (0.16 * (self.buttonorder - 1)))) - (self.bgImage.height / 2)))
+        #nmax = sc.scale(int((x / 2) + (self.bgImage.width / 2)), int((y * (self.TOPBTNPOS - (0.16 * (self.buttonorder - 1)))) + (self.bgImage.height / 2)))
+        nmin = sc.scale(int(self.x - (self.bgImage.width / 2)), int(self.y - (self.bgImage.height / 2)))
+        nmax = sc.scale(int(self.x + (self.bgImage.width / 2)), int(self.y + (self.bgImage.height / 2)))
         self.width_range = [int(nmin[0]), int(nmax[0])]
         self.height_range = [int(nmin[1]), int(nmax[1])]
 
