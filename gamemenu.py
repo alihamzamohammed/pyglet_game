@@ -38,6 +38,7 @@ class GameMenu(Scene):
             modeBoxes[i].x = ((x * 0.8) // 4) * (((i + 1) / 4) - ((i) // 4)) * 4
             modeBoxes[i].y = y * (0.6 - (i // 4) * 0.47)
             modeBoxes[i].delay = 2 + i
+            modeBoxes[i].update_positions()
             self.add(modeBoxes[i])
             for child in modeBoxes[i].get_children():
                 child.do(FadeOut(0.01) + Delay(modeBoxes[i].delay / 4) + FadeIn(0.5))
@@ -71,22 +72,27 @@ class GameModeBox(Layer):
 
     def __init__(self, gameMode):
         super().__init__()
-        bg = Sprite("gameBox.png")
-        thumbnail = Sprite(gameMode.thumbnail)
-        self.width = bg.width
-        self.height = bg.height
-        thumbnail.x = self.x
-        thumbnail.y = self.y * 0.6
-        gmTitle = Label(gameMode.name)
-        gmTitle.x = self.x / 2
-        gmTitle.y = self.y * 0.1
+        self.bg = Sprite("gameBox.png")
+        self.thumbnail = Sprite(gameMode.thumbnail)
+        self.width = self.bg.width
+        self.height = self.bg.height
+        self.thumbnail.x = self.x
+        self.thumbnail.y = self.y * 0.6
+        #self.thumbnail.anchor_x = 0 - (self.thumbnail.width / 2)
+        #self.thumbnail.anchor_y = 0 - (self.thumbnail.height / 2)
+        self.gmTitle = Label(gameMode.name, color=(0, 0, 0, 255), font_size=20, anchor_x="center", anchor_y="center")
+        self.gmTitle.x = self.x / 2
+        self.gmTitle.y = self.y * 0.1
         self.delay = 0
-        self.add(thumbnail, z=1)
-        self.add(gmTitle, z=1)
-        self.add(bg, z=0)
+        self.add(self.thumbnail, z=1)
+        self.add(self.gmTitle, z=1)
+        self.add(self.bg, z=0)
     
-    #def on_enter(self):
-    #    super().on_enter()
+    def update_positions(self):
+        self.thumbnail.x = 0
+        self.thumbnail.y = 20
+        self.gmTitle.x = -30
+        self.gmTitle.y = -100
 
     class ExtendedInfo(Layer):
         pass
