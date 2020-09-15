@@ -29,20 +29,19 @@ class GameMenu(Scene):
         global x, y, title
         title.position = x * 0.04, y * 0.94
         self.add(title)
-        #gameModeSelection = GameModeSelection()
-        #self.add(gameModeSelection)
         modeBoxes = []
         for modeName, mode in modes.gamemodes.items():
             modeBox = GameModeBox()
-            #modeBox.position = (x * 0.045) + (modeBox.width / 2), y * 0.6            
             modeBoxes.append(modeBox)
         for i in range(len(modeBoxes)):
             modeBoxes[i].x = ((x * 0.8) // 4) * (((i + 1) / 4) - ((i) // 4)) * 4
-            #print((director.window.width * 0.9) / 4) * (((i + 1) / 4) - ((i) // 4) * 4)
-            #print(str(((i+1)/4)-(i//4)))
-            #print((x*0.9)//4)
             modeBoxes[i].y = y * (0.6 - (i // 4) * 0.47)
+            modeBoxes[i].delay = 2 + i
             self.add(modeBoxes[i])
+            for child in modeBoxes[i].get_children():
+                child.do(FadeOut(0.01) + Delay(modeBoxes[i].delay / 4) + FadeIn(0.5))
+
+            #modeBoxes[i].do(Delay(0.1 + (i / 2)) + FadeIn(0.5))
 
     def on_enter(self):
         super().on_enter()
@@ -74,7 +73,11 @@ class GameModeBox(Layer):
         bg = Sprite("gameBox.png")
         self.width = bg.width
         self.height = bg.height
+        self.delay = 0
         self.add(bg)
+    
+    #def on_enter(self):
+    #    super().on_enter()
 
     class ExtendedInfo(Layer):
         pass
