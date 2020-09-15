@@ -35,7 +35,12 @@ class GameMenu(Scene):
 
 class GameModeSelection(Layer):
      
-     pass
+     def __init__(self):
+        super().__init__()
+        for modeName, mode in modes.gamemodes.items():
+            modeBox = GameModeBox()
+            
+
 
 class LevelSelection(Layer):
     pass
