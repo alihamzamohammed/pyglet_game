@@ -147,7 +147,7 @@ class GameModeBox(Layer):
         self.height = self.bg.height
         self.thumbnail.x = self.x
         self.thumbnail.y = self.y * 0.6
-        self.gmTitle = Label(gameMode.name, color=(0, 0, 0, 255), font_size=20, anchor_x="center", anchor_y="center")
+        self.gmTitle = Label(gameMode.name, color=(0, 0, 0, 255), font_size=20, anchor_x="left", anchor_y="center")
         self.gmTitle.x = self.x / 2
         self.gmTitle.y = self.y * 0.1
         self.delay = 0
@@ -159,7 +159,7 @@ class GameModeBox(Layer):
     def update_positions(self):
         self.thumbnail.x = 0
         self.thumbnail.y = 20
-        self.gmTitle.x = -30
+        self.gmTitle.x = -100
         self.gmTitle.y = -104
         self.infoButton.x = 80
         self.infoButton.y = -107
