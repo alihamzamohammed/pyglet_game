@@ -2,23 +2,35 @@ import cocos
 import pyglet
 import os
 import logger
+import resources
 from cocos.director import director
 from cocos.scene import Scene
 from cocos.layer import *
+from cocos.actions import *
 import levels
 import modes
 import elements # TODO: All elements in this class will be moved over, maybe?
 
 x, y = director.window.width, director.window.height
 
+title = cocos.text.Label(
+    "Game Title",
+    font_name=resources.font[1],
+    font_size=50,
+    anchor_y="top",
+    anchor_x="center"
+)
+
 class GameMenu(Scene):
 
     def __init__(self):
         super().__init__()
-        global x, y
-        title = elements.titleLabel
-        title.position = x * 0.2, y * 0.8
+        global x, y, title
+        title.position = x * 0.18, y * 0.94
         self.add(title)
+
+    def on_enter(self):
+        super().on_enter()
 
 
 class GameModeSelection(Layer):
