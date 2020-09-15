@@ -59,14 +59,14 @@ class smallButton(Layer):
 
     def setWH(self, dt):
         x, y = director.window.width, director.window.height
-        scalex = x / reswidth
-        scaley = y / resheight
-        #self.width_range = [int((self.x * scalex) - ((self.bgImage.width * scalex) / 2)), int((self.x * scalex) + ((self.bgImage.width * scalex) / 2))]
-        #self.height_range = [int((self.y * scaley) - ((self.bgImage.height * scaley) / 2)), int((self.y * scaley) + ((self.bgImage.height * scaley) / 2))]
+        #scalex = x / reswidth
+        #scaley = y / resheight
         #self.width_range = [int(((self.px * scalex) + (self.x * scalex)) - ((self.bgImage.width * scalex) / 2)), int(((self.px * scalex) + (self.x * scalex)) + ((self.bgImage.width * scalex) / 2))]
         #self.height_range = [int(((self.py * scaley) + (self.y * scaley)) - ((self.bgImage.height * scaley) / 2)), int(((self.py * scaley) + (self.y * scaley)) + ((self.bgImage.height * scaley) / 2))]
-        nmin = director.get_virtual_coordinates(self.width_range[0], self.height_range[0])
-        nmax = director.get_virtual_coordinates(self.width_range[1], self.height_range[1])
+        #self.width_range = [int((self.px + self.x) - (self.bgImage.width / 2)), int((self.px + self.x) + (self.bgImage.width / 2))]
+        #self.height_range = [int((self.py + self.y) - (self.bgImage.height / 2)), int((self.py + self.y) + (self.bgImage.width / 2))]
+        nmin = director.get_virtual_coordinates(int((self.px + self.x) - (self.bgImage.width / 2)), int((self.py + self.y) - (self.bgImage.height / 2)))
+        nmax = director.get_virtual_coordinates(int((self.px + self.x) + (self.bgImage.width / 2)), int((self.py + self.y) + (self.bgImage.width / 2)))
         self.width_range = [int(nmin[0]), int(nmax[0])]
         self.height_range = [int(nmin[1]), int(nmax[1])]
 
