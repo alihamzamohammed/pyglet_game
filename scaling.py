@@ -3,7 +3,7 @@ import pyglet
 import cfg
 from cocos.director import director
 
-def scale(x, y, w, h):
+def scale(x, y):
     reswidth, resheight = [int(res) for res in cfg.configuration["Core"]["defaultres"].split("x")]
     winwidth, winheight = director.window.width, director.window.height
     newx, newy = 0, 0
