@@ -5,8 +5,47 @@ import logger
 from cocos.director import director
 from cocos.scene import Scene
 from cocos.layer import *
+import levels
+import modes
+import elements # TODO: All elements in this class will be moved over, maybe?
+
+x, y = director.window.width, director.window.height
 
 class GameMenu(Scene):
+
+    def __init__(self):
+        super().__init__()
+        global x, y
+        title = elements.gameTitle
+        title.position = x * 0.2, y * 0.8
+        self.add(elements.gameTitle)
+
+
+class GameModeSelection(Layer):
+     
+     pass
+
+class LevelSelection(Layer):
+    pass
+
+
+class LevelBox(Layer):
+
+    class ExtendedInfo(Layer):
+        pass
+
+class GameModeBox(Layer):
+
+    class ExtendedInfo(Layer):
+        pass
+
+
+
+
+
+
+
+"""     class GameMenu(Scene):
 
     def __init__(self):
         super().__init__()
@@ -48,4 +87,4 @@ class LevelBox(Layer):
 class GameModeBox(Layer):
 
     class ExtendedInfo(Layer):
-        pass
+        pass """
