@@ -10,6 +10,7 @@ from pyglet.window.key import symbol_string
 import resources
 import events
 import cfg
+import scaling as sc
 
 x, y = director.window.width, director.window.height
 reswidth, resheight = [int(res) for res in cfg.configuration["Core"]["defaultres"].split("x")]
@@ -57,10 +58,11 @@ class MainMenuButton(layer.Layer):
 
     def setWH(self, dt):
         x, y = director.window.width, director.window.height
-        scalex = x / reswidth
-        scaley = y / resheight
-        self.width_range = [int((x / 2) - ((self.bgImage.width * scalex) / 2)), int((x / 2) + ((self.bgImage.width * scalex) / 2))]
-        self.height_range = [int((y * (self.TOPBTNPOS - (0.16 * (self.buttonorder - 1)))) - ((self.bgImage.height * scaley) / 2)), int((y * (self.TOPBTNPOS - (0.16 * (self.buttonorder - 1)))) + ((self.bgImage.height * scaley) / 2))]
+        nmin = sc.scale(int((x / 2) - (self.bgImage.width / 2)), int((y * (self.TOPBTNPOS - (0.16 * (self.buttonorder - 1)))) - (self.bgImage.height / 2)))
+        nmax = sc.scale(int((x / 2) + (self.bgImage.width / 2)), int((y * (self.TOPBTNPOS - (0.16 * (self.buttonorder - 1)))) + (self.bgImage.height / 2)))
+        self.width_range = [int(nmin[0]), int(nmax[0])]
+        self.height_range = [int(nmin[1]), int(nmax[1])]
+
 
     def on_mouse_motion(self, x, y, dx, dy):
         if x in range(self.width_range[0], self.width_range[1]) and y in range(self.height_range[0], self.height_range[1]):
@@ -118,10 +120,11 @@ class TextBox(layer.Layer):
 
     def setWH(self, dt):
         x, y = director.window.width, director.window.height
-        scalex = x / reswidth
-        scaley = y / resheight
-        self.width_range = [int((self.parentx * scalex) + ((self.x * scalex) - (self.width * scalex) / 2)), int((self.parentx * scalex) + ((self.x * scalex) + (self.width * scalex) / 2))]
-        self.height_range = [int((self.parenty * scaley) + ((self.y * scaley) - (self.height * scaley) / 2)), int((self.parenty * scaley) + ((self.y * scaley) + (self.height * scaley) / 2))]
+        nmin = sc.scale(int((self.parentx + self.x) - (self.bgImage.width / 2)), int((self.parenty + self.y) - (self.bgImage.height / 2)))
+        nmax = sc.scale(int((self.parentx + self.x) + (self.bgImage.width / 2)), int((self.parenty + self.y) + (self.bgImage.height / 2)))
+        self.width_range = [int(nmin[0]), int(nmax[0])]
+        self.height_range = [int(nmin[1]), int(nmax[1])]
+
 
     def on_mouse_motion(self, x, y, dx, dy):
         if not self.active:
@@ -185,10 +188,10 @@ class sectionButton(layer.Layer):
 
     def setWH(self, dt):
         x, y = director.window.width, director.window.height
-        scalex = x / reswidth
-        scaley = y / resheight
-        self.width_range = [int((self.x * scalex) - ((self.bgImage.width * scalex) / 2)), int((self.x * scalex) + ((self.bgImage.width * scalex) / 2))]
-        self.height_range = [int((self.y * scaley) - ((self.bgImage.height * scaley) / 2)), int((self.y * scaley) + ((self.bgImage.height * scaley) / 2))]
+        nmin = sc.scale(int(self.x - (self.bgImage.width / 2)), int(self.y - (self.bgImage.height / 2)))
+        nmax = sc.scale(int(self.x + (self.bgImage.width / 2)), int(self.y + (self.bgImage.height / 2)))
+        self.width_range = [int(nmin[0]), int(nmax[0])]
+        self.height_range = [int(nmin[1]), int(nmax[1])]
 
     def on_mouse_motion(self, x, y, dx, dy):
         if self.active:
@@ -250,10 +253,10 @@ class ToggleButton(layer.Layer):
 
     def setWH(self, dt):
         x, y = director.window.width, director.window.height
-        scalex = x / reswidth
-        scaley = y / resheight
-        self.width_range = [int((self.px * scalex) + ((self.x * scalex) - (self.width * scalex) / 2)), int((self.px * scalex) + ((self.x * scalex) + (self.width * scalex) / 2))]
-        self.height_range = [int((self.py * scaley) + ((self.y * scaley) - (self.height * scaley) / 2)), int((self.py * scaley) + ((self.y * scaley) + (self.height * scaley) / 2))]
+        nmin = sc.scale(int(self.px + (self.x - (self.width / 2))), int(self.py + (self.y - (self.height / 2))))
+        nmax = sc.scale(int(self.px + (self.x + (self.width / 2))), int(self.py + (self.y + (self.height / 2))))
+        self.width_range = [int(nmin[0]), int(nmax[0])]
+        self.height_range = [int(nmin[1]), int(nmax[1])]
 
     def on_mouse_motion(self, x, y, dx, dy):
         if x in range(self.width_range[0], self.width_range[1]) and y in range(self.height_range[0], self.height_range[1]):
