@@ -28,7 +28,6 @@ def configRead(configFile):
         configuration[section] = temp
         temp = {}
     keyConfig = controlMapping(configuration)
-    print(keyConfig)
 
 
 def configWrite(configFile):
