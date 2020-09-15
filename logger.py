@@ -13,7 +13,7 @@ def addLog(message, level=loglevel["info"], first=False):
     elif level == loglevel["info"]:
         message = "INFO: " + message
     elif level == loglevel["debug"]:
-        if bool(cfg.configuration["Debug"]["logging"]) == True:
+        if cfg.configuration["Debug"]["logging"] == "True":
             message = "DEBUG: " + message
         else:
             return
