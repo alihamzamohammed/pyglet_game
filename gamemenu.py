@@ -154,8 +154,8 @@ class GameModeBox(Layer):
         self.thumbnail.y = 20
         self.gmTitle.x = -30
         self.gmTitle.y = -104
-        self.infoButton.x = 75
-        self.infoButton.y = -105
+        self.infoButton.x = 80
+        self.infoButton.y = -107
         self.infoButton.px = self.x
         self.infoButton.py = self.y
         
