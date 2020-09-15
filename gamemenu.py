@@ -3,6 +3,7 @@ import pyglet
 import os
 import logger
 import resources
+import cfg
 from cocos.director import director
 from cocos.scene import Scene
 from cocos.layer import *
@@ -15,9 +16,10 @@ import events
 import elements # TODO: All elements in this class will be moved over, maybe?
 
 x, y = director.window.width, director.window.height
+reswidth, resheight = [int(res) for res in cfg.configuration["Core"]["defaultres"].split("x")]
 
 title = cocos.text.Label(
-    "Game Title",
+    "Game Modes",
     font_name=resources.font[1],
     font_size=50,
     anchor_y="top",
@@ -57,13 +59,16 @@ class smallButton(Layer):
 
     def setWH(self, dt):
         x, y = director.window.width, director.window.height
-        #scalex = x / reswidth
-        #scaley = y / resheight
+        scalex = x / reswidth
+        scaley = y / resheight
         #self.width_range = [int((self.x * scalex) - ((self.bgImage.width * scalex) / 2)), int((self.x * scalex) + ((self.bgImage.width * scalex) / 2))]
         #self.height_range = [int((self.y * scaley) - ((self.bgImage.height * scaley) / 2)), int((self.y * scaley) + ((self.bgImage.height * scaley) / 2))]
-        self.width_range = [int((self.px + self.x) - (self.bgImage.width / 2)), int((self.px + self.x) + (self.bgImage.width / 2))]
-        self.height_range = [int((self.py + self.y) - (self.bgImage.height / 2)), int((self.py + self.y) + (self.bgImage.width / 2))]
-
+        #self.width_range = [int(((self.px * scalex) + (self.x * scalex)) - ((self.bgImage.width * scalex) / 2)), int(((self.px * scalex) + (self.x * scalex)) + ((self.bgImage.width * scalex) / 2))]
+        #self.height_range = [int(((self.py * scaley) + (self.y * scaley)) - ((self.bgImage.height * scaley) / 2)), int(((self.py * scaley) + (self.y * scaley)) + ((self.bgImage.height * scaley) / 2))]
+        nmin = director.get_virtual_coordinates(self.width_range[0], self.height_range[0])
+        nmax = director.get_virtual_coordinates(self.width_range[1], self.height_range[1])
+        self.width_range = [nmin[0], nmax[0]]
+        self.height_range = [nmin[1], nmax[1]]
 
     def on_mouse_motion(self, x, y, dx, dy):
         if self.active:
@@ -135,6 +140,8 @@ class GameModeBox(Layer):
         super().__init__()
         self.bg = Sprite("gameBox.png")
         self.thumbnail = Sprite(gameMode.thumbnail)
+        self.thumbnail.scale_x = self.thumbnail.width / 200
+        self.thumbnail.scale_y = self.thumbnail.height / 200
         self.infoButton = smallButton("i", events.mainmenuevents.backToMainMenu)
         self.width = self.bg.width
         self.height = self.bg.height
@@ -161,7 +168,14 @@ class GameModeBox(Layer):
         
 
     class ExtendedInfo(Layer):
-        pass
+
+        is_event_handler = True
+
+        def __init__(self):
+            super().__init__()
+            self.infoBox = Sprite("infoBox.png")
+            self.bgDimmer = ColorLayer(0, 0, 0, 100)
+
 
 
 
