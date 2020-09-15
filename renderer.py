@@ -91,6 +91,7 @@ class Renderer(Scene):
             bgLayer = ScrollableLayer()
             bgLayer.parallax = 0.5
             bgImage = cocos.sprite.Sprite(level.background)
+            # TODO: Add code to scale image to viewport, then tile it
             bgLayer.add(bgImage)
         elif isinstance(level.background, tuple):
             self.add(ColorLayer(level.background[0], level.background[1], level.background[2], level.background[3]), z=0)
