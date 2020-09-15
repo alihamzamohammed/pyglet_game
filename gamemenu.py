@@ -36,10 +36,11 @@ class GameMenu(Scene):
             modeBox = GameModeBox()
             #modeBox.position = (x * 0.045) + (modeBox.width / 2), y * 0.6            
             modeBoxes.append(modeBox)
-        for box in modeBoxes:
-            box.position = y * 0.6
-            self.add(box)
-
+        for i in range(len(modeBoxes)):
+            modeBoxes[i].x = x * ((i + 1) * 0.3)
+            print(i)
+            modeBoxes[i].y = y * (0.6 - (((i + 1) // 4) + 1) * 0.1)
+            self.add(modeBoxes[i])
 
     def on_enter(self):
         super().on_enter()
@@ -47,16 +48,13 @@ class GameMenu(Scene):
 
 class GameModeSelection(Layer):
      
-     def __init__(self):
+    def __init__(self):
         super().__init__()
-        global x, y
-        for modeName, mode in modes.gamemodes.items():
-            modeBox = GameModeBox()
-            modeBox.position = (x * 0.18) + (self.width / 2), y * 0.4
-            self.add(modeBox)
-            
-
-
+        # global x, y
+        # for modeName, mode in modes.gamemodes.items():
+        #     modeBox = GameModeBox()
+        #     modeBox.position = (x * 0.18) + (self.width / 2), y * 0.4
+        #     self.add(modeBox)    
 
 class LevelSelection(Layer):
     pass
@@ -75,8 +73,6 @@ class GameModeBox(Layer):
         self.width = bg.width
         self.height = bg.height
         self.add(bg)
-
-
 
     class ExtendedInfo(Layer):
         pass
