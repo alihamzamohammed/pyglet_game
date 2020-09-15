@@ -17,9 +17,9 @@ class PlatformerController(actions.Action):
     active = False
     slowdown = False
     global RIGHTKEY, LEFTKEY, JUMPKEY
-    RIGHTKEY = cfg.configuration["Controls"]["right"]
-    LEFTKEY = cfg.configuration["Controls"]["left"]
-    JUMPKEY = cfg.configuration["Controls"]["jump"]
+    RIGHTKEY = cfg.keyConfig["right"]
+    LEFTKEY = cfg.keyConfig["left"]
+    JUMPKEY = cfg.keyConfig["jump"]
 
     def start(self):
         self.target.velocity = (0, 0)

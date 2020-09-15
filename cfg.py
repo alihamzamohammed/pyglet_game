@@ -2,20 +2,22 @@ from pyglet.window import key as k
 
 def controlMapping(configFile):
     global keys
+    keyConfig = {}
     if type(configFile) is not dict:
         return "Wrong file passed"
     for i in list(configFile["Controls"].keys()):
-        if configFile["Controls"][i] in keys:
-            configFile["Controls"][i] = keys[i.upper()]
+        if configFile["Controls"][i].upper() in keys:
+            keyConfig[i] = keys[configFile["Controls"][i].upper()]
         else:
             print("WARNING: Key " + configFile["Controls"][i] + " is not a valid key binding!")
-            configFile["Controls"][i] = keys["F20"] 
+            keyConfig[i] = keys["F20"] 
             # Assigns random key here. This key cannot be pressed under normal circumstances, but means the game does not error out because there is an empty keybind
-    return configFile
+    return keyConfig
 
 def configRead(configFile):
     import configparser
     global configuration
+    global keyConfig
     from pyglet.window import key
     temp = {}
     conf = configparser.ConfigParser()
@@ -25,10 +27,9 @@ def configRead(configFile):
             temp[option] = conf.get(section, option)
         configuration[section] = temp
         temp = {}
-    #print(configuration)
-    print(controlMapping(configuration))
-    #print(configuration)
-    # TODO: Add in dict string conversion to pyglet.window.key
+    keyConfig = controlMapping(configuration)
+    print(keyConfig)
+
 
 def configWrite(configFile):
     import configparser
@@ -41,8 +42,9 @@ def configWrite(configFile):
 def init():
     import pyglet.window.key
     global configuration
+    global keyConfig
+    keyConfig = {}
     configuration = {}
-    # TODO: Add in dict string conversion to pyglet.window.key
     global loadedLevel
     loadedLevel = None
     global keys

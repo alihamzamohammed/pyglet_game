@@ -15620,3 +15620,51 @@ WARNING: Game mode test1.py is not properly structured, game mode will not be lo
 INFO: Init items
 INFO: Item pack Transparency Pack at path items//transparencyPack has no declared items.
 INFO: Loading finished, displaying Main Menu
+
+INFO: New execution, at: 2020-09-15 13:34:24.087453
+INFO: Init resources
+INFO: Starting game.
+INFO: Resolution is 1280x720
+INFO: Fullscreen is disabled
+INFO: Starting game loading!
+INFO: Init levels
+INFO: Init game modes
+WARNING: Game mode test1.py is not properly structured, game mode will not be loaded!
+INFO: Init items
+INFO: Item pack Transparency Pack at path items//transparencyPack has no declared items.
+INFO: Loading finished, displaying Main Menu
+
+INFO: New execution, at: 2020-09-15 13:41:48.416023
+INFO: Init resources
+INFO: Starting game.
+INFO: Resolution is 1280x720
+INFO: Fullscreen is disabled
+INFO: Starting game loading!
+INFO: Init levels
+INFO: Init game modes
+
+INFO: New execution, at: 2020-09-15 13:42:24.454210
+INFO: Init resources
+INFO: Starting game.
+INFO: Resolution is 1280x720
+INFO: Fullscreen is disabled
+INFO: Starting game loading!
+INFO: Init levels
+INFO: Init game modes
+WARNING: Game mode test1.py is not properly structured, game mode will not be loaded!
+INFO: Init items
+INFO: Item pack Transparency Pack at path items//transparencyPack has no declared items.
+INFO: Loading finished, displaying Main Menu
+
+INFO: New execution, at: 2020-09-15 13:44:01.995528
+INFO: Init resources
+INFO: Starting game.
+INFO: Resolution is 1280x720
+INFO: Fullscreen is disabled
+INFO: Starting game loading!
+INFO: Init levels
+INFO: Init game modes
+WARNING: Game mode test1.py is not properly structured, game mode will not be loaded!
+INFO: Init items
+INFO: Item pack Transparency Pack at path items//transparencyPack has no declared items.
+INFO: Loading finished, displaying Main Menu
