@@ -8,7 +8,7 @@ def controlMapping(configFile):
         if configFile["Controls"][i] in keys:
             configFile["Controls"][i] = keys[i.upper()]
         else:
-            print("WARNING: Key " + key + " is not a valid key binding!")
+            print("WARNING: Key " + configFile["Controls"][i] + " is not a valid key binding!")
             configFile["Controls"][i] = keys["F20"] 
             # Assigns random key here. This key cannot be pressed under normal circumstances, but means the game does not error out because there is an empty keybind
     return configFile
