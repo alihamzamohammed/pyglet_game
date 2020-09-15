@@ -31,7 +31,7 @@ class GameMenu(Scene):
         self.add(title)
         modeBoxes = []
         for modeName, mode in modes.gamemodes.items():
-            modeBox = GameModeBox()
+            modeBox = GameModeBox(mode)
             modeBoxes.append(modeBox)
         for i in range(len(modeBoxes)):
             modeBoxes[i].x = ((x * 0.8) // 4) * (((i + 1) / 4) - ((i) // 4)) * 4
@@ -68,7 +68,7 @@ class LevelBox(Layer):
 
 class GameModeBox(Layer):
 
-    def __init__(self):
+    def __init__(self, gameMode):
         super().__init__()
         bg = Sprite("gameBox.png")
         self.width = bg.width
