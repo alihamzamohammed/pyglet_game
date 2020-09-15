@@ -67,8 +67,8 @@ class smallButton(Layer):
         #self.height_range = [int(((self.py * scaley) + (self.y * scaley)) - ((self.bgImage.height * scaley) / 2)), int(((self.py * scaley) + (self.y * scaley)) + ((self.bgImage.height * scaley) / 2))]
         nmin = director.get_virtual_coordinates(self.width_range[0], self.height_range[0])
         nmax = director.get_virtual_coordinates(self.width_range[1], self.height_range[1])
-        self.width_range = [nmin[0], nmax[0]]
-        self.height_range = [nmin[1], nmax[1]]
+        self.width_range = [int(nmin[0]), int(nmax[0])]
+        self.height_range = [int(nmin[1]), int(nmax[1])]
 
     def on_mouse_motion(self, x, y, dx, dy):
         if self.active:
