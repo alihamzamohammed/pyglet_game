@@ -8,6 +8,7 @@ from cocos.scene import Scene
 from cocos.layer import *
 from cocos.actions import *
 from cocos.sprite import *
+from cocos.text import *
 import levels
 import modes
 import elements # TODO: All elements in this class will be moved over, maybe?
@@ -71,10 +72,18 @@ class GameModeBox(Layer):
     def __init__(self, gameMode):
         super().__init__()
         bg = Sprite("gameBox.png")
+        thumbnail = Sprite(gameMode.thumbnail)
         self.width = bg.width
         self.height = bg.height
+        thumbnail.x = self.x
+        thumbnail.y = self.y * 0.6
+        gmTitle = Label(gameMode.name)
+        gmTitle.x = self.x / 2
+        gmTitle.y = self.y * 0.1
         self.delay = 0
-        self.add(bg)
+        self.add(thumbnail, z=1)
+        self.add(gmTitle, z=1)
+        self.add(bg, z=0)
     
     #def on_enter(self):
     #    super().on_enter()
