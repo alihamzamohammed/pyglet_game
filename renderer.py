@@ -58,8 +58,10 @@ def loadLvl(level, gamemode):
         gamemoderun = player.do(gamemode.main())
 
     except Exception as e:
-        # TODO: logger.addLog("An error was caught rendering the level.\n" + e, logger.loglevel["error"])
-        print(e)
+        # TODO: 
+        logger.addLog("An error was caught rendering the level.\n" + e, logger.loglevel["error"])
+        raise e
+        #print(e)
 
 class Renderer(Scene):
 

@@ -22,7 +22,7 @@ showfps = True if cfg.configuration["Core"]["showfps"] == "True" else False
 director.init(width=reswidth, height=resheight, caption="Game", fullscreen=fullscreen, autoscale=True, resizable=True, vsync=vsync)
 director.set_show_FPS(showfps)
 
-logger.addLog("Init resources", logger.loglevel["info"])
+logger.addLog("Init resources", logger.loglevel["debug"])
 import resources
 resources.resourceLoad()
 
@@ -42,15 +42,15 @@ class Game(object):
     is_event_handler = True
 
     def startGame(self):
-        logger.addLog("Resolution is " + str(reswidth) + "x" + str(resheight), logger.loglevel["info"])
+        logger.addLog("Resolution is " + str(reswidth) + "x" + str(resheight), logger.loglevel["debug"])
         if fullscreen:
-            logger.addLog("Fullscreen is enabled", logger.loglevel["info"])
+            logger.addLog("Fullscreen is enabled", logger.loglevel["debug"])
         else:
-            logger.addLog("Fullscreen is disabled", logger.loglevel["info"])
+            logger.addLog("Fullscreen is disabled", logger.loglevel["debug"])
         director.run(mainmenu.loadingScreen())
 
     def progressFinished(self):
-        logger.addLog("Loading finished, displaying Main Menu", logger.loglevel["info"])
+        logger.addLog("Loading finished, displaying Main Menu", logger.loglevel["debug"])
         director.replace(mainmenu.MainMenuScreen())
 
     def playButtonClicked(self):
@@ -81,6 +81,6 @@ class Game(object):
         events.mainmenuevents.push_handlers(self)
 
 if __name__=="__main__":
-    logger.addLog("Starting game.", logger.loglevel["info"])
+    logger.addLog("Starting game.", logger.loglevel["debug"])
     game = Game()
     game.startGame()

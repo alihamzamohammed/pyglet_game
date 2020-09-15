@@ -3,7 +3,7 @@ import os
 import datetime
 
 logpath = ""
-loglevel = {"error": 0, "warning": 1, "info": 2}
+loglevel = {"error": 0, "warning": 1, "info": 2, "debug": -1}
 
 def addLog(message, level=loglevel["info"], first=False):
     if level == loglevel["error"]:
@@ -12,6 +12,11 @@ def addLog(message, level=loglevel["info"], first=False):
         message = "WARNING: " + message
     elif level == loglevel["info"]:
         message = "INFO: " + message
+    elif level == loglevel["debug"]:
+        if bool(cfg.configuration["Debug"]["logging"]) == True:
+            message = "DEBUG: " + message
+        else:
+            return
     if first == True:
         message = "\n" + message
     print(message)
@@ -29,4 +34,4 @@ def init():
     global loglevel
     if cfg.configuration["Core"]["log"] == "True":
         logpath = cfg.configuration["Core"]["loglocation"]
-    addLog("New execution, at: " + str(datetime.datetime.now()), loglevel["info"], True)
+    addLog("New execution, at: " + str(datetime.datetime.now()), loglevel["debug"], True)

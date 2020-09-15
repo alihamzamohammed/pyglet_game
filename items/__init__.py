@@ -43,7 +43,7 @@ class ItemPack():
         if not hasattr(self, "desc"):
             self.desc = "No description"
         if self.items == []:
-            logger.addLog("Item pack " + self.name + " at path " + self.folder + " has no declared items.")
+            logger.addLog("Item pack " + self.name + " at path " + self.folder + " has no declared items.", logger.loglevel["info"])
         if not hasattr(self, "background"):
             self.background = (100, 120, 150, 255)
 
