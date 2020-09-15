@@ -20,6 +20,10 @@ class GameMode():
             self.desc = modeModule.description
         else:
             self.desc = "No Description"
+        if hasattr(modeModule, "thumbnail"):
+            self.thumbnail = modeModule.thumbnail
+        else:
+            self.thumbnail = "defaultThumbnail.png"
         try:
             self.PlatformerController = modeModule.PlatformerController
         except:
