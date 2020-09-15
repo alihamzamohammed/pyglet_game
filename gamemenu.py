@@ -16,9 +16,9 @@ class GameMenu(Scene):
     def __init__(self):
         super().__init__()
         global x, y
-        title = elements.gameTitle
+        title = elements.titleLabel
         title.position = x * 0.2, y * 0.8
-        self.add(elements.gameTitle)
+        self.add(title)
 
 
 class GameModeSelection(Layer):
