@@ -11,6 +11,7 @@ from cocos.sprite import *
 from cocos.text import *
 import levels
 import modes
+import events
 import elements # TODO: All elements in this class will be moved over, maybe?
 
 x, y = director.window.width, director.window.height
@@ -74,18 +75,18 @@ class GameModeBox(Layer):
         super().__init__()
         self.bg = Sprite("gameBox.png")
         self.thumbnail = Sprite(gameMode.thumbnail)
+        self.infoButton = elements.smallButton("i", events.MainMenuEvents.backToMainMenu)
         self.width = self.bg.width
         self.height = self.bg.height
         self.thumbnail.x = self.x
         self.thumbnail.y = self.y * 0.6
-        #self.thumbnail.anchor_x = 0 - (self.thumbnail.width / 2)
-        #self.thumbnail.anchor_y = 0 - (self.thumbnail.height / 2)
         self.gmTitle = Label(gameMode.name, color=(0, 0, 0, 255), font_size=20, anchor_x="center", anchor_y="center")
         self.gmTitle.x = self.x / 2
         self.gmTitle.y = self.y * 0.1
         self.delay = 0
         self.add(self.thumbnail, z=1)
         self.add(self.gmTitle, z=1)
+        self.add(self.infoButton, z=1)
         self.add(self.bg, z=0)
     
     def update_positions(self):
@@ -93,6 +94,8 @@ class GameModeBox(Layer):
         self.thumbnail.y = 20
         self.gmTitle.x = -30
         self.gmTitle.y = -100
+        self.infoButton.x = 30
+        self.infoButton.y = -100
 
     class ExtendedInfo(Layer):
         pass
