@@ -4,6 +4,7 @@ from cocos import *
 import importlib
 from pyglet.window import key as k
 from renderer import scroller, keyboard
+import cfg
 
 class PlatformerController(actions.Action):
 
@@ -15,6 +16,9 @@ class PlatformerController(actions.Action):
     slowdownthreshold = [0, 0]
     active = False
     slowdown = False
+    RIGHTKEY = cfg.configuration["Controls"]["right"]
+    LEFTKEY = cfg.configuration["Controls"]["left"]
+    JUMPKEY = cfg.configuration["Controls"]["jump"]
 
     def start(self):
         self.target.velocity = (0, 0)
