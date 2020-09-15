@@ -7,6 +7,7 @@ from cocos.director import director
 from cocos.scene import Scene
 from cocos.layer import *
 from cocos.actions import *
+from cocos.sprite import *
 import levels
 import modes
 import elements # TODO: All elements in this class will be moved over, maybe?
@@ -18,7 +19,7 @@ title = cocos.text.Label(
     font_name=resources.font[1],
     font_size=50,
     anchor_y="top",
-    anchor_x="center"
+    anchor_x="left"
 )
 
 class GameMenu(Scene):
@@ -26,8 +27,19 @@ class GameMenu(Scene):
     def __init__(self):
         super().__init__()
         global x, y, title
-        title.position = x * 0.18, y * 0.94
+        title.position = x * 0.04, y * 0.94
         self.add(title)
+        #gameModeSelection = GameModeSelection()
+        #self.add(gameModeSelection)
+        modeBoxes = []
+        for modeName, mode in modes.gamemodes.items():
+            modeBox = GameModeBox()
+            #modeBox.position = (x * 0.045) + (modeBox.width / 2), y * 0.6            
+            modeBoxes.append(modeBox)
+        for box in modeBoxes:
+            box.position = y * 0.6
+            self.add(box)
+
 
     def on_enter(self):
         super().on_enter()
@@ -37,9 +49,13 @@ class GameModeSelection(Layer):
      
      def __init__(self):
         super().__init__()
+        global x, y
         for modeName, mode in modes.gamemodes.items():
             modeBox = GameModeBox()
+            modeBox.position = (x * 0.18) + (self.width / 2), y * 0.4
+            self.add(modeBox)
             
+
 
 
 class LevelSelection(Layer):
@@ -52,6 +68,15 @@ class LevelBox(Layer):
         pass
 
 class GameModeBox(Layer):
+
+    def __init__(self):
+        super().__init__()
+        bg = Sprite("gameBox.png")
+        self.width = bg.width
+        self.height = bg.height
+        self.add(bg)
+
+
 
     class ExtendedInfo(Layer):
         pass

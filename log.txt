@@ -15959,3 +15959,227 @@ WARNING: PlatformerController does not exist in game mode test2, game mode will 
 DEBUG: Init items
 INFO: Item pack Transparency Pack at path items//transparencyPack has no declared items.
 DEBUG: Loading finished, displaying Main Menu
+
+DEBUG: New execution, at: 2020-09-15 16:03:53.272615
+DEBUG: Init resources
+DEBUG: Starting game.
+DEBUG: Resolution is 1280x720
+DEBUG: Fullscreen is disabled
+DEBUG: Starting game loading!
+DEBUG: Init levels
+DEBUG: Init game modes
+WARNING: Game mode test1.py is not properly structured, game mode will not be loaded!
+WARNING: PlatformerController does not exist in game mode test2, game mode will not be loaded!
+DEBUG: Init items
+INFO: Item pack Transparency Pack at path items//transparencyPack has no declared items.
+DEBUG: Loading finished, displaying Main Menu
+
+DEBUG: New execution, at: 2020-09-15 16:04:38.228962
+DEBUG: Init resources
+DEBUG: Starting game.
+DEBUG: Resolution is 1280x720
+DEBUG: Fullscreen is disabled
+DEBUG: Starting game loading!
+DEBUG: Init levels
+DEBUG: Init game modes
+WARNING: Game mode test1.py is not properly structured, game mode will not be loaded!
+WARNING: PlatformerController does not exist in game mode test2, game mode will not be loaded!
+DEBUG: Init items
+INFO: Item pack Transparency Pack at path items//transparencyPack has no declared items.
+DEBUG: Loading finished, displaying Main Menu
+
+DEBUG: New execution, at: 2020-09-15 16:05:39.496186
+DEBUG: Init resources
+DEBUG: Starting game.
+DEBUG: Resolution is 1280x720
+DEBUG: Fullscreen is disabled
+DEBUG: Starting game loading!
+DEBUG: Init levels
+DEBUG: Init game modes
+WARNING: Game mode test1.py is not properly structured, game mode will not be loaded!
+WARNING: PlatformerController does not exist in game mode test2, game mode will not be loaded!
+DEBUG: Init items
+INFO: Item pack Transparency Pack at path items//transparencyPack has no declared items.
+DEBUG: Loading finished, displaying Main Menu
+
+DEBUG: New execution, at: 2020-09-15 16:06:31.980866
+DEBUG: Init resources
+DEBUG: Starting game.
+DEBUG: Resolution is 1280x720
+DEBUG: Fullscreen is disabled
+DEBUG: Starting game loading!
+DEBUG: Init levels
+DEBUG: Init game modes
+WARNING: Game mode test1.py is not properly structured, game mode will not be loaded!
+WARNING: PlatformerController does not exist in game mode test2, game mode will not be loaded!
+DEBUG: Init items
+INFO: Item pack Transparency Pack at path items//transparencyPack has no declared items.
+DEBUG: Loading finished, displaying Main Menu
+
+DEBUG: New execution, at: 2020-09-15 16:08:49.604800
+DEBUG: Init resources
+DEBUG: Starting game.
+DEBUG: Resolution is 1280x720
+DEBUG: Fullscreen is disabled
+DEBUG: Starting game loading!
+DEBUG: Init levels
+DEBUG: Init game modes
+WARNING: Game mode test1.py is not properly structured, game mode will not be loaded!
+WARNING: PlatformerController does not exist in game mode test2, game mode will not be loaded!
+DEBUG: Init items
+INFO: Item pack Transparency Pack at path items//transparencyPack has no declared items.
+DEBUG: Loading finished, displaying Main Menu
+
+DEBUG: New execution, at: 2020-09-15 16:12:14.782728
+DEBUG: Init resources
+DEBUG: Starting game.
+DEBUG: Resolution is 1280x720
+DEBUG: Fullscreen is disabled
+DEBUG: Starting game loading!
+DEBUG: Init levels
+DEBUG: Init game modes
+WARNING: Game mode test1.py is not properly structured, game mode will not be loaded!
+WARNING: PlatformerController does not exist in game mode test2, game mode will not be loaded!
+DEBUG: Init items
+INFO: Item pack Transparency Pack at path items//transparencyPack has no declared items.
+DEBUG: Loading finished, displaying Main Menu
+
+DEBUG: New execution, at: 2020-09-15 16:12:26.511947
+DEBUG: Init resources
+DEBUG: Starting game.
+DEBUG: Resolution is 1280x720
+DEBUG: Fullscreen is disabled
+DEBUG: Starting game loading!
+DEBUG: Init levels
+DEBUG: Init game modes
+WARNING: Game mode test1.py is not properly structured, game mode will not be loaded!
+WARNING: PlatformerController does not exist in game mode test2, game mode will not be loaded!
+DEBUG: Init items
+INFO: Item pack Transparency Pack at path items//transparencyPack has no declared items.
+DEBUG: Loading finished, displaying Main Menu
+
+DEBUG: New execution, at: 2020-09-15 16:12:44.786559
+DEBUG: Init resources
+DEBUG: Starting game.
+DEBUG: Resolution is 1280x720
+DEBUG: Fullscreen is disabled
+DEBUG: Starting game loading!
+DEBUG: Init levels
+DEBUG: Init game modes
+WARNING: Game mode test1.py is not properly structured, game mode will not be loaded!
+WARNING: PlatformerController does not exist in game mode test2, game mode will not be loaded!
+DEBUG: Init items
+INFO: Item pack Transparency Pack at path items//transparencyPack has no declared items.
+DEBUG: Loading finished, displaying Main Menu
+
+DEBUG: New execution, at: 2020-09-15 16:12:48.634289
+DEBUG: Init resources
+DEBUG: Starting game.
+DEBUG: Resolution is 1280x720
+DEBUG: Fullscreen is disabled
+DEBUG: Starting game loading!
+DEBUG: Init levels
+DEBUG: Init game modes
+WARNING: Game mode test1.py is not properly structured, game mode will not be loaded!
+WARNING: PlatformerController does not exist in game mode test2, game mode will not be loaded!
+DEBUG: Init items
+INFO: Item pack Transparency Pack at path items//transparencyPack has no declared items.
+DEBUG: Loading finished, displaying Main Menu
+
+DEBUG: New execution, at: 2020-09-15 16:13:09.135119
+DEBUG: Init resources
+DEBUG: Starting game.
+DEBUG: Resolution is 1280x720
+DEBUG: Fullscreen is disabled
+DEBUG: Starting game loading!
+DEBUG: Init levels
+DEBUG: Init game modes
+WARNING: Game mode test1.py is not properly structured, game mode will not be loaded!
+WARNING: PlatformerController does not exist in game mode test2, game mode will not be loaded!
+DEBUG: Init items
+INFO: Item pack Transparency Pack at path items//transparencyPack has no declared items.
+DEBUG: Loading finished, displaying Main Menu
+
+DEBUG: New execution, at: 2020-09-15 16:13:24.719801
+DEBUG: Init resources
+DEBUG: Starting game.
+DEBUG: Resolution is 1280x720
+DEBUG: Fullscreen is disabled
+DEBUG: Starting game loading!
+DEBUG: Init levels
+DEBUG: Init game modes
+WARNING: Game mode test1.py is not properly structured, game mode will not be loaded!
+WARNING: PlatformerController does not exist in game mode test2, game mode will not be loaded!
+DEBUG: Init items
+INFO: Item pack Transparency Pack at path items//transparencyPack has no declared items.
+DEBUG: Loading finished, displaying Main Menu
+
+DEBUG: New execution, at: 2020-09-15 16:14:01.683540
+DEBUG: Init resources
+DEBUG: Starting game.
+DEBUG: Resolution is 1280x720
+DEBUG: Fullscreen is disabled
+DEBUG: Starting game loading!
+DEBUG: Init levels
+DEBUG: Init game modes
+WARNING: Game mode test1.py is not properly structured, game mode will not be loaded!
+WARNING: PlatformerController does not exist in game mode test2, game mode will not be loaded!
+DEBUG: Init items
+INFO: Item pack Transparency Pack at path items//transparencyPack has no declared items.
+DEBUG: Loading finished, displaying Main Menu
+
+DEBUG: New execution, at: 2020-09-15 16:16:05.709552
+DEBUG: Init resources
+DEBUG: Starting game.
+DEBUG: Resolution is 1280x720
+DEBUG: Fullscreen is disabled
+DEBUG: Starting game loading!
+DEBUG: Init levels
+DEBUG: Init game modes
+WARNING: Game mode test1.py is not properly structured, game mode will not be loaded!
+WARNING: PlatformerController does not exist in game mode test2, game mode will not be loaded!
+DEBUG: Init items
+INFO: Item pack Transparency Pack at path items//transparencyPack has no declared items.
+DEBUG: Loading finished, displaying Main Menu
+
+DEBUG: New execution, at: 2020-09-15 16:16:38.464653
+DEBUG: Init resources
+DEBUG: Starting game.
+DEBUG: Resolution is 1280x720
+DEBUG: Fullscreen is disabled
+DEBUG: Starting game loading!
+DEBUG: Init levels
+DEBUG: Init game modes
+WARNING: Game mode test1.py is not properly structured, game mode will not be loaded!
+WARNING: PlatformerController does not exist in game mode test2, game mode will not be loaded!
+DEBUG: Init items
+INFO: Item pack Transparency Pack at path items//transparencyPack has no declared items.
+DEBUG: Loading finished, displaying Main Menu
+
+DEBUG: New execution, at: 2020-09-15 16:16:53.495775
+DEBUG: Init resources
+DEBUG: Starting game.
+DEBUG: Resolution is 1280x720
+DEBUG: Fullscreen is disabled
+DEBUG: Starting game loading!
+DEBUG: Init levels
+DEBUG: Init game modes
+WARNING: Game mode test1.py is not properly structured, game mode will not be loaded!
+WARNING: PlatformerController does not exist in game mode test2, game mode will not be loaded!
+DEBUG: Init items
+INFO: Item pack Transparency Pack at path items//transparencyPack has no declared items.
+DEBUG: Loading finished, displaying Main Menu
+
+DEBUG: New execution, at: 2020-09-15 16:17:05.284822
+DEBUG: Init resources
+DEBUG: Starting game.
+DEBUG: Resolution is 1280x720
+DEBUG: Fullscreen is disabled
+DEBUG: Starting game loading!
+DEBUG: Init levels
+DEBUG: Init game modes
+WARNING: Game mode test1.py is not properly structured, game mode will not be loaded!
+WARNING: PlatformerController does not exist in game mode test2, game mode will not be loaded!
+DEBUG: Init items
+INFO: Item pack Transparency Pack at path items//transparencyPack has no declared items.
+DEBUG: Loading finished, displaying Main Menu
