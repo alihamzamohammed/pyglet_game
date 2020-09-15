@@ -25,7 +25,7 @@ title = cocos.text.Label(
 )
 
 """Small button. A button for placing in small spaces, or to activate non-crucial functions"""
-class smallButton(layer.Layer):
+class smallButton(Layer):
 
     is_event_handler = True
 
@@ -41,9 +41,13 @@ class smallButton(layer.Layer):
 
         self.x = 0
         self.y = 0
+        self.px = 0
+        self.py = 0
 
-        self.width_range = [int(self.x - (self.bgImage.width / 2)), int(self.x + (self.bgImage.width / 2))]
-        self.height_range = [int(self.y - (self.bgImage.height / 2)), int(self.y + (self.bgImage.height / 2))]
+        #self.width_range = [int(self.x - (self.bgImage.width / 2)), int(self.x + (self.bgImage.width / 2))]
+        #self.height_range = [int(self.y - (self.bgImage.height / 2)), int(self.y + (self.bgImage.height / 2))]
+        self.width_range = [int((self.px + self.x) - (self.bgImage.width / 2)), int((self.px + self.x) + (self.bgImage.width / 2))]
+        self.height_range = [int((self.py + self.y) - (self.bgImage.height / 2)), int((self.py + self.y) + (self.bgImage.width / 2))]
 
         self.add(self.bgImage)
         self.add(self.lbl)
@@ -53,17 +57,20 @@ class smallButton(layer.Layer):
 
     def setWH(self, dt):
         x, y = director.window.width, director.window.height
-        scalex = x / reswidth
-        scaley = y / resheight
-        self.width_range = [int((self.x * scalex) - ((self.bgImage.width * scalex) / 2)), int((self.x * scalex) + ((self.bgImage.width * scalex) / 2))]
-        self.height_range = [int((self.y * scaley) - ((self.bgImage.height * scaley) / 2)), int((self.y * scaley) + ((self.bgImage.height * scaley) / 2))]
+        #scalex = x / reswidth
+        #scaley = y / resheight
+        #self.width_range = [int((self.x * scalex) - ((self.bgImage.width * scalex) / 2)), int((self.x * scalex) + ((self.bgImage.width * scalex) / 2))]
+        #self.height_range = [int((self.y * scaley) - ((self.bgImage.height * scaley) / 2)), int((self.y * scaley) + ((self.bgImage.height * scaley) / 2))]
+        self.width_range = [int((self.px + self.x) - (self.bgImage.width / 2)), int((self.px + self.x) + (self.bgImage.width / 2))]
+        self.height_range = [int((self.py + self.y) - (self.bgImage.height / 2)), int((self.py + self.y) + (self.bgImage.width / 2))]
+
 
     def on_mouse_motion(self, x, y, dx, dy):
         if self.active:
             self.bgImage.image = pyglet.resource.image("smallButtonClicked.png")
             self.lbl.element.color = (0, 0, 0, 255)
         elif x in range(self.width_range[0], self.width_range[1]) and y in range(self.height_range[0], self.height_range[1]):
-            self.bgImage.image = pyglet.resource.image("smallHovered.png")
+            self.bgImage.image = pyglet.resource.image("smallButtonHovered.png")
             self.lbl.element.color = (255, 255, 255, 255)
         else:
             self.bgImage.image = pyglet.resource.image("smallButton.png")
@@ -71,7 +78,7 @@ class smallButton(layer.Layer):
 
     def on_mouse_press(self, x, y, buttons, modifiers):
         if x in range(self.width_range[0], self.width_range[1]) and y in range(self.height_range[0], self.height_range[1]):
-            self.bgImage.image = pyglet.resource.image("smallClicked.png")
+            self.bgImage.image = pyglet.resource.image("smallButtonClicked.png")
             self.active = True
             self.lbl.element.color = (0, 0, 0, 255)
             self.eventName()
@@ -128,7 +135,7 @@ class GameModeBox(Layer):
         super().__init__()
         self.bg = Sprite("gameBox.png")
         self.thumbnail = Sprite(gameMode.thumbnail)
-        self.infoButton = smallButton("i", events.MainMenuEvents.backToMainMenu)
+        self.infoButton = smallButton("i", events.mainmenuevents.backToMainMenu)
         self.width = self.bg.width
         self.height = self.bg.height
         self.thumbnail.x = self.x
@@ -146,9 +153,12 @@ class GameModeBox(Layer):
         self.thumbnail.x = 0
         self.thumbnail.y = 20
         self.gmTitle.x = -30
-        self.gmTitle.y = -100
-        self.infoButton.x = 30
-        self.infoButton.y = -100
+        self.gmTitle.y = -104
+        self.infoButton.x = 75
+        self.infoButton.y = -105
+        self.infoButton.px = self.x
+        self.infoButton.py = self.y
+        
 
     class ExtendedInfo(Layer):
         pass
