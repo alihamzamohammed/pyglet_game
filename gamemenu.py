@@ -37,7 +37,7 @@ class GameMenu(Scene):
             #modeBox.position = (x * 0.045) + (modeBox.width / 2), y * 0.6            
             modeBoxes.append(modeBox)
         for i in range(len(modeBoxes)):
-            modeBoxes[i].x = ((x * 0.85) // 4) * (((i + 1) / 4) - ((i) // 4)) * 4
+            modeBoxes[i].x = ((x * 0.8) // 4) * (((i + 1) / 4) - ((i) // 4)) * 4
             #print((director.window.width * 0.9) / 4) * (((i + 1) / 4) - ((i) // 4) * 4)
             #print(str(((i+1)/4)-(i//4)))
             #print((x*0.9)//4)
