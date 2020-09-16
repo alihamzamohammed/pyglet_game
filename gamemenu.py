@@ -282,10 +282,10 @@ class ExtendedInfo(Layer):
         self.thumbnail.x = self.infoBox.x - ((self.infoBox.width / 2) * 0.55)
         self.thumbnail.y = self.infoBox.y
         self.title = Label(gameMode.name, anchor_x="center", anchor_y="center", font_size=39, color=(0, 0, 0, 255))
-        self.title.x = self.infoBox.x + ((self.infoBox.width / 2) * 0.4)
+        self.title.x = self.infoBox.x + ((self.infoBox.width / 2) * 0.42)
         self.title.y = self.infoBox.y + ((self.infoBox.height / 2) * 0.7)
-        self.desc = Label(gameMode.desc, anchor_x="center", anchor_y="top", font_size=17, multiline = True, width=(x * 0.36), height=(y * 0.2), color=(0, 0, 0, 255))
-        self.desc.x = self.infoBox.x + ((self.infoBox.width / 2) * 0.65)
+        self.desc = Label(gameMode.desc, anchor_x="center", anchor_y="top", font_size=17, multiline = True, width=(self.infoBox.width * 0.5), height=(self.infoBox.height * 0.4), color=(0, 0, 0, 255), align="center")
+        self.desc.x = self.infoBox.x + ((self.infoBox.width / 2) * 0.42)
         self.desc.y = self.infoBox.y + ((self.infoBox.height / 2) * 0.5)
         self.add(self.infoBox, z=5)
         self.add(self.bgDimmer, z=4)
