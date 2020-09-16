@@ -15,7 +15,7 @@ import time
 import logger
 logger.init()
 
-reswidth, resheight = [int(res) for res in cfg.configuration["Core"]["defaultres"].split("x")]
+reswidth, resheight = [int(res) for res in cfg.resolution.split("x")]
 fullscreen = True if cfg.configuration["Core"]["fullscreen"] == "True" else False
 vsync = True if cfg.configuration["Core"]["vsync"] == "True" else False
 showfps = True if cfg.configuration["Core"]["showfps"] == "True" else False

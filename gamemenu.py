@@ -18,7 +18,7 @@ import elements # TODO: All elements in this class will be moved over, maybe?
 import scaling as sc
 
 x, y = director.window.width, director.window.height
-reswidth, resheight = [int(res) for res in cfg.configuration["Core"]["defaultres"].split("x")]
+reswidth, resheight = [int(res) for res in cfg.resolution.split("x")]
 
 title = cocos.text.Label(
     "Game Modes",

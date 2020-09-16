@@ -18,6 +18,7 @@ def configRead(configFile):
     import configparser
     global configuration
     global keyConfig
+    global resolution
     from pyglet.window import key
     temp = {}
     conf = configparser.ConfigParser()
@@ -28,6 +29,7 @@ def configRead(configFile):
         configuration[section] = temp
         temp = {}
     keyConfig = controlMapping(configuration)
+    resolution = configuration["Core"]["defaultres"]
 
 
 def configWrite(configFile):
@@ -42,6 +44,8 @@ def init():
     import pyglet.window.key
     global configuration
     global keyConfig
+    global resolution
+    resolution = ""
     keyConfig = {}
     configuration = {}
     global loadedLevel

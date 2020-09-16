@@ -20,7 +20,7 @@ import random
 import time
 
 x, y = director.window.width, director.window.height
-reswidth, resheight = [int(res) for res in cfg.configuration["Core"]["defaultres"].split("x")]
+reswidth, resheight = [int(res) for res in cfg.resolution.split("x")]
 
 '''Game loading code'''
 def game_loading():
