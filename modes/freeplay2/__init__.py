@@ -105,7 +105,7 @@ def main():
     return PlatformerController()
 
 name = "Free Play 2"
-desc = "A game mode for freely roaming the level."
+desc = "A test game mode created to check and see if the game can handle multiple game modes. \nThe exact same as freeplay."
 
 # ~: Game modes can use the main() subroutine to run other subroutines and init other sprites and make them do stuff. Here, because scroller is imported,
 # ~: the game mode can add as many layers as it wants to the scroller, and they will render and display to the player, without any modification to renderer.py, or having to globalise and import more classes.
