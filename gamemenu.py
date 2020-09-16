@@ -204,12 +204,12 @@ class ExtendedInfo(Layer):
     
     def ExtendedInfoShow(self, name):
         if name == self.gameMode.name:
-            self.infoBox.do(FadeIn(1))
-            self.bgDimmer.do(FadeIn(1))
+            self.infoBox.do(FadeIn(0.5))
+            self.bgDimmer.do(FadeTo(100, 0.5))
             self.active = True
     
     def ExtendedInfoHide(self, name):
         if name == self.gameMode.name:
-            self.infoBox.do(FadeOut(1))
-            self.bgDimmer.do(FadeOut(1))
+            self.infoBox.do(FadeOut(0.5))
+            self.bgDimmer.do(FadeTo(0, 0.5))
             self.active = False
