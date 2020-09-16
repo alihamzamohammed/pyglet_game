@@ -39,8 +39,9 @@ class smallButton(Layer):
 
         self.eventName = eventName
         self.active = active
-        if eventparam in *args:
-            self.eventparam = *args.eventparam
+        print(args, kwargs)
+        if "eventparam" in kwargs:
+            self.eventparam = kwargs.eventparam
 
         self.bgImage = Sprite("smallButton.png")
         self.lbl = Label(label, anchor_x="center", anchor_y="center", dpi=110, font_size=16)
