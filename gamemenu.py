@@ -196,7 +196,12 @@ class GameMenu(Scene):
         backButton.x = reswidth * 0.065
         backButton.y = resheight * 0.89
         backButton.show(0.01)
+        newButton = mediumButton("NEW", events.mainmenuevents.backToMainMenu) # TODO: Need to change to level creator/editor
+        newButton.x = reswidth * 0.935
+        newButton.y = resheight * 0.89
+        newButton.show()
         self.add(backButton)
+        self.add(newButton)
         events.gamemenuevents.push_handlers(self)
         modeBoxes = []
         for modeName, mode in modes.gamemodes.items():
