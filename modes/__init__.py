@@ -8,8 +8,9 @@ import cfg
 
 class GameMode():
 
-    def __init__(self, modeModule):
+    def __init__(self, modeModule, modeId):
         super().__init__()
+        self.id = modeId
         if hasattr(modeModule, "name"):
             self.name = modeModule.name
         else:
@@ -50,7 +51,7 @@ def init():
         if "_" not in mode:
             try:
                 module = importlib.import_module("modes." + mode)
-                gamemodes[mode] = GameMode(module)
+                gamemodes[mode] = GameMode(module, gamemodes[mode])
             except PlatformerControllerNotFound:
                 logger.addLog("PlatformerController does not exist in game mode " + mode + ", game mode will not be loaded!", logger.loglevel["warning"])
                 continue
