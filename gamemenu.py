@@ -107,11 +107,14 @@ class smallButton(Layer):
 
 class GameMenu(Scene):
 
+    is_event_handler = True
+
     def __init__(self):
         super().__init__()
         global title
         title.position = reswidth * 0.04, resheight * 0.94
         self.add(title)
+        events.gamemenuevents.push_handlers(self)
         modeBoxes = []
         for modeName, mode in modes.gamemodes.items():
             modeBox = GameModeBox(mode)
@@ -144,8 +147,8 @@ class GameModeBox(Layer):
         self.gameMode = gameMode
         self.bg = Sprite("gameBox.png")
         self.thumbnail = Sprite(gameMode.thumbnail)
-        self.thumbnail.scale_x = self.thumbnail.width / 200
-        self.thumbnail.scale_y = self.thumbnail.height / 200
+        self.thumbnail.scale_x = 200 / self.thumbnail.width
+        self.thumbnail.scale_y = 200 / self.thumbnail.height
         self.infoButton = smallButton("i", events.gamemenuevents.showExtendedInfo, eventparam=gameMode.name)
         self.width = self.bg.width
         self.height = self.bg.height
@@ -190,17 +193,25 @@ class ExtendedInfo(Layer):
         self.exitButton.x = self.infoBox.x + ((self.infoBox.width / 2) * 0.91)
         self.exitButton.y = self.infoBox.y + ((self.infoBox.height / 2) * 0.85)
         self.active = False
+        self.thumbnail = Sprite(gameMode.thumbnail)
+        self.thumbnail.scale_x = 350 / self.thumbnail.width
+        self.thumbnail.scale_y = 350 / self.thumbnail.height
+        self.thumbnail.x = x * 0.3
+        self.thumbnail.y = y / 2
         self.add(self.infoBox, z=5)
         self.add(self.bgDimmer, z=4)
         self.add(self.exitButton, z=5)
+        self.add(self.thumbnail, z=5)
         self.bgDimmer.do(FadeOut(0.01))
         self.infoBox.do(FadeOut(0.01))
         self.exitButton.hide(0.01)
+        self.thumbnail.do(FadeOut(0.01))
         
     def ExtendedInfoShow(self, name):
         if name == self.gameMode.name and not self.active:
             self.infoBox.do(FadeIn(0.5))
             self.bgDimmer.do(FadeTo(150, 0.5))
+            self.thumbnail.do(FadeIn(0.5))
             self.exitButton.show()
             self.active = True
     
@@ -208,5 +219,6 @@ class ExtendedInfo(Layer):
         if name == self.gameMode.name and self.active:
             self.infoBox.do(FadeOut(0.5))
             self.bgDimmer.do(FadeTo(0, 0.5))
+            self.thumbnail.do(FadeOut(0.5))
             self.exitButton.hide()
             self.active = False
