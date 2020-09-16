@@ -83,6 +83,7 @@ class GameMenuEvents(pyglet.window.EventDispatcher):
 
     def chooseGameMode(self, name):
         self.dispatch_event("GameModeChosen", name)
+        print("Selected Game Mode: " + name)
 
     def chooseLevel(self, name):
         self.dispatch_event("LevelChosen", name)

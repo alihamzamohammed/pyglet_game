@@ -39,7 +39,6 @@ class mediumButton(Layer):
 
         self.eventName = eventName
         self.active = active
-        print(args, kwargs)
         if "eventparam" in kwargs:
             self.eventparam = kwargs["eventparam"]
 
@@ -116,7 +115,6 @@ class smallButton(Layer):
 
         self.eventName = eventName
         self.active = active
-        print(args, kwargs)
         if "eventparam" in kwargs:
             self.eventparam = kwargs["eventparam"]
 
@@ -293,13 +291,8 @@ class GameModeBox(Layer):
             self.bg.image = pyglet.resource.image("gameBoxClicked.png")
             self.active = True
             self.gmTitle.element.color = (255, 255, 255, 255)
-            #if hasattr(self, "eventparam"):
-            #    self.eventName(self.eventparam)
-            #else:
-            #    self.eventName() 
-            #self.active = False
-
-        
+            events.gamemenuevents.chooseGameMode(self.gameMode.name)
+            self.active = False        
 
 class ExtendedInfo(Layer):
 
