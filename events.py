@@ -81,7 +81,7 @@ class GameMenuEvents(pyglet.window.EventDispatcher):
     
     def hideExtendedInfo(self, name):
         print(name)
-        self.dispatch_event("ExtendedInfoHide")
+        self.dispatch_event("ExtendedInfoHide", name)
 
 GameMenuEvents.register_event_type("ExtendedInfoShow")
 GameMenuEvents.register_event_type("ExtendedInfoHide")

@@ -114,9 +114,6 @@ class GameMenu(Scene):
                     for child2 in child.get_children():
                             child2.do(FadeOut(0.01) + Delay(modeBoxes[i].delay / 4) + FadeIn(0.5))
 
-
-            #modeBoxes[i].do(Delay(0.1 + (i / 2)) + FadeIn(0.5))
-
     def on_enter(self):
         super().on_enter()
 
@@ -150,7 +147,6 @@ class GameModeBox(Layer):
         self.thumbnail.scale_x = self.thumbnail.width / 200
         self.thumbnail.scale_y = self.thumbnail.height / 200
         self.infoButton = smallButton("i", events.gamemenuevents.showExtendedInfo, eventparam=gameMode.name)
-        #self.extendedinfo = ExtendedInfo()
         self.width = self.bg.width
         self.height = self.bg.height
         self.thumbnail.x = self.x
@@ -163,7 +159,6 @@ class GameModeBox(Layer):
         self.add(self.gmTitle, z=1)
         self.add(self.infoButton, z=1)
         self.add(self.bg, z=0)
-        #self.add(self.extendedinfo, z=3)
     
     def update_positions(self):
         self.thumbnail.x = 0
@@ -174,7 +169,6 @@ class GameModeBox(Layer):
         self.infoButton.y = -107
         self.infoButton.px = self.x
         self.infoButton.py = self.y
-        #self.extendedinfo.update_positions(self.x, self.y)
         
 
 class ExtendedInfo(Layer):
@@ -187,25 +181,27 @@ class ExtendedInfo(Layer):
         self.gameMode = gameMode
         self.infoBox = Sprite("infoBox.png")
         self.bgDimmer = ColorLayer(0, 0, 0, 20)
+        self.exitButton = smallButton("X", events.gamemenuevents.hideExtendedInfo, eventparam=self.gameMode.name)
         self.bgDimmer.opacity = 100
         self.infoBox.x = x / 2
         self.infoBox.y = y / 2
         self.bgDimmer.width = x
         self.bgDimmer.height = y
+        self.exitButton.x = 0
+        self.exitButton.y = 0
         self.active = False
         self.add(self.infoBox, z=5)
         self.add(self.bgDimmer, z=4)
+        self.add(self.exitButton, z=5)
         self.bgDimmer.do(FadeOut(0.01))
         self.infoBox.do(FadeOut(0.01))
-    
-    #def update_positions(self, px, py):
-     #   self.x = -px
-      #  self.y = -py
-    
+        #self.exitButton.do(FadeOut(0.01))
+        
     def ExtendedInfoShow(self, name):
         if name == self.gameMode.name:
             self.infoBox.do(FadeIn(0.5))
             self.bgDimmer.do(FadeTo(100, 0.5))
+
             self.active = True
     
     def ExtendedInfoHide(self, name):
