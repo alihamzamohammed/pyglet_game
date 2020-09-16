@@ -57,6 +57,9 @@ class smallButton(Layer):
         self.add(self.bgImage)
         self.add(self.lbl)
 
+        self.hide(0.01)
+        self.showing = False
+
         self.schedule_interval(self.setWH, 1)
         self.resume_scheduler()
 
@@ -68,26 +71,38 @@ class smallButton(Layer):
         self.height_range = [int(nmin[1]), int(nmax[1])]
 
     def on_mouse_motion(self, x, y, dx, dy):
-        if self.active:
-            self.bgImage.image = pyglet.resource.image("smallButtonClicked.png")
-            self.lbl.element.color = (0, 0, 0, 255)
-        elif x in range(self.width_range[0], self.width_range[1]) and y in range(self.height_range[0], self.height_range[1]):
-            self.bgImage.image = pyglet.resource.image("smallButtonHovered.png")
-            self.lbl.element.color = (255, 255, 255, 255)
-        else:
-            self.bgImage.image = pyglet.resource.image("smallButton.png")
-            self.lbl.element.color = (255, 255, 255, 255)
+        if self.showing:
+            if self.active:
+                self.bgImage.image = pyglet.resource.image("smallButtonClicked.png")
+                self.lbl.element.color = (0, 0, 0, 255)
+            elif x in range(self.width_range[0], self.width_range[1]) and y in range(self.height_range[0], self.height_range[1]):
+                self.bgImage.image = pyglet.resource.image("smallButtonHovered.png")
+                self.lbl.element.color = (255, 255, 255, 255)
+            else:
+                self.bgImage.image = pyglet.resource.image("smallButton.png")
+                self.lbl.element.color = (255, 255, 255, 255)
 
     def on_mouse_press(self, x, y, buttons, modifiers):
-        if x in range(self.width_range[0], self.width_range[1]) and y in range(self.height_range[0], self.height_range[1]):
-            self.bgImage.image = pyglet.resource.image("smallButtonClicked.png")
-            self.active = True
-            self.lbl.element.color = (0, 0, 0, 255)
-            if hasattr(self, "eventparam"):
-                self.eventName(self.eventparam)
-            else:
-                self.eventName() 
-            self.active = False
+        if self.showing:
+            if x in range(self.width_range[0], self.width_range[1]) and y in range(self.height_range[0], self.height_range[1]):
+                self.bgImage.image = pyglet.resource.image("smallButtonClicked.png")
+                self.active = True
+                self.lbl.element.color = (0, 0, 0, 255)
+                if hasattr(self, "eventparam"):
+                    self.eventName(self.eventparam)
+                else:
+                    self.eventName() 
+                self.active = False
+    
+    def show(self, interval = 0.5):
+        for child in self.get_children():
+            child.do(FadeIn(interval))
+        self.showing = True
+
+    def hide(self, interval = 0.5):
+        for child in self.get_children():
+            child.do(FadeOut(interval))
+        self.showing = False
 
 
 class GameMenu(Scene):
@@ -110,10 +125,10 @@ class GameMenu(Scene):
             self.add(modeBoxes[i], z=1)
             self.add(extendedInfo, z=2)
             for child in modeBoxes[i].get_children():
-                child.do(FadeOut(0.01) + Delay(modeBoxes[i].delay / 4) + FadeIn(0.5))
                 if isinstance(child, smallButton):
-                    for child2 in child.get_children():
-                            child2.do(FadeOut(0.01) + Delay(modeBoxes[i].delay / 4) + FadeIn(0.5))
+                    child.do(Delay(modeBoxes[i].delay / 4) + CallFunc(child.show))
+                else:
+                    child.do(FadeOut(0.01) + Delay(modeBoxes[i].delay / 4) + FadeIn(0.5))
 
     def on_enter(self):
         super().on_enter()
@@ -188,25 +203,30 @@ class ExtendedInfo(Layer):
         self.infoBox.y = y / 2
         self.bgDimmer.width = x
         self.bgDimmer.height = y
-        self.exitButton.x = 0
-        self.exitButton.y = 0
+        self.exitButton.x = self.infoBox.x + ((self.infoBox.width / 2) * 0.9)
+        self.exitButton.y = self.infoBox.y + ((self.infoBox.height / 2) * 0.9)
         self.active = False
         self.add(self.infoBox, z=5)
         self.add(self.bgDimmer, z=4)
         self.add(self.exitButton, z=5)
         self.bgDimmer.do(FadeOut(0.01))
         self.infoBox.do(FadeOut(0.01))
-        #self.exitButton.do(FadeOut(0.01))
+        self.exitButton.hide(0.01)
         
     def ExtendedInfoShow(self, name):
         if name == self.gameMode.name and not self.active:
             self.infoBox.do(FadeIn(0.5))
             self.bgDimmer.do(FadeTo(100, 0.5))
-
+            #for child in self.exitButton.get_children():
+            #    child.do(FadeIn(0.5))
+            self.exitButton.show()
             self.active = True
     
     def ExtendedInfoHide(self, name):
         if name == self.gameMode.name and self.active:
             self.infoBox.do(FadeOut(0.5))
             self.bgDimmer.do(FadeTo(0, 0.5))
+            #for child in self.exitButton.get_children():
+            #    child.do(FadeOut(0.5))
+            self.exitButton.hide()
             self.active = False
