@@ -70,6 +70,23 @@ class PauseScreenEvents(pyglet.window.EventDispatcher):
 PauseScreenEvents.register_event_type("pauseScreenShowing")
 PauseScreenEvents.register_event_type("pauseScreenNotShowing")
 
+class GameMenuEvents(pyglet.window.EventDispatcher):
+
+    def __init__(self):
+        super().__init__()
+
+    def showExtendedInfo(self, name):
+        print(name)
+        self.dispatch_event("ExtendedInfoShow", name)
+    
+    def hideExtendedInfo(self, name):
+        print(name)
+        self.dispatch_event("ExtendedInfoHide")
+
+GameMenuEvents.register_event_type("ExtendedInfoShow")
+GameMenuEvents.register_event_type("ExtendedInfoHide")
+
 pausescreenevents = PauseScreenEvents()
 mainmenuevents = MainMenuEvents()
 settingsevents = SettingsEvents()
+gamemenuevents = GameMenuEvents()

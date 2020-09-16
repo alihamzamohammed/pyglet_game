@@ -33,15 +33,17 @@ class smallButton(Layer):
 
     is_event_handler = True
 
-    def __init__(self, label, eventName, active = False):
+    def __init__(self, label, eventName, active = False, *args, **kwargs):
         super().__init__()
         global x, y
 
         self.eventName = eventName
         self.active = active
+        if eventparam in *args:
+            self.eventparam = *args.eventparam
 
         self.bgImage = Sprite("smallButton.png")
-        self.lbl = Label(label, anchor_x="center", anchor_y="center", dpi=110)
+        self.lbl = Label(label, anchor_x="center", anchor_y="center", dpi=110, font_size=16)
 
         self.x = 0
         self.y = 0
@@ -80,7 +82,10 @@ class smallButton(Layer):
             self.bgImage.image = pyglet.resource.image("smallButtonClicked.png")
             self.active = True
             self.lbl.element.color = (0, 0, 0, 255)
-            self.eventName()
+            if hasattr(self, "eventparam"):
+                self.eventName(self.eventparam)
+            else:
+                self.eventName() 
 
 
 class GameMenu(Scene):
@@ -102,6 +107,10 @@ class GameMenu(Scene):
             self.add(modeBoxes[i])
             for child in modeBoxes[i].get_children():
                 child.do(FadeOut(0.01) + Delay(modeBoxes[i].delay / 4) + FadeIn(0.5))
+                if isinstance(child, smallButton):
+                    for child2 in child.get_children():
+                            child2.do(FadeOut(0.01) + Delay(modeBoxes[i].delay / 4) + FadeIn(0.5))
+
 
             #modeBoxes[i].do(Delay(0.1 + (i / 2)) + FadeIn(0.5))
 
@@ -109,34 +118,35 @@ class GameMenu(Scene):
         super().on_enter()
 
 
-class GameModeSelection(Layer):
+# class GameModeSelection(Layer):
      
-    def __init__(self):
-        super().__init__()
-        # global x, y
-        # for modeName, mode in modes.gamemodes.items():
-        #     modeBox = GameModeBox()
-        #     modeBox.position = (x * 0.18) + (self.width / 2), y * 0.4
-        #     self.add(modeBox)    
+#     def __init__(self):
+#         super().__init__()
+#         # global x, y
+#         # for modeName, mode in modes.gamemodes.items():
+#         #     modeBox = GameModeBox()
+#         #     modeBox.position = (x * 0.18) + (self.width / 2), y * 0.4
+#         #     self.add(modeBox)    
 
-class LevelSelection(Layer):
-    pass
+# class LevelSelection(Layer):
+#     pass
 
 
-class LevelBox(Layer):
+# class LevelBox(Layer):
 
-    class ExtendedInfo(Layer):
-        pass
+#     class ExtendedInfo(Layer):
+#         pass
 
 class GameModeBox(Layer):
 
     def __init__(self, gameMode):
         super().__init__()
+        self.gameMode = gameMode
         self.bg = Sprite("gameBox.png")
         self.thumbnail = Sprite(gameMode.thumbnail)
         self.thumbnail.scale_x = self.thumbnail.width / 200
         self.thumbnail.scale_y = self.thumbnail.height / 200
-        self.infoButton = smallButton("i", events.mainmenuevents.backToMainMenu)
+        self.infoButton = smallButton("i", events.gamemenuevents.showExtendedInfo, eventparam=gameMode.name)
         self.width = self.bg.width
         self.height = self.bg.height
         self.thumbnail.x = self.x
@@ -167,56 +177,19 @@ class GameModeBox(Layer):
 
         def __init__(self):
             super().__init__()
+            events.gamemenuevents.push_handlers(self)
             self.infoBox = Sprite("infoBox.png")
             self.bgDimmer = ColorLayer(0, 0, 0, 100)
+            self.bgDimmer.do(Hide())
+            self.infoBox.do(Hide())
 
 
+        def ExtendedInfoShow(self, name):
+            if name == self.parent.gameMode.name:
+                self.infoBox.do(FadeIn(1))
+                self.bgDimmer.do(FadeIn(1))
 
-
-
-
-
-
-"""     class GameMenu(Scene):
-
-    def __init__(self):
-        super().__init__()
-        # TODO: Get started on this section. Plan how to place game mode and level boxes, and how to animate between them.
-        # TODO: Levels come first, with clickable boxes to select that level, and info screens that popup a larger info screen, with expanded thumbnail, metadata, and icons
-        # TODO: On this screen will be button to lead to level creator/editor. If a level is selected, button will say 'edit', otherwise 'create' if no level is selected.
-        # TODO: If level has a 'no edit' flag, level edit button will say 'edit', but will be greyed out.
-        # TODO: After level is selected, a 'choose this level' button will animate the entire screen to move up to reveal game mode selection screen, same layout as level selection.
-        # TODO: Level selected is shown as a box at the top of the screen
-        # TODO: User can select level chosen box to switch levels.
-        # TODO: Some levels can disallow certain gamemodes, those gamemodes will either be greyed out if found, or not visible. Greyed out preferred.
-
-        # ! Before this, develop items, levels, and then game modes, IN THAT ORDER
-        # ! And possibly level editor and level player
-
-class LevelSelection(Layer):
-    # ? levelsAdded = {}
-    # ? x = 1
-    # ? for level in levels:
-    # ?     levelsAdded[level.name] = LevelBox(level)
-    # ?     self.add(levelsAdded[level.name], x)
-    # ?     x += 1
-    pass
-
-class GameModeSelection(Layer):
-    # ? gamemodesAdded = {}
-    # ? x = 1
-    # ? for gamemode in gamemodes:
-    # ?     gamemodesAdded[gamemode.name] = GameModeBox(gamemode)
-    # ?     self.add(gamemodesAdded[gamemode.name], x)
-    # ?     x += 1
-    pass
-
-class LevelBox(Layer):
-
-    class ExtendedInfo(Layer):
-        pass
-
-class GameModeBox(Layer):
-
-    class ExtendedInfo(Layer):
-        pass """
+        def ExtendedInfoHide(self, name):
+            if name == self.parent.gameMode.name:
+                self.infoBox.do(FadeOut(1))
+                self.bgDimmer.do(FadeOut(1))
