@@ -41,7 +41,7 @@ class smallButton(Layer):
         self.active = active
         print(args, kwargs)
         if "eventparam" in kwargs:
-            self.eventparam = kwargs.eventparam
+            self.eventparam = kwargs["eventparam"]
 
         self.bgImage = Sprite("smallButton.png")
         self.lbl = Label(label, anchor_x="center", anchor_y="center", dpi=110, font_size=16)
@@ -105,7 +105,9 @@ class GameMenu(Scene):
             modeBoxes[i].y = resheight * (0.6 - (i // 4) * 0.47)
             modeBoxes[i].delay = 2 + i
             modeBoxes[i].update_positions()
-            self.add(modeBoxes[i])
+            extendedInfo = ExtendedInfo(modeBoxes[i].gameMode)
+            self.add(modeBoxes[i], z=1)
+            self.add(extendedInfo, z=2)
             for child in modeBoxes[i].get_children():
                 child.do(FadeOut(0.01) + Delay(modeBoxes[i].delay / 4) + FadeIn(0.5))
                 if isinstance(child, smallButton):
@@ -148,6 +150,7 @@ class GameModeBox(Layer):
         self.thumbnail.scale_x = self.thumbnail.width / 200
         self.thumbnail.scale_y = self.thumbnail.height / 200
         self.infoButton = smallButton("i", events.gamemenuevents.showExtendedInfo, eventparam=gameMode.name)
+        #self.extendedinfo = ExtendedInfo()
         self.width = self.bg.width
         self.height = self.bg.height
         self.thumbnail.x = self.x
@@ -160,6 +163,7 @@ class GameModeBox(Layer):
         self.add(self.gmTitle, z=1)
         self.add(self.infoButton, z=1)
         self.add(self.bg, z=0)
+        #self.add(self.extendedinfo, z=3)
     
     def update_positions(self):
         self.thumbnail.x = 0
@@ -170,27 +174,42 @@ class GameModeBox(Layer):
         self.infoButton.y = -107
         self.infoButton.px = self.x
         self.infoButton.py = self.y
+        #self.extendedinfo.update_positions(self.x, self.y)
         
 
-    class ExtendedInfo(Layer):
+class ExtendedInfo(Layer):
 
-        is_event_handler = True
-
-        def __init__(self):
-            super().__init__()
-            events.gamemenuevents.push_handlers(self)
-            self.infoBox = Sprite("infoBox.png")
-            self.bgDimmer = ColorLayer(0, 0, 0, 100)
-            self.bgDimmer.do(Hide())
-            self.infoBox.do(Hide())
-
-
-        def ExtendedInfoShow(self, name):
-            if name == self.parent.gameMode.name:
-                self.infoBox.do(FadeIn(1))
-                self.bgDimmer.do(FadeIn(1))
-
-        def ExtendedInfoHide(self, name):
-            if name == self.parent.gameMode.name:
-                self.infoBox.do(FadeOut(1))
-                self.bgDimmer.do(FadeOut(1))
+    is_event_handler = True
+    
+    def __init__(self, gameMode):
+        super().__init__()
+        events.gamemenuevents.push_handlers(self)
+        self.gameMode = gameMode
+        self.infoBox = Sprite("infoBox.png")
+        self.bgDimmer = ColorLayer(0, 0, 0, 20)
+        self.bgDimmer.opacity = 100
+        self.infoBox.x = x / 2
+        self.infoBox.y = y / 2
+        self.bgDimmer.width = x
+        self.bgDimmer.height = y
+        self.active = False
+        self.add(self.infoBox, z=5)
+        self.add(self.bgDimmer, z=4)
+        self.bgDimmer.do(FadeOut(0.01))
+        self.infoBox.do(FadeOut(0.01))
+    
+    #def update_positions(self, px, py):
+     #   self.x = -px
+      #  self.y = -py
+    
+    def ExtendedInfoShow(self, name):
+        if name == self.gameMode.name:
+            self.infoBox.do(FadeIn(1))
+            self.bgDimmer.do(FadeIn(1))
+            self.active = True
+    
+    def ExtendedInfoHide(self, name):
+        if name == self.gameMode.name:
+            self.infoBox.do(FadeOut(1))
+            self.bgDimmer.do(FadeOut(1))
+            self.active = False
