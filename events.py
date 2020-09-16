@@ -1,4 +1,5 @@
 import pyglet
+import modes
 
 class MainMenuEvents(pyglet.window.EventDispatcher):
 
@@ -81,9 +82,10 @@ class GameMenuEvents(pyglet.window.EventDispatcher):
     def hideExtendedInfo(self, name):
         self.dispatch_event("ExtendedInfoHide", name)
 
-    def chooseGameMode(self, name):
-        self.dispatch_event("GameModeChosen", name)
-        print("Selected Game Mode: " + name)
+    def chooseGameMode(self, mode):
+        if isinstance(mode, modes.GameMode):
+            self.dispatch_event("GameModeChosen", mode)
+            print("Selected Game Mode: " + mode.name)
 
     def chooseLevel(self, name):
         self.dispatch_event("LevelChosen", name)

@@ -200,7 +200,7 @@ class GameMenu(Scene):
         newButton.show()
         self.add(backButton)
         self.add(newButton)
-        events.gamemenuevents.push_handlers(self)
+        #events.gamemenuevents.push_handlers(self)
         modeBoxes = []
         for modeName, mode in modes.gamemodes.items():
             modeBox = GameModeBox(mode)
@@ -232,6 +232,7 @@ class GameModeBox(Layer):
 
     def __init__(self, gameMode):
         super().__init__()
+        events.gamemenuevents.push_handlers(self)
         self.gameMode = gameMode
         self.bg = Sprite("gameBox.png")
         self.thumbnail = Sprite(gameMode.thumbnail)
@@ -291,8 +292,14 @@ class GameModeBox(Layer):
             self.bg.image = pyglet.resource.image("gameBoxClicked.png")
             self.active = True
             self.gmTitle.element.color = (255, 255, 255, 255)
-            events.gamemenuevents.chooseGameMode(self.gameMode.name)
+            events.gamemenuevents.chooseGameMode(self.gameMode)
             self.active = False        
+
+    def gameModeChosen(self, chosenGameMode):
+        if chosenGameMode == self.gameMode:
+            pass
+        else:
+            pass
 
 class ExtendedInfo(Layer):
 
