@@ -201,9 +201,9 @@ class ExtendedInfo(Layer):
         self.title = Label(gameMode.name, anchor_x="center", anchor_y="center", font_size=39, color=(0, 0, 0, 255))
         self.title.x = x * 0.65
         self.title.y = y * 0.72
-        self.desc = Label(gameMode.desc, anchor_x="center", anchor_y="top", font_size=17, multiline = True, width=(x * 0.2), height=(y * 0.2), color=(0, 0, 0, 255))
+        self.desc = Label(gameMode.desc, anchor_x="center", anchor_y="top", font_size=17, multiline = True, width=(x * 0.36), height=(y * 0.2), color=(0, 0, 0, 255))
         self.desc.x = x * 0.65
-        self.desc.y = y * 0.55
+        self.desc.y = y * 0.65
         self.add(self.infoBox, z=5)
         self.add(self.bgDimmer, z=4)
         self.add(self.exitButton, z=5)
@@ -216,6 +216,7 @@ class ExtendedInfo(Layer):
         self.thumbnail.do(FadeOut(0.01))
         self.title.do(FadeOut(0.01))
         self.desc.do(FadeOut(0.01))
+        
        
     def ExtendedInfoShow(self, name):
         if name == self.gameMode.name and not self.active:
