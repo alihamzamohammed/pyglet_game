@@ -133,25 +133,9 @@ class GameMenu(Scene):
     def on_enter(self):
         super().on_enter()
 
+    def gameModeChosen(self, chosenGameMode):
+        pass
 
-# class GameModeSelection(Layer):
-     
-#     def __init__(self):
-#         super().__init__()
-#         # global x, y
-#         # for modeName, mode in modes.gamemodes.items():
-#         #     modeBox = GameModeBox()
-#         #     modeBox.position = (x * 0.18) + (self.width / 2), y * 0.4
-#         #     self.add(modeBox)    
-
-# class LevelSelection(Layer):
-#     pass
-
-
-# class LevelBox(Layer):
-
-#     class ExtendedInfo(Layer):
-#         pass
 
 class GameModeBox(Layer):
 
