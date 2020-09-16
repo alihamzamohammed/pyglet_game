@@ -218,7 +218,8 @@ class GameMenu(Scene):
     def on_enter(self):
         super().on_enter()
 
-    def gameModeChosen(self, chosenGameMode):
+    def GameModeChosen(self, chosenGameMode):
+        print("caught")
         for i in range(len(self.modeBoxes)):
             if chosenGameMode == self.modeBoxes[i].gameMode:
                 pass
