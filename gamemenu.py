@@ -28,6 +28,83 @@ title = cocos.text.Label(
     anchor_x="left"
 )
 
+"""Small button. Same as small button, but can contain more text"""
+class mediumButton(Layer):
+
+    is_event_handler = True
+
+    def __init__(self, label, eventName, active = False, *args, **kwargs):
+        super().__init__()
+        global x, y
+
+        self.eventName = eventName
+        self.active = active
+        print(args, kwargs)
+        if "eventparam" in kwargs:
+            self.eventparam = kwargs["eventparam"]
+
+        self.bgImage = Sprite("mediumButton.png")
+        self.lbl = Label(label, anchor_x="center", anchor_y="center", dpi=110, font_size=16)
+
+        self.x = 0
+        self.y = 0
+        self.px = 0
+        self.py = 0
+
+        self.width_range = [int((self.px + self.x) - (self.bgImage.width / 2)), int((self.px + self.x) + (self.bgImage.width / 2))]
+        self.height_range = [int((self.py + self.y) - (self.bgImage.height / 2)), int((self.py + self.y) + (self.bgImage.width / 2))]
+
+        self.add(self.bgImage)
+        self.add(self.lbl)
+
+        self.hide(0.01)
+        self.showing = False
+
+        self.schedule_interval(self.setWH, 1)
+        self.resume_scheduler()
+
+    def setWH(self, dt):
+        x, y = director.window.width, director.window.height
+        nmin = sc.scale(int((self.px + self.x) - (self.bgImage.width / 2)), int((self.py + self.y) - (self.bgImage.height / 2)))
+        nmax = sc.scale(int((self.px + self.x) + (self.bgImage.width / 2)), int((self.py + self.y) + (self.bgImage.width / 2)))
+        self.width_range = [int(nmin[0]), int(nmax[0])]
+        self.height_range = [int(nmin[1]), int(nmax[1])]
+
+    def on_mouse_motion(self, x, y, dx, dy):
+        if self.showing:
+            if self.active:
+                self.bgImage.image = pyglet.resource.image("mediumButtonClicked.png")
+                self.lbl.element.color = (0, 0, 0, 255)
+            elif x in range(self.width_range[0], self.width_range[1]) and y in range(self.height_range[0], self.height_range[1]):
+                self.bgImage.image = pyglet.resource.image("mediumButtonHovered.png")
+                self.lbl.element.color = (255, 255, 255, 255)
+            else:
+                self.bgImage.image = pyglet.resource.image("mediumButton.png")
+                self.lbl.element.color = (255, 255, 255, 255)
+
+    def on_mouse_press(self, x, y, buttons, modifiers):
+        if self.showing:
+            if x in range(self.width_range[0], self.width_range[1]) and y in range(self.height_range[0], self.height_range[1]):
+                self.bgImage.image = pyglet.resource.image("mediumButtonClicked.png")
+                self.active = True
+                self.lbl.element.color = (0, 0, 0, 255)
+                if hasattr(self, "eventparam"):
+                    self.eventName(self.eventparam)
+                else:
+                    self.eventName() 
+                self.active = False
+    
+    def show(self, interval = 0.5):
+        for child in self.get_children():
+            child.do(FadeIn(interval))
+        self.showing = True
+
+    def hide(self, interval = 0.5):
+        for child in self.get_children():
+            child.do(FadeOut(interval))
+        self.showing = False
+
+
 """Small button. A button for placing in small spaces, or to activate non-crucial functions"""
 class smallButton(Layer):
 
@@ -112,8 +189,14 @@ class GameMenu(Scene):
     def __init__(self):
         super().__init__()
         global title
-        title.position = reswidth * 0.04, resheight * 0.94
+        title.x = reswidth * 0.13
+        title.y = resheight * 0.94
         self.add(title)
+        backButton = mediumButton("BACK", events.mainmenuevents.backToMainMenu)
+        backButton.x = reswidth * 0.065
+        backButton.y = resheight * 0.89
+        backButton.show(0.01)
+        self.add(backButton)
         events.gamemenuevents.push_handlers(self)
         modeBoxes = []
         for modeName, mode in modes.gamemodes.items():
@@ -186,24 +269,24 @@ class ExtendedInfo(Layer):
         self.bgDimmer = ColorLayer(0, 0, 0, 20)
         self.exitButton = smallButton("X", events.gamemenuevents.hideExtendedInfo, eventparam=self.gameMode.name)
         self.bgDimmer.opacity = 100
-        self.infoBox.x = x / 2
-        self.infoBox.y = y / 2
-        self.bgDimmer.width = x
-        self.bgDimmer.height = y
+        self.infoBox.x = reswidth / 2
+        self.infoBox.y = resheight / 2
+        self.bgDimmer.width = reswidth
+        self.bgDimmer.height = resheight
         self.exitButton.x = self.infoBox.x + ((self.infoBox.width / 2) * 0.91)
         self.exitButton.y = self.infoBox.y + ((self.infoBox.height / 2) * 0.85)
         self.active = False
         self.thumbnail = Sprite(gameMode.thumbnail)
         self.thumbnail.scale_x = 350 / self.thumbnail.width
         self.thumbnail.scale_y = 350 / self.thumbnail.height
-        self.thumbnail.x = x * 0.3
-        self.thumbnail.y = y / 2
+        self.thumbnail.x = reswidth * 0.3
+        self.thumbnail.y = resheight / 2
         self.title = Label(gameMode.name, anchor_x="center", anchor_y="center", font_size=39, color=(0, 0, 0, 255))
-        self.title.x = x * 0.65
-        self.title.y = y * 0.75
+        self.title.x = reswidth * 0.65
+        self.title.y = resheight * 0.75
         self.desc = Label(gameMode.desc, anchor_x="center", anchor_y="top", font_size=17, multiline = True, width=(x * 0.36), height=(y * 0.2), color=(0, 0, 0, 255))
-        self.desc.x = x * 0.65
-        self.desc.y = y * 0.65
+        self.desc.x = reswidth * 0.65
+        self.desc.y = resheight * 0.65
         self.add(self.infoBox, z=5)
         self.add(self.bgDimmer, z=4)
         self.add(self.exitButton, z=5)
