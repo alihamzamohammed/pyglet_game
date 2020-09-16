@@ -230,6 +230,8 @@ class GameMenu(Scene):
 
 class GameModeBox(Layer):
 
+    is_event_handler = True
+
     def __init__(self, gameMode):
         super().__init__()
         self.gameMode = gameMode
@@ -250,6 +252,13 @@ class GameModeBox(Layer):
         self.add(self.gmTitle, z=1)
         self.add(self.infoButton, z=1)
         self.add(self.bg, z=0)
+        self.active=False
+        self.width_range = [int((self.x) - (self.bg.width / 2)), int((self.x) + (self.bg.width / 2))]
+        self.height_range = [int((self.y) - (self.bg.height / 2)), int((self.y) + (self.bg.width / 2))]
+
+        self.schedule_interval(self.setWH, 1)
+        self.resume_scheduler()
+
     
     def update_positions(self):
         self.thumbnail.x = 0
@@ -260,6 +269,36 @@ class GameModeBox(Layer):
         self.infoButton.y = -107
         self.infoButton.px = self.x
         self.infoButton.py = self.y
+
+    def setWH(self, dt):
+        x, y = director.window.width, director.window.height
+        nmin = sc.scale(int((self.x) - (self.bg.width / 2)), int((self.y) - (self.bg.height / 2)))
+        nmax = sc.scale(int((self.x) + (self.bg.width / 2)), int((self.y) + (self.bg.width / 2)))
+        self.width_range = [int(nmin[0]), int(nmax[0])]
+        self.height_range = [int(nmin[1]), int(nmax[1])]
+
+    def on_mouse_motion(self, x, y, dx, dy):
+        if self.active:
+            self.bg.image = pyglet.resource.image("gameBoxClicked.png")
+            self.gmTitle.element.color = (255, 255, 255, 255)
+        elif x in range(self.width_range[0], self.width_range[1]) and y in range(self.height_range[0], self.height_range[1]):
+            self.bg.image = pyglet.resource.image("gameBoxHovered.png")
+            self.gmTitle.element.color = (0, 0, 0, 255)
+        else:
+            self.bg.image = pyglet.resource.image("gameBox.png")
+            self.gmTitle.element.color = (0, 0, 0, 255)
+
+    def on_mouse_press(self, x, y, buttons, modifiers):
+        if x in range(self.width_range[0], self.width_range[1]) and y in range(self.height_range[0], self.height_range[1]):
+            self.bg.image = pyglet.resource.image("gameBoxClicked.png")
+            self.active = True
+            self.gmTitle.element.color = (255, 255, 255, 255)
+            #if hasattr(self, "eventparam"):
+            #    self.eventName(self.eventparam)
+            #else:
+            #    self.eventName() 
+            #self.active = False
+
         
 
 class ExtendedInfo(Layer):
