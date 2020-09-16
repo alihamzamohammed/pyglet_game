@@ -59,7 +59,7 @@ class Game(object):
         #director.replace(FadeTransition(renderer.Renderer(lvl, modes.loadGameMode(modes.gamemodes["freeplay"])), duration = 1))
         print("Play button clicked")
         import gamemenu
-        director.replace(FadeTransition(gamemenu.GameMenu(), duration = 1, color = (0, 0, 0)))
+        director.replace(FadeTransition(gamemenu.GameModeMenu(), duration = 1, color = (0, 0, 0)))
 
     def multiplayerButtonClicked(self):
         print("Multiplayer button clicked")

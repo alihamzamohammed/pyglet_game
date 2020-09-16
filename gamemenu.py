@@ -180,7 +180,10 @@ class smallButton(Layer):
         self.showing = False
 
 
-class GameMenu(Scene):
+class LevelMenu(Scene):
+    pass
+
+class GameModeMenu(Scene):
 
     is_event_handler = True
 
@@ -222,7 +225,7 @@ class GameMenu(Scene):
         print("caught")
         for i in range(len(self.modeBoxes)):
             if chosenGameMode == self.modeBoxes[i].gameMode:
-                pass
+                self.modeBoxes[i].active = True
             else:
                 self.modeBoxes[i].hide()
 
@@ -252,7 +255,8 @@ class GameModeBox(Layer):
         self.add(self.gmTitle, z=1)
         self.add(self.infoButton, z=1)
         self.add(self.bg, z=0)
-        self.active=False
+        self.active = False
+        self.showing = False
         self.width_range = [int((self.x) - (self.bg.width / 2)), int((self.x) + (self.bg.width / 2))]
         self.height_range = [int((self.y) - (self.bg.height / 2)), int((self.y) + (self.bg.width / 2))]
 
@@ -260,18 +264,23 @@ class GameModeBox(Layer):
         self.resume_scheduler()
 
     def show(self, duration = 0.5):
-        for child in self.get_children():
-            if isinstance(child, smallButton):
-                child.do(Delay(self.delay / 4) + CallFunc(child.show))
-            else:
-                child.do(FadeOut(0.01) + Delay(self.delay / 4) + FadeIn(duration))
+        if not self.showing:
+            for child in self.get_children():
+                if isinstance(child, smallButton):
+                    child.do(Delay(self.delay / 4) + CallFunc(child.show))
+                else:
+                    child.do(FadeOut(0.01) + Delay(self.delay / 4) + FadeIn(duration))
+        self.showing = True
 
     def hide(self, duration = 0.5):
-        for child in self.get_children():
-            if isinstance(child, smallButton):
-                child.do(Delay(self.delay / 4) + CallFunc(child.hide))
-            else:
-                child.do(FadeOut(duration))
+        if self.showing:
+            for child in self.get_children():
+                if isinstance(child, smallButton):
+                    child.do(CallFunc(child.hide))
+                else:
+                    child.do(FadeOut(duration))
+            self.showing = False
+            
 
 
     def update_positions(self):
