@@ -203,8 +203,8 @@ class ExtendedInfo(Layer):
         self.infoBox.y = y / 2
         self.bgDimmer.width = x
         self.bgDimmer.height = y
-        self.exitButton.x = self.infoBox.x + ((self.infoBox.width / 2) * 0.9)
-        self.exitButton.y = self.infoBox.y + ((self.infoBox.height / 2) * 0.9)
+        self.exitButton.x = self.infoBox.x + ((self.infoBox.width / 2) * 0.91)
+        self.exitButton.y = self.infoBox.y + ((self.infoBox.height / 2) * 0.85)
         self.active = False
         self.add(self.infoBox, z=5)
         self.add(self.bgDimmer, z=4)
@@ -216,9 +216,7 @@ class ExtendedInfo(Layer):
     def ExtendedInfoShow(self, name):
         if name == self.gameMode.name and not self.active:
             self.infoBox.do(FadeIn(0.5))
-            self.bgDimmer.do(FadeTo(100, 0.5))
-            #for child in self.exitButton.get_children():
-            #    child.do(FadeIn(0.5))
+            self.bgDimmer.do(FadeTo(150, 0.5))
             self.exitButton.show()
             self.active = True
     
@@ -226,7 +224,5 @@ class ExtendedInfo(Layer):
         if name == self.gameMode.name and self.active:
             self.infoBox.do(FadeOut(0.5))
             self.bgDimmer.do(FadeTo(0, 0.5))
-            #for child in self.exitButton.get_children():
-            #    child.do(FadeOut(0.5))
             self.exitButton.hide()
             self.active = False
