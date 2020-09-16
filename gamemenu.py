@@ -201,7 +201,7 @@ class ExtendedInfo(Layer):
         self.title = Label(gameMode.name, anchor_x="center", anchor_y="center", font_size=39, color=(0, 0, 0, 255))
         self.title.x = x * 0.65
         self.title.y = y * 0.72
-        self.desc = Label(gameMode.desc, anchor_x="center", anchor_y="center", font_size=17, multiline = True, width=(x * 0.2), height=(y * 0.4), color=(0, 0, 0, 255))
+        self.desc = Label(gameMode.desc, anchor_x="center", anchor_y="top", font_size=17, multiline = True, width=(x * 0.2), height=(y * 0.2), color=(0, 0, 0, 255))
         self.desc.x = x * 0.65
         self.desc.y = y * 0.55
         self.add(self.infoBox, z=5)
