@@ -200,30 +200,30 @@ class GameMenu(Scene):
         newButton.show()
         self.add(backButton)
         self.add(newButton)
-        #events.gamemenuevents.push_handlers(self)
-        modeBoxes = []
+        events.gamemenuevents.push_handlers(self)
+        self.modeBoxes = []
         for modeName, mode in modes.gamemodes.items():
             modeBox = GameModeBox(mode)
-            modeBoxes.append(modeBox)
-        for i in range(len(modeBoxes)):
-            modeBoxes[i].x = ((reswidth * 0.8) // 4) * (((i + 1) / 4) - ((i) // 4)) * 4
-            modeBoxes[i].y = resheight * (0.6 - (i // 4) * 0.47)
-            modeBoxes[i].delay = 2 + i
-            modeBoxes[i].update_positions()
-            extendedInfo = ExtendedInfo(modeBoxes[i].gameMode)
-            self.add(modeBoxes[i], z=1)
+            self.modeBoxes.append(modeBox)
+        for i in range(len(self.modeBoxes)):
+            self.modeBoxes[i].x = ((reswidth * 0.8) // 4) * (((i + 1) / 4) - ((i) // 4)) * 4
+            self.modeBoxes[i].y = resheight * (0.6 - (i // 4) * 0.47)
+            self.modeBoxes[i].delay = 2 + i
+            self.modeBoxes[i].update_positions()
+            extendedInfo = ExtendedInfo(self.modeBoxes[i].gameMode)
+            self.add(self.modeBoxes[i], z=1)
             self.add(extendedInfo, z=2)
-            for child in modeBoxes[i].get_children():
-                if isinstance(child, smallButton):
-                    child.do(Delay(modeBoxes[i].delay / 4) + CallFunc(child.show))
-                else:
-                    child.do(FadeOut(0.01) + Delay(modeBoxes[i].delay / 4) + FadeIn(0.5))
+            self.modeBoxes[i].show()
 
     def on_enter(self):
         super().on_enter()
 
     def gameModeChosen(self, chosenGameMode):
-        pass
+        for i in range(len(self.modeBoxes)):
+            if chosenGameMode == self.modeBoxes[i].gameMode:
+                pass
+            else:
+                self.modeBoxes[i].hide()
 
 
 class GameModeBox(Layer):
@@ -258,7 +258,21 @@ class GameModeBox(Layer):
         self.schedule_interval(self.setWH, 1)
         self.resume_scheduler()
 
-    
+    def show(self, duration = 0.5):
+        for child in self.get_children():
+            if isinstance(child, smallButton):
+                child.do(Delay(self.delay / 4) + CallFunc(child.show))
+            else:
+                child.do(FadeOut(0.01) + Delay(self.delay / 4) + FadeIn(duration))
+
+    def hide(self, duration = 0.5):
+        for child in self.get_children():
+            if isinstance(child, smallButton):
+                child.do(Delay(self.delay / 4) + CallFunc(child.hide))
+            else:
+                child.do(FadeOut(duration))
+
+
     def update_positions(self):
         self.thumbnail.x = 0
         self.thumbnail.y = 20
@@ -295,11 +309,6 @@ class GameModeBox(Layer):
             events.gamemenuevents.chooseGameMode(self.gameMode)
             self.active = False        
 
-    def gameModeChosen(self, chosenGameMode):
-        if chosenGameMode == self.gameMode:
-            pass
-        else:
-            pass
 
 class ExtendedInfo(Layer):
 
