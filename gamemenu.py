@@ -87,6 +87,7 @@ class smallButton(Layer):
                 self.eventName(self.eventparam)
             else:
                 self.eventName() 
+            self.active = False
 
 
 class GameMenu(Scene):
@@ -198,14 +199,14 @@ class ExtendedInfo(Layer):
         #self.exitButton.do(FadeOut(0.01))
         
     def ExtendedInfoShow(self, name):
-        if name == self.gameMode.name:
+        if name == self.gameMode.name and not self.active:
             self.infoBox.do(FadeIn(0.5))
             self.bgDimmer.do(FadeTo(100, 0.5))
 
             self.active = True
     
     def ExtendedInfoHide(self, name):
-        if name == self.gameMode.name:
+        if name == self.gameMode.name and self.active:
             self.infoBox.do(FadeOut(0.5))
             self.bgDimmer.do(FadeTo(0, 0.5))
             self.active = False
