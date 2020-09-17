@@ -293,7 +293,7 @@ class LevelBox(Layer):
         print(level)
         self.level = level
         self.bg = Sprite("gameBox.png")
-        self.thumbnail = Sprite(level.thumbnail)
+        self.thumbnail = Sprite("defaultThumbnail.png")#level.thumbnail)
         self.thumbnail.scale_x = 200 / self.thumbnail.width
         self.thumbnail.scale_y = 200 / self.thumbnail.height
         self.infoButton = smallButton("i", events.gamemenuevents.showExtendedInfo, eventparam=level.idx)
@@ -322,9 +322,9 @@ class LevelBox(Layer):
         if not self.showing:
             for child in self.get_children():
                 if isinstance(child, smallButton):
-                    child.do(Delay(self.delay / 4) + CallFunc(child.show))
+                    child.do(Delay((self.delay / 4) + 1) + CallFunc(child.show))
                 else:
-                    child.do(FadeOut(0.01) + Delay(self.delay / 4) + FadeIn(duration))
+                    child.do(FadeOut(0.01) + Delay((self.delay / 4) + 1) + FadeIn(duration))
         self.showing = True
 
     def hide(self, duration = 0.5):
@@ -408,7 +408,7 @@ class LVLExtendedInfo(Layer):
         self.exitButton.x = self.infoBox.x + ((self.infoBox.width / 2) * 0.91)
         self.exitButton.y = self.infoBox.y + ((self.infoBox.height / 2) * 0.85)
         self.active = False
-        self.thumbnail = Sprite(level.thumbnail)
+        self.thumbnail = Sprite("defaultThumbnail.png")#level.thumbnail)
         self.thumbnail.scale_x = 350 / self.thumbnail.width
         self.thumbnail.scale_y = 350 / self.thumbnail.height
         self.thumbnail.x = self.infoBox.x - ((self.infoBox.width / 2) * 0.55)
@@ -425,12 +425,12 @@ class LVLExtendedInfo(Layer):
         self.add(self.thumbnail, z=5)
         self.add(self.title, z=5)
         self.add(self.desc, z=5)
-        self.bgDimmer.do(FadeOut(0.01))
-        self.infoBox.do(FadeOut(0.01))
+        self.bgDimmer.do(Hide())
+        self.infoBox.do(Hide())
         self.exitButton.hide(0.01)
-        self.thumbnail.do(FadeOut(0.01))
-        self.title.do(FadeOut(0.01))
-        self.desc.do(FadeOut(0.01))
+        self.thumbnail.do(Hide())
+        self.title.do(Hide())
+        self.desc.do(Hide())
         
        
     def ExtendedInfoShow(self, idx):
