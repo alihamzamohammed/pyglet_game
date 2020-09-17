@@ -190,9 +190,10 @@ class GameModeMenu(Scene):
     def __init__(self):
         super().__init__()
         global title
-        title.x = reswidth * 0.13
-        title.y = resheight * 0.94
-        self.add(title)
+        self.gamemodeTitle = title
+        self.gamemodeTitle.x = reswidth * 0.13
+        self.gamemodeTitle.y = resheight * 0.94
+        self.add(self.gamemodeTitle)
         backButton = mediumButton("BACK", events.mainmenuevents.backToMainMenu)
         backButton.x = reswidth * 0.065
         backButton.y = resheight * 0.89
@@ -226,7 +227,10 @@ class GameModeMenu(Scene):
         for i in range(len(self.modeBoxes)):
             if chosenGameMode == self.modeBoxes[i].gameMode:
                 self.modeBoxes[i].chosen = True
-                #cfg.loadedGameMode = modes.gamemodes[self.modeBoxes[i].gameMode.name]
+                #cfg.loadedGameMode = modes.gamemodes[self.modeBoxes[i].gameMode]
+                modes.loadGameMode(self.modesBoxes[i].gameMode)
+                self.do(Delay(2) + CallFunc(self.modeBoxes[i].hide()))
+                self.gamemodeTitle.do(Accel(MoveTo((self.gamemodeTitle.x, resheight * 1.2))))
             else:
                 self.modeBoxes[i].hide()
 
@@ -301,24 +305,25 @@ class GameModeBox(Layer):
         self.height_range = [int(nmin[1]), int(nmax[1])]
 
     def on_mouse_motion(self, x, y, dx, dy):
-        if self.active and not self.chosen:
-            self.bg.image = pyglet.resource.image("gameBoxClicked.png")
-            self.gmTitle.element.color = (255, 255, 255, 255)
-        elif x in range(self.width_range[0], self.width_range[1]) and y in range(self.height_range[0], self.height_range[1]):
-            self.bg.image = pyglet.resource.image("gameBoxHovered.png")
-            self.gmTitle.element.color = (0, 0, 0, 255)
-        else:
-            self.bg.image = pyglet.resource.image("gameBox.png")
-            self.gmTitle.element.color = (0, 0, 0, 255)
+        if not self.chosen:
+            if self.active:
+                self.bg.image = pyglet.resource.image("gameBoxClicked.png")
+                self.gmTitle.element.color = (255, 255, 255, 255)
+            elif x in range(self.width_range[0], self.width_range[1]) and y in range(self.height_range[0], self.height_range[1]):
+                self.bg.image = pyglet.resource.image("gameBoxHovered.png")
+                self.gmTitle.element.color = (0, 0, 0, 255)
+            else:
+                self.bg.image = pyglet.resource.image("gameBox.png")
+                self.gmTitle.element.color = (0, 0, 0, 255)
 
     def on_mouse_press(self, x, y, buttons, modifiers):
-        if x in range(self.width_range[0], self.width_range[1]) and y in range(self.height_range[0], self.height_range[1]) and not self.chosen:
-            self.bg.image = pyglet.resource.image("gameBoxClicked.png")
-            self.active = True
-            self.gmTitle.element.color = (255, 255, 255, 255)
-            events.gamemenuevents.chooseGameMode(self.gameMode)
-            self.active = False        
-
+        if not self.chosen:
+            if x in range(self.width_range[0], self.width_range[1]) and y in range(self.height_range[0], self.height_range[1]) and not self.chosen:
+                self.bg.image = pyglet.resource.image("gameBoxClicked.png")
+                self.active = True
+                self.gmTitle.element.color = (255, 255, 255, 255)
+                events.gamemenuevents.chooseGameMode(self.gameMode)
+                self.active = False        
 
 class ExtendedInfo(Layer):
 
