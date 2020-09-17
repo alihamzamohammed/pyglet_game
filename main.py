@@ -28,6 +28,7 @@ resources.resourceLoad()
 
 
 import mainmenu
+import gamemenu
 import settings
 
 import renderer
@@ -58,7 +59,6 @@ class Game(object):
         #lvl = levels.levelLoad("test")
         #director.replace(FadeTransition(renderer.Renderer(lvl, modes.loadGameMode(modes.gamemodes["freeplay"])), duration = 1))
         print("Play button clicked")
-        import gamemenu
         director.replace(FadeTransition(gamemenu.GameModeMenu(), duration = 1, color = (0, 0, 0)))
 
     def multiplayerButtonClicked(self):
@@ -79,9 +79,13 @@ class Game(object):
         cfg.loadedLevel = None
         cfg.loadedGameMode = None
 
+    def replaceLevelMenu(self):
+        director.replace(gamemenu.LevelMenu())
+
     def __init__(self):
         super(Game, self).__init__()
         events.mainmenuevents.push_handlers(self)
+        events.gamemenuevents.push_handlers(self)
 
 if __name__=="__main__":
     logger.addLog("Starting game.", logger.loglevel["debug"])

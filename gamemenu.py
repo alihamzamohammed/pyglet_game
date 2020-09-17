@@ -181,7 +181,80 @@ class smallButton(Layer):
 
 
 class LevelMenu(Scene):
-    pass
+    
+    def __init__(self):
+        super().__init__()
+        global title
+        self.levelTitle = title
+        self.levelTitle.element.text = "Levels"
+        self.levelTitle.x = reswidth * 0.13
+        self.levelTitle.y = resheight * 1.2
+        backButton = mediumButton("BACK", events.mainmenuevents.backToMainMenu)
+        backButton.x = reswidth * 0.065
+        backButton.y = resheight * 0.89
+        backButton.show(0.01)
+        newButton = mediumButton("NEW", events.mainmenuevents.backToMainMenu) # TODO: Need to change to level creator/editor
+        newButton.x = reswidth * 0.935
+        newButton.y = resheight * 0.89
+        newButton.show(0.01)
+        self.chosenBox = ChosenBox(cfg.loadedGameMode)
+        self.chosenBox.x = reswidth * 0.7
+        self.chosenBox.y = resheight * 1.2
+        self.chosenBox.update_positions()
+        self.add(self.chosenBox)
+        self.add(backButton)
+        self.add(newButton)
+        self.add(self.levelTitle)
+        self.levelTitle.do(AccelDeccel(MoveTo((self.levelTitle.x, resheight * 0.94), 2)))#, rate = 3.5))
+        self.chosenBox.do(AccelDeccel(MoveTo((self.chosenBox.x, resheight * 0.89), 2)))
+
+class ChosenBox(Layer):
+
+    is_event_handler = True
+
+    def __init__(self, gameMode):
+        super().__init__()
+        events.gamemenuevents.push_handlers(self)
+        self.gameMode = gameMode
+        self.bg = Sprite("chosenBox.png")
+        self.width = self.bg.width
+        self.height = self.bg.height
+        self.gmTitle = Label("Chosen Game Mode:\n" + gameMode.name, color=(0, 0, 0, 255), font_size=15, anchor_x="left", anchor_y="center", multiline = True, width = self.width * 0.9, height = self.height * 0.9)
+        self.gmTitle.x = self.x * 0.1
+        self.gmTitle.y = self.y / 2
+        self.delay = 0
+        self.add(self.gmTitle, z=1)
+        self.add(self.bg, z=0)
+        self.active = False
+        self.showing = False
+        self.chosen = False
+        self.width_range = [int((self.x) - (self.bg.width / 2)), int((self.x) + (self.bg.width / 2))]
+        self.height_range = [int((self.y) - (self.bg.height / 2)), int((self.y) + (self.bg.width / 2))]
+
+    # def show(self, duration = 0.5):
+    #     if not self.showing:
+    #         for child in self.get_children():
+    #             if isinstance(child, smallButton):
+    #                 child.do(Delay(self.delay / 4) + CallFunc(child.show))
+    #             else:
+    #                 child.do(FadeOut(0.01) + Delay(self.delay / 4) + FadeIn(duration))
+    #     self.showing = True
+
+    # def hide(self, duration = 0.5):
+    #     if self.showing:
+    #         for child in self.get_children():
+    #             if isinstance(child, smallButton):
+    #                 child.do(CallFunc(child.hide))
+    #             else:
+    #                 child.do(FadeOut(duration))
+    #         self.showing = False
+
+    def update_positions(self):
+        self.gmTitle.x = -200
+        self.gmTitle.y = -15
+
+
+
 
 class GameModeMenu(Scene):
 
@@ -201,7 +274,7 @@ class GameModeMenu(Scene):
         newButton = mediumButton("NEW", events.mainmenuevents.backToMainMenu) # TODO: Need to change to level creator/editor
         newButton.x = reswidth * 0.935
         newButton.y = resheight * 0.89
-        newButton.show()
+        newButton.show(0.01)
         self.add(backButton)
         self.add(newButton)
         events.gamemenuevents.push_handlers(self)
@@ -228,9 +301,10 @@ class GameModeMenu(Scene):
             if chosenGameMode == self.modeBoxes[i].gameMode:
                 self.modeBoxes[i].chosen = True
                 #cfg.loadedGameMode = modes.gamemodes[self.modeBoxes[i].gameMode]
-                modes.loadGameMode(self.modesBoxes[i].gameMode)
-                self.do(Delay(2) + CallFunc(self.modeBoxes[i].hide()))
-                self.gamemodeTitle.do(Accel(MoveTo((self.gamemodeTitle.x, resheight * 1.2))))
+                modes.loadGameMode(modes.gamemodes[self.modeBoxes[i].gameMode.idx])
+                self.do(Delay(1) + CallFunc(self.modeBoxes[i].hide))
+                self.gamemodeTitle.do(Delay(1) + Accelerate(MoveTo((self.gamemodeTitle.x, resheight * 1.2), 1), rate = 3.5) + CallFunc(events.gamemenuevents.onReplaceGMMenu))
+
             else:
                 self.modeBoxes[i].hide()
 
@@ -305,25 +379,33 @@ class GameModeBox(Layer):
         self.height_range = [int(nmin[1]), int(nmax[1])]
 
     def on_mouse_motion(self, x, y, dx, dy):
-        if not self.chosen:
+        if not self.chosen and self.showing:
             if self.active:
                 self.bg.image = pyglet.resource.image("gameBoxClicked.png")
                 self.gmTitle.element.color = (255, 255, 255, 255)
             elif x in range(self.width_range[0], self.width_range[1]) and y in range(self.height_range[0], self.height_range[1]):
-                self.bg.image = pyglet.resource.image("gameBoxHovered.png")
-                self.gmTitle.element.color = (0, 0, 0, 255)
+                if x not in range(self.infoButton.width_range[0], self.infoButton.width_range[1]) and y not in range(self.infoButton.height_range[0], self.infoButton.height_range[1]):
+                    self.bg.image = pyglet.resource.image("gameBoxHovered.png")
+                    self.gmTitle.element.color = (0, 0, 0, 255)
             else:
                 self.bg.image = pyglet.resource.image("gameBox.png")
                 self.gmTitle.element.color = (0, 0, 0, 255)
 
     def on_mouse_press(self, x, y, buttons, modifiers):
-        if not self.chosen:
-            if x in range(self.width_range[0], self.width_range[1]) and y in range(self.height_range[0], self.height_range[1]) and not self.chosen:
-                self.bg.image = pyglet.resource.image("gameBoxClicked.png")
-                self.active = True
-                self.gmTitle.element.color = (255, 255, 255, 255)
-                events.gamemenuevents.chooseGameMode(self.gameMode)
-                self.active = False        
+        if not self.chosen and self.showing:
+            if x in range(self.width_range[0], self.width_range[1]) and y in range(self.height_range[0], self.height_range[1]):
+                if x not in range(self.infoButton.width_range[0], self.infoButton.width_range[1]) and y not in range(self.infoButton.height_range[0], self.infoButton.height_range[1]):
+                    self.bg.image = pyglet.resource.image("gameBoxClicked.png")
+                    self.active = True
+                    self.gmTitle.element.color = (255, 255, 255, 255)
+                    events.gamemenuevents.chooseGameMode(self.gameMode)
+                    self.active = False        
+
+    def ExtendedInfoShow(self, gm):
+        self.showing = False
+
+    def ExtendedInfoHide(self, gm):
+        self.showing = True
 
 class ExtendedInfo(Layer):
 
