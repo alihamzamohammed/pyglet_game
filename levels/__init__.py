@@ -7,9 +7,10 @@ import logger
 
 class Level():
 
-    def __init__(self, folder):
+    def __init__(self, folder, idx):
         super().__init__()
         self.folder = folder
+        self.idx = idx
         if not os.path.exists(self.folder):
             raise LevelCorrupt("Folder not found! Level will not be loaded!")
         if "main.xml" in os.listdir(self.folder):
@@ -77,7 +78,7 @@ def init():
     for lvlfolder in [f.name for f in os.scandir(os.getcwd() + folder) if f.is_dir()]:
         if lvlfolder != "__pycache__":
             try:
-                levels[lvlfolder] = Level(folder[2:] + lvlfolder)
+                levels[lvlfolder] = Level(folder[2:] + lvlfolder, lvlfolder)
             except LevelCorrupt as e:
                 logger.addLog(e.message, logger.loglevel["warning"])
             except DependencyNotFound as e:
