@@ -82,6 +82,9 @@ class Game(object):
     def replaceLevelMenu(self):
         director.replace(FadeTransition(gamemenu.LevelMenu(), duration = 0.001))
 
+    def GamePlayButtonClicked(self):
+        director.replace(FadeTransition(renderer.Renderer(cfg.loadedLevel, cfg.loadedGameMode), duration = 1))
+
     def __init__(self):
         super(Game, self).__init__()
         events.mainmenuevents.push_handlers(self)

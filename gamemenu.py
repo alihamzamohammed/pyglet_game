@@ -181,9 +181,12 @@ class smallButton(Layer):
 
 
 class LevelMenu(Scene):
+
+    is_event_handler = True
     
     def __init__(self):
         super().__init__()
+        events.gamemenuevents.push_handlers(self)
         global title
         self.levelTitle = title
         self.levelTitle.element.text = "Levels"
@@ -207,6 +210,11 @@ class LevelMenu(Scene):
         self.add(self.levelTitle)
         self.levelTitle.do(AccelDeccel(MoveTo((self.levelTitle.x, resheight * 0.94), 2)))
         self.chosenBox.do(AccelDeccel(MoveTo((self.chosenBox.x, resheight * 0.89), 2)))
+        self.playButton = mediumButton("PLAY!", events.gamemenuevents.onPlayButtonClick)
+        self.playButton.x = reswidth * 0.9
+        self.playButton.y = resheight * -0.1
+        self.add(self.playButton)
+        self.playButton.show()
         self.levelBoxes = []
         for levelName, level in levels.levels.items():
             levelBox = LevelBox(level)
@@ -221,6 +229,9 @@ class LevelMenu(Scene):
             self.add(extendedInfo, z=2)
             self.levelBoxes[i].show()
 
+    def LevelChosen(self, level):
+        self.playButton.do(MoveTo((self.playButton.x, resheight * 0.1), duration = 1))
+        levels.levelLoad(level.idx)
 
 
 class ChosenBox(Layer):
@@ -241,7 +252,7 @@ class ChosenBox(Layer):
         self.add(self.gmTitle, z=1)
         self.add(self.bg, z=0)
         self.active = False
-        self.showing = False
+        self.showing = True
         self.chosen = False
         self.width_range = [int((self.x) - (self.bg.width / 2)), int((self.x) + (self.bg.width / 2))]
         self.height_range = [int((self.y) - (self.bg.height / 2)), int((self.y) + (self.bg.width / 2))]
@@ -266,9 +277,8 @@ class ChosenBox(Layer):
                 self.bg.image = pyglet.resource.image("chosenBoxClicked.png")
                 self.gmTitle.element.color = (255, 255, 255, 255)
             elif x in range(self.width_range[0], self.width_range[1]) and y in range(self.height_range[0], self.height_range[1]):
-                if x not in range(self.infoButton.width_range[0], self.infoButton.width_range[1]) and y not in range(self.infoButton.height_range[0], self.infoButton.height_range[1]):
-                    self.bg.image = pyglet.resource.image("gameBoxHovered.png")
-                    self.gmTitle.element.color = (0, 0, 0, 255)
+                self.bg.image = pyglet.resource.image("chosenBoxHovered.png")
+                self.gmTitle.element.color = (0, 0, 0, 255)
             else:
                 self.bg.image = pyglet.resource.image("chosenBox.png")
                 self.gmTitle.element.color = (0, 0, 0, 255)
@@ -276,12 +286,11 @@ class ChosenBox(Layer):
     def on_mouse_press(self, x, y, buttons, modifiers):
         if not self.chosen and self.showing:
             if x in range(self.width_range[0], self.width_range[1]) and y in range(self.height_range[0], self.height_range[1]):
-                if x not in range(self.infoButton.width_range[0], self.infoButton.width_range[1]) and y not in range(self.infoButton.height_range[0], self.infoButton.height_range[1]):
-                    self.bg.image = pyglet.resource.image("chosenBoxClicked.png")
-                    self.active = True
-                    self.gmTitle.element.color = (255, 255, 255, 255)
-                    #events.gamemenuevents.chooseGameMode(self.gameMode)
-                    self.active = False        
+                self.bg.image = pyglet.resource.image("chosenBoxClicked.png")
+                self.active = True
+                self.gmTitle.element.color = (255, 255, 255, 255)
+                events.mainmenuevents.onPlayButtonClick()
+                self.active = False        
 
 class LevelBox(Layer):
 
@@ -290,7 +299,6 @@ class LevelBox(Layer):
     def __init__(self, level):
         super().__init__()
         events.gamemenuevents.push_handlers(self)
-        print(level)
         self.level = level
         self.bg = Sprite("gameBox.png")
         self.thumbnail = Sprite(level.thumbnail)
@@ -380,7 +388,7 @@ class LevelBox(Layer):
                     self.bg.image = pyglet.resource.image("gameBoxClicked.png")
                     self.active = True
                     self.gmTitle.element.color = (255, 255, 255, 255)
-                    #events.gamemenuevents.chooseGameMode(self.gameMode)
+                    events.gamemenuevents.chooseLevel(self.level)
                     self.active = False        
 
     def ExtendedInfoShow(self, gm):
@@ -463,6 +471,7 @@ class GameModeMenu(Scene):
         super().__init__()
         global title
         self.gamemodeTitle = title
+        self.gamemodeTitle.element.text = "Game Modes"
         self.gamemodeTitle.x = reswidth * 0.13
         self.gamemodeTitle.y = resheight * 0.94
         self.add(self.gamemodeTitle)
@@ -495,7 +504,6 @@ class GameModeMenu(Scene):
         super().on_enter()
 
     def GameModeChosen(self, chosenGameMode):
-        print("caught")
         for i in range(len(self.modeBoxes)):
             if chosenGameMode == self.modeBoxes[i].gameMode:
                 self.modeBoxes[i].chosen = True
