@@ -293,7 +293,7 @@ class LevelBox(Layer):
         print(level)
         self.level = level
         self.bg = Sprite("gameBox.png")
-        self.thumbnail = Sprite("defaultThumbnail.png")#level.thumbnail)
+        self.thumbnail = Sprite(level.thumbnail)
         self.thumbnail.scale_x = 200 / self.thumbnail.width
         self.thumbnail.scale_y = 200 / self.thumbnail.height
         self.infoButton = smallButton("i", events.gamemenuevents.showExtendedInfo, eventparam=level.idx)
@@ -324,7 +324,7 @@ class LevelBox(Layer):
                 if isinstance(child, smallButton):
                     child.do(Delay((self.delay / 4) + 1) + CallFunc(child.show))
                 else:
-                    child.do(FadeOut(0.01) + Delay((self.delay / 4) + 1) + FadeIn(duration))
+                    child.do(FadeOut(0.00001) + Delay((self.delay / 4) + 1) + FadeIn(duration))
         self.showing = True
 
     def hide(self, duration = 0.5):
@@ -408,7 +408,7 @@ class LVLExtendedInfo(Layer):
         self.exitButton.x = self.infoBox.x + ((self.infoBox.width / 2) * 0.91)
         self.exitButton.y = self.infoBox.y + ((self.infoBox.height / 2) * 0.85)
         self.active = False
-        self.thumbnail = Sprite("defaultThumbnail.png")#level.thumbnail)
+        self.thumbnail = Sprite(level.thumbnail)
         self.thumbnail.scale_x = 350 / self.thumbnail.width
         self.thumbnail.scale_y = 350 / self.thumbnail.height
         self.thumbnail.x = self.infoBox.x - ((self.infoBox.width / 2) * 0.55)
@@ -427,7 +427,7 @@ class LVLExtendedInfo(Layer):
         self.add(self.desc, z=5)
         self.bgDimmer.do(Hide())
         self.infoBox.do(Hide())
-        self.exitButton.hide(0.01)
+        self.exitButton.do(Hide())
         self.thumbnail.do(Hide())
         self.title.do(Hide())
         self.desc.do(Hide())

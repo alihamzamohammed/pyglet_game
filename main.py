@@ -52,7 +52,7 @@ class Game(object):
 
     def progressFinished(self):
         logger.addLog("Loading finished, displaying Main Menu", logger.loglevel["debug"])
-        director.replace(mainmenu.MainMenuScreen())
+        director.replace(FadeTransition(mainmenu.MainMenuScreen(), duration = 0.001))
 
     def playButtonClicked(self):
         # DEBUG: Debug code, not for final version
@@ -80,7 +80,7 @@ class Game(object):
         cfg.loadedGameMode = None
 
     def replaceLevelMenu(self):
-        director.replace(gamemenu.LevelMenu())
+        director.replace(FadeTransition(gamemenu.LevelMenu(), duration = 0.001))
 
     def __init__(self):
         super(Game, self).__init__()
