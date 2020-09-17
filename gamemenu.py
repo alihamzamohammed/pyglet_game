@@ -230,7 +230,7 @@ class LevelMenu(Scene):
             self.levelBoxes[i].show()
 
     def LevelChosen(self, level):
-        self.playButton.do(MoveTo((self.playButton.x, resheight * 0.1), duration = 1))
+        self.playButton.do(AccelDeccel(MoveTo((self.playButton.x, resheight * 0.1), duration = 2)))
         levels.levelLoad(level.idx)
 
 
