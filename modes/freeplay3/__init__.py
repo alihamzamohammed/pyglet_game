@@ -104,7 +104,7 @@ class PlatformerController(actions.Action):
 def main():
     return PlatformerController()
 
-name = "Free Play 3"
+name = "Free Play"
 desc = "Duplicate of freeplay2."
 
 # ~: Game modes can use the main() subroutine to run other subroutines and init other sprites and make them do stuff. Here, because scroller is imported,
