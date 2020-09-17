@@ -51,9 +51,11 @@ class Level():
             raise LevelCorrupt("Level " + self.folder + " has no content, level will not be loaded!")
         if not hasattr(self, "background"):
             self.background = (100, 120, 150, 255)
+        if not hasattr(self, "thumbnail"):
+            self.thumbnail = "defaultThumbnail.png"
 
-    def __str__(self):
-        return self.name
+    #def __str__(self):
+     #   return self.name
 
 class LevelCorrupt(Exception):
 
