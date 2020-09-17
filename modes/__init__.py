@@ -52,7 +52,7 @@ def init():
             try:
                 module = importlib.import_module("modes." + mode)
                 if not mode in list(gamemodes.keys()):
-                    gamemodes[mode] = GameMode(module, gamemodes[mode])
+                    gamemodes[mode] = GameMode(module, mode)
                 else:
                     logger.addLog("Game mode " + mode + " is a duplicate of a previously added game mode, gamemode will not be loaded!")
                     continue
