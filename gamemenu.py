@@ -243,7 +243,7 @@ class GameModeBox(Layer):
         self.thumbnail = Sprite(gameMode.thumbnail)
         self.thumbnail.scale_x = 200 / self.thumbnail.width
         self.thumbnail.scale_y = 200 / self.thumbnail.height
-        self.infoButton = smallButton("i", events.gamemenuevents.showExtendedInfo, eventparam=gameMode.name)
+        self.infoButton = smallButton("i", events.gamemenuevents.showExtendedInfo, eventparam=gameMode.idx)
         self.width = self.bg.width
         self.height = self.bg.height
         self.thumbnail.x = self.x
@@ -282,8 +282,6 @@ class GameModeBox(Layer):
                 else:
                     child.do(FadeOut(duration))
             self.showing = False
-            
-
 
     def update_positions(self):
         self.thumbnail.x = 0
@@ -332,7 +330,7 @@ class ExtendedInfo(Layer):
         self.gameMode = gameMode
         self.infoBox = Sprite("infoBox.png")
         self.bgDimmer = ColorLayer(0, 0, 0, 20)
-        self.exitButton = smallButton("X", events.gamemenuevents.hideExtendedInfo, eventparam=self.gameMode.name)
+        self.exitButton = smallButton("X", events.gamemenuevents.hideExtendedInfo, eventparam=self.gameMode.idx)
         self.bgDimmer.opacity = 100
         self.infoBox.x = reswidth / 2
         self.infoBox.y = resheight / 2
@@ -366,8 +364,8 @@ class ExtendedInfo(Layer):
         self.desc.do(FadeOut(0.01))
         
        
-    def ExtendedInfoShow(self, name):
-        if name == self.gameMode.name and not self.active:
+    def ExtendedInfoShow(self, idx):
+        if idx == self.gameMode.idx and not self.active:
             self.infoBox.do(FadeIn(0.5))
             self.bgDimmer.do(FadeTo(150, 0.5))
             self.thumbnail.do(FadeIn(0.5))
@@ -376,8 +374,8 @@ class ExtendedInfo(Layer):
             self.exitButton.show()
             self.active = True
     
-    def ExtendedInfoHide(self, name):
-        if name == self.gameMode.name and self.active:
+    def ExtendedInfoHide(self, idx):
+        if idx == self.gameMode.idx and self.active:
             self.infoBox.do(FadeOut(0.5))
             self.bgDimmer.do(FadeTo(0, 0.5))
             self.thumbnail.do(FadeOut(0.5))

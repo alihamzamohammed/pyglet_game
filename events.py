@@ -76,19 +76,19 @@ class GameMenuEvents(pyglet.window.EventDispatcher):
     def __init__(self):
         super().__init__()
 
-    def showExtendedInfo(self, name):
-        self.dispatch_event("ExtendedInfoShow", name)
+    def showExtendedInfo(self, idx):
+        self.dispatch_event("ExtendedInfoShow", idx)
     
-    def hideExtendedInfo(self, name):
-        self.dispatch_event("ExtendedInfoHide", name)
+    def hideExtendedInfo(self, idx):
+        self.dispatch_event("ExtendedInfoHide", idx)
 
     def chooseGameMode(self, mode):
         if isinstance(mode, modes.GameMode):
             self.dispatch_event("GameModeChosen", mode)
             print("Selected Game Mode: " + mode.name)
 
-    def chooseLevel(self, name):
-        self.dispatch_event("LevelChosen", name)
+    def chooseLevel(self, idx):
+        self.dispatch_event("LevelChosen", idx)
 
     def onPlayButtonClick(self):
         self.dispatch_event("PlayButtonClicked")

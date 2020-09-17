@@ -10,7 +10,7 @@ class GameMode():
 
     def __init__(self, modeModule, modeId):
         super().__init__()
-        self.id = modeId
+        self.idx = modeId
         if hasattr(modeModule, "name"):
             self.name = modeModule.name
         else:
@@ -51,9 +51,14 @@ def init():
         if "_" not in mode:
             try:
                 module = importlib.import_module("modes." + mode)
-                gamemodes[mode] = GameMode(module, gamemodes[mode])
+                if not mode in list(gamemodes.keys()):
+                    gamemodes[mode] = GameMode(module, gamemodes[mode])
+                else:
+                    logger.addLog("Game mode " + mode + " is a duplicate of a previously added game mode, gamemode will not be loaded!")
+                    continue
             except PlatformerControllerNotFound:
                 logger.addLog("PlatformerController does not exist in game mode " + mode + ", game mode will not be loaded!", logger.loglevel["warning"])
                 continue
             except ModuleNotFoundError:
                 logger.addLog("Game mode " + mode + " is not properly structured, game mode will not be loaded!", logger.loglevel["warning"])
+                continue
