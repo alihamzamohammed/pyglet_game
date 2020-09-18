@@ -233,6 +233,10 @@ class LevelMenu(Scene):
         self.playButton.do(AccelDeccel(MoveTo((self.playButton.x, resheight * 0.1), duration = 2)))
         levels.levelLoad(level.idx)
 
+    
+    def ChosenBoxClicked(self):
+        self.chosenBox.do(Delay(0.3) + Accelerate(MoveTo((self.chosenBox.x, resheight * 1.2), 1), rate = 3.5))
+        self.levelTitle.do(Delay(0.3) + Accelerate(MoveTo((self.levelTitle.x, resheight * 1.2), 1), rate = 3.5) + CallFunc(events.gamemenuevents.onReturnToGMMenu))
 
 class ChosenBox(Layer):
 
@@ -289,7 +293,7 @@ class ChosenBox(Layer):
                 self.bg.image = pyglet.resource.image("chosenBoxClicked.png")
                 self.active = True
                 self.gmTitle.element.color = (255, 255, 255, 255)
-                events.mainmenuevents.onPlayButtonClick()
+                events.gamemenuevents.onChosenBoxClick()
                 self.active = False        
 
     def ExtendedInfoShow(self, gm):
@@ -523,6 +527,9 @@ class GameModeMenu(Scene):
             else:
                 self.modeBoxes[i].hide()
 
+    def ReturnToGMMenu(self):
+        self.gamemodeTitle.y = resheight * 1.2
+        self.gamemodeTitle.do(AccelDeccel(MoveTo((self.gamemodeTitle.x, resheight * 0.94), 2)))
 
 class GameModeBox(Layer):
 

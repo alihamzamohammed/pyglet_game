@@ -88,6 +88,10 @@ class Game(object):
         #events.gamemenuevents.pop_handlers(self)
         #events.gamemenuevents.remove_handlers(self)
 
+    def ReturnToGMMenu(self):
+        director.replace(FadeTransition(gamemenu.GameModeMenu(), duration = 0.001))
+
+
     def __init__(self):
         super(Game, self).__init__()
         events.mainmenuevents.push_handlers(self)

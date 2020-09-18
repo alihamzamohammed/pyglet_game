@@ -95,12 +95,20 @@ class GameMenuEvents(pyglet.window.EventDispatcher):
     def onReplaceGMMenu(self):
         self.dispatch_event("replaceLevelMenu")
 
+    def onChosenBoxClick(self):
+        self.dispatch_event("ChosenBoxClicked")
+
+    def onReturnToGMMenu(self):
+        self.dispatch_event("ReturnToGMMenu")
+
 GameMenuEvents.register_event_type("ExtendedInfoShow")
 GameMenuEvents.register_event_type("ExtendedInfoHide")
 GameMenuEvents.register_event_type("GameModeChosen")
 GameMenuEvents.register_event_type("LevelChosen")
 GameMenuEvents.register_event_type("GamePlayButtonClicked")
 GameMenuEvents.register_event_type("replaceLevelMenu")
+GameMenuEvents.register_event_type("ChosenBoxClicked")
+GameMenuEvents.register_event_type("ReturnToGMMenu")
 
 pausescreenevents = PauseScreenEvents()
 mainmenuevents = MainMenuEvents()
