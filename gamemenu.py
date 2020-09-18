@@ -292,6 +292,15 @@ class ChosenBox(Layer):
                 events.mainmenuevents.onPlayButtonClick()
                 self.active = False        
 
+    def ExtendedInfoShow(self, gm):
+        self.showing = False
+
+    def ExtendedInfoHide(self, gm):
+        self.do(Delay(0.7) + CallFunc(self.activate))
+
+    def activate(self):
+        self.showing = True
+
 class LevelBox(Layer):
 
     is_event_handler = True
@@ -433,12 +442,12 @@ class LVLExtendedInfo(Layer):
         self.add(self.thumbnail, z=5)
         self.add(self.title, z=5)
         self.add(self.desc, z=5)
-        self.bgDimmer.do(Hide())
-        self.infoBox.do(Hide())
-        self.exitButton.do(Hide())
-        self.thumbnail.do(Hide())
-        self.title.do(Hide())
-        self.desc.do(Hide())
+        self.bgDimmer.do(FadeOut(0.001))
+        self.infoBox.do(FadeOut(0.001))
+        self.exitButton.do(FadeOut(0.001))
+        self.thumbnail.do(FadeOut(0.001))
+        self.title.do(FadeOut(0.001))
+        self.desc.do(FadeOut(0.001))
         
        
     def ExtendedInfoShow(self, idx):

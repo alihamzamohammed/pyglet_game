@@ -74,6 +74,7 @@ class MainMenuScreen(scene.Scene):
         self.add(settingsButton)
         self.add(quitButton)
 
+
 class loadingScreen(scene.Scene):
 
     is_event_handler = True
@@ -81,13 +82,16 @@ class loadingScreen(scene.Scene):
     def __init__(self):
         super(loadingScreen, self).__init__()
         x, y = cocos.director.director.get_window_size()
+        self.loaded = False
         gameTitle.position = x / 2, y * 0.7
         self.add(gameTitle)
         gameTitle.do(FadeIn(1))
 
     def on_enter(self):
         super().on_enter()
-        game_loading()
+        if not self.loaded:
+            game_loading()
+            self.loaded = True
 
 if __name__=="__main__":
     print("This file cannot be run directly, please run main.py to start the game.")
