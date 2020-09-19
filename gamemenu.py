@@ -235,8 +235,10 @@ class LevelMenu(Scene):
 
     
     def ChosenBoxClicked(self):
-        self.chosenBox.do(Delay(0.3) + Accelerate(MoveTo((self.chosenBox.x, resheight * 1.2), 1), rate = 3.5))
-        self.levelTitle.do(Delay(0.3) + Accelerate(MoveTo((self.levelTitle.x, resheight * 1.2), 1), rate = 3.5) + CallFunc(events.gamemenuevents.onReturnToGMMenu))
+        self.chosenBox.do(Accelerate(MoveTo((self.chosenBox.x, resheight * 1.2), 1), rate = 3.5))
+        for i in range(len(self.levelBoxes)):
+            self.levelBoxes[i].hide(1)
+        self.levelTitle.do(Accelerate(MoveTo((self.levelTitle.x, resheight * 1.2), 1), rate = 3.5) + CallFunc(events.gamemenuevents.onReturnToGMMenu))
 
 class ChosenBox(Layer):
 
@@ -496,6 +498,7 @@ class GameModeMenu(Scene):
         newButton.x = reswidth * 0.935
         newButton.y = resheight * 0.89
         newButton.show(0.01)
+        
         self.add(backButton)
         self.add(newButton)
         events.gamemenuevents.push_handlers(self)
@@ -565,13 +568,13 @@ class GameModeBox(Layer):
         self.schedule_interval(self.setWH, 1)
         self.resume_scheduler()
 
-    def show(self, duration = 0.5):
+    def show(self, duration = 0.5, cdelay = 0):
         if not self.showing:
             for child in self.get_children():
                 if isinstance(child, smallButton):
-                    child.do(Delay(self.delay / 4) + CallFunc(child.show))
+                    child.do(Delay(cdelay + (self.delay / 4)) + CallFunc(child.show))
                 else:
-                    child.do(FadeOut(0.01) + Delay(self.delay / 4) + FadeIn(duration))
+                    child.do(FadeOut(0.01) + Delay(cdelay + (self.delay / 4)) + FadeIn(duration))
         self.showing = True
 
     def hide(self, duration = 0.5):
