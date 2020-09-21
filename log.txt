@@ -20917,3 +20917,15 @@ DEBUG: Init game modes
 DEBUG: Init items
 INFO: Item pack Transparency Pack at path items//transparencyPack has no declared items.
 DEBUG: Loading finished, displaying Main Menu
+
+DEBUG: New execution, at: 2020-09-21 15:07:23.949692
+DEBUG: Init resources
+DEBUG: Starting game.
+DEBUG: Resolution is 1280x720
+DEBUG: Fullscreen is enabled
+DEBUG: Starting game loading!
+DEBUG: Init levels
+DEBUG: Init game modes
+DEBUG: Init items
+INFO: Item pack Transparency Pack at path items//transparencyPack has no declared items.
+DEBUG: Loading finished, displaying Main Menu

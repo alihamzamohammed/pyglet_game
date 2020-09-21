@@ -448,12 +448,12 @@ class LVLExtendedInfo(Layer):
         self.add(self.thumbnail, z=5)
         self.add(self.title, z=5)
         self.add(self.desc, z=5)
-        self.bgDimmer.do(FadeOut(0.001))
-        self.infoBox.do(FadeOut(0.001))
-        self.exitButton.do(FadeOut(0.001))
-        self.thumbnail.do(FadeOut(0.001))
-        self.title.do(FadeOut(0.001))
-        self.desc.do(FadeOut(0.001))
+        self.bgDimmer.do(FadeOut(0.00001))
+        self.infoBox.do(FadeOut(0.00001))
+        self.exitButton.do(FadeOut(0.00001))
+        self.thumbnail.do(FadeOut(0.00001))
+        self.title.do(FadeOut(0.00001))
+        self.desc.do(FadeOut(0.00001))
         
        
     def ExtendedInfoShow(self, idx):
@@ -574,7 +574,7 @@ class GameModeBox(Layer):
                 if isinstance(child, smallButton):
                     child.do(Delay(cdelay + (self.delay / 4)) + CallFunc(child.show))
                 else:
-                    child.do(FadeOut(0.01) + Delay(cdelay + (self.delay / 4)) + FadeIn(duration))
+                    child.do(FadeOut(0.00001) + Delay(cdelay + (self.delay / 4)) + FadeIn(duration))
         self.showing = True
 
     def hide(self, duration = 0.5):
@@ -675,12 +675,12 @@ class GMExtendedInfo(Layer):
         self.add(self.thumbnail, z=5)
         self.add(self.title, z=5)
         self.add(self.desc, z=5)
-        self.bgDimmer.do(FadeOut(0.01))
-        self.infoBox.do(FadeOut(0.01))
-        self.exitButton.hide(0.01)
-        self.thumbnail.do(FadeOut(0.01))
-        self.title.do(FadeOut(0.01))
-        self.desc.do(FadeOut(0.01))
+        self.bgDimmer.do(FadeOut(0.00001))
+        self.infoBox.do(FadeOut(0.00001))
+        self.exitButton.hide(0.00001)
+        self.thumbnail.do(FadeOut(0.00001))
+        self.title.do(FadeOut(0.00001))
+        self.desc.do(FadeOut(0.00001))
         
        
     def ExtendedInfoShow(self, idx):
