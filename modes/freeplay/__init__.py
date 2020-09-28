@@ -10,7 +10,7 @@ class PlatformerController(actions.Action):
 
     on_ground = True
     MOVE_SPEED = 200
-    JUMP_SPEED = 800
+    JUMP_SPEED = 600
     GRAVITY = -1200
     SLOWDOWN = 0.1 * MOVE_SPEED
     slowdownthreshold = [0, 0]
