@@ -6,7 +6,7 @@
     <tileset>
         <tile id="trampoline">
             <image ref="trampolinei" />
-            <property name="bounce_multiplier" type="float" value="2" />
+            <property name="bounce_multiplier" type="float" value="1.3" />
             <property name="sourcecode" type="unicode" value="bouncePack" />
         </tile>
     </tileset>
