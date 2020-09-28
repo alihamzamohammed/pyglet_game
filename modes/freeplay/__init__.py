@@ -22,6 +22,14 @@ class PlatformerController(actions.Action):
     JUMPKEY = cfg.keyConfig["jump"]
 
     def start(self):
+        import items as i
+        for itemPack in cfg.loadedLevel.required["itempack"]:
+            if "sourcecode" in i.itempacks[itemPack].required:
+                for ipSource in i.itempacks[itemPack].required["sourcecode"]:
+                    module = importlib.import_module("items." + i.itempacks[itemPack].idx + "." + ipSource[:-3])
+                    if "bounce" in dir(module):
+                        self.bounce = module.bounce_modifier(self.bounce)
+
         self.target.velocity = (0, 0)
         from renderer import fullmap
         #importlib.importmodule(scroller)
@@ -95,16 +103,6 @@ class PlatformerController(actions.Action):
         pass
 
 def main():
-    import levels as l
-    import items as i
-    #l.levels[cfg.loadedLevel.idx]
-    for itemPack in cfg.loadedLevel.required["itempack"]:
-        print(itemPack)
-        if "sourcecode" in i.itempacks[itemPack].required:
-            for ipSource in i.itempacks[itemPack].required["sourcecode"]:
-                #importlib.import_module
-                print(os.getcwd() + "\\" + i.itempacks[itemPack].folder + "\\" + ipSource)
-        
     return PlatformerController()
 
 name = "Free Play"

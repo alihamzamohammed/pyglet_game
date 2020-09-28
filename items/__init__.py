@@ -6,9 +6,10 @@ import os
 
 class ItemPack():
 
-    def __init__(self, folder):
+    def __init__(self, folder, idx):
         super().__init__()
         self.folder = folder
+        self.idx = idx
         if not os.path.exists(self.folder):
             raise ItemPackCorrupt("Folder not found! Item pack will not be loaded!")
         if "main.xml" in os.listdir(self.folder):
@@ -86,7 +87,7 @@ def init():
     for itmfolder in [f.name for f in os.scandir(os.getcwd() + folder) if f.is_dir()]:
         if itmfolder != "__pycache__":
             try:
-                itempacks[itmfolder] = ItemPack(folder[2:] + itmfolder)
+                itempacks[itmfolder] = ItemPack(folder[2:] + itmfolder, itmfolder)
             except ItemPackCorrupt as e:
                 logger.addLog(e.message, logger.loglevel["warning"])
             except DependencyNotFound as e:
