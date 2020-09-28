@@ -28,7 +28,6 @@ class ItemPack():
             
             self.required = {}
             if item.tag == "required":
-                print(item.attrib)
                 for a in item.attrib:
                     self.required[item.attrib[a]] = item.text
             

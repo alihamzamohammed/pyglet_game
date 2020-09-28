@@ -54,7 +54,7 @@ class Level():
 
             for req in self.required:
                 if not os.path.exists(os.getcwd() + "\\items\\" + self.required[req]):
-                    raise DependencyNotFound("The level " + self.folder + " requires dependency " + req + " " + self.required[req] + ", which is not available!")
+                    raise DependencyNotFound("The level " + self.folder + " requires dependency " + req + " " + self.required[req] + ", which is not available.")
                 
 
         if not hasattr(self, "name"):
