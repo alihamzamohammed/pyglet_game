@@ -9,6 +9,7 @@
     <requires file="items/decorations/cloud.xml" namespace="cloud" />
     <requires file="items/bouncePack/trampoline.xml" namespace="trampoline" />
     <requires file="items/bouncePack/sponge.xml" namespace="sponge" />
+    <requires file="items/bouncePack/hyperjump.xml" namespace="hyperjump" />
     <rectmap id="walls" origin="0,0,0" tile_size="32x32">
         <column>
             <cell tile="stone:stone" />
