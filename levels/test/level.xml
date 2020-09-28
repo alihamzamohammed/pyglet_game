@@ -1389,7 +1389,7 @@
         </column>
         <column>
             <cell tile="dirt:dirt" />>
-            <cell tile="grass:grass" />
+            <cell tile="hyperjump:hyperjump" />
             <cell />
             <cell />
             <cell />
