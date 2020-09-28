@@ -60,7 +60,7 @@
             <cell />
             <cell />
             <cell />
-            <cell />
+            <cell tile="stone:stone" />
         </column>
         <column>
             <cell tile="dirt:dirt" />>
@@ -85,7 +85,7 @@
             <cell />
             <cell />
             <cell />
-            <cell />
+            <cell tile="stone:stone" />
         </column>
         <column>
             <cell tile="dirt:dirt" />>
@@ -110,32 +110,7 @@
             <cell />
             <cell />
             <cell />
-            <cell />
-        </column>
-        <column>
-            <cell tile="dirt:dirt" />>
-            <cell tile="grass:grass" />
-            <cell />
-            <cell />
-            <cell />
-            <cell tile="wood:wood" />
-            <cell />
-            <cell />
-            <cell />
-            <cell />
-            <cell />
-            <cell />
-            <cell />
-            <cell />
-            <cell />
-            <cell />
-            <cell />
-            <cell />
-            <cell />
-            <cell />
-            <cell />
-            <cell />
-            <cell />
+            <cell tile="stone:stone" />
         </column>
         <column>
             <cell tile="dirt:dirt" />>
@@ -185,7 +160,7 @@
             <cell />
             <cell />
             <cell />
-            <cell />
+            <cell tile="stone:stone" />
         </column>
         <column>
             <cell tile="dirt:dirt" />>
@@ -210,7 +185,7 @@
             <cell />
             <cell />
             <cell />
-            <cell />
+            <cell tile="stone:stone" />
         </column>
         <column>
             <cell tile="dirt:dirt" />>
@@ -235,7 +210,32 @@
             <cell />
             <cell />
             <cell />
+            <cell tile="stone:stone" />
+        </column>
+        <column>
+            <cell tile="dirt:dirt" />>
+            <cell tile="grass:grass" />
             <cell />
+            <cell />
+            <cell />
+            <cell tile="wood:wood" />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell tile="stone:stone" />
         </column>
         <column>
             <cell tile="dirt:dirt" />>
@@ -260,7 +260,7 @@
             <cell />
             <cell />
             <cell />
-            <cell />
+            <cell tile="stone:stone" />
         </column>
         <column>
             <cell tile="dirt:dirt" />>
@@ -285,7 +285,7 @@
             <cell />
             <cell />
             <cell />
-            <cell />
+            <cell tile="stone:stone" />
         </column>
         <column>
             <cell tile="dirt:dirt" />>
@@ -310,7 +310,7 @@
             <cell />
             <cell />
             <cell />
-            <cell />
+            <cell tile="stone:stone" />
         </column>
         <column>
             <cell tile="dirt:dirt" />>
@@ -335,7 +335,7 @@
             <cell />
             <cell />
             <cell />
-            <cell />
+            <cell tile="stone:stone" />
         </column>
         <column>
             <cell tile="dirt:dirt" />>
@@ -360,7 +360,7 @@
             <cell />
             <cell />
             <cell />
-            <cell />
+            <cell tile="stone:stone" />
         </column>
         <column>
             <cell tile="dirt:dirt" />>
@@ -385,7 +385,7 @@
             <cell />
             <cell />
             <cell />
-            <cell />
+            <cell tile="stone:stone" />
         </column>
         <column>
             <cell tile="dirt:dirt" />>
@@ -410,7 +410,7 @@
             <cell />
             <cell />
             <cell />
-            <cell />
+            <cell tile="stone:stone" />
         </column>
         <column>
             <cell tile="dirt:dirt" />>
@@ -435,7 +435,7 @@
             <cell />
             <cell />
             <cell />
-            <cell />
+            <cell tile="stone:stone" />
         </column>
         <column>
             <cell tile="dirt:dirt" />>
@@ -460,7 +460,7 @@
             <cell />
             <cell />
             <cell />
-            <cell />
+            <cell tile="stone:stone" />
         </column>
         <column>
             <cell tile="dirt:dirt" />>
@@ -485,7 +485,7 @@
             <cell />
             <cell />
             <cell />
-            <cell />
+            <cell tile="stone:stone" />
         </column>
         <column>
             <cell tile="dirt:dirt" />>
@@ -510,7 +510,7 @@
             <cell />
             <cell />
             <cell />
-            <cell />
+            <cell tile="stone:stone" />
         </column>
         <column>
             <cell tile="dirt:dirt" />>
@@ -535,7 +535,7 @@
             <cell />
             <cell />
             <cell />
-            <cell />
+            <cell tile="stone:stone" />
         </column>
         <column>
             <cell tile="dirt:dirt" />>
@@ -560,7 +560,7 @@
             <cell />
             <cell />
             <cell />
-            <cell />
+            <cell tile="stone:stone" />
         </column>
         <column>
             <cell tile="dirt:dirt" />>
@@ -585,7 +585,7 @@
             <cell />
             <cell />
             <cell />
-            <cell />
+            <cell tile="stone:stone" />
         </column>
         <column>
             <cell tile="dirt:dirt" />>
@@ -610,7 +610,7 @@
             <cell />
             <cell />
             <cell />
-            <cell />
+            <cell tile="stone:stone" />
         </column>
         <column>
             <cell tile="dirt:dirt" />>
@@ -785,7 +785,7 @@
             <cell />
             <cell />
             <cell />
-            <cell />
+            <cell tile="stone:stone" />
         </column>
         <column>
             <cell tile="dirt:dirt" />>
@@ -810,7 +810,7 @@
             <cell />
             <cell />
             <cell />
-            <cell />
+            <cell tile="stone:stone" />
         </column>
         <column>
             <cell tile="dirt:dirt" />>
@@ -835,7 +835,7 @@
             <cell />
             <cell />
             <cell />
-            <cell />
+            <cell tile="stone:stone" />
         </column>
         <column>
             <cell tile="dirt:dirt" />>
@@ -860,7 +860,7 @@
             <cell />
             <cell />
             <cell />
-            <cell />
+            <cell tile="stone:stone" />
         </column>
         <column>
             <cell tile="dirt:dirt" />>
@@ -885,7 +885,7 @@
             <cell />
             <cell />
             <cell />
-            <cell />
+            <cell tile="stone:stone" />
         </column>
         <column>
             <cell tile="dirt:dirt" />>
@@ -910,7 +910,7 @@
             <cell />
             <cell />
             <cell />
-            <cell />
+            <cell tile="stone:stone" />
         </column>
         <column>
             <cell tile="dirt:dirt" />>
@@ -935,7 +935,7 @@
             <cell />
             <cell />
             <cell />
-            <cell />
+            <cell tile="stone:stone" />
         </column>
         <column>
             <cell tile="dirt:dirt" />>
@@ -960,7 +960,7 @@
             <cell />
             <cell />
             <cell />
-            <cell />
+            <cell tile="stone:stone" />
         </column>
         <column>
             <cell tile="dirt:dirt" />>
@@ -985,7 +985,7 @@
             <cell />
             <cell />
             <cell />
-            <cell />
+            <cell tile="stone:stone" />
         </column>
         <column>
             <cell tile="dirt:dirt" />>
