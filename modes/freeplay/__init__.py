@@ -27,7 +27,7 @@ class PlatformerController(actions.Action):
             if "sourcecode" in i.itempacks[itemPack].required:
                 for ipSource in i.itempacks[itemPack].required["sourcecode"]:
                     module = importlib.import_module("items." + i.itempacks[itemPack].idx + "." + ipSource[:-3])
-                    if "bounce" in dir(module):
+                    if "bounce_modifier" in dir(module):
                         self.bounce = module.bounce_modifier(self.bounce)
 
         self.target.velocity = (0, 0)

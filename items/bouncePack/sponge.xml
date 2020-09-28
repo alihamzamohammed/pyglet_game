@@ -7,7 +7,7 @@
         <tile id="sponge">
             <image ref="spongei" />
             <property name="bounce_multiplier" type="float" value="0.5" />
-            <property name="sourcecode" type="unicode" value="bouncePack.py" />
+            <property name="sourcecode" type="unicode" value="bouncePack" />
         </tile>
     </tileset>
 </resource>
