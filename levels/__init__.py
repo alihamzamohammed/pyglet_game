@@ -49,7 +49,12 @@ class Level():
         
             self.required = {}        
             if item.tag == "required":
-                pass
+                for a in item.attrib:
+                    self.required[item.attrib[a]] = item.text
+
+            for req in self.required:
+                if not os.path.exists(os.getcwd() + "\\items\\" + self.required[req]):
+                    raise DependencyNotFound("The level " + self.folder + " requires dependency " + req + " " + self.required[req] + ", which is not available!")
                 
 
         if not hasattr(self, "name"):

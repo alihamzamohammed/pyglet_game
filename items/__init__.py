@@ -19,31 +19,42 @@ class ItemPack():
         self.tags = {}
         self.items = []
         for item in list(self._itm.getroot()):
+            
             if item.tag == "name":
                 self.name = item.text
+            
             if item.tag == "desc" or item.tag == "description":
                 self.desc = item.text
-            dependencies = {}
+            
+            self.required = {}
             if item.tag == "required":
+                print(item.attrib)
                 for a in item.attrib:
-                    dependencies[item.attrib[a]] = item.text
-            for dep in dependencies:
-                if not os.path.isfile(os.getcwd() + "\\" + self.folder + "\\" + dependencies[dep]):
-                    raise DependencyNotFound("File " + dependencies[dep] + " is not found, item pack " + self.folder + " will not be loaded!")
+                    self.required[item.attrib[a]] = item.text
+            
+            for req in self.required:
+                if not os.path.isfile(os.getcwd() + "\\" + self.folder + "\\" + self.required[req]):
+                    raise DependencyNotFound("File " + self.required[req] + " is not found, item pack " + self.folder + " will not be loaded!")
+            
             if item.tag == "item" and item.text not in self.items:
                 self.items.append(item.text)
+            
             if item.tag == "thumbnail":
                 pyglet.resource.path.append(os.getcwd() + "\\" + self.folder)
                 pyglet.resource.reindex()
                 self.thumbnail = item.text
             self.tags[item.tag] = item.text
             self.tags.update(self._itm.getroot().attrib)
+        
         if not hasattr(self, "name"):
             self.name = "Item Pack"
+        
         if not hasattr(self, "desc"):
             self.desc = "No description"
+        
         if self.items == []:
             logger.addLog("Item pack " + self.name + " at path " + self.folder + " has no declared items.", logger.loglevel["info"])
+        
         if not hasattr(self, "background"):
             self.background = (100, 120, 150, 255)
 
