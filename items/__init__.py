@@ -30,11 +30,14 @@ class ItemPack():
                 self.required = {}
             if item.tag == "required":
                 for a in item.attrib:
-                    self.required[item.attrib[a]] = item.text
+                    if not item.attrib[a] in self.required:
+                        self.required[item.attrib[a]] = []
+                    self.required[item.attrib[a]].append(item.text)
             
-            for req in self.required:
-                if not os.path.isfile(os.getcwd() + "\\" + self.folder + "\\" + self.required[req]):
-                    raise DependencyNotFound("File " + self.required[req] + " is not found, item pack " + self.folder + " will not be loaded!")
+            for listreq in self.required:
+                for req in range(len(self.required[listreq])):
+                    if not os.path.isfile(os.getcwd() + "\\" + self.folder + "\\" + self.required[listreq][req]):
+                        raise DependencyNotFound("File " + self.required[listreq][req] + " is not found, item pack " + self.folder + " will not be loaded!")
             
             if item.tag == "item" and item.text not in self.items:
                 self.items.append(item.text)

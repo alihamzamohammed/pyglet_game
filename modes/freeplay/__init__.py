@@ -1,7 +1,7 @@
-import cocos
 import pyglet
 from cocos import *
 import importlib
+import os
 from pyglet.window import key as k
 from renderer import scroller, keyboard
 import cfg
@@ -99,9 +99,9 @@ def main():
     import items as i
     #l.levels[cfg.loadedLevel.idx]
     for itemPack in cfg.loadedLevel.required["itempack"]:
-        #print(itemPack)
+        print(itemPack)
         if "sourcecode" in i.itempacks[itemPack].required:
-            for ipSource in i.itempacks[itemPack].required["sourceCode"]:
+            for ipSource in i.itempacks[itemPack].required["sourcecode"]:
                 #importlib.import_module
                 print(os.getcwd() + "\\" + i.itempacks[itemPack].folder + "\\" + ipSource)
         
