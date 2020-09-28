@@ -50,11 +50,17 @@ class Level():
             self.required = {}        
             if item.tag == "required":
                 for a in item.attrib:
-                    self.required[item.attrib[a]] = item.text
+                    if not item.attrib[a] in list(self.required.keys()):
+                        self.required[item.attrib[a]] = []
+                    self.required[item.attrib[a]].append(item.text)
 
-            for req in self.required:
-                if not os.path.exists(os.getcwd() + "\\items\\" + self.required[req]):
-                    raise DependencyNotFound("The level " + self.folder + " requires dependency " + req + " " + self.required[req] + ", which is not available.")
+            for listreq in self.required:
+                for req in range(len(self.required[listreq])):
+                    print(listreq, self.required[listreq])
+                    if not os.path.exists(os.getcwd() + "\\items\\" + self.required[listreq][req]):
+                        raise DependencyNotFound("The level " + self.folder + " required dependency " + listreq + " " + self.required[listreq][req] + ", which is not available.")
+                    #if not os.path.exists(os.getcwd() + "\\items\\" + self.required[listreq[req]]):
+                     #   raise DependencyNotFound("The level " + self.folder + " requires dependency " + listreq + " " + self.required[listreq[req]] + ", which is not available.")
                 
 
         if not hasattr(self, "name"):

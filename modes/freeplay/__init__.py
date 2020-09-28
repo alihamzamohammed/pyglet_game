@@ -95,6 +95,9 @@ class PlatformerController(actions.Action):
         pass
 
 def main():
+    import levels as l
+    #l.levels[cfg.loadedLevel.idx]
+    
     return PlatformerController()
 
 name = "Free Play"

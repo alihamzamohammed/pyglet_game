@@ -6,4 +6,5 @@
     <background>bg.jpg</background>
     <thumbnail></thumbnail>
     <required type="itempack">bouncePack</required>
+    <required type="itempack">default</required>
 </level>
