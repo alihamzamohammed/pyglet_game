@@ -84,13 +84,6 @@ class PlatformerController(actions.Action):
 
         scroller.set_focus(*new.center)
 
-    #def bounce_modifier(func):
-    #    def inner(self, value, original):
-    #        print(value, original)
-    #        func(self, value, original)
-    #    return inner
-
-    #@bounce_modifier
     def bounce(self, value, original):
         global JUMPKEY
         if self.on_ground and keyboard[JUMPKEY]:

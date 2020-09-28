@@ -5,4 +5,5 @@
     <data>level.xml</data>
     <background>bg.jpg</background>
     <thumbnail></thumbnail>
+    <required type="itempack">bouncePack</required>
 </level>

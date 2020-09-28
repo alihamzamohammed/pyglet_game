@@ -20,16 +20,20 @@ class Level():
         self._lvl = et.parse(self.main)
         self.tags = {}
         for item in list(self._lvl.getroot()):
+
             if item.tag == "name" and item.text != None:
                 self.name = item.text
+            
             if (item.tag == "desc" or item.tag == "description") and item.text != None:
                 self.desc = item.text
+            
             if item.tag == "data" and item.text != None:
                 if os.path.isfile(os.path.join(self.folder, item.text)):
                     self.datapath = os.path.join(self.folder, item.text)
                     self.data = et.parse(self.datapath)
                 else:
                     raise DependencyNotFound(item.text + " is listed as a dependency of " + self.folder + " but was not found, level will not be loaded!")
+            
             if item.tag == "background" and item.text != None:
                 if "png" in item.text or "jpg" in item.text:
                     pyglet.resource.path.append(os.getcwd() + "\\" + self.folder)
@@ -37,18 +41,29 @@ class Level():
                     self.background = item.text
                 elif any(char.isdigit() for char in item.text) and "," in item.text:
                     self.background = tuple(item.text)
+            
             if item.tag == "thumbnail" and item.text != None:
                 self.thumbnail = item.text
             self.tags[item.tag] = item.text
             self.tags.update(self._lvl.getroot().attrib)
+        
+            self.required = {}        
+            if item.tag == "required":
+                pass
+                
+
         if not hasattr(self, "name"):
             self.name = "Level"
+        
         if not hasattr(self, "desc"):
             self.desc = "No description"
+        
         if not hasattr(self, "data"):
             raise LevelCorrupt("Level " + self.folder + " has no content, level will not be loaded!")
+        
         if not hasattr(self, "background"):
             self.background = (100, 120, 150, 255)            
+        
         if not hasattr(self, "thumbnail"):
             self.thumbnail = "defaultThumbnail.png"
 
