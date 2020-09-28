@@ -424,7 +424,7 @@
             <cell />
             <cell />
             <cell />
-            <cell tile="stoneBeam:stoneBeam" />
+            <cell tile="sponge:sponge" />
             <cell />
             <cell />
             <cell />
@@ -789,7 +789,7 @@
         </column>
         <column>
             <cell tile="dirt:dirt" />>
-            <cell tile="grass:grass" />
+            <cell tile="trampoline:trampoline" />
             <cell />
             <cell />
             <cell />
@@ -814,7 +814,7 @@
         </column>
         <column>
             <cell tile="dirt:dirt" />>
-            <cell tile="grass:grass" />
+            <cell tile="trampoline:trampoline" />
             <cell />
             <cell />
             <cell />
@@ -839,7 +839,7 @@
         </column>
         <column>
             <cell tile="dirt:dirt" />>
-            <cell tile="grass:grass" />
+            <cell tile="sponge:sponge" />
             <cell />
             <cell />
             <cell />
@@ -864,7 +864,7 @@
         </column>
         <column>
             <cell tile="dirt:dirt" />>
-            <cell tile="grass:grass" />
+            <cell tile="sponge:sponge" />
             <cell />
             <cell />
             <cell />
