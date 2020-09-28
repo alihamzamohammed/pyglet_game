@@ -96,8 +96,15 @@ class PlatformerController(actions.Action):
 
 def main():
     import levels as l
+    import items as i
     #l.levels[cfg.loadedLevel.idx]
-    
+    for itemPack in cfg.loadedLevel.required["itempack"]:
+        #print(itemPack)
+        if "sourcecode" in i.itempacks[itemPack].required:
+            for ipSource in i.itempacks[itemPack].required["sourceCode"]:
+                #importlib.import_module
+                print(os.getcwd() + "\\" + i.itempacks[itemPack].folder + "\\" + ipSource)
+        
     return PlatformerController()
 
 name = "Free Play"

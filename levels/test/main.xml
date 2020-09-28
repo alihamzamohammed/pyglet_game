@@ -5,6 +5,6 @@
     <data>level.xml</data>
     <background>bg.jpg</background>
     <thumbnail></thumbnail>
-    <required type="itempack">bouncePack</required>
     <required type="itempack">default</required>
+    <required type="itempack">bouncePack</required>
 </level>

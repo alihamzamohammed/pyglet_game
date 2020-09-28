@@ -35,35 +35,29 @@ def loadLvl(level, gamemode):
     global mapcollider
     global tilemap_decorations, tilemap_walls
     global bgLayer
-    try:
-        fullmap = tiles.load(level.datapath)
-        tilemap_walls = fullmap["walls"]
-        tilemap_decorations = fullmap["decorations"]
+    #try:
+    fullmap = tiles.load(level.datapath)
+    tilemap_walls = fullmap["walls"]
+    tilemap_decorations = fullmap["decorations"]
+    scroller.add(bgLayer, z=-2)
+    scroller.add(tilemap_decorations, z=-1)
+    scroller.add(tilemap_walls, z=0)
+    scroller.add(player_layer, z=1)
+    start = tilemap_walls.find_cells(player_start=True)[0]
+    r = player.get_rect()
+    r.midbottom = start.midbottom
+    player.position = r.center
+    mapcollider = mapcolliders.RectMapCollider(velocity_on_bump="slide")
+    player.collision_handler = mapcolliders.make_collision_handler(mapcollider, tilemap_walls)
+    gamemoderun = player.do(gamemode.main())
 
-        scroller.add(bgLayer, z=-2)
-        scroller.add(tilemap_decorations, z=-1)
-        scroller.add(tilemap_walls, z=0)
-        scroller.add(player_layer, z=1)
-
-        start = tilemap_walls.find_cells(player_start=True)[0]
-        r = player.get_rect()
-
-        r.midbottom = start.midbottom
-
-        player.position = r.center
-
-        mapcollider = mapcolliders.RectMapCollider(velocity_on_bump="slide")
-        player.collision_handler = mapcolliders.make_collision_handler(mapcollider, tilemap_walls)
-
-        gamemoderun = player.do(gamemode.main())
-
-    except Exception as e:
+    #except Exception as e:
         # TODO: 
-        logger.addLog("An error was caught rendering the level.\n" + str(e), logger.loglevel["error"])
+     #   logger.addLog("An error was caught rendering the level.\n" + str(e), logger.loglevel["error"])
         #raise e
-        import events
-        events.mainmenuevents.backToMainMenu()
-        #print(e)
+      #  import events
+       # events.mainmenuevents.backToMainMenu()
+     #   print(e)
 
 class Renderer(Scene):
 

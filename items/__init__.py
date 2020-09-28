@@ -26,7 +26,8 @@ class ItemPack():
             if item.tag == "desc" or item.tag == "description":
                 self.desc = item.text
             
-            self.required = {}
+            if not hasattr(self, "required"):
+                self.required = {}
             if item.tag == "required":
                 for a in item.attrib:
                     self.required[item.attrib[a]] = item.text
