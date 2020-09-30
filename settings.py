@@ -342,6 +342,9 @@ class SettingsScreen(scene.Scene):
         aboutButton.y = y * 0.89
         aboutButton.show(0.01)
 
+        aboutPopup.title.element.text = "About Game"
+        aboutPopup.desc.element.text = "Written and programmed by Ali Hamza Mohammed.\n\nWORK IN PROGRESS"
+
         self.add(self.videoButton)
         self.add(self.soundButton)
         self.add(self.extensionButton)
