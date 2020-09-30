@@ -354,7 +354,7 @@ class SettingsScreen(scene.Scene):
         aboutButton.show(0.01)
 
         aboutPopup.title.element.text = "About Game"
-        aboutPopup.desc.element.text = "Written and programmed by Ali Hamza Mohammed.\nWORK IN PROGRESS\nStill to add:\nSound system\nLevel editor\nMultiplayer functionality\nGeneral visual tweaks\nDefault resource packs\nSource code for this game is available at github.com/alihamzamohammed/coursework\nInstalled Game Modes: " + str(len(modes.gamemodes)) + "\nInstalled Levels: " + str(len(levels.levels)) + "\nInstalled Item Packs: " + str(len(items.itempacks))
+        aboutPopup.desc.element.text = "Written and programmed by Ali Hamza Mohammed.\n\nWORK IN PROGRESS\nStill to add:\nSound system\nLevel editor\nMultiplayer functionality\nGeneral visual tweaks\nDefault resource packs\n\nSource code for this game is available at github.com/alihamzamohammed/coursework\n\n\nInstalled Game Modes: " + str(len(modes.gamemodes)) + "    Installed Levels: " + str(len(levels.levels)) + "    Installed Item Packs: " + str(len(items.itempacks))
         
         self.add(self.videoButton)
         self.add(self.soundButton)

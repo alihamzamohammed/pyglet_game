@@ -868,10 +868,10 @@ class SettingsAboutBox(layer.Layer):
         self.active = False
         self.title = Label("title", anchor_x="center", anchor_y="center", font_size=39, color=(0, 0, 0, 255))
         self.title.x = self.infoBox.x
-        self.title.y = self.infoBox.y + ((self.infoBox.height / 2) * 0.7)
-        self.desc = Label("desc", anchor_x="center", anchor_y="top", font_size=17, multiline = True, width=(self.infoBox.width * 0.7), height=(self.infoBox.height * 0.4), color=(0, 0, 0, 255), align="center")
+        self.title.y = self.infoBox.y + ((self.infoBox.height / 2) * 0.8)
+        self.desc = Label("desc", anchor_x="center", anchor_y="top", font_size=17, multiline = True, width=(self.infoBox.width * 0.87), height=(self.infoBox.height * 0.4), color=(0, 0, 0, 255), align="center")
         self.desc.x = self.infoBox.x
-        self.desc.y = self.infoBox.y + ((self.infoBox.height / 2) * 0.45)
+        self.desc.y = self.infoBox.y + ((self.infoBox.height / 2) * 0.6)
         self.add(self.infoBox, z=5)
         self.add(self.bgDimmer, z=4)
         self.add(self.exitButton, z=5)
