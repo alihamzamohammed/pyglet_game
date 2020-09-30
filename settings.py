@@ -69,7 +69,6 @@ class SettingsToggleButton(elements.ToggleButton):
         if self.changed and self.restartGame:
             messagePopup.showMessage("Your game must be restarted in order to apply these settings.")
 
-
 class VideoSettings(layer.ColorLayer):
 
     is_event_handler = True
@@ -333,7 +332,8 @@ class SettingsScreen(scene.Scene):
         self.extensionButton = SettingsSectionButton("Expansion", events.settingsevents.onExtensionsButtonClick, buttonorder = 3)
         self.aboutButton = SettingsSectionButton("About", events.settingsevents.onAboutButtonClick, buttonorder = 4)
         backButton = elements.mediumButton("Back", events.mainmenuevents.backToMainMenu)
-        aboutButton = elements.mediumButton("About", events.mainmenuevents.backToMainMenu)
+        aboutButton = elements.mediumButton("About", events.settingsevents.aboutPopupShow)
+        aboutPopup = elements.SettingsAboutBox()
 
         backButton.x = x * 0.15
         backButton.y = y * 0.89
@@ -349,6 +349,7 @@ class SettingsScreen(scene.Scene):
         self.add(backButton)
         self.add(aboutButton)
         self.add(settingsLabel)
+        self.add(aboutPopup, z=2)
 
         videoSettings = VideoSettings()
         soundSettings = SoundSettings()

@@ -1,5 +1,5 @@
 import pyglet
-import modes
+import modes, levels
 
 class MainMenuEvents(pyglet.window.EventDispatcher):
 
@@ -52,10 +52,18 @@ class SettingsEvents(pyglet.window.EventDispatcher):
     def onAboutButtonClick(self):
         self.dispatch_event("showAboutScreen")
 
+    def aboutPopupShow(self):
+        self.dispatch_event("showAboutPopup")
+
+    def aboutPopupHide(self):
+        self.dispatch_event("hideAboutPopup")    
+
 SettingsEvents.register_event_type("showVideoScreen")
 SettingsEvents.register_event_type("showSoundScreen")
 SettingsEvents.register_event_type("showExtensionsScreen")
 SettingsEvents.register_event_type("showAboutScreen")
+SettingsEvents.register_event_type("showAboutPopup")
+SettingsEvents.register_event_type("hideAboutPopup")
 
 class PauseScreenEvents(pyglet.window.EventDispatcher):
 
@@ -87,7 +95,8 @@ class GameMenuEvents(pyglet.window.EventDispatcher):
             self.dispatch_event("GameModeChosen", mode)
 
     def chooseLevel(self, level):
-        self.dispatch_event("LevelChosen", level)
+        if isinstance(level, levels.Level):
+            self.dispatch_event("LevelChosen", level)
 
     def onPlayButtonClick(self):
         self.dispatch_event("GamePlayButtonClicked")

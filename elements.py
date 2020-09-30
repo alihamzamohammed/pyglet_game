@@ -842,3 +842,59 @@ class GMExtendedInfo(layer.Layer):
             self.desc.do(FadeOut(0.5))
             self.exitButton.hide()
             self.active = False
+
+
+class SettingsAboutBox(layer.Layer):
+
+    is_event_handler = True
+    
+    def __init__(self):
+        super().__init__()
+        events.settingsevents.push_handlers(self)
+        self.infoBox = Sprite("infoBox.png")
+        self.bgDimmer = layer.ColorLayer(0, 0, 0, 20)
+        self.exitButton = smallButton("X", events.settingsevents.aboutPopupHide)
+        self.bgDimmer.opacity = 100
+        self.infoBox.x = reswidth / 2
+        self.infoBox.y = resheight / 2
+        self.bgDimmer.width = reswidth
+        self.bgDimmer.height = resheight
+        self.exitButton.x = self.infoBox.x + ((self.infoBox.width / 2) * 0.91)
+        self.exitButton.y = self.infoBox.y + ((self.infoBox.height / 2) * 0.85)
+        self.active = False
+        self.title = Label("title", anchor_x="center", anchor_y="center", font_size=39, color=(0, 0, 0, 255))
+        self.title.x = self.infoBox.x
+        self.title.y = self.infoBox.y + ((self.infoBox.height / 2) * 0.7)
+        self.desc = Label("desc", anchor_x="center", anchor_y="top", font_size=17, multiline = True, width=(self.infoBox.width * 0.5), height=(self.infoBox.height * 0.4), color=(0, 0, 0, 255), align="center")
+        self.desc.x = self.infoBox.x
+        self.desc.y = self.infoBox.y + ((self.infoBox.height / 2) * 0.5)
+        self.add(self.infoBox, z=5)
+        self.add(self.bgDimmer, z=4)
+        self.add(self.exitButton, z=5)
+        self.add(self.title, z=5)
+        self.add(self.desc, z=5)
+        self.bgDimmer.do(FadeOut(0.00001))
+        self.infoBox.do(FadeOut(0.00001))
+        self.exitButton.do(FadeOut(0.00001))
+        self.title.do(FadeOut(0.00001))
+        self.desc.do(FadeOut(0.00001))
+        
+       
+    def showAboutPopup(self):
+        if not self.active:
+            self.infoBox.do(FadeIn(0.5))
+            self.bgDimmer.do(FadeTo(150, 0.5))
+            self.title.do(FadeIn(0.5))
+            self.desc.do(FadeIn(0.5))
+            self.exitButton.show()
+            self.active = True
+    
+    def hideAboutPopup(self):
+        if self.active:
+            self.infoBox.do(FadeOut(0.5))
+            self.bgDimmer.do(FadeTo(0, 0.5))
+            self.title.do(FadeOut(0.5))
+            self.desc.do(FadeOut(0.5))
+            self.exitButton.hide()
+            self.active = False
+
