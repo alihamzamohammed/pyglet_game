@@ -28,7 +28,7 @@ title = cocos.text.Label(
     anchor_x="left"
 )
 
-"""Small button. Same as small button, but can contain more text"""
+"""Medium button. Same as small button, but can contain more text"""
 class mediumButton(Layer):
 
     is_event_handler = True
