@@ -52,20 +52,15 @@ class Game(object):
 
     def progressFinished(self):
         logger.addLog("Loading finished, displaying Main Menu", logger.loglevel["debug"])
-        #events.mainmenuevents.push_handlers(self)
         director.replace(FadeTransition(mainmenu.MainMenuScreen(), duration = 0.001))
 
     def playButtonClicked(self):
-        # DEBUG: Debug code, not for final version
-        #events.gamemenuevents.push_handlers(self)
-        #events.mainmenuevents.remove_handlers(self)
         director.replace(FadeTransition(gamemenu.GameModeMenu(), duration = 1, color = (0, 0, 0)))
 
     def multiplayerButtonClicked(self):
         logger.addLog("Multiplayer not yet implemented!")
 
     def settingsButtonClicked(self):
-        #events.mainmenuevents.remove_handlers(self)
         director.replace(FadeTransition(settings.SettingsScreen(), duration = 1, color = (0, 0, 0)))
 
     def quitButtonClicked(self):
@@ -80,13 +75,10 @@ class Game(object):
         #events.mainmenuevents.push_handlers(self)
 
     def replaceLevelMenu(self):
-        #events.gamemenuevents.push_handlers(self)
         director.replace(FadeTransition(gamemenu.LevelMenu(), duration = 0.001))
 
     def GamePlayButtonClicked(self):
         director.replace(FadeTransition(renderer.Renderer(cfg.loadedLevel, cfg.loadedGameMode), duration = 1))
-        #events.gamemenuevents.pop_handlers(self)
-        #events.gamemenuevents.remove_handlers(self)
 
     def ReturnToGMMenu(self):
         director.replace(FadeTransition(gamemenu.GameModeMenu(), duration = 0.001))
