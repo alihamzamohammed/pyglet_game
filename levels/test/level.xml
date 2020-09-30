@@ -10,6 +10,7 @@
     <requires file="items/bouncePack/trampoline.xml" namespace="trampoline" />
     <requires file="items/bouncePack/sponge.xml" namespace="sponge" />
     <requires file="items/bouncePack/hyperjump.xml" namespace="hyperjump" />
+    <requires file="items/bouncePack/sticky.xml" namespace="sticky"
     <rectmap id="walls" origin="0,0,0" tile_size="32x32">
         <column>
             <cell tile="stone:stone" />
@@ -1115,7 +1116,7 @@
         </column>
         <column>
             <cell tile="dirt:dirt" />>
-            <cell tile="grass:grass" />
+            <cell tile="sticky:sticky" />
             <cell />
             <cell />
             <cell />

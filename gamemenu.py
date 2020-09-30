@@ -28,8 +28,6 @@ title = cocos.text.Label(
     anchor_x="left"
 )
 
-
-
 class LevelMenu(Scene):
 
     is_event_handler = True
@@ -91,7 +89,6 @@ class LevelMenu(Scene):
         self.levelTitle.do(Accelerate(MoveTo((self.levelTitle.x, resheight * 1.2), 1), rate = 3.5) + CallFunc(events.gamemenuevents.onReturnToGMMenu))
 
 
-
 class GameModeMenu(Scene):
 
     is_event_handler = True
@@ -147,4 +144,3 @@ class GameModeMenu(Scene):
     def ReturnToGMMenu(self):
         self.gamemodeTitle.y = resheight * 1.2
         self.gamemodeTitle.do(AccelDeccel(MoveTo((self.gamemodeTitle.x, resheight * 0.94), 2)))
-
