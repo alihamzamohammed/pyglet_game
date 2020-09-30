@@ -882,19 +882,19 @@ class SettingsAboutBox(layer.Layer):
        
     def showAboutPopup(self):
         if not self.active:
-            self.infoBox.do(FadeIn(0.5))
-            self.bgDimmer.do(FadeTo(150, 0.5))
-            self.title.do(FadeIn(0.5))
-            self.desc.do(FadeIn(0.5))
+            self.infoBox.do(FadeIn(0.75))
+            self.bgDimmer.do(FadeTo(150, 0.75))
+            self.title.do(FadeIn(0.75))
+            self.desc.do(FadeIn(0.75))
             self.exitButton.show()
             self.active = True
     
     def hideAboutPopup(self):
         if self.active:
-            self.infoBox.do(FadeOut(0.5))
-            self.bgDimmer.do(FadeTo(0, 0.5))
-            self.title.do(FadeOut(0.5))
-            self.desc.do(FadeOut(0.5))
+            self.infoBox.do(FadeOut(0.75))
+            self.bgDimmer.do(FadeTo(0, 0.75))
+            self.title.do(FadeOut(0.75))
+            self.desc.do(FadeOut(0.75))
             self.exitButton.hide()
             self.active = False
 
