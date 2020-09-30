@@ -343,7 +343,7 @@ class SettingsScreen(scene.Scene):
         aboutButton.show(0.01)
 
         aboutPopup.title.element.text = "About Game"
-        aboutPopup.desc.element.text = "Written and programmed by Ali Hamza Mohammed.\n\nWORK IN PROGRESS"
+        aboutPopup.desc.element.text = "Written and programmed by Ali Hamza Mohammed.\n\nWORK IN PROGRESS\n\nStill to add: Sound system\nLevel editor\nMultiplayer functionality\nGeneral visual tweaks\nDefault resource packs"
 
         self.add(self.videoButton)
         self.add(self.soundButton)
