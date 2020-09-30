@@ -104,45 +104,11 @@ class PlatformerController(actions.Action):
 def main():
     return PlatformerController()
 
-name = "Free Play 2"
-desc = "A test game mode created to check and see if the game can handle multiple game modes. \nThe exact same as freeplay."
+name = "Free Play 2 (Debugging)"
+desc = "A test game mode created to check and see if the game can handle multiple game modes. \nThe exact same as freeplay.\n\n***DOES NOT HANDLE SOURCE CODE FROM ITEM PACKS***"
 
 # ~: Game modes can use the main() subroutine to run other subroutines and init other sprites and make them do stuff. Here, because scroller is imported,
 # ~: the game mode can add as many layers as it wants to the scroller, and they will render and display to the player, without any modification to renderer.py, or having to globalise and import more classes.
 # ~: Sprites and layers can be added to scroller when start() runs, which marks the official start of the renderer displaying things
 # ~: This allows for almost unlimited functionality to be added.
 
-# PROBLEM: To allow items to use custom code, they must be able to override code declared in game modes. For example, code for a trampoline needs to modify the gravity value when
-# PROBLEM: detecting bounce on top of the trampoline. This will need extra code to check if the player is on top of the trampoline, and supply a modified gravity value if that is the case,
-# PROBLEM: otherwise run the code as normal. This would mean delegating movement on each axis to its own subroutine, supplying required values through parameters, and using decorators to
-# PROBLEM: modify the parameter when called. This could allow a bounce function to run with a modified value. In this way, game modes which choose to disable jumping can still do so.
-
-# PROBLEM: This seems to be the best solution, but requires decorators to be declared even when the decorator function does not exist.
-
-# TODO: EXAMPLE CODE:
-
-# TODO: THIS IS CODE FROM ITEM PACK
-# TODO: def bounce_modifier(call):
-# TODO:     def bounce(func):
-# TODO:         def inner(value):
-# TODO:             if call.block_underneath == "trampoline":
-# TODO:                 value = 2
-# TODO:             elif call.block_underneath == "sponge":
-# TODO:                 value = 0.5
-# TODO:             else:
-# TODO:                 value = 1
-# TODO:             func(value)
-# TODO:         return inner
-# TODO:     return bounce
-
-# TODO: from item_pack import *                   <-- This will override the default function, which does nothing
-
-# TODO: bounce_modifier = lambda x: lambda y: y   <-- This is the function that will be overridden
-
-# TODO: @bounce_modifier(self)
-# TODO: def bounce(value):
-# TODO:     vy += value * dt
-# TODO:     if self.on_ground and keyboard[k.SPACE]:
-# TODO:         vy = self.JUMP_SPEED
-
-# TODO: bounce(self.GRAVITY)
