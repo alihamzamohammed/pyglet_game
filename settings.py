@@ -30,6 +30,16 @@ class SettingsSectionButton(elements.sectionButton):
         global x, y
         self.x = x * (0.2 * buttonorder)
         self.y = y * 0.76
+        events.settingsevents.push_handlers(self)
+
+    def showAboutPopup(self):
+        self.clickable = False
+
+    def hideAboutPopup(self):
+        self.do(Delay(1) + CallFunc(self.hideAboutBox2))
+
+    def hideAboutBox2(self):
+        self.clickable = True
 
 
 class MessagePopup(layer.ColorLayer):

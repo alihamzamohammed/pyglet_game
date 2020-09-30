@@ -171,6 +171,8 @@ class sectionButton(layer.Layer):
         self.eventName = eventName
         self.active = active
 
+        self.clickable = True
+
         self.bgImage = Sprite("settingsCategoryButton.png")
         self.lbl = Label(label, anchor_x="center", anchor_y="center", dpi=110)
 
@@ -194,22 +196,24 @@ class sectionButton(layer.Layer):
         self.height_range = [int(nmin[1]), int(nmax[1])]
 
     def on_mouse_motion(self, x, y, dx, dy):
-        if self.active:
-            self.bgImage.image = pyglet.resource.image("settingsCategoryButtonClicked.png")
-            self.lbl.element.color = (0, 0, 0, 255)
-        elif x in range(self.width_range[0], self.width_range[1]) and y in range(self.height_range[0], self.height_range[1]):
-            self.bgImage.image = pyglet.resource.image("settingsCategoryButtonHovered.png")
-            self.lbl.element.color = (255, 255, 255, 255)
-        else:
-            self.bgImage.image = pyglet.resource.image("settingsCategoryButton.png")
-            self.lbl.element.color = (255, 255, 255, 255)
+        if self.clickable:
+            if self.active:
+                self.bgImage.image = pyglet.resource.image("settingsCategoryButtonClicked.png")
+                self.lbl.element.color = (0, 0, 0, 255)
+            elif x in range(self.width_range[0], self.width_range[1]) and y in range(self.height_range[0], self.height_range[1]):
+                self.bgImage.image = pyglet.resource.image("settingsCategoryButtonHovered.png")
+                self.lbl.element.color = (255, 255, 255, 255)
+            else:
+                self.bgImage.image = pyglet.resource.image("settingsCategoryButton.png")
+                self.lbl.element.color = (255, 255, 255, 255)
 
     def on_mouse_press(self, x, y, buttons, modifiers):
-        if x in range(self.width_range[0], self.width_range[1]) and y in range(self.height_range[0], self.height_range[1]):
-            self.bgImage.image = pyglet.resource.image("settingsCategoryButtonClicked.png")
-            self.active = True
-            self.lbl.element.color = (0, 0, 0, 255)
-            self.eventName()
+        if self.clickable:
+            if x in range(self.width_range[0], self.width_range[1]) and y in range(self.height_range[0], self.height_range[1]):
+                self.bgImage.image = pyglet.resource.image("settingsCategoryButtonClicked.png")
+                self.active = True
+                self.lbl.element.color = (0, 0, 0, 255)
+                self.eventName()
 
 
 """Toggle Button. For toggling a setting on or off. Can alter a value in a dictionary and run a command simultaneously."""
