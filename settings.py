@@ -332,15 +332,22 @@ class SettingsScreen(scene.Scene):
         self.soundButton = SettingsSectionButton("Sound", events.settingsevents.onSoundButtonClick, buttonorder = 2)
         self.extensionButton = SettingsSectionButton("Expansion", events.settingsevents.onExtensionsButtonClick, buttonorder = 3)
         self.aboutButton = SettingsSectionButton("About", events.settingsevents.onAboutButtonClick, buttonorder = 4)
-        backButton = SettingsSectionButton("Back", events.mainmenuevents.backToMainMenu)
+        backButton = elements.mediumButton("Back", events.mainmenuevents.backToMainMenu)
+        aboutButton = elements.mediumButton("About", events.mainmenuevents.backToMainMenu)
+
         backButton.x = x * 0.15
         backButton.y = y * 0.89
+        backButton.show(0.01)
+        aboutButton.x = x * 0.85
+        aboutButton.y = y * 0.89
+        aboutButton.show(0.01)
 
         self.add(self.videoButton)
         self.add(self.soundButton)
         self.add(self.extensionButton)
         self.add(self.aboutButton)
         self.add(backButton)
+        self.add(aboutButton)
         self.add(settingsLabel)
 
         videoSettings = VideoSettings()
