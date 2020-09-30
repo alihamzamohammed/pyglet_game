@@ -224,6 +224,7 @@ class SoundSettings(layer.ColorLayer):
             self.x = self.posleft
 
 #TODO: Extension settings
+#?: Maybe change this to controls instead of extensions
 class ExtensionSettings(layer.ColorLayer):
 
     is_event_handler = True
