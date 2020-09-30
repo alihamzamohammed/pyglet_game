@@ -618,7 +618,7 @@ class LVLExtendedInfo(layer.Layer):
         events.gamemenuevents.push_handlers(self)
         self.level = level
         self.infoBox = Sprite("infoBox.png")
-        self.bgDimmer = ColorLayer(0, 0, 0, 20)
+        self.bgDimmer = layer.ColorLayer(0, 0, 0, 20)
         self.exitButton = smallButton("X", events.gamemenuevents.hideExtendedInfo, eventparam=self.level.idx)
         self.bgDimmer.opacity = 100
         self.infoBox.x = reswidth / 2
@@ -788,7 +788,7 @@ class GMExtendedInfo(layer.Layer):
         events.gamemenuevents.push_handlers(self)
         self.gameMode = gameMode
         self.infoBox = Sprite("infoBox.png")
-        self.bgDimmer = ColorLayer(0, 0, 0, 20)
+        self.bgDimmer = layer.ColorLayer(0, 0, 0, 20)
         self.exitButton = smallButton("X", events.gamemenuevents.hideExtendedInfo, eventparam=self.gameMode.idx)
         self.bgDimmer.opacity = 100
         self.infoBox.x = reswidth / 2
