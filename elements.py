@@ -286,7 +286,7 @@ class ToggleButton(layer.Layer):
 
 
 """Medium button. Same as small button, but can contain more text"""
-class mediumButton(Layer):
+class mediumButton(layer.Layer):
 
     is_event_handler = True
 
@@ -362,7 +362,7 @@ class mediumButton(Layer):
 
 
 """Small button. A button for placing in small spaces, or to activate non-crucial functions"""
-class smallButton(Layer):
+class smallButton(layer.Layer):
 
     is_event_handler = True
 
@@ -437,7 +437,7 @@ class smallButton(Layer):
         self.showing = False
 
 
-class ChosenBox(Layer):
+class ChosenBox(layer.Layer):
 
     is_event_handler = True
 
@@ -504,7 +504,7 @@ class ChosenBox(Layer):
     def activate(self):
         self.showing = True
 
-class LevelBox(Layer):
+class LevelBox(layer.Layer):
 
     is_event_handler = True
 
@@ -609,7 +609,7 @@ class LevelBox(Layer):
     def ExtendedInfoHide(self, gm):
         self.showing = True
 
-class LVLExtendedInfo(Layer):
+class LVLExtendedInfo(layer.Layer):
 
     is_event_handler = True
     
@@ -674,7 +674,7 @@ class LVLExtendedInfo(Layer):
             self.active = False
 
 
-class GameModeBox(Layer):
+class GameModeBox(layer.Layer):
 
     is_event_handler = True
 
@@ -779,7 +779,7 @@ class GameModeBox(Layer):
     def ExtendedInfoHide(self, gm):
         self.showing = True
 
-class GMExtendedInfo(Layer):
+class GMExtendedInfo(layer.Layer):
 
     is_event_handler = True
     
