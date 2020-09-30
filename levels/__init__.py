@@ -17,7 +17,10 @@ class Level():
             self.main = os.path.join(self.folder, "main.xml")
         else:
             raise LevelCorrupt("main.xml not found in Level " + self.folder + ", level will not be loaded!")
-        self._lvl = et.parse(self.main)
+        try:
+            self._lvl = et.parse(self.main)
+        except et.ParseError:
+            raise LevelCorrupt("The level " + self.folder + " is corrupt, level will not be loaded!")
         self.tags = {}
         for item in list(self._lvl.getroot()):
 
@@ -30,7 +33,10 @@ class Level():
             if item.tag == "data" and item.text != None:
                 if os.path.isfile(os.path.join(self.folder, item.text)):
                     self.datapath = os.path.join(self.folder, item.text)
-                    self.data = et.parse(self.datapath)
+                    try:
+                        self.data = et.parse(self.datapath)
+                    except et.ParseError as e:
+                        raise LevelDataCorrupt("The data for level " + self.folder + " is corrupt, level will not be loaded!", e)
                 else:
                     raise DependencyNotFound(item.text + " is listed as a dependency of " + self.folder + " but was not found, level will not be loaded!")
             
@@ -58,7 +64,7 @@ class Level():
             for listreq in self.required:
                 for req in range(len(self.required[listreq])):
                     if not os.path.exists(os.getcwd() + "\\items\\" + self.required[listreq][req]):
-                        raise DependencyNotFound("The level " + self.folder + " required dependency " + listreq + " " + self.required[listreq][req] + ", which is not available, level will not be loaded!")
+                        raise DependencyNotFound("The level " + self.folder + " requires dependency " + listreq + " " + self.required[listreq][req] + ", which is not available, level will not be loaded!")
                 
 
         if not hasattr(self, "name"):
@@ -84,11 +90,17 @@ class LevelCorrupt(Exception):
     def __init__(self, message, *args, **kwargs):
         self.message = message
         
-
 class DependencyNotFound(Exception):
     
     def __init__(self, message, *args, **kwargs):
         self.message = message
+
+class LevelDataCorrupt(et.ParseError):
+
+    def __init__(self, message, origEx, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.message = message
+        self.origEx = origEx
 
 def levelLoad(lvlstr):
     load = levels[lvlstr]
@@ -107,3 +119,5 @@ def init():
                 logger.addLog(e.message, logger.loglevel["warning"])
             except DependencyNotFound as e:
                 logger.addLog(e.message, logger.loglevel["warning"])
+            except LevelDataCorrupt as e:
+                logger.addLog(e.message + "\n" + e.origEx, logger.loglevel["warning"])

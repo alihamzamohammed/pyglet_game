@@ -16,7 +16,10 @@ class ItemPack():
             self.main = os.path.join(self.folder, "main.xml")
         else:
             raise ItemPackCorrupt("main.xml not found in item pack " + self.folder + ", item pack will not be loaded!")
-        self._itm = et.parse(self.main)
+        try:
+            self._itm = et.parse(self.main)
+        except et.ParseError:
+            raise ItemPackCorrupt("main.xml in item pack " + self.folder + " is corrupt, item pack will not be loaded!")
         self.tags = {}
         self.items = []
         for item in list(self._itm.getroot()):
