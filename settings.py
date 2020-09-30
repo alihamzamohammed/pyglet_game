@@ -172,7 +172,7 @@ class VideoSettings(layer.ColorLayer):
         else:
             self.x = self.posleft
 
-    def showAboutScreen(self):
+    def showMiscScreen(self):
         if self.active:
             self.do(AccelDeccel(MoveTo((self.posleft, self.y), duration = 0.5)))
             self.active = False
@@ -215,7 +215,7 @@ class SoundSettings(layer.ColorLayer):
         else:
             self.x = self.posleft
 
-    def showAboutScreen(self):
+    def showMiscScreen(self):
         if self.active:
             self.do(AccelDeccel(MoveTo((self.posleft, self.y), duration=0.5)))
             self.active = False
@@ -263,15 +263,15 @@ class ExtensionSettings(layer.ColorLayer):
         self.active = True
         self.do(AccelDeccel(MoveTo((self.poscenter, self.y), duration = 0.5)))
 
-    def showAboutScreen(self):
+    def showMiscScreen(self):
         if self.active:
             self.do(AccelDeccel(MoveTo((self.posleft, self.y), duration = 0.5)))
             self.active = False
         else:
             self.x = self.posleft
 
-#TODO: About settings
-class AboutSettings(layer.ColorLayer):
+#TODO: Misc settings
+class MiscSettings(layer.ColorLayer):
 
     is_event_handler = True
 
@@ -288,10 +288,10 @@ class AboutSettings(layer.ColorLayer):
         self.y = int((y * 0.37) - (self.height / 2))
         self.active = False
 
-        aboutInfo = Label("Written and programmed by\nAli Hamza Mohammed\n\nWORK IN PROGRESS", anchor_x="center", anchor_y="center", font_size=35, multiline=True, width=(self.width * 0.8), align="center")
-        aboutInfo.x = self.width / 2
-        aboutInfo.y = self.height / 2
-        self.add(aboutInfo)
+        miscInfo = Label("Written and programmed by\nAli Hamza Mohammed\n\nWORK IN PROGRESS", anchor_x="center", anchor_y="center", font_size=35, multiline=True, width=(self.width * 0.8), align="center")
+        miscInfo.x = self.width / 2
+        miscInfo.y = self.height / 2
+        self.add(miscInfo)
 
 
     def showVideoScreen(self):
@@ -315,7 +315,7 @@ class AboutSettings(layer.ColorLayer):
         else:
             self.x = self.posright
 
-    def showAboutScreen(self):
+    def showMiscScreen(self):
         self.active = True
         self.do(AccelDeccel(MoveTo((self.poscenter, self.y), duration = 0.5)))
 
@@ -340,7 +340,7 @@ class SettingsScreen(scene.Scene):
         self.videoButton = SettingsSectionButton("Video", events.settingsevents.onVideoButtonClick, buttonorder = 1, active = True)
         self.soundButton = SettingsSectionButton("Sound", events.settingsevents.onSoundButtonClick, buttonorder = 2)
         self.extensionButton = SettingsSectionButton("Expansion", events.settingsevents.onExtensionsButtonClick, buttonorder = 3)
-        self.aboutButton = SettingsSectionButton("About", events.settingsevents.onAboutButtonClick, buttonorder = 4)
+        self.miscButton = SettingsSectionButton("Miscallaneous", events.settingsevents.onMiscButtonClick, buttonorder = 4)
         backButton = elements.mediumButton("Back", events.mainmenuevents.backToMainMenu)
         aboutButton = elements.mediumButton("About", events.settingsevents.aboutPopupShow)
         aboutPopup = elements.SettingsAboutBox()
@@ -358,7 +358,7 @@ class SettingsScreen(scene.Scene):
         self.add(self.videoButton)
         self.add(self.soundButton)
         self.add(self.extensionButton)
-        self.add(self.aboutButton)
+        self.add(self.miscButton)
         self.add(backButton)
         self.add(aboutButton)
         self.add(settingsLabel)
@@ -367,12 +367,12 @@ class SettingsScreen(scene.Scene):
         videoSettings = VideoSettings()
         soundSettings = SoundSettings()
         extensionSettings = ExtensionSettings()
-        aboutSettings = AboutSettings()
+        miscSettings = MiscSettings()
 
         self.add(videoSettings)
         self.add(soundSettings)
         self.add(extensionSettings)
-        self.add(aboutSettings)
+        self.add(miscSettings)
 
         self.add(messagePopup)
 
@@ -383,22 +383,22 @@ class SettingsScreen(scene.Scene):
         self.videoButton.active = True
         self.soundButton.active = False
         self.extensionButton.active = False
-        self.aboutButton.active = False
+        self.miscButton.active = False
         
     def showSoundScreen(self):
         self.videoButton.active = False
         self.soundButton.active = True
         self.extensionButton.active = False
-        self.aboutButton.active = False    
+        self.miscButton.active = False    
 
     def showExtensionsScreen(self):
         self.videoButton.active = False
         self.soundButton.active = False
         self.extensionButton.active = True
-        self.aboutButton.active = False
+        self.miscButton.active = False
 
-    def showAboutScreen(self):
+    def showmiscScreen(self):
         self.videoButton.active = False
         self.soundButton.active = False
         self.extensionButton.active = False
-        self.aboutButton.active = True
+        self.miscButton.active = True

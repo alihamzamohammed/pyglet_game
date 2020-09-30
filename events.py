@@ -49,8 +49,8 @@ class SettingsEvents(pyglet.window.EventDispatcher):
     def onExtensionsButtonClick(self):
         self.dispatch_event("showExtensionsScreen")
 
-    def onAboutButtonClick(self):
-        self.dispatch_event("showAboutScreen")
+    def onMiscButtonClick(self):
+        self.dispatch_event("showMiscScreen")
 
     def aboutPopupShow(self):
         self.dispatch_event("showAboutPopup")
@@ -61,7 +61,7 @@ class SettingsEvents(pyglet.window.EventDispatcher):
 SettingsEvents.register_event_type("showVideoScreen")
 SettingsEvents.register_event_type("showSoundScreen")
 SettingsEvents.register_event_type("showExtensionsScreen")
-SettingsEvents.register_event_type("showAboutScreen")
+SettingsEvents.register_event_type("showMiscScreen")
 SettingsEvents.register_event_type("showAboutPopup")
 SettingsEvents.register_event_type("hideAboutPopup")
 
