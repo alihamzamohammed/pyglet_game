@@ -18,6 +18,7 @@ import elements
 import resources
 import random
 import time
+import modes, levels, items
 
 x, y = director.window.width, director.window.height
 reswidth, resheight = [int(res) for res in cfg.resolution.split("x")]
@@ -288,7 +289,7 @@ class MiscSettings(layer.ColorLayer):
         self.y = int((y * 0.37) - (self.height / 2))
         self.active = False
 
-        miscInfo = Label("Written and programmed by\nAli Hamza Mohammed\n\nWORK IN PROGRESS", anchor_x="center", anchor_y="center", font_size=35, multiline=True, width=(self.width * 0.8), align="center")
+        miscInfo = Label("Coming Soon", anchor_x="center", anchor_y="center", font_size=35, multiline=True, width=(self.width * 0.8), align="center")
         miscInfo.x = self.width / 2
         miscInfo.y = self.height / 2
         self.add(miscInfo)
@@ -353,8 +354,8 @@ class SettingsScreen(scene.Scene):
         aboutButton.show(0.01)
 
         aboutPopup.title.element.text = "About Game"
-        aboutPopup.desc.element.text = "Written and programmed by Ali Hamza Mohammed.\n\nWORK IN PROGRESS\n\nStill to add:\nSound system\nLevel editor\nMultiplayer functionality\nGeneral visual tweaks\nDefault resource packs"
-
+        aboutPopup.desc.element.text = "Written and programmed by Ali Hamza Mohammed.\nWORK IN PROGRESS\nStill to add:\nSound system\nLevel editor\nMultiplayer functionality\nGeneral visual tweaks\nDefault resource packs\nSource code for this game is available at github.com/alihamzamohammed/coursework\nInstalled Game Modes: " + str(len(modes.gamemodes)) + "\nInstalled Levels: " + str(len(levels.levels)) + "\nInstalled Item Packs: " + str(len(items.itempacks))
+        
         self.add(self.videoButton)
         self.add(self.soundButton)
         self.add(self.extensionButton)
