@@ -100,11 +100,11 @@ class ScrollBar(layer.Layer):
         if self.active:
             if dy > 0:
                 print("up")
-                if not self.y < (ry - (self.img.height / 2)):
+                if self.y < (ry - (self.img.height / 2)):
                     self.y += dy
             elif dy < 0:
                 print("down")
-                if not self.y > (self.img.height / 2):
+                if self.y > (self.img.height / 2):
                     self.y += dy
 
 
