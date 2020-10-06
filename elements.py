@@ -388,7 +388,7 @@ class smallButton(layer.Layer):
         self.py = 0
 
         self.width_range = [int((self.px + self.x) - (self.bgImage.width / 2)), int((self.px + self.x) + (self.bgImage.width / 2))]
-        self.height_range = [int((self.py + self.y) - (self.bgImage.height / 2)), int((self.py + self.y) + (self.bgImage.width / 2))]
+        self.height_range = [int((self.py + self.y) - (self.bgImage.height / 2)), int((self.py + self.y) + (self.bgImage.height / 2))]
 
         self.add(self.bgImage)
         self.add(self.lbl)
@@ -402,7 +402,7 @@ class smallButton(layer.Layer):
     def setWH(self, dt):
         x, y = director.window.width, director.window.height
         nmin = sc.scale(int((self.px + self.x) - (self.bgImage.width / 2)), int((self.py + self.y) - (self.bgImage.height / 2)))
-        nmax = sc.scale(int((self.px + self.x) + (self.bgImage.width / 2)), int((self.py + self.y) + (self.bgImage.width / 2)))
+        nmax = sc.scale(int((self.px + self.x) + (self.bgImage.width / 2)), int((self.py + self.y) + (self.bgImage.height / 2)))
         self.width_range = [int(nmin[0]), int(nmax[0])]
         self.height_range = [int(nmin[1]), int(nmax[1])]
 
@@ -462,7 +462,7 @@ class ChosenBox(layer.Layer):
         self.showing = True
         self.chosen = False
         self.width_range = [int((self.x) - (self.bg.width / 2)), int((self.x) + (self.bg.width / 2))]
-        self.height_range = [int((self.y) - (self.bg.height / 2)), int((self.y) + (self.bg.width / 2))]
+        self.height_range = [int((self.y) - (self.bg.height / 2)), int((self.y) + (self.bg.height / 2))]
 
         self.schedule_interval(self.setWH, 1)
         self.resume_scheduler()
@@ -474,7 +474,7 @@ class ChosenBox(layer.Layer):
     def setWH(self, dt):
         x, y = director.window.width, director.window.height
         nmin = sc.scale(int((self.x) - (self.bg.width / 2)), int((self.y) - (self.bg.height / 2)))
-        nmax = sc.scale(int((self.x) + (self.bg.width / 2)), int((self.y) + (self.bg.width / 2)))
+        nmax = sc.scale(int((self.x) + (self.bg.width / 2)), int((self.y) + (self.bg.height / 2)))
         self.width_range = [int(nmin[0]), int(nmax[0])]
         self.height_range = [int(nmin[1]), int(nmax[1])]
 
@@ -537,7 +537,7 @@ class LevelBox(layer.Layer):
         self.showing = False
         self.chosen = False
         self.width_range = [int((self.x) - (self.bg.width / 2)), int((self.x) + (self.bg.width / 2))]
-        self.height_range = [int((self.y) - (self.bg.height / 2)), int((self.y) + (self.bg.width / 2))]
+        self.height_range = [int((self.y) - (self.bg.height / 2)), int((self.y) + (self.bg.height / 2))]
 
         self.schedule_interval(self.setWH, 1)
         self.resume_scheduler()
@@ -573,7 +573,7 @@ class LevelBox(layer.Layer):
     def setWH(self, dt):
         x, y = director.window.width, director.window.height
         nmin = sc.scale(int((self.x) - (self.bg.width / 2)), int((self.y) - (self.bg.height / 2)))
-        nmax = sc.scale(int((self.x) + (self.bg.width / 2)), int((self.y) + (self.bg.width / 2)))
+        nmax = sc.scale(int((self.x) + (self.bg.width / 2)), int((self.y) + (self.bg.height / 2)))
         self.width_range = [int(nmin[0]), int(nmax[0])]
         self.height_range = [int(nmin[1]), int(nmax[1])]
 
@@ -707,7 +707,7 @@ class GameModeBox(layer.Layer):
         self.showing = False
         self.chosen = False
         self.width_range = [int((self.x) - (self.bg.width / 2)), int((self.x) + (self.bg.width / 2))]
-        self.height_range = [int((self.y) - (self.bg.height / 2)), int((self.y) + (self.bg.width / 2))]
+        self.height_range = [int((self.y) - (self.bg.height / 2)), int((self.y) + (self.bg.height / 2))]
 
         self.schedule_interval(self.setWH, 1)
         self.resume_scheduler()
@@ -743,7 +743,7 @@ class GameModeBox(layer.Layer):
     def setWH(self, dt):
         x, y = director.window.width, director.window.height
         nmin = sc.scale(int((self.x) - (self.bg.width / 2)), int((self.y) - (self.bg.height / 2)))
-        nmax = sc.scale(int((self.x) + (self.bg.width / 2)), int((self.y) + (self.bg.width / 2)))
+        nmax = sc.scale(int((self.x) + (self.bg.width / 2)), int((self.y) + (self.bg.height / 2)))
         self.width_range = [int(nmin[0]), int(nmax[0])]
         self.height_range = [int(nmin[1]), int(nmax[1])]
 
