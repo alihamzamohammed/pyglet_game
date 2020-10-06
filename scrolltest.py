@@ -5,6 +5,7 @@ from cocos import actions, layer, scene, text, sprite
 from cocos.director import director
 import scaling as sc
 import cfg
+import resources
 
 rx, ry = director.window.width, director.window.height
 reswidth, resheight = [int(res) for res in cfg.resolution.split("x")]
@@ -22,7 +23,7 @@ class ParentLayer(layer.Layer):
     def __init__(self):
         super().__init__()
         scrollManager = layer.ScrollingManager()
-        scrollLayer = ScrollLayer(reswidth, resheight, reswidth, resheight * 3, parallax=((resheight * 0.5) / resheight))
+        scrollLayer = ScrollLayer(0, resheight, reswidth, resheight)#((resheight * 0.5) / resheight))
         scrollBar = ScrollBar(scrollManager)
         
         scrollLayer.x = 0
@@ -32,7 +33,7 @@ class ParentLayer(layer.Layer):
         scrollBar.y = (resheight - (resheight * 0.02)) - (scrollBar.img.height / 2)
 
         scrollManager.add(scrollLayer)
-        scrollManager.set_focus(0, 0)
+        scrollManager.set_focus(0, resheight / 2)
 
         self.add(scrollManager)
         self.add(scrollBar)
@@ -46,19 +47,36 @@ class ScrollLayer(layer.ScrollableLayer):
         self.height = h
         self.x = x
         self.y = y
-        self.set_view(self.x, self.y, self.width, self.height)
+        
         #self.t = sprite.Sprite("smallButton.png")
         #self.t.x = 0
         #self.t.y = 0
         
         #self.add(self.t)
-        obj = []
-        for i in range(10):
+        
+
+        self.title = text.Label("Controls", font_name=resources.font[1], font_size=50, anchor_y="top", anchor_x="center")
+        self.title.x = 0
+        self.title.y = resheight * 0.85 
+        self.add(self.title)
+        self.obj = []
+        for i in range(-1, 20):
             sp = sprite.Sprite("smallButton.png")
+            if i == -1 or i == 19:
+                sp.image = pyglet.resource.image("smallButtonHovered.png")
             sp.x = 0
-            sp.y = 500 * -i
-            obj.append(sp)
+            sp.y = (resheight * 0.5) * -i
+            print(sp.y)
+            self.obj.append(sp)
             self.add(sp)
+
+        self.height = resheight - (self.obj[-1].y - (resheight * 0.4))
+        #self.height = 1440
+        self.parallax = (self.height / resheight)# + 1.5
+        #self.parallax = 6
+        print(self.height, self.parallax)
+        self.set_view(self.x, self.y, self.width, self.height)
+
 
     def set_view(self, x, y, w, h, viewport_ox=0, viewport_oy=0):
         """Sets the position of the viewport for this layer.
