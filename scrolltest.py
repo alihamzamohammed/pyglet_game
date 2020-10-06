@@ -22,10 +22,9 @@ class ParentLayer(layer.Layer):
     def __init__(self):
         super().__init__()
         scrollManager = layer.ScrollingManager()
-        scrollLayer = ScrollLayer(0, 0, rx * 0.8, ry * 0.8)
+        scrollLayer = ScrollLayer(reswidth, resheight, reswidth, resheight * 3, parallax=((resheight * 0.5) / resheight))
         scrollBar = ScrollBar(scrollManager)
         
-
         scrollLayer.x = 0
         scrollLayer.y = 0
 
@@ -39,7 +38,6 @@ class ParentLayer(layer.Layer):
         self.add(scrollBar)
 
 
-
 class ScrollLayer(layer.ScrollableLayer):
 
     def __init__(self, x, y, w, h, parallax=1):
@@ -48,12 +46,40 @@ class ScrollLayer(layer.ScrollableLayer):
         self.height = h
         self.x = x
         self.y = y
-        self.t = sprite.Sprite("smallButton.png")
-        self.t.x = 100
-        self.t.y = 100
+        self.set_view(self.x, self.y, self.width, self.height)
+        #self.t = sprite.Sprite("smallButton.png")
+        #self.t.x = 0
+        #self.t.y = 0
         
-        self.add(self.t)
+        #self.add(self.t)
+        obj = []
+        for i in range(10):
+            sp = sprite.Sprite("smallButton.png")
+            sp.x = 0
+            sp.y = 500 * -i
+            obj.append(sp)
+            self.add(sp)
 
+    def set_view(self, x, y, w, h, viewport_ox=0, viewport_oy=0):
+        """Sets the position of the viewport for this layer.
+
+        Arguments:
+            x (float): The view x position
+            y (float): The view y position
+            w (float): The width of the view
+            h (float): The height of the view
+            viewport_ox (float) : The viewport x origin
+            viewport_oy (float) : The viewport y origin
+        """
+        #x *= self.parallax
+        y *= self.parallax
+        self.view_x, self.view_y = x, y
+        self.view_w, self.view_h = w, h
+        x -= self.origin_x
+        y -= self.origin_y
+        x -= viewport_ox
+        y -= viewport_oy
+        self.position = (-x, -y)
 
 
 class ScrollBar(layer.Layer):
@@ -108,8 +134,8 @@ class ScrollBar(layer.Layer):
             if dy > 0:
                 if (self.y + (self.sy * 0.02)) < (ry - (self.img.height / 2)):
                     self.y += dy
-                    self.scrollManager.set_focus(0, self.scrollManager.fy - dy)
+                    self.scrollManager.set_focus(0, self.scrollManager.fy + dy)
             elif dy < 0:
                 if (self.y - (self.sy * 0.02)) > (self.img.height / 2):
                     self.y += dy
-                    self.scrollManager.set_focus(0, self.scrollManager.fy - dy)
+                    self.scrollManager.set_focus(0, self.scrollManager.fy + dy)
