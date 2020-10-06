@@ -59,6 +59,8 @@ class Game(object):
 
     def multiplayerButtonClicked(self):
         logger.addLog("Multiplayer not yet implemented!")
+        import scrolltest
+        director.replace(scrolltest.testScroller())
 
     def settingsButtonClicked(self):
         director.replace(FadeTransition(settings.SettingsScreen(), duration = 1, color = (0, 0, 0)))
