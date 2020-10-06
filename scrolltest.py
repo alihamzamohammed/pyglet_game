@@ -4,8 +4,10 @@ import events
 from cocos import actions, layer, scene, text, sprite
 from cocos.director import director
 import scaling as sc
+import cfg
 
 rx, ry = director.window.width, director.window.height
+reswidth, resheight = [int(res) for res in cfg.resolution.split("x")]
 
 class testScroller(scene.Scene):
     
@@ -21,16 +23,17 @@ class ParentLayer(layer.Layer):
         super().__init__()
         scrollManager = layer.ScrollingManager()
         scrollLayer = ScrollLayer(0, 0, rx * 0.8, ry * 0.8)
-        scrollBar = ScrollBar()
+        scrollBar = ScrollBar(scrollManager)
         
 
         scrollLayer.x = 0
         scrollLayer.y = 0
 
-        scrollBar.x = rx - (scrollBar.width / 2)
-        scrollBar.y = ry / 2
+        scrollBar.x = reswidth - (scrollBar.width / 2)
+        scrollBar.y = resheight / 2
 
         scrollManager.add(scrollLayer)
+        scrollManager.set_focus(0, 0)
 
         self.add(scrollManager)
         self.add(scrollBar)
@@ -57,11 +60,12 @@ class ScrollBar(layer.Layer):
 
     is_event_handler = True
 
-    def __init__(self):
+    def __init__(self, scrollManager):
         super().__init__()
         self.img = sprite.Sprite("scrollbar.png")
         self.width = self.img.width
         self.height = self.img.height
+        self.scrollManager = scrollManager
 
         self.add(self.img)
         
@@ -104,6 +108,8 @@ class ScrollBar(layer.Layer):
             if dy > 0:
                 if (self.y + (self.sy * 0.02)) < (ry - (self.img.height / 2)):
                     self.y += dy
+                    self.scrollManager.set_focus(0, self.scrollManager.view_y += dy)
             elif dy < 0:
                 if (self.y - (self.sy * 0.02)) > (self.img.height / 2):
                     self.y += dy
+                    self.scrollManager.set_focus(0, self.scrollManager.view_y += dy)
