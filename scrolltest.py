@@ -71,12 +71,16 @@ class ScrollBar(layer.Layer):
         self.schedule_interval(self.setWH, 1)
         self.resume_scheduler()
 
+        self.sx = rx
+        self.sy = ry
+
         #self.active = False
 
     def setWH(self, dt):
         x, y = director.window.width, director.window.height
         nmin = sc.scale(int((self.x) - (self.img.width / 2)), int((self.y) - (self.img.height / 2)))
         nmax = sc.scale(int((self.x) + (self.img.width / 2)), int((self.y) + (self.img.height / 2)))
+        self.sx, self.sy = sc.scale(rx, ry)
         self.width_range = [int(nmin[0]), int(nmax[0])]
         self.height_range = [int(nmin[1]), int(nmax[1])]
 
@@ -98,8 +102,8 @@ class ScrollBar(layer.Layer):
     def on_mouse_drag(self, x, y, dx, dy, buttons, modifiers):
         if self.active:
             if dy > 0:
-                if (self.y - (ry * 0.02)) < (ry - (self.img.height / 2)):
+                if (self.y + (self.sy * 0.02)) < (self.sy - (self.img.height / 2)):
                     self.y += dy
             elif dy < 0:
-                if (self.y + (ry * 0.02)) > (self.img.height / 2):
+                if (self.y - (self.sy * 0.02)) > (self.img.height / 2):
                     self.y += dy
