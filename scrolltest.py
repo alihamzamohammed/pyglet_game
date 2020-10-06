@@ -30,7 +30,7 @@ class ParentLayer(layer.Layer):
         scrollLayer.y = 0
 
         scrollBar.x = reswidth - (scrollBar.width / 2)
-        scrollBar.y = resheight / 2
+        scrollBar.y = (resheight - (resheight * 0.02)) - (scrollBar.img.height / 2)
 
         scrollManager.add(scrollLayer)
         scrollManager.set_focus(0, 0)
@@ -49,8 +49,8 @@ class ScrollLayer(layer.ScrollableLayer):
         self.x = x
         self.y = y
         self.t = sprite.Sprite("smallButton.png")
-        self.t.x = self.width / 2
-        self.t.y = self.height / 2
+        self.t.x = 100
+        self.t.y = 100
         
         self.add(self.t)
 
@@ -108,8 +108,8 @@ class ScrollBar(layer.Layer):
             if dy > 0:
                 if (self.y + (self.sy * 0.02)) < (ry - (self.img.height / 2)):
                     self.y += dy
-                    self.scrollManager.set_focus(0, self.scrollManager.view_y += dy)
+                    self.scrollManager.set_focus(0, self.scrollManager.fy - dy)
             elif dy < 0:
                 if (self.y - (self.sy * 0.02)) > (self.img.height / 2):
                     self.y += dy
-                    self.scrollManager.set_focus(0, self.scrollManager.view_y += dy)
+                    self.scrollManager.set_focus(0, self.scrollManager.fy - dy)
