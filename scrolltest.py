@@ -96,24 +96,10 @@ class ScrollBar(layer.Layer):
             self.active = False
            
     def on_mouse_drag(self, x, y, dx, dy, buttons, modifiers):
-        print(self.y, dy, y)
         if self.active:
             if dy > 0:
-                print("up")
-                if self.y < (ry - (self.img.height / 2)):
+                if (self.y - (ry * 0.02)) < (ry - (self.img.height / 2)):
                     self.y += dy
             elif dy < 0:
-                print("down")
-                if self.y > (self.img.height / 2):
+                if (self.y + (ry * 0.02)) > (self.img.height / 2):
                     self.y += dy
-
-
-
-            #if :
-            #    top = True
-            #else:
-            #    top = False
-            #
-            #if self.y > (self.img.height / 2):
-            #    bottom = True
-            #    self.y += dy
