@@ -14,6 +14,7 @@ import levels
 import modes
 import events
 from elements import * 
+from scroll import *
 
 import scaling as sc
 
@@ -64,6 +65,17 @@ class LevelMenu(Scene):
         self.add(self.playButton)
         self.playButton.show()
         self.levelBoxes = []
+
+        self.scrollManager = layer.ScrollingManager()
+        self.scrollBar = ScrollBar(self.scrollManager)
+        self.scrollLayer = ScrollLayer(reswidth/2, resheight, reswidth, resheight, self.scrollBar)
+        
+        self.scrollLayer.x = 0
+        self.scrollLayer.y = 0
+
+        self.scrollBar.x = reswidth - (self.scrollBar.width / 2)
+        self.scrollBar.y = (resheight - (resheight * 0.02)) - (self.scrollBar.img.height / 2)
+
         for levelName, level in levels.levels.items():
             levelBox = LevelBox(level)
             self.levelBoxes.append(levelBox)
@@ -73,9 +85,31 @@ class LevelMenu(Scene):
             self.levelBoxes[i].delay = 2 + i
             self.levelBoxes[i].update_positions()
             extendedInfo = LVLExtendedInfo(self.levelBoxes[i].level)
-            self.add(self.levelBoxes[i], z=1)
+            self.scrollLayer.add(self.levelBoxes[i], z=1)
             self.add(extendedInfo, z=2)
             self.levelBoxes[i].show()
+
+
+        self.scrollManager.add(self.scrollLayer)
+        self.scrollLayer.calculate()
+        self.scrollManager.set_focus(reswidth / 2, resheight / 2)
+
+        self.add(self.scrollManager)
+        self.add(self.scrollBar)
+
+
+        # for levelName, level in levels.levels.items():
+        #     levelBox = LevelBox(level)
+        #     self.levelBoxes.append(levelBox)
+        # for i in range(len(self.levelBoxes)):
+        #     self.levelBoxes[i].x = ((reswidth * 0.8) // 4) * (((i + 1) / 4) - ((i) // 4)) * 4
+        #     self.levelBoxes[i].y = resheight * (0.6 - (i // 4) * 0.47)
+        #     self.levelBoxes[i].delay = 2 + i
+        #     self.levelBoxes[i].update_positions()
+        #     extendedInfo = LVLExtendedInfo(self.levelBoxes[i].level)
+        #     self.add(self.levelBoxes[i], z=1)
+        #     self.add(extendedInfo, z=2)
+        #     self.levelBoxes[i].show()
 
     def LevelChosen(self, level):
         self.playButton.do(AccelDeccel(MoveTo((self.playButton.x, resheight * 0.1), duration = 2)))
@@ -113,6 +147,18 @@ class GameModeMenu(Scene):
         self.add(backButton)
         self.add(newButton)
         events.gamemenuevents.push_handlers(self)
+
+
+        self.scrollManager = layer.ScrollingManager()
+        self.scrollBar = ScrollBar(self.scrollManager)
+        self.scrollLayer = ScrollLayer(reswidth/2, resheight, reswidth, resheight, self.scrollBar)
+        
+        self.scrollLayer.x = 0
+        self.scrollLayer.y = 0
+
+        self.scrollBar.x = reswidth - (self.scrollBar.width / 2)
+        self.scrollBar.y = (resheight - (resheight * 0.02)) - (self.scrollBar.img.height / 2)
+
         self.modeBoxes = []
         for modeName, mode in modes.gamemodes.items():
             modeBox = GameModeBox(mode)
@@ -123,9 +169,32 @@ class GameModeMenu(Scene):
             self.modeBoxes[i].delay = 2 + i
             self.modeBoxes[i].update_positions()
             extendedInfo = GMExtendedInfo(self.modeBoxes[i].gameMode)
-            self.add(self.modeBoxes[i], z=1)
+            self.scrollLayer.add(self.modeBoxes[i], z=1)
             self.add(extendedInfo, z=2)
             self.modeBoxes[i].show()
+
+
+        self.scrollManager.add(self.scrollLayer)
+        self.scrollLayer.calculate()
+        self.scrollManager.set_focus(reswidth / 2, resheight / 2)
+
+        self.add(self.scrollManager)
+        self.add(self.scrollBar)
+
+
+        # self.modeBoxes = []
+        # for modeName, mode in modes.gamemodes.items():
+        #     modeBox = GameModeBox(mode)
+        #     self.modeBoxes.append(modeBox)
+        # for i in range(len(self.modeBoxes)):
+        #     self.modeBoxes[i].x = ((reswidth * 0.8) // 4) * (((i + 1) / 4) - ((i) // 4)) * 4
+        #     self.modeBoxes[i].y = resheight * (0.6 - (i // 4) * 0.47)
+        #     self.modeBoxes[i].delay = 2 + i
+        #     self.modeBoxes[i].update_positions()
+        #     extendedInfo = GMExtendedInfo(self.modeBoxes[i].gameMode)
+        #     self.add(self.modeBoxes[i], z=1)
+        #     self.add(extendedInfo, z=2)
+        #     self.modeBoxes[i].show()
 
     def on_enter(self):
         super().on_enter()

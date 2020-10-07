@@ -17,7 +17,7 @@ class testScroller(scene.Scene):
         super().__init__(*children)
         self.scrollManager = layer.ScrollingManager()
         self.scrollBar = ScrollBar(self.scrollManager)
-        self.scrollLayer = ScrollLayer(reswidth/2, resheight, reswidth, 1440, self.scrollBar)
+        self.scrollLayer = ScrollLayer(reswidth/2, resheight, reswidth, resheight, self.scrollBar)
         
         self.scrollLayer.x = 0
         self.scrollLayer.y = 0
