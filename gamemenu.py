@@ -519,8 +519,8 @@ class GameModeBox(layer.Layer):
     def setWH(self, dt):
         x, y = director.window.width, director.window.height
         if not self.scrollManager == None:
-            nmin = self.scrollManager.world_to_screen(int((self.x) - (self.bg.width / 2)), int((self.y) - (self.bg.height / 2)))
-            nmax = self.scrollManager.world_to_screen(int((self.x) + (self.bg.width / 2)), int((self.y) + (self.bg.height / 2)))
+            nmin = self.scrollManager.screen_to_world(int((self.x) - (self.bg.width / 2)), int((self.y) - (self.bg.height / 2)))
+            nmax = self.scrollManager.screen_to_world(int((self.x) + (self.bg.width / 2)), int((self.y) + (self.bg.height / 2)))
         else:
             nmin = int((self.x) - (self.bg.width / 2)), int((self.y) - (self.bg.height / 2))
             nmax = int((self.x) + (self.bg.width / 2)), int((self.y) + (self.bg.height / 2))
