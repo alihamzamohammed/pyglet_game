@@ -12,26 +12,26 @@ rx, ry = director.window.width, director.window.height
 reswidth, resheight = [int(res) for res in cfg.resolution.split("x")]
 
 
-class ParentLayer(layer.Layer):
+# class ParentLayer(layer.Layer):
 
-    def __init__(self):
-        super().__init__()
-        self.scrollManager = layer.ScrollingManager()
-        self.scrollBar = ScrollBar(self.scrollManager)
-        self.scrollLayer = ScrollLayer(reswidth/2, resheight, reswidth, 1440, self.scrollBar)
+#     def __init__(self):
+#         super().__init__()
+#         self.scrollManager = layer.ScrollingManager()
+#         self.scrollBar = ScrollBar(self.scrollManager)
+#         self.scrollLayer = ScrollLayer(reswidth/2, resheight, reswidth, 1440, self.scrollBar)
         
-        self.scrollLayer.x = 0
-        self.scrollLayer.y = 0
+#         self.scrollLayer.x = 0
+#         self.scrollLayer.y = 0
 
-        self.scrollBar.x = reswidth - (self.scrollBar.width / 2)
-        self.scrollBar.y = (resheight - (resheight * 0.02)) - (self.scrollBar.img.height / 2)
+#         self.scrollBar.x = reswidth - (self.scrollBar.width / 2)
+#         self.scrollBar.y = (resheight - (resheight * 0.02)) - (self.scrollBar.img.height / 2)
 
-        self.scrollManager.add(self.scrollLayer)
-        self.scrollLayer.calculate()
-        self.scrollManager.set_focus(reswidth / 2, resheight / 2)
+#         self.scrollManager.add(self.scrollLayer)
+#         self.scrollLayer.calculate()
+#         self.scrollManager.set_focus(reswidth / 2, resheight / 2)
 
-        self.add(self.scrollManager)
-        self.add(self.scrollBar)
+#         self.add(self.scrollManager)
+#         self.add(self.scrollBar)
 
 
 class ScrollLayer(layer.ScrollableLayer):
