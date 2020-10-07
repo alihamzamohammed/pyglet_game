@@ -161,7 +161,7 @@ class GameModeMenu(Scene):
 
         self.modeBoxes = []
         for modeName, mode in modes.gamemodes.items():
-            modeBox = GameModeBox(mode)
+            modeBox = GameModeBox(mode, scrollManager = self.scrollManager)
             self.modeBoxes.append(modeBox)
         for i in range(len(self.modeBoxes)):
             self.modeBoxes[i].x = ((reswidth * 0.8) // 4) * (((i + 1) / 4) - ((i) // 4)) * 4
@@ -213,3 +213,419 @@ class GameModeMenu(Scene):
     def ReturnToGMMenu(self):
         self.gamemodeTitle.y = resheight * 1.2
         self.gamemodeTitle.do(AccelDeccel(MoveTo((self.gamemodeTitle.x, resheight * 0.94), 2)))
+
+
+
+class ChosenBox(layer.Layer):
+
+    is_event_handler = True
+
+    def __init__(self, gameMode):
+        super().__init__()
+        events.gamemenuevents.push_handlers(self)
+        self.gameMode = gameMode
+        self.bg = Sprite("chosenBox.png")
+        self.width = self.bg.width
+        self.height = self.bg.height
+        self.gmTitle = Label("Chosen Game Mode:\n" + gameMode.name, color=(0, 0, 0, 255), font_size=15, anchor_x="left", anchor_y="center", multiline = True, width = self.width * 0.9, height = self.height * 0.9)
+        self.gmTitle.x = self.x * 0.1
+        self.gmTitle.y = self.y / 2
+        self.delay = 0
+        self.add(self.gmTitle, z=1)
+        self.add(self.bg, z=0)
+        self.active = False
+        self.showing = True
+        self.chosen = False
+        self.width_range = [int((self.x) - (self.bg.width / 2)), int((self.x) + (self.bg.width / 2))]
+        self.height_range = [int((self.y) - (self.bg.height / 2)), int((self.y) + (self.bg.height / 2))]
+
+        self.schedule_interval(self.setWH, 1)
+        self.resume_scheduler()
+
+    def update_positions(self):
+        self.gmTitle.x = -200
+        self.gmTitle.y = -15
+
+    def setWH(self, dt):
+        x, y = director.window.width, director.window.height
+        nmin = sc.scale(int((self.x) - (self.bg.width / 2)), int((self.y) - (self.bg.height / 2)))
+        nmax = sc.scale(int((self.x) + (self.bg.width / 2)), int((self.y) + (self.bg.height / 2)))
+        self.width_range = [int(nmin[0]), int(nmax[0])]
+        self.height_range = [int(nmin[1]), int(nmax[1])]
+
+    def on_mouse_motion(self, x, y, dx, dy):
+        if not self.chosen and self.showing:
+            if self.active:
+                self.bg.image = pyglet.resource.image("chosenBoxClicked.png")
+                self.gmTitle.element.color = (255, 255, 255, 255)
+            elif x in range(self.width_range[0], self.width_range[1]) and y in range(self.height_range[0], self.height_range[1]):
+                self.bg.image = pyglet.resource.image("chosenBoxHovered.png")
+                self.gmTitle.element.color = (0, 0, 0, 255)
+            else:
+                self.bg.image = pyglet.resource.image("chosenBox.png")
+                self.gmTitle.element.color = (0, 0, 0, 255)
+
+    def on_mouse_press(self, x, y, buttons, modifiers):
+        if not self.chosen and self.showing:
+            if x in range(self.width_range[0], self.width_range[1]) and y in range(self.height_range[0], self.height_range[1]):
+                self.bg.image = pyglet.resource.image("chosenBoxClicked.png")
+                self.active = True
+                self.gmTitle.element.color = (255, 255, 255, 255)
+                events.gamemenuevents.onChosenBoxClick()
+                self.active = False        
+
+    def ExtendedInfoShow(self, gm):
+        self.showing = False
+
+    def ExtendedInfoHide(self, gm):
+        self.do(Delay(0.7) + CallFunc(self.activate))
+
+    def activate(self):
+        self.showing = True
+
+class LevelBox(layer.Layer):
+
+    is_event_handler = True
+
+    def __init__(self, level):
+        super().__init__()
+        events.gamemenuevents.push_handlers(self)
+        self.level = level
+        self.bg = Sprite("gameBox.png")
+        self.thumbnail = Sprite(level.thumbnail)
+        self.thumbnail.scale_x = 200 / self.thumbnail.width
+        self.thumbnail.scale_y = 200 / self.thumbnail.height
+        self.infoButton = smallButton("i", events.gamemenuevents.showExtendedInfo, eventparam=level.idx)
+        self.width = self.bg.width
+        self.height = self.bg.height
+        self.thumbnail.x = self.x
+        self.thumbnail.y = self.y * 0.6
+        self.gmTitle = Label(level.name, color=(0, 0, 0, 255), font_size=20, anchor_x="left", anchor_y="center")
+        self.gmTitle.x = self.x / 2
+        self.gmTitle.y = self.y * 0.1
+        self.delay = 0
+        self.add(self.thumbnail, z=1)
+        self.add(self.gmTitle, z=1)
+        self.add(self.infoButton, z=1)
+        self.add(self.bg, z=0)
+        self.active = False
+        self.showing = False
+        self.chosen = False
+        self.width_range = [int((self.x) - (self.bg.width / 2)), int((self.x) + (self.bg.width / 2))]
+        self.height_range = [int((self.y) - (self.bg.height / 2)), int((self.y) + (self.bg.height / 2))]
+
+        self.schedule_interval(self.setWH, 1)
+        self.resume_scheduler()
+
+    def show(self, duration = 0.5):
+        if not self.showing:
+            for child in self.get_children():
+                if isinstance(child, smallButton):
+                    child.do(Delay((self.delay / 4) + 1) + CallFunc(child.show))
+                else:
+                    child.do(FadeOut(0.00001) + Delay((self.delay / 4) + 1) + FadeIn(duration))
+        self.showing = True
+
+    def hide(self, duration = 0.5):
+        if self.showing:
+            for child in self.get_children():
+                if isinstance(child, smallButton):
+                    child.do(CallFunc(child.hide))
+                else:
+                    child.do(FadeOut(duration))
+            self.showing = False
+
+    def update_positions(self):
+        self.thumbnail.x = 0
+        self.thumbnail.y = 20
+        self.gmTitle.x = -100
+        self.gmTitle.y = -104
+        self.infoButton.x = 80
+        self.infoButton.y = -107
+        self.infoButton.px = self.x
+        self.infoButton.py = self.y
+
+    def setWH(self, dt):
+        x, y = director.window.width, director.window.height
+        nmin = sc.scale(int((self.x) - (self.bg.width / 2)), int((self.y) - (self.bg.height / 2)))
+        nmax = sc.scale(int((self.x) + (self.bg.width / 2)), int((self.y) + (self.bg.height / 2)))
+        self.width_range = [int(nmin[0]), int(nmax[0])]
+        self.height_range = [int(nmin[1]), int(nmax[1])]
+
+    def on_mouse_motion(self, x, y, dx, dy):
+        if not self.chosen and self.showing:
+            if self.active:
+                self.bg.image = pyglet.resource.image("gameBoxClicked.png")
+                self.gmTitle.element.color = (255, 255, 255, 255)
+            elif x in range(self.width_range[0], self.width_range[1]) and y in range(self.height_range[0], self.height_range[1]):
+                if x in range(self.infoButton.width_range[0], self.infoButton.width_range[1]) and y in range(self.infoButton.height_range[0], self.infoButton.height_range[1]):
+                    pass
+                else:
+                    self.bg.image = pyglet.resource.image("gameBoxHovered.png")
+                    self.gmTitle.element.color = (0, 0, 0, 255)
+            else:
+                if x in range(self.infoButton.width_range[0], self.infoButton.width_range[1]) and y in range(self.infoButton.height_range[0], self.infoButton.height_range[1]):
+                    pass
+                else:
+                    self.bg.image = pyglet.resource.image("gameBox.png")
+                    self.gmTitle.element.color = (0, 0, 0, 255)
+
+    def on_mouse_press(self, x, y, buttons, modifiers):
+        if not self.chosen and self.showing:
+            if x in range(self.width_range[0], self.width_range[1]) and y in range(self.height_range[0], self.height_range[1]):
+                if x in range(self.infoButton.width_range[0], self.infoButton.width_range[1]) and y in range(self.infoButton.height_range[0], self.infoButton.height_range[1]):
+                    pass
+                else:
+                    self.bg.image = pyglet.resource.image("gameBoxClicked.png")
+                    self.active = True
+                    self.gmTitle.element.color = (255, 255, 255, 255)
+                    events.gamemenuevents.chooseLevel(self.level)
+                    self.active = False        
+
+    def ExtendedInfoShow(self, gm):
+        self.showing = False
+
+    def ExtendedInfoHide(self, gm):
+        self.showing = True
+
+class LVLExtendedInfo(layer.Layer):
+
+    is_event_handler = True
+    
+    def __init__(self, level):
+        super().__init__()
+        events.gamemenuevents.push_handlers(self)
+        self.level = level
+        self.infoBox = Sprite("infoBox.png")
+        self.bgDimmer = layer.ColorLayer(0, 0, 0, 20)
+        self.exitButton = smallButton("X", events.gamemenuevents.hideExtendedInfo, eventparam=self.level.idx)
+        self.bgDimmer.opacity = 100
+        self.infoBox.x = reswidth / 2
+        self.infoBox.y = resheight / 2
+        self.bgDimmer.width = reswidth
+        self.bgDimmer.height = resheight
+        self.exitButton.x = self.infoBox.x + ((self.infoBox.width / 2) * 0.91)
+        self.exitButton.y = self.infoBox.y + ((self.infoBox.height / 2) * 0.85)
+        self.active = False
+        self.thumbnail = Sprite(level.thumbnail)
+        self.thumbnail.scale_x = 350 / self.thumbnail.width
+        self.thumbnail.scale_y = 350 / self.thumbnail.height
+        self.thumbnail.x = self.infoBox.x - ((self.infoBox.width / 2) * 0.55)
+        self.thumbnail.y = self.infoBox.y
+        self.title = Label(level.name, anchor_x="center", anchor_y="center", font_size=39, color=(0, 0, 0, 255))
+        self.title.x = self.infoBox.x + ((self.infoBox.width / 2) * 0.42)
+        self.title.y = self.infoBox.y + ((self.infoBox.height / 2) * 0.7)
+        self.desc = Label(level.desc, anchor_x="center", anchor_y="top", font_size=17, multiline = True, width=(self.infoBox.width * 0.5), height=(self.infoBox.height * 0.4), color=(0, 0, 0, 255), align="center")
+        self.desc.x = self.infoBox.x + ((self.infoBox.width / 2) * 0.42)
+        self.desc.y = self.infoBox.y + ((self.infoBox.height / 2) * 0.5)
+        self.add(self.infoBox, z=5)
+        self.add(self.bgDimmer, z=4)
+        self.add(self.exitButton, z=5)
+        self.add(self.thumbnail, z=5)
+        self.add(self.title, z=5)
+        self.add(self.desc, z=5)
+        self.bgDimmer.do(FadeOut(0.00001))
+        self.infoBox.do(FadeOut(0.00001))
+        self.exitButton.do(FadeOut(0.00001))
+        self.thumbnail.do(FadeOut(0.00001))
+        self.title.do(FadeOut(0.00001))
+        self.desc.do(FadeOut(0.00001))
+        
+       
+    def ExtendedInfoShow(self, idx):
+        if idx == self.level.idx and not self.active:
+            self.infoBox.do(FadeIn(0.5))
+            self.bgDimmer.do(FadeTo(150, 0.5))
+            self.thumbnail.do(FadeIn(0.5))
+            self.title.do(FadeIn(0.5))
+            self.desc.do(FadeIn(0.5))
+            self.exitButton.show()
+            self.active = True
+    
+    def ExtendedInfoHide(self, idx):
+        if idx == self.level.idx and self.active:
+            self.infoBox.do(FadeOut(0.5))
+            self.bgDimmer.do(FadeTo(0, 0.5))
+            self.thumbnail.do(FadeOut(0.5))
+            self.title.do(FadeOut(0.5))
+            self.desc.do(FadeOut(0.5))
+            self.exitButton.hide()
+            self.active = False
+
+
+class GameModeBox(layer.Layer):
+
+    is_event_handler = True
+
+    def __init__(self, gameMode, scrollManager = None):
+        super().__init__()
+        events.gamemenuevents.push_handlers(self)
+        self.gameMode = gameMode
+        self.bg = Sprite("gameBox.png")
+        self.thumbnail = Sprite(gameMode.thumbnail)
+        self.thumbnail.scale_x = 200 / self.thumbnail.width
+        self.thumbnail.scale_y = 200 / self.thumbnail.height
+        self.infoButton = smallButton("i", events.gamemenuevents.showExtendedInfo, eventparam=gameMode.idx)
+        self.width = self.bg.width
+        self.height = self.bg.height
+        self.scrollManager = scrollManager
+        self.thumbnail.x = self.x
+        self.thumbnail.y = self.y * 0.6
+        self.gmTitle = Label(gameMode.name, color=(0, 0, 0, 255), font_size=20, anchor_x="left", anchor_y="center")
+        self.gmTitle.x = self.x / 2
+        self.gmTitle.y = self.y * 0.1
+        self.delay = 0
+        self.add(self.thumbnail, z=1)
+        self.add(self.gmTitle, z=1)
+        self.add(self.infoButton, z=1)
+        self.add(self.bg, z=0)
+        self.active = False
+        self.showing = False
+        self.chosen = False
+        self.width_range = [int((self.x) - (self.bg.width / 2)), int((self.x) + (self.bg.width / 2))]
+        self.height_range = [int((self.y) - (self.bg.height / 2)), int((self.y) + (self.bg.height / 2))]
+
+        self.schedule_interval(self.setWH, 1)
+        self.resume_scheduler()
+
+    def show(self, duration = 0.5, cdelay = 0):
+        if not self.showing:
+            for child in self.get_children():
+                if isinstance(child, smallButton):
+                    child.do(Delay(cdelay + (self.delay / 4)) + CallFunc(child.show))
+                else:
+                    child.do(FadeOut(0.00001) + Delay(cdelay + (self.delay / 4)) + FadeIn(duration))
+        self.showing = True
+
+    def hide(self, duration = 0.5):
+        if self.showing:
+            for child in self.get_children():
+                if isinstance(child, smallButton):
+                    child.do(CallFunc(child.hide))
+                else:
+                    child.do(FadeOut(duration))
+            self.showing = False
+
+    def update_positions(self):
+        self.thumbnail.x = 0
+        self.thumbnail.y = 20
+        self.gmTitle.x = -100
+        self.gmTitle.y = -104
+        self.infoButton.x = 80
+        self.infoButton.y = -107
+        self.infoButton.px = self.x
+        self.infoButton.py = self.y
+
+    def setWH(self, dt):
+        x, y = director.window.width, director.window.height
+        if not self.scrollManager == None:
+            nmin = self.scrollManager.world_to_screen(int((self.x) - (self.bg.width / 2)), int((self.y) - (self.bg.height / 2)))
+            nmax = self.scrollManager.world_to_screen(int((self.x) + (self.bg.width / 2)), int((self.y) + (self.bg.height / 2)))
+        else:
+            nmin = int((self.x) - (self.bg.width / 2)), int((self.y) - (self.bg.height / 2))
+            nmax = int((self.x) + (self.bg.width / 2)), int((self.y) + (self.bg.height / 2))
+        nmin = sc.scale(nmin[0], nmin[1])
+        nmax = sc.scale(nmax[0], nmax[1])
+        self.width_range = [int(nmin[0]), int(nmax[0])]
+        self.height_range = [int(nmin[1]), int(nmax[1])]
+
+    def on_mouse_motion(self, x, y, dx, dy):
+        if not self.chosen and self.showing:
+            if self.active:
+                self.bg.image = pyglet.resource.image("gameBoxClicked.png")
+                self.gmTitle.element.color = (255, 255, 255, 255)
+            elif x in range(self.width_range[0], self.width_range[1]) and y in range(self.height_range[0], self.height_range[1]):
+                if x in range(self.infoButton.width_range[0], self.infoButton.width_range[1]) and y in range(self.infoButton.height_range[0], self.infoButton.height_range[1]):
+                    pass
+                else:
+                    self.bg.image = pyglet.resource.image("gameBoxHovered.png")
+                    self.gmTitle.element.color = (0, 0, 0, 255)
+            else:
+                if x in range(self.infoButton.width_range[0], self.infoButton.width_range[1]) and y in range(self.infoButton.height_range[0], self.infoButton.height_range[1]):
+                    pass
+                else:
+                    self.bg.image = pyglet.resource.image("gameBox.png")
+                    self.gmTitle.element.color = (0, 0, 0, 255)
+
+    def on_mouse_press(self, x, y, buttons, modifiers):
+        if not self.chosen and self.showing:
+            if x in range(self.width_range[0], self.width_range[1]) and y in range(self.height_range[0], self.height_range[1]):
+                if x in range(self.infoButton.width_range[0], self.infoButton.width_range[1]) and y in range(self.infoButton.height_range[0], self.infoButton.height_range[1]):
+                    pass
+                else:
+                    self.bg.image = pyglet.resource.image("gameBoxClicked.png")
+                    self.active = True
+                    self.gmTitle.element.color = (255, 255, 255, 255)
+                    events.gamemenuevents.chooseGameMode(self.gameMode)
+                    self.active = False        
+
+    def ExtendedInfoShow(self, gm):
+        self.showing = False
+
+    def ExtendedInfoHide(self, gm):
+        self.showing = True
+
+class GMExtendedInfo(layer.Layer):
+
+    is_event_handler = True
+    
+    def __init__(self, gameMode):
+        super().__init__()
+        events.gamemenuevents.push_handlers(self)
+        self.gameMode = gameMode
+        self.infoBox = Sprite("infoBox.png")
+        self.bgDimmer = layer.ColorLayer(0, 0, 0, 20)
+        self.exitButton = smallButton("X", events.gamemenuevents.hideExtendedInfo, eventparam=self.gameMode.idx)
+        self.bgDimmer.opacity = 100
+        self.infoBox.x = reswidth / 2
+        self.infoBox.y = resheight / 2
+        self.bgDimmer.width = reswidth
+        self.bgDimmer.height = resheight
+        self.exitButton.x = self.infoBox.x + ((self.infoBox.width / 2) * 0.91)
+        self.exitButton.y = self.infoBox.y + ((self.infoBox.height / 2) * 0.85)
+        self.active = False
+        self.thumbnail = Sprite(gameMode.thumbnail)
+        self.thumbnail.scale_x = 350 / self.thumbnail.width
+        self.thumbnail.scale_y = 350 / self.thumbnail.height
+        self.thumbnail.x = self.infoBox.x - ((self.infoBox.width / 2) * 0.55)
+        self.thumbnail.y = self.infoBox.y
+        self.title = Label(gameMode.name, anchor_x="center", anchor_y="center", font_size=39, color=(0, 0, 0, 255))
+        self.title.x = self.infoBox.x + ((self.infoBox.width / 2) * 0.42)
+        self.title.y = self.infoBox.y + ((self.infoBox.height / 2) * 0.7)
+        self.desc = Label(gameMode.desc, anchor_x="center", anchor_y="top", font_size=17, multiline = True, width=(self.infoBox.width * 0.5), height=(self.infoBox.height * 0.4), color=(0, 0, 0, 255), align="center")
+        self.desc.x = self.infoBox.x + ((self.infoBox.width / 2) * 0.42)
+        self.desc.y = self.infoBox.y + ((self.infoBox.height / 2) * 0.5)
+        self.add(self.infoBox, z=5)
+        self.add(self.bgDimmer, z=4)
+        self.add(self.exitButton, z=5)
+        self.add(self.thumbnail, z=5)
+        self.add(self.title, z=5)
+        self.add(self.desc, z=5)
+        self.bgDimmer.do(FadeOut(0.00001))
+        self.infoBox.do(FadeOut(0.00001))
+        self.exitButton.hide(0.00001)
+        self.thumbnail.do(FadeOut(0.00001))
+        self.title.do(FadeOut(0.00001))
+        self.desc.do(FadeOut(0.00001))
+        
+       
+    def ExtendedInfoShow(self, idx):
+        if idx == self.gameMode.idx and not self.active:
+            self.infoBox.do(FadeIn(0.5))
+            self.bgDimmer.do(FadeTo(150, 0.5))
+            self.thumbnail.do(FadeIn(0.5))
+            self.title.do(FadeIn(0.5))
+            self.desc.do(FadeIn(0.5))
+            self.exitButton.show()
+            self.active = True
+    
+    def ExtendedInfoHide(self, idx):
+        if idx == self.gameMode.idx and self.active:
+            self.infoBox.do(FadeOut(0.5))
+            self.bgDimmer.do(FadeTo(0, 0.5))
+            self.thumbnail.do(FadeOut(0.5))
+            self.title.do(FadeOut(0.5))
+            self.desc.do(FadeOut(0.5))
+            self.exitButton.hide()
+            self.active = False
+
