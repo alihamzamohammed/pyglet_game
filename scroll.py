@@ -48,7 +48,7 @@ class ScrollLayer(layer.ScrollableLayer):
     def calculate(self):
         self.height = abs(min([x.y for x in self.get_children()])) + (resheight * 0.2) + resheight
         self.parallax = (self.height - resheight) / ((resheight - (resheight * 0.02)) - (self.sb.img.height / 2) - ((self.sb.img.height / 2) + (resheight * 0.02)))
-        self.set_view(self.x, self.y, self.width, self.height)
+        self.set_view(self.x, self.y, self.width, self.height, viewport_ox=self.x, viewport_oy=self.y)
 
 
     def set_view(self, x, y, w, h, viewport_ox=0, viewport_oy=0):
