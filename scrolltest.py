@@ -23,7 +23,7 @@ class ParentLayer(layer.Layer):
     def __init__(self):
         super().__init__()
         scrollManager = layer.ScrollingManager()
-        scrollLayer = ScrollLayer(0, resheight, reswidth, resheight)#((resheight * 0.5) / resheight))
+        scrollLayer = ScrollLayer(reswidth/2, resheight, reswidth, 1440)#((resheight * 0.5) / resheight))
         scrollBar = ScrollBar(scrollManager)
         
         scrollLayer.x = 0
@@ -33,7 +33,7 @@ class ParentLayer(layer.Layer):
         scrollBar.y = (resheight - (resheight * 0.02)) - (scrollBar.img.height / 2)
 
         scrollManager.add(scrollLayer)
-        scrollManager.set_focus(0, resheight / 2)
+        scrollManager.set_focus(reswidth / 2, resheight / 2)
 
         self.add(scrollManager)
         self.add(scrollBar)
@@ -56,21 +56,25 @@ class ScrollLayer(layer.ScrollableLayer):
         
 
         self.title = text.Label("Controls", font_name=resources.font[1], font_size=50, anchor_y="top", anchor_x="center")
-        self.title.x = 0
+        self.title.x = reswidth / 2
         self.title.y = resheight * 0.85 
         self.add(self.title)
         self.obj = []
-        for i in range(-1, 20):
-            sp = sprite.Sprite("smallButton.png")
-            if i == -1 or i == 19:
-                sp.image = pyglet.resource.image("smallButtonHovered.png")
-            sp.x = 0
-            sp.y = (resheight * 0.5) * -i
-            print(sp.y)
-            self.obj.append(sp)
-            self.add(sp)
+        #for i in range(-1, 20):
+        #    sp = sprite.Sprite("smallButton.png")
+        #    if i == -1 or i == 19:
+        #        sp.image = pyglet.resource.image("smallButtonHovered.png")
+        #    sp.x = reswidth / 2
+        #    sp.y = (resheight * 0.5) * -i
+        #    print(sp.y)
+        #    self.obj.append(sp)
+        #    self.add(sp)
+        sp = sprite.Sprite("smallButtn.png")
+        sp.x = reswidth / 2
+        sp.height = -720
+        self.add(sp)
 
-        self.height = resheight - (self.obj[-1].y - (resheight * 0.4))
+        #self.height = resheight - (self.obj[-1].y - (resheight * 0.4))
         #self.height = 1440
         self.parallax = (self.height / resheight)# + 1.5
         #self.parallax = 6
@@ -104,7 +108,7 @@ class ScrollBar(layer.Layer):
 
     is_event_handler = True
 
-    def __init__(self, scrollManager):
+    def __init__(self, scrollManager, show = True):
         super().__init__()
         self.img = sprite.Sprite("scrollbar.png")
         self.width = self.img.width
@@ -113,6 +117,9 @@ class ScrollBar(layer.Layer):
 
         self.add(self.img)
         
+        if not show:
+            self.do(actions.Hide())
+
         self.width_range = [int((self.x) - (self.width / 2)), int((self.x) + (self.width / 2))]
         self.height_range = [int((self.y) - (self.height / 2)), int((self.y) + (self.width / 2))]
 
@@ -152,8 +159,8 @@ class ScrollBar(layer.Layer):
             if dy > 0:
                 if (self.y + (self.sy * 0.02)) < (ry - (self.img.height / 2)):
                     self.y += dy
-                    self.scrollManager.set_focus(0, self.scrollManager.fy + dy)
+                    self.scrollManager.set_focus(reswidth / 2, self.scrollManager.fy + dy)
             elif dy < 0:
                 if (self.y - (self.sy * 0.02)) > (self.img.height / 2):
                     self.y += dy
-                    self.scrollManager.set_focus(0, self.scrollManager.fy + dy)
+                    self.scrollManager.set_focus(reswidth / 2, self.scrollManager.fy + dy)
