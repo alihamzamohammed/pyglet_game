@@ -198,6 +198,12 @@ class SoundSettings(layer.ColorLayer):
         self.y = int((y * 0.37) - (self.height / 2))
         self.active = False
 
+
+        miscInfo = Label("Coming Soon", anchor_x="center", anchor_y="center", font_size=35, multiline=True, width=(self.width * 0.8), align="center")
+        miscInfo.x = self.width / 2
+        miscInfo.y = self.height / 2
+        self.add(miscInfo)
+
     def showVideoScreen(self):
         if self.active:
             self.do(AccelDeccel(MoveTo((self.posright, self.y), duration = 0.5)))
@@ -246,6 +252,12 @@ class ExtensionSettings(layer.ColorLayer):
         self.x = self.posright
         self.y = int((y * 0.37) - (self.height / 2))
         self.active = False
+
+        miscInfo = Label("Coming Soon", anchor_x="center", anchor_y="center", font_size=35, multiline=True, width=(self.width * 0.8), align="center")
+        miscInfo.x = self.width / 2
+        miscInfo.y = self.height / 2
+        self.add(miscInfo)
+
         
     def showVideoScreen(self):
         if self.active:
@@ -278,7 +290,7 @@ class MiscSettings(layer.ColorLayer):
     is_event_handler = True
 
     def __init__(self):
-        super().__init__(255, 0, 0, 255)
+        super().__init__(100, 100, 100, 100)
         events.settingsevents.push_handlers(self)
         global x, y
         self.width = int(x * 0.75)
@@ -290,14 +302,14 @@ class MiscSettings(layer.ColorLayer):
         self.y = int((y * 0.37) - (self.height / 2))
         self.active = False
 
-        #miscInfo = Label("Coming Soon", anchor_x="center", anchor_y="center", font_size=35, multiline=True, width=(self.width * 0.8), align="center")
-        #miscInfo.x = self.width / 2
-        #miscInfo.y = self.height / 2
-        #self.add(miscInfo)
-        controlsButton = elements.LargeButton("Controls", events.settingsevents.onControlsButtonClick, 0.5, 0.5, parent = self)
-        #controlsButton.x = self.width / 2
-        #controlsButton.y = self.height / 2
+        controlsLabel = Label("Controls", font_size=25, anchor_x="left", anchor_y="center", color=(255, 255, 255, 255))
+        controlsLabel.x = self.width * 0.05
+        controlsLabel.y = self.height * 0.9
+        controlsButton = elements.LargeButton("Controls", events.settingsevents.onControlsButtonClick)
+        controlsButton.x = self.width * 0.9
+        controlsButton.y = self.height * 0.9
         self.add(controlsButton)
+        self.add(controlsLabel)
 
 
     def showVideoScreen(self):

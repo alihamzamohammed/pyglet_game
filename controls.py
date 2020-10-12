@@ -7,6 +7,7 @@ import scaling as sc
 import cfg
 import resources
 from scroll import *
+import elements
 
 reswidth, resheight = [int(res) for res in cfg.resolution.split("x")]
 
@@ -28,13 +29,17 @@ class Controls(scene.Scene):
         self.title.x = reswidth / 2
         self.title.y = resheight * 0.85 
         self.scrollLayer.add(self.title)
-        for i in range(-1, 20):
-            sp = sprite.Sprite("smallButton.png")
-            if i == -1 or i == 19:
-                sp.image = pyglet.resource.image("smallButtonHovered.png")
-            sp.x = reswidth / 2
-            sp.y = (resheight * 0.5) * -i
-            self.scrollLayer.add(sp)
+#        for i in range(-1, 20):
+#            sp = sprite.Sprite("smallButton.png")
+#            if i == -1 or i == 19:
+#                sp.image = pyglet.resource.image("smallButtonHovered.png")
+#            sp.x = reswidth / 2
+#            sp.y = (resheight * 0.5) * -i
+#            self.scrollLayer.add(sp)
+        backButton = elements.mediumButton("BACK", events.mainmenuevents.onSettingsButtonClick)
+        backButton.x = reswidth * 0.065
+        backButton.y = resheight * 0.89
+        self.add(backButton)       
 
 
         self.scrollManager.add(self.scrollLayer)
