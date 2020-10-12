@@ -107,9 +107,8 @@ class LevelMenu(Scene):
         self.add(self.scrollManager, z = -2)
         self.add(self.scrollBar)
 
-        if len(self.levelBoxes) < 4:
+        if len(self.levelBoxes) < 5:
             self.scrollBar.showing = False
-            print("true")
 
 
     def LevelChosen(self, level):
