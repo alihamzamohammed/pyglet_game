@@ -294,10 +294,10 @@ class MiscSettings(layer.ColorLayer):
         #miscInfo.x = self.width / 2
         #miscInfo.y = self.height / 2
         #self.add(miscInfo)
-        controlsButton = elements.LargeButton("Controls", eventname = events.settingsevents.onControlsButtonClick)
-        controlsButton.x = self.width / 2
-        controlsButton.y = self.height / 2
-        self.add(controlsButton)
+        #controlsButton = elements.LargeButton("Controls", events.settingsevents.onControlsButtonClick)
+        #controlsButton.x = self.width / 2
+        #controlsButton.y = self.height / 2
+        #self.add(controlsButton)
 
 
     def showVideoScreen(self):
@@ -403,7 +403,7 @@ class SettingsScreen(scene.Scene):
         self.extensionButton.active = True
         self.miscButton.active = False
 
-    def showmiscScreen(self):
+    def showMiscScreen(self):
         self.videoButton.active = False
         self.soundButton.active = False
         self.extensionButton.active = False

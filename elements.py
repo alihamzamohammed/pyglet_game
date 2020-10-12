@@ -221,7 +221,7 @@ class LargeButton(layer.Layer):
 
     is_event_handler = True
 
-    def __init__(self, label, eventName, active = False):
+    def __init__(self, label, eventName, active = True):
         super().__init__()
         global x, y
 
@@ -290,7 +290,7 @@ class ToggleButton(layer.Layer):
         self.section = section
         self.option = option
         self.lbl = Label("YES", anchor_x="center", anchor_y="center", dpi=105)
-        self.bgImage = Sprite("toggleButton.png")
+        self.bgImage = Sprite("largeButton.png")
         self.active = True if self.configDict[self.section][self.option] == "True" else False
         self.changed = False
         if self.active:
