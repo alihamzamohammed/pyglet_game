@@ -84,7 +84,7 @@ class LevelMenu(Scene):
         self.scrollBar.y = (resheight - (resheight * 0.02)) - (self.scrollBar.img.height / 2)
 
         for levelName, level in levels.levels.items():
-            levelBox = LevelBox(level)
+            levelBox = LevelBox(level, scrollManager=self.scrollManager)
             self.levelBoxes.append(levelBox)
         for i in range(len(self.levelBoxes)):
             self.levelBoxes[i].x = ((reswidth * 0.8) // 4) * (((i + 1) / 4) - ((i) // 4)) * 4
@@ -104,19 +104,6 @@ class LevelMenu(Scene):
         self.add(self.scrollManager, z = -2)
         self.add(self.scrollBar)
 
-
-        # for levelName, level in levels.levels.items():
-        #     levelBox = LevelBox(level)
-        #     self.levelBoxes.append(levelBox)
-        # for i in range(len(self.levelBoxes)):
-        #     self.levelBoxes[i].x = ((reswidth * 0.8) // 4) * (((i + 1) / 4) - ((i) // 4)) * 4
-        #     self.levelBoxes[i].y = resheight * (0.6 - (i // 4) * 0.47)
-        #     self.levelBoxes[i].delay = 2 + i
-        #     self.levelBoxes[i].update_positions()
-        #     extendedInfo = LVLExtendedInfo(self.levelBoxes[i].level)
-        #     self.add(self.levelBoxes[i], z=1)
-        #     self.add(extendedInfo, z=2)
-        #     self.levelBoxes[i].show()
 
     def LevelChosen(self, level):
         self.playButton.do(AccelDeccel(MoveTo((self.playButton.x, resheight * 0.1), duration = 2)))
@@ -193,23 +180,6 @@ class GameModeMenu(Scene):
 
         self.add(self.scrollManager, z = -2)
         self.add(self.scrollBar)
-
-        #self.scrollManager.parallax = 1
-
-
-        # self.modeBoxes = []
-        # for modeName, mode in modes.gamemodes.items():
-        #     modeBox = GameModeBox(mode)
-        #     self.modeBoxes.append(modeBox)
-        # for i in range(len(self.modeBoxes)):
-        #     self.modeBoxes[i].x = ((reswidth * 0.8) // 4) * (((i + 1) / 4) - ((i) // 4)) * 4
-        #     self.modeBoxes[i].y = resheight * (0.6 - (i // 4) * 0.47)
-        #     self.modeBoxes[i].delay = 2 + i
-        #     self.modeBoxes[i].update_positions()
-        #     extendedInfo = GMExtendedInfo(self.modeBoxes[i].gameMode)
-        #     self.add(self.modeBoxes[i], z=1)
-        #     self.add(extendedInfo, z=2)
-        #     self.modeBoxes[i].show()
 
     def on_enter(self):
         super().on_enter()
@@ -302,7 +272,7 @@ class LevelBox(layer.Layer):
 
     is_event_handler = True
 
-    def __init__(self, level):
+    def __init__(self, level, scrollManager = None):
         super().__init__()
         events.gamemenuevents.push_handlers(self)
         self.level = level
@@ -310,7 +280,8 @@ class LevelBox(layer.Layer):
         self.thumbnail = Sprite(level.thumbnail)
         self.thumbnail.scale_x = 200 / self.thumbnail.width
         self.thumbnail.scale_y = 200 / self.thumbnail.height
-        self.infoButton = smallButton("i", events.gamemenuevents.showExtendedInfo, eventparam=level.idx)
+        self.infoButton = scrollSmallButton("i", events.gamemenuevents.showExtendedInfo, eventparam=level.idx, scrollManager=scrollManager)
+        self.scrollManager = scrollManager
         self.width = self.bg.width
         self.height = self.bg.height
         self.thumbnail.x = self.x
@@ -329,7 +300,7 @@ class LevelBox(layer.Layer):
         self.width_range = [int((self.x) - (self.bg.width / 2)), int((self.x) + (self.bg.width / 2))]
         self.height_range = [int((self.y) - (self.bg.height / 2)), int((self.y) + (self.bg.height / 2))]
 
-        self.schedule_interval(self.setWH, 1)
+        self.schedule(self.setWH)
         self.resume_scheduler()
 
     def show(self, duration = 0.5):
@@ -364,6 +335,9 @@ class LevelBox(layer.Layer):
         x, y = director.window.width, director.window.height
         nmin = sc.scale(int((self.x) - (self.bg.width / 2)), int((self.y) - (self.bg.height / 2)))
         nmax = sc.scale(int((self.x) + (self.bg.width / 2)), int((self.y) + (self.bg.height / 2)))
+        if not self.scrollManager == None:
+            nmin = [nmin[0], (nmin[1] + self.scrollManager.get_children()[0].y)]
+            nmax = [nmax[0], (nmax[1] + self.scrollManager.get_children()[0].y)]
         self.width_range = [int(nmin[0]), int(nmax[0])]
         self.height_range = [int(nmin[1]), int(nmax[1])]
 
@@ -401,6 +375,9 @@ class LevelBox(layer.Layer):
         self.showing = False
 
     def ExtendedInfoHide(self, gm):
+        self.do(Delay(1) + CallFunc(self.ExtendedInfoHide2))
+
+    def ExtendedInfoHide2(self):
         self.showing = True
 
 class LVLExtendedInfo(layer.Layer):
@@ -467,6 +444,21 @@ class LVLExtendedInfo(layer.Layer):
             self.exitButton.hide()
             self.active = False
 
+class scrollSmallButton(smallButton):
+
+    def __init__(self, label, eventName, active=False, scrollManager = None, *args, **kwargs):
+        super().__init__(label, eventName, active=active, *args, **kwargs)
+        self.scrollManager = scrollManager
+
+    def setWH(self, dt):
+        x, y = director.window.width, director.window.height
+        nmin = sc.scale(int((self.px + self.x) - (self.bgImage.width / 2)), int((self.py + self.y) - (self.bgImage.height / 2)))
+        nmax = sc.scale(int((self.px + self.x) + (self.bgImage.width / 2)), int((self.py + self.y) + (self.bgImage.height / 2)))
+        if not self.scrollManager == None:
+            nmin = [nmin[0], (nmin[1] + self.scrollManager.get_children()[0].y)]
+            nmax = [nmax[0], (nmax[1] + self.scrollManager.get_children()[0].y)]
+        self.width_range = [int(nmin[0]), int(nmax[0])]
+        self.height_range = [int(nmin[1]), int(nmax[1])]
 
 class GameModeBox(layer.Layer):
 
@@ -480,7 +472,7 @@ class GameModeBox(layer.Layer):
         self.thumbnail = Sprite(gameMode.thumbnail)
         self.thumbnail.scale_x = 200 / self.thumbnail.width
         self.thumbnail.scale_y = 200 / self.thumbnail.height
-        self.infoButton = smallButton("i", events.gamemenuevents.showExtendedInfo, eventparam=gameMode.idx)
+        self.infoButton = scrollSmallButton("i", events.gamemenuevents.showExtendedInfo, eventparam=gameMode.idx, scrollManager=scrollManager)
         self.width = self.bg.width
         self.height = self.bg.height
         self.scrollManager = scrollManager
@@ -500,7 +492,7 @@ class GameModeBox(layer.Layer):
         self.width_range = [int((self.x) - (self.bg.width / 2)), int((self.x) + (self.bg.width / 2))]
         self.height_range = [int((self.y) - (self.bg.height / 2)), int((self.y) + (self.bg.height / 2))]
 
-        self.schedule_interval(self.setWH, 1)
+        self.schedule(self.setWH)
         self.resume_scheduler()
 
     def show(self, duration = 0.5, cdelay = 0):
@@ -577,6 +569,9 @@ class GameModeBox(layer.Layer):
         self.showing = False
 
     def ExtendedInfoHide(self, gm):
+        self.do(Delay(1) + CallFunc(self.ExtendedInfoHide2))
+
+    def ExtendedInfoHide2(self):
         self.showing = True
 
 class GMExtendedInfo(layer.Layer):
@@ -642,4 +637,3 @@ class GMExtendedInfo(layer.Layer):
             self.desc.do(FadeOut(0.5))
             self.exitButton.hide()
             self.active = False
-
