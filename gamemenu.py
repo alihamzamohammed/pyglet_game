@@ -194,6 +194,8 @@ class GameModeMenu(Scene):
         self.add(self.scrollManager, z = -2)
         self.add(self.scrollBar)
 
+        #self.scrollManager.parallax = 1
+
 
         # self.modeBoxes = []
         # for modeName, mode in modes.gamemodes.items():
@@ -531,12 +533,11 @@ class GameModeBox(layer.Layer):
 
     def setWH(self, dt):
         x, y = director.window.width, director.window.height
+        nmin = int((self.x) - (self.bg.width / 2)), int((self.y) - (self.bg.height / 2))
+        nmax = int((self.x) + (self.bg.width / 2)), int((self.y) + (self.bg.height / 2))
         if not self.scrollManager == None:
-            nmin = self.scrollManager.world_to_screen(int((self.x) - (self.bg.width / 2)), int((self.y) - (self.bg.height / 2)))
-            nmax = self.scrollManager.world_to_screen(int((self.x) + (self.bg.width / 2)), int((self.y) + (self.bg.height / 2)))
-        else:
-            nmin = int((self.x) - (self.bg.width / 2)), int((self.y) - (self.bg.height / 2))
-            nmax = int((self.x) + (self.bg.width / 2)), int((self.y) + (self.bg.height / 2))
+            nmin = [nmin[0], (nmin[1] + self.scrollManager.get_children()[0].y)]
+            nmax = [nmax[0], (nmax[1] + self.scrollManager.get_children()[0].y)]
         nmin = sc.scale(nmin[0], nmin[1])
         nmax = sc.scale(nmax[0], nmax[1])
         self.width_range = [int(nmin[0]), int(nmax[0])]
