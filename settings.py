@@ -290,10 +290,14 @@ class MiscSettings(layer.ColorLayer):
         self.y = int((y * 0.37) - (self.height / 2))
         self.active = False
 
-        miscInfo = Label("Coming Soon", anchor_x="center", anchor_y="center", font_size=35, multiline=True, width=(self.width * 0.8), align="center")
-        miscInfo.x = self.width / 2
-        miscInfo.y = self.height / 2
-        self.add(miscInfo)
+        #miscInfo = Label("Coming Soon", anchor_x="center", anchor_y="center", font_size=35, multiline=True, width=(self.width * 0.8), align="center")
+        #miscInfo.x = self.width / 2
+        #miscInfo.y = self.height / 2
+        #self.add(miscInfo)
+        controlsButton = elements.LargeButton("Controls", eventname = events.settingsevents.onControlsButtonClick)
+        controlsButton.x = self.width / 2
+        controlsButton.y = self.height / 2
+        self.add(controlsButton)
 
 
     def showVideoScreen(self):

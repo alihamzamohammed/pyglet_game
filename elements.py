@@ -216,6 +216,63 @@ class sectionButton(layer.Layer):
                 self.eventName()
 
 
+"""Large Button. Same as toggle button, but for activating events"""
+class LargeButton(layer.Layer):
+
+    is_event_handler = True
+
+    def __init__(self, label, eventName, active = False):
+        super().__init__()
+        global x, y
+
+        self.eventName = eventName
+        self.active = active
+
+        self.clickable = True
+
+        self.bgImage = Sprite("largeButton.png")
+        self.lbl = Label(label, anchor_x="center", anchor_y="center", dpi=110)
+
+        self.x = 0
+        self.y = 0
+
+        self.width_range = [int(self.x - (self.bgImage.width / 2)), int(self.x + (self.bgImage.width / 2))]
+        self.height_range = [int(self.y - (self.bgImage.height / 2)), int(self.y + (self.bgImage.height / 2))]
+
+        self.add(self.bgImage)
+        self.add(self.lbl)
+
+        self.schedule_interval(self.setWH, 1)
+        self.resume_scheduler()
+
+    def setWH(self, dt):
+        x, y = director.window.width, director.window.height
+        nmin = sc.scale(int(self.x - (self.bgImage.width / 2)), int(self.y - (self.bgImage.height / 2)))
+        nmax = sc.scale(int(self.x + (self.bgImage.width / 2)), int(self.y + (self.bgImage.height / 2)))
+        self.width_range = [int(nmin[0]), int(nmax[0])]
+        self.height_range = [int(nmin[1]), int(nmax[1])]
+
+    def on_mouse_motion(self, x, y, dx, dy):
+        if self.clickable:
+            if self.active:
+                self.bgImage.image = pyglet.resource.image("largeButton.png")
+                self.lbl.element.color = (0, 0, 0, 255)
+            elif x in range(self.width_range[0], self.width_range[1]) and y in range(self.height_range[0], self.height_range[1]):
+                self.bgImage.image = pyglet.resource.image("largeButtonHovered.png")
+                self.lbl.element.color = (255, 255, 255, 255)
+            else:
+                self.bgImage.image = pyglet.resource.image("largeButton.png")
+                self.lbl.element.color = (255, 255, 255, 255)
+
+    def on_mouse_press(self, x, y, buttons, modifiers):
+        if self.clickable:
+            if x in range(self.width_range[0], self.width_range[1]) and y in range(self.height_range[0], self.height_range[1]):
+                self.bgImage.image = pyglet.resource.image("largeButtonClicked.png")
+                self.active = True
+                self.lbl.element.color = (0, 0, 0, 255)
+                self.eventName()
+
+
 """Toggle Button. For toggling a setting on or off. Can alter a value in a dictionary and run a command simultaneously."""
 class ToggleButton(layer.Layer):
 
@@ -237,10 +294,10 @@ class ToggleButton(layer.Layer):
         self.active = True if self.configDict[self.section][self.option] == "True" else False
         self.changed = False
         if self.active:
-            self.bgImage.image = pyglet.resource.image("toggledButton.png")
+            self.bgImage.image = pyglet.resource.image("largeToggledButton.png")
             self.lbl.element.text = "YES"
         else:
-            self.bgImage.image = pyglet.resource.image("toggleButton.png")
+            self.bgImage.image = pyglet.resource.image("largeButton.png")
             self.lbl.element.text = "NO"
         self.width = self.bgImage.width
         self.height = self.bgImage.height
@@ -265,14 +322,14 @@ class ToggleButton(layer.Layer):
     def on_mouse_motion(self, x, y, dx, dy):
         if x in range(self.width_range[0], self.width_range[1]) and y in range(self.height_range[0], self.height_range[1]):
             if self.active:
-                self.bgImage.image = pyglet.resource.image("toggledButtonHovered.png")
+                self.bgImage.image = pyglet.resource.image("largeToggledButtonHovered.png")
             else:
-                self.bgImage.image = pyglet.resource.image("toggleButtonHovered.png")
+                self.bgImage.image = pyglet.resource.image("largeButtonHovered.png")
         else:
             if self.active:
-                self.bgImage.image = pyglet.resource.image("toggledButton.png")
+                self.bgImage.image = pyglet.resource.image("largeToggledButton.png")
             else:
-                self.bgImage.image = pyglet.resource.image("toggleButton.png")
+                self.bgImage.image = pyglet.resource.image("largeButton.png")
 
     def on_mouse_press(self, x, y, buttons, modifiers):
         if x in range(self.width_range[0], self.width_range[1]) and y in range(self.height_range[0], self.height_range[1]):
@@ -282,10 +339,10 @@ class ToggleButton(layer.Layer):
             if callable(self.command):
                 self.command(self.active)
             if self.active:
-                self.bgImage.image = pyglet.resource.image("toggledButtonClicked.png")
+                self.bgImage.image = pyglet.resource.image("largeToggledButtonClicked.png")
                 self.lbl.element.text = "YES"
             else:
-                self.bgImage.image = pyglet.resource.image("toggleButtonClicked.png")
+                self.bgImage.image = pyglet.resource.image("largeButtonClicked.png")
                 self.lbl.element.text = "NO"
 
 

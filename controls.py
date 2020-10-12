@@ -10,7 +10,7 @@ from scroll import *
 
 reswidth, resheight = [int(res) for res in cfg.resolution.split("x")]
 
-class testScroller(scene.Scene):
+class Controls(scene.Scene):
     
     def __init__(self, *children):
         super().__init__(*children)

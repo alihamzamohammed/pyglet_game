@@ -30,6 +30,7 @@ resources.resourceLoad()
 import mainmenu
 import gamemenu
 import settings
+import controls
 
 import renderer
 renderer.init()
@@ -59,11 +60,12 @@ class Game(object):
 
     def multiplayerButtonClicked(self):
         logger.addLog("Multiplayer not yet implemented!")
-        import scrolltest
-        director.replace(scrolltest.testScroller())
 
     def settingsButtonClicked(self):
         director.replace(FadeTransition(settings.SettingsScreen(), duration = 1, color = (0, 0, 0)))
+    
+    def controlsButtonClicked(self):
+        director.replace(FadeTransition(controls.Controls(), duration = 1, color = (0, 0, 0)))
 
     def quitButtonClicked(self):
         director.terminate_app = True
@@ -74,7 +76,6 @@ class Game(object):
         director.replace(FadeTransition(mainmenu.MainMenuScreen(), duration = 1, color = (0, 0, 0)))
         cfg.loadedLevel = None
         cfg.loadedGameMode = None
-        #events.mainmenuevents.push_handlers(self)
 
     def replaceLevelMenu(self):
         director.replace(FadeTransition(gamemenu.LevelMenu(), duration = 0.001))
@@ -90,6 +91,7 @@ class Game(object):
         super(Game, self).__init__()
         events.mainmenuevents.push_handlers(self)
         events.gamemenuevents.push_handlers(self)
+        events.settingsevents.push_handlers(self)
 
 if __name__=="__main__":
     logger.addLog("Starting game.", logger.loglevel["debug"])

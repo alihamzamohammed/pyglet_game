@@ -58,12 +58,16 @@ class SettingsEvents(pyglet.window.EventDispatcher):
     def aboutPopupHide(self):
         self.dispatch_event("hideAboutPopup")    
 
+    def onControlsButtonClick(self):
+        self.dispatch_event("controlsButtonClicked")
+
 SettingsEvents.register_event_type("showVideoScreen")
 SettingsEvents.register_event_type("showSoundScreen")
 SettingsEvents.register_event_type("showExtensionsScreen")
 SettingsEvents.register_event_type("showMiscScreen")
 SettingsEvents.register_event_type("showAboutPopup")
 SettingsEvents.register_event_type("hideAboutPopup")
+SettingsEvents.register_event_type("controlsButtonClicked")
 
 class PauseScreenEvents(pyglet.window.EventDispatcher):
 
