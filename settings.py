@@ -294,10 +294,10 @@ class MiscSettings(layer.ColorLayer):
         #miscInfo.x = self.width / 2
         #miscInfo.y = self.height / 2
         #self.add(miscInfo)
-        #controlsButton = elements.LargeButton("Controls", events.settingsevents.onControlsButtonClick)
+        controlsButton = elements.LargeButton("Controls", events.settingsevents.onControlsButtonClick, 0.5, 0.5, parent = self)
         #controlsButton.x = self.width / 2
         #controlsButton.y = self.height / 2
-        #self.add(controlsButton)
+        self.add(controlsButton)
 
 
     def showVideoScreen(self):

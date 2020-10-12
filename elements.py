@@ -221,43 +221,61 @@ class LargeButton(layer.Layer):
 
     is_event_handler = True
 
-    def __init__(self, label, eventName, active = True):
+    def __init__(self, label, eventName, selfx, selfy, parent = None, active = False, *args, **kwargs):
         super().__init__()
         global x, y
 
         self.eventName = eventName
         self.active = active
-
-        self.clickable = True
+        if "eventparam" in kwargs:
+            self.eventparam = kwargs["eventparam"]
 
         self.bgImage = Sprite("largeButton.png")
-        self.lbl = Label(label, anchor_x="center", anchor_y="center", dpi=110)
+        self.lbl = Label(label, anchor_x="center", anchor_y="center", dpi=110, font_size=16)
+        self.width = self.bgImage.width
+        self.height = self.bgImage.height
+        #self.x = 0
+        #self.y = 0
+        if not parent == None:
+            self.px = parent.x
+            self.py = parent.y
+        else:
+            self.px = 0
+            self.py = 0
+        pwidth = parent.width
+        pheight = parent.height
+        self.x = pwidth * selfx
+        self.y = pheight * selfy
 
-        self.x = 0
-        self.y = 0
-
-        self.width_range = [int(self.x - (self.bgImage.width / 2)), int(self.x + (self.bgImage.width / 2))]
-        self.height_range = [int(self.y - (self.bgImage.height / 2)), int(self.y + (self.bgImage.height / 2))]
+        self.width_range = [int((self.px + self.x) - (self.bgImage.width / 2)), int((self.px + self.x) + (self.bgImage.width / 2))]
+        self.height_range = [int((self.py + self.y) - (self.bgImage.height / 2)), int((self.py + self.y) + (self.bgImage.height / 2))]
 
         self.add(self.bgImage)
         self.add(self.lbl)
+
+        self.showing = True
 
         self.schedule_interval(self.setWH, 1)
         self.resume_scheduler()
 
     def setWH(self, dt):
         x, y = director.window.width, director.window.height
-        nmin = sc.scale(int(self.x - (self.bgImage.width / 2)), int(self.y - (self.bgImage.height / 2)))
-        nmax = sc.scale(int(self.x + (self.bgImage.width / 2)), int(self.y + (self.bgImage.height / 2)))
+        #nmin = sc.scale(int((self.px + self.x) - (self.bgImage.width / 2)), int((self.py + self.y) - (self.bgImage.height / 2)))
+        #nmax = sc.scale(int((self.px + self.x) + (self.bgImage.width / 2)), int((self.py + self.y) + (self.bgImage.height / 2)))
+        nmin = sc.scale(int(self.px + (self.x - (self.width / 2))), int(self.py + (self.y - (self.height / 2))))
+        nmax = sc.scale(int(self.px + (self.x + (self.width / 2))), int(self.py + (self.y + (self.height / 2))))
         self.width_range = [int(nmin[0]), int(nmax[0])]
         self.height_range = [int(nmin[1]), int(nmax[1])]
 
     def on_mouse_motion(self, x, y, dx, dy):
-        if self.clickable:
+        print(x, y)
+        if self.showing:
+            print("showing")
             if self.active:
-                self.bgImage.image = pyglet.resource.image("largeButton.png")
+                self.bgImage.image = pyglet.resource.image("largeButtonClicked.png")
                 self.lbl.element.color = (0, 0, 0, 255)
             elif x in range(self.width_range[0], self.width_range[1]) and y in range(self.height_range[0], self.height_range[1]):
+                print("active")
                 self.bgImage.image = pyglet.resource.image("largeButtonHovered.png")
                 self.lbl.element.color = (255, 255, 255, 255)
             else:
@@ -265,12 +283,16 @@ class LargeButton(layer.Layer):
                 self.lbl.element.color = (255, 255, 255, 255)
 
     def on_mouse_press(self, x, y, buttons, modifiers):
-        if self.clickable:
+        if self.showing:
             if x in range(self.width_range[0], self.width_range[1]) and y in range(self.height_range[0], self.height_range[1]):
                 self.bgImage.image = pyglet.resource.image("largeButtonClicked.png")
                 self.active = True
                 self.lbl.element.color = (0, 0, 0, 255)
-                self.eventName()
+                if hasattr(self, "eventparam"):
+                    self.eventName(self.eventparam)
+                else:
+                    self.eventName() 
+                self.active = False
 
 
 """Toggle Button. For toggling a setting on or off. Can alter a value in a dictionary and run a command simultaneously."""
@@ -369,7 +391,7 @@ class mediumButton(layer.Layer):
         self.py = 0
 
         self.width_range = [int((self.px + self.x) - (self.bgImage.width / 2)), int((self.px + self.x) + (self.bgImage.width / 2))]
-        self.height_range = [int((self.py + self.y) - (self.bgImage.height / 2)), int((self.py + self.y) + (self.bgImage.width / 2))]
+        self.height_range = [int((self.py + self.y) - (self.bgImage.height / 2)), int((self.py + self.y) + (self.bgImage.height / 2))]
 
         self.add(self.bgImage)
         self.add(self.lbl)
@@ -383,7 +405,7 @@ class mediumButton(layer.Layer):
     def setWH(self, dt):
         x, y = director.window.width, director.window.height
         nmin = sc.scale(int((self.px + self.x) - (self.bgImage.width / 2)), int((self.py + self.y) - (self.bgImage.height / 2)))
-        nmax = sc.scale(int((self.px + self.x) + (self.bgImage.width / 2)), int((self.py + self.y) + (self.bgImage.width / 2)))
+        nmax = sc.scale(int((self.px + self.x) + (self.bgImage.width / 2)), int((self.py + self.y) + (self.bgImage.height / 2)))
         self.width_range = [int(nmin[0]), int(nmax[0])]
         self.height_range = [int(nmin[1]), int(nmax[1])]
 
