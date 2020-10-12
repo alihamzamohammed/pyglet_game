@@ -11,29 +11,6 @@ from scroll import *
 rx, ry = director.window.width, director.window.height
 reswidth, resheight = [int(res) for res in cfg.resolution.split("x")]
 
-
-# class ParentLayer(layer.Layer):
-
-#     def __init__(self):
-#         super().__init__()
-#         self.scrollManager = layer.ScrollingManager()
-#         self.scrollBar = ScrollBar(self.scrollManager)
-#         self.scrollLayer = ScrollLayer(reswidth/2, resheight, reswidth, 1440, self.scrollBar)
-        
-#         self.scrollLayer.x = 0
-#         self.scrollLayer.y = 0
-
-#         self.scrollBar.x = reswidth - (self.scrollBar.width / 2)
-#         self.scrollBar.y = (resheight - (resheight * 0.02)) - (self.scrollBar.img.height / 2)
-
-#         self.scrollManager.add(self.scrollLayer)
-#         self.scrollLayer.calculate()
-#         self.scrollManager.set_focus(reswidth / 2, resheight / 2)
-
-#         self.add(self.scrollManager)
-#         self.add(self.scrollBar)
-
-
 class ScrollLayer(layer.ScrollableLayer):
 
     def __init__(self, x, y, w, h, sb, parallax=1):
@@ -88,15 +65,12 @@ class ScrollBar(layer.Layer):
         self.scrollManager = scrollManager
 
         self.add(self.img)
-        
-        #if not show:
-         #   self.do(actions.Hide())
         self._visible = show
 
         self.width_range = [int((self.x) - (self.width / 2)), int((self.x) + (self.width / 2))]
         self.height_range = [int((self.y) - (self.height / 2)), int((self.y) + (self.width / 2))]
 
-        self.schedule_interval(self.setWH, 1)
+        self.schedule(self.setWH)
         self.resume_scheduler()
 
         self.sx = rx

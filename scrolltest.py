@@ -8,7 +8,6 @@ import cfg
 import resources
 from scroll import *
 
-rx, ry = director.window.width, director.window.height
 reswidth, resheight = [int(res) for res in cfg.resolution.split("x")]
 
 class testScroller(scene.Scene):
