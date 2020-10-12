@@ -84,7 +84,7 @@ class LevelMenu(Scene):
 
         self.levelBoxes = []
         if len(levels.levels) == 0:
-            warningLbl = Label("There were no levels loaded.", position=(reswidth/2, resheight/2), font_size=20)
+            warningLbl = Label("There were no levels loaded.", position=(reswidth/2, resheight/2), font_size=20, anchor_x="center", anchor_y="center")
             self.add(warningLbl)
         else:
             for levelName, level in levels.levels.items():
@@ -168,7 +168,7 @@ class GameModeMenu(Scene):
 
         self.modeBoxes = []
         if len(modes.gamemodes) == 0:
-            warningLbl = Label("There were no levels loaded.", position=(reswidth/2, resheight/2), font_size=20)
+            warningLbl = Label("There were no game modes loaded.", position=(reswidth/2, resheight/2), font_size=20, anchor_x="center", anchor_y="center")
             self.add(warningLbl)
         else:
             for modeName, mode in modes.gamemodes.items():
