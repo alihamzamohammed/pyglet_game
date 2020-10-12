@@ -135,16 +135,6 @@ class ScrollBar(layer.Layer):
                         self.y += dy
                         self.scrollManager.set_focus(reswidth / 2, self.scrollManager.fy + dy)
 
-#    @property
-#    def show(self):
-#        self.active = True
-#        self.opacity = 1
-#
-#    @show.setter
-#    def hide(self):
-#        self.active = False
-#        self.opacity = 0
-
     @property
     def showing(self):
         return self._visible

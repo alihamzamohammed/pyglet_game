@@ -64,7 +64,6 @@ class LevelMenu(Scene):
         self.playButton.y = resheight * -0.1
         self.add(self.playButton)
         self.playButton.show()
-        self.levelBoxes = []
 
         blackLayer = layer.ColorLayer(0, 0, 0, 255)
         blackLayer.width = reswidth
@@ -83,7 +82,7 @@ class LevelMenu(Scene):
         self.scrollBar.x = reswidth - (self.scrollBar.width / 2)
         self.scrollBar.y = (resheight - (resheight * 0.02)) - (self.scrollBar.img.height / 2)
 
-
+        self.levelBoxes = []
         if len(levels.levels) == 0:
             warningLbl = Label("There were no levels loaded.", position=(reswidth/2, resheight/2), font_size=20)
             self.add(warningLbl)
@@ -108,8 +107,10 @@ class LevelMenu(Scene):
         self.add(self.scrollManager, z = -2)
         self.add(self.scrollBar)
 
-        if len(levels.levels) < 4:
-            self.scrollBar.visible = False
+        if len(self.levelBoxes) < 4:
+            self.scrollBar.showing = False
+            print("true")
+
 
     def LevelChosen(self, level):
         self.playButton.do(AccelDeccel(MoveTo((self.playButton.x, resheight * 0.1), duration = 2)))
@@ -166,18 +167,22 @@ class GameModeMenu(Scene):
         self.scrollBar.y = (resheight - (resheight * 0.02)) - (self.scrollBar.img.height / 2)
 
         self.modeBoxes = []
-        for modeName, mode in modes.gamemodes.items():
-            modeBox = GameModeBox(mode, scrollManager = self.scrollManager)
-            self.modeBoxes.append(modeBox)
-        for i in range(len(self.modeBoxes)):
-            self.modeBoxes[i].x = ((reswidth * 0.8) // 4) * (((i + 1) / 4) - ((i) // 4)) * 4
-            self.modeBoxes[i].y = resheight * (0.6 - (i // 4) * 0.47)
-            self.modeBoxes[i].delay = 2 + i
-            self.modeBoxes[i].update_positions()
-            extendedInfo = GMExtendedInfo(self.modeBoxes[i].gameMode)
-            self.scrollLayer.add(self.modeBoxes[i], z=1)
-            self.add(extendedInfo, z=2)
-            self.modeBoxes[i].show()
+        if len(modes.gamemodes) == 0:
+            warningLbl = Label("There were no levels loaded.", position=(reswidth/2, resheight/2), font_size=20)
+            self.add(warningLbl)
+        else:
+            for modeName, mode in modes.gamemodes.items():
+                modeBox = GameModeBox(mode, scrollManager = self.scrollManager)
+                self.modeBoxes.append(modeBox)
+            for i in range(len(self.modeBoxes)):
+                self.modeBoxes[i].x = ((reswidth * 0.8) // 4) * (((i + 1) / 4) - ((i) // 4)) * 4
+                self.modeBoxes[i].y = resheight * (0.6 - (i // 4) * 0.47)
+                self.modeBoxes[i].delay = 2 + i
+                self.modeBoxes[i].update_positions()
+                extendedInfo = GMExtendedInfo(self.modeBoxes[i].gameMode)
+                self.scrollLayer.add(self.modeBoxes[i], z=1)
+                self.add(extendedInfo, z=2)
+                self.modeBoxes[i].show()
 
 
         self.scrollManager.add(self.scrollLayer)
@@ -186,6 +191,9 @@ class GameModeMenu(Scene):
 
         self.add(self.scrollManager, z = -2)
         self.add(self.scrollBar)
+
+        if len(self.modeBoxes) < 5:
+            self.scrollBar.showing = False
 
     def on_enter(self):
         super().on_enter()
