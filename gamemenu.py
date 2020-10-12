@@ -83,19 +83,26 @@ class LevelMenu(Scene):
         self.scrollBar.x = reswidth - (self.scrollBar.width / 2)
         self.scrollBar.y = (resheight - (resheight * 0.02)) - (self.scrollBar.img.height / 2)
 
-        for levelName, level in levels.levels.items():
-            levelBox = LevelBox(level, scrollManager=self.scrollManager)
-            self.levelBoxes.append(levelBox)
-        for i in range(len(self.levelBoxes)):
-            self.levelBoxes[i].x = ((reswidth * 0.8) // 4) * (((i + 1) / 4) - ((i) // 4)) * 4
-            self.levelBoxes[i].y = resheight * (0.6 - (i // 4) * 0.47)
-            self.levelBoxes[i].delay = 2 + i
-            self.levelBoxes[i].update_positions()
-            extendedInfo = LVLExtendedInfo(self.levelBoxes[i].level)
-            self.scrollLayer.add(self.levelBoxes[i], z=1)
-            self.add(extendedInfo, z=2)
-            self.levelBoxes[i].show()
 
+        if len(levels.levels.items) == 0:
+            warningLbl = Label("There were no levels loaded.", position=(reswidth/2, resheight/2), font_size=20)
+            self.add(warningLbl)
+        else:
+            for levelName, level in levels.levels.items():
+                levelBox = LevelBox(level, scrollManager=self.scrollManager)
+                self.levelBoxes.append(levelBox)
+            for i in range(len(self.levelBoxes)):
+                self.levelBoxes[i].x = ((reswidth * 0.8) // 4) * (((i + 1) / 4) - ((i) // 4)) * 4
+                self.levelBoxes[i].y = resheight * (0.6 - (i // 4) * 0.47)
+                self.levelBoxes[i].delay = 2 + i
+                self.levelBoxes[i].update_positions()
+                extendedInfo = LVLExtendedInfo(self.levelBoxes[i].level)
+                self.scrollLayer.add(self.levelBoxes[i], z=1)
+                self.add(extendedInfo, z=2)
+                self.levelBoxes[i].show()
+        if len(levels.levels.items) >= 4:
+            self.scrollBar.do(Hide())
+        
 
         self.scrollManager.add(self.scrollLayer)
         self.scrollLayer.calculate()
