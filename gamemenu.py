@@ -86,6 +86,7 @@ class LevelMenu(Scene):
         if len(levels.levels) == 0:
             warningLbl = Label("There were no levels loaded.", position=(reswidth/2, resheight/2), font_size=20, anchor_x="center", anchor_y="center")
             self.add(warningLbl)
+            warningLbl.do(FadeOut(0.00001) + Delay(1) + FadeIn(1))
         else:
             for levelName, level in levels.levels.items():
                 levelBox = LevelBox(level, scrollManager=self.scrollManager)
