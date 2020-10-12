@@ -84,7 +84,7 @@ class LevelMenu(Scene):
         self.scrollBar.y = (resheight - (resheight * 0.02)) - (self.scrollBar.img.height / 2)
 
 
-        if len(levels.levels.items) == 0:
+        if len(levels.levels) == 0:
             warningLbl = Label("There were no levels loaded.", position=(reswidth/2, resheight/2), font_size=20)
             self.add(warningLbl)
         else:
@@ -99,10 +99,7 @@ class LevelMenu(Scene):
                 extendedInfo = LVLExtendedInfo(self.levelBoxes[i].level)
                 self.scrollLayer.add(self.levelBoxes[i], z=1)
                 self.add(extendedInfo, z=2)
-                self.levelBoxes[i].show()
-        if len(levels.levels.items) >= 4:
-            self.scrollBar.do(Hide())
-        
+                self.levelBoxes[i].show()        
 
         self.scrollManager.add(self.scrollLayer)
         self.scrollLayer.calculate()
@@ -111,6 +108,8 @@ class LevelMenu(Scene):
         self.add(self.scrollManager, z = -2)
         self.add(self.scrollBar)
 
+        if len(levels.levels) < 4:
+            self.scrollBar.visible = False
 
     def LevelChosen(self, level):
         self.playButton.do(AccelDeccel(MoveTo((self.playButton.x, resheight * 0.1), duration = 2)))

@@ -86,8 +86,9 @@ class ScrollBar(layer.Layer):
 
         self.add(self.img)
         
-        if not show:
-            self.do(actions.Hide())
+        #if not show:
+         #   self.do(actions.Hide())
+        self._visible = show
 
         self.width_range = [int((self.x) - (self.width / 2)), int((self.x) + (self.width / 2))]
         self.height_range = [int((self.y) - (self.height / 2)), int((self.y) + (self.width / 2))]
@@ -115,19 +116,43 @@ class ScrollBar(layer.Layer):
 
 
     def on_mouse_press(self, x, y, buttons, modifiers):
-        if x in range(self.width_range[0], self.width_range[1]) and y in range(self.height_range[0], self.height_range[1]):
-            self.img.image = pyglet.resource.image("scrollbarClicked.png")
-            self.active = True
-        else:
-            self.active = False
-           
+        if self._visible:
+            if x in range(self.width_range[0], self.width_range[1]) and y in range(self.height_range[0], self.height_range[1]):
+                self.img.image = pyglet.resource.image("scrollbarClicked.png")
+                self.active = True
+            else:
+                self.active = False
+
     def on_mouse_drag(self, x, y, dx, dy, buttons, modifiers):
-        if self.active:
-            if dy > 0:
-                if (self.y + (resheight * 0.02)) < (resheight - (self.img.height / 2)):
-                    self.y += dy
-                    self.scrollManager.set_focus(reswidth / 2, self.scrollManager.fy + dy)
-            elif dy < 0:
-                if (self.y - (resheight * 0.02)) > (self.img.height / 2):
-                    self.y += dy
-                    self.scrollManager.set_focus(reswidth / 2, self.scrollManager.fy + dy)
+        if self._visible:
+            if self.active:
+                if dy > 0:
+                    if (self.y + (resheight * 0.02)) < (resheight - (self.img.height / 2)):
+                        self.y += dy
+                        self.scrollManager.set_focus(reswidth / 2, self.scrollManager.fy + dy)
+                elif dy < 0:
+                    if (self.y - (resheight * 0.02)) > (self.img.height / 2):
+                        self.y += dy
+                        self.scrollManager.set_focus(reswidth / 2, self.scrollManager.fy + dy)
+
+#    @property
+#    def show(self):
+#        self.active = True
+#        self.opacity = 1
+#
+#    @show.setter
+#    def hide(self):
+#        self.active = False
+#        self.opacity = 0
+
+    @property
+    def showing(self):
+        return self._visible
+
+    @showing.setter
+    def showing(self, value):
+        self._visible = value
+        if value == False:
+            self.do(actions.Hide())
+        else:
+            self.do(actions.Show())
