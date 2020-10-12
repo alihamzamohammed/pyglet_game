@@ -66,6 +66,13 @@ class LevelMenu(Scene):
         self.playButton.show()
         self.levelBoxes = []
 
+        blackLayer = layer.ColorLayer(0, 0, 0, 255)
+        blackLayer.width = reswidth
+        blackLayer.height = int(resheight * 0.35)
+        blackLayer.x = 0
+        blackLayer.y = int(resheight - (blackLayer.height / 2))
+        self.add(blackLayer, z = -1)
+
         self.scrollManager = layer.ScrollingManager()
         self.scrollBar = ScrollBar(self.scrollManager)
         self.scrollLayer = ScrollLayer(reswidth/2, resheight, reswidth, resheight, self.scrollBar)
@@ -94,7 +101,7 @@ class LevelMenu(Scene):
         self.scrollLayer.calculate()
         self.scrollManager.set_focus(reswidth / 2, resheight / 2)
 
-        self.add(self.scrollManager)
+        self.add(self.scrollManager, z = -2)
         self.add(self.scrollBar)
 
 
@@ -148,6 +155,12 @@ class GameModeMenu(Scene):
         self.add(newButton)
         events.gamemenuevents.push_handlers(self)
 
+        blackLayer = layer.ColorLayer(0, 0, 0, 255)
+        blackLayer.width = reswidth
+        blackLayer.height = int(resheight * 0.35)
+        blackLayer.x = 0
+        blackLayer.y = int(resheight - (blackLayer.height / 2))
+        self.add(blackLayer, z = -1)
 
         self.scrollManager = layer.ScrollingManager()
         self.scrollBar = ScrollBar(self.scrollManager)
@@ -178,7 +191,7 @@ class GameModeMenu(Scene):
         self.scrollLayer.calculate()
         self.scrollManager.set_focus(reswidth / 2, resheight / 2)
 
-        self.add(self.scrollManager)
+        self.add(self.scrollManager, z = -2)
         self.add(self.scrollBar)
 
 
@@ -519,8 +532,8 @@ class GameModeBox(layer.Layer):
     def setWH(self, dt):
         x, y = director.window.width, director.window.height
         if not self.scrollManager == None:
-            nmin = self.scrollManager.screen_to_world(int((self.x) - (self.bg.width / 2)), int((self.y) - (self.bg.height / 2)))
-            nmax = self.scrollManager.screen_to_world(int((self.x) + (self.bg.width / 2)), int((self.y) + (self.bg.height / 2)))
+            nmin = self.scrollManager.world_to_screen(int((self.x) - (self.bg.width / 2)), int((self.y) - (self.bg.height / 2)))
+            nmax = self.scrollManager.world_to_screen(int((self.x) + (self.bg.width / 2)), int((self.y) + (self.bg.height / 2)))
         else:
             nmin = int((self.x) - (self.bg.width / 2)), int((self.y) - (self.bg.height / 2))
             nmax = int((self.x) + (self.bg.width / 2)), int((self.y) + (self.bg.height / 2))
