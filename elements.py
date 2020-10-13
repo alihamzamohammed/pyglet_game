@@ -293,7 +293,7 @@ class ToggleButton(layer.Layer):
 
     is_event_handler = True
 
-    def __init__(self, parent, selfx, selfy, configDict, section, option, command = None, showing = True):
+    def __init__(self, parent, selfx, selfy, configDict, section, option, command = None, showing = True, function = None):
         super().__init__()
         global x, y
         self.px = parent.x
@@ -305,6 +305,7 @@ class ToggleButton(layer.Layer):
         self.section = section
         self.option = option
         self.showing = self._showing = showing
+        self.function = function
         self.lbl = Label("YES", anchor_x="center", anchor_y="center", dpi=105)
         self.bgImage = Sprite("largeButton.png")
         self.active = True if self.configDict[self.section][self.option] == "True" else False
@@ -356,6 +357,8 @@ class ToggleButton(layer.Layer):
                 self.configDict[self.section][self.option] = str(self.active)
                 if callable(self.command):
                     self.command(self.active)
+                if callable(self.function):
+                    self.function
                 if self.active:
                     self.bgImage.image = pyglet.resource.image("largeToggledButtonClicked.png")
                     self.lbl.element.text = "YES"

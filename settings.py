@@ -58,7 +58,7 @@ class MessagePopup(layer.ColorLayer):
         self.add(self.lbl)
         self.active = False
 
-    def showMessage(self, message):
+    def showMessage(self, message = "Your game must be restarted in order to apply these settings."):
         if not self.active:
             self.lbl.element.text = message
             self.do(AccelDeccel(MoveTo((int(self.x), 0), duration = 0.5)))
@@ -343,8 +343,18 @@ class MiscSettings(layer.ColorLayer):
         controlsButton = elements.LargeButton("Controls", events.settingsevents.onControlsButtonClick, showing = False)
         controlsButton.x = self.width * 0.9
         controlsButton.y = self.height * 0.9
+
+        logLabel = Label("Log", font_size=25, anchor_x="left", anchor_y="center", color=(255, 255, 255, 255))
+        logLabel.x = self.width * 0.05
+        logLabel.y = self.height * 0.7
+        logButton = SettingsToggleButton(self, 0.9, 0.7, cfg.configuration, section = "Core", option = "log", function = messagePopup.showMessage)
+
+
+
         self.add(controlsButton)
         self.add(controlsLabel)
+        self.add(logLabel)
+        self.add(logButton)
 
 
     def showVideoScreen(self):
