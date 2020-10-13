@@ -293,13 +293,13 @@ class ToggleButton(layer.Layer):
 
     is_event_handler = True
 
-    def __init__(self, parent, selfx, selfy, configDict, section, option, command = None, showing = True):
+    def __init__(self, configDict, section, option, command = None, showing = True):
         super().__init__()
         global x, y
-        self.px = parent.x
-        self.py = parent.y
-        pwidth = parent.width
-        pheight = parent.height
+ #       self.px = parent.x
+ #       self.py = parent.y
+ #       pwidth = parent.width
+ #       pheight = parent.height
         self.command = command
         self.configDict = configDict
         self.section = section
@@ -317,21 +317,19 @@ class ToggleButton(layer.Layer):
             self.lbl.element.text = "NO"
         self.width = self.bgImage.width
         self.height = self.bgImage.height
-        self.x = pwidth * selfx
-        self.y = pheight * selfy
+#        self.x = pwidth * selfx
+#        self.y = pheight * selfy
         self.lbl.x = 0
         self.lbl.y = 0
         self.add(self.bgImage)
         self.add(self.lbl)
-        self.width_range = [int(self.px + (self.x - (self.width / 2))), int(self.px + (self.x + (self.width / 2)))]
-        self.height_range = [int(self.py + (self.y - (self.height / 2))), int(self.py + (self.y + (self.height / 2)))]
-        self.schedule_interval(self.setWH, 1)
-        self.resume_scheduler()
+        self.width_range = [0, 0]
+        self.height_range = [0, 0]
 
     def setWH(self, dt):
         x, y = director.window.width, director.window.height
-        nmin = sc.scale(int(self.px + (self.x - (self.width / 2))), int(self.py + (self.y - (self.height / 2))))
-        nmax = sc.scale(int(self.px + (self.x + (self.width / 2))), int(self.py + (self.y + (self.height / 2))))
+        nmin = sc.scale(int(self.parent.x + (self.x - (self.width / 2))), int(self.parent.y + (self.y - (self.height / 2))))
+        nmax = sc.scale(int(self.parent.x + (self.x + (self.width / 2))), int(self.parent.y + (self.y + (self.height / 2))))
         self.width_range = [int(nmin[0]), int(nmax[0])]
         self.height_range = [int(nmin[1]), int(nmax[1])]
 
@@ -370,6 +368,12 @@ class ToggleButton(layer.Layer):
     @showing.setter
     def showing(self, value):
         self._showing = value
+
+    def on_enter(self):
+        super().on_enter()
+        self.schedule_interval(self.setWH, 1)
+        self.resume_scheduler()
+
     
 
 """Medium button. Same as small button, but can contain more text"""

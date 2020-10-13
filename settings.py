@@ -70,8 +70,8 @@ class SettingsToggleButton(elements.ToggleButton):
 
     is_event_handler = True
 
-    def __init__(self, parent, selfx, selfy, configDict, section, option, command = None, restartGame = False):
-        super().__init__(parent, selfx, selfy, configDict, section, option, command)
+    def __init__(self, configDict, section, option, command = None, restartGame = False):
+        super().__init__(configDict, section, option, command)
         self.restartGame = restartGame
         self.schedule(self.checkChanged)
         self.resume_scheduler()
@@ -129,17 +129,23 @@ class VideoSettings(layer.ColorLayer):
         fullscreenLabel = Label("Fullscreen", font_size=25, anchor_x="left", anchor_y="center", color=(255, 255, 255, 255))
         fullscreenLabel.x = self.width * 0.05
         fullscreenLabel.y = self.height * 0.9
-        fullscreenButton = SettingsToggleButton(self, 0.9, 0.9, cfg.configuration, section = "Core", option = "fullscreen", command = director.window.set_fullscreen)
+        fullscreenButton = SettingsToggleButton(cfg.configuration, section = "Core", option = "fullscreen", command = director.window.set_fullscreen)
+        fullscreenButton.x = self.width * 0.9
+        fullscreenButton.y = self.height * 0.9        
 
         vsyncLabel = Label("VSync", font_size=25, anchor_x="left", anchor_y="center", color=(255, 255, 255, 255))
         vsyncLabel.x = self.width * 0.05
         vsyncLabel.y = self.height * 0.7
-        vsyncButton = SettingsToggleButton(self, 0.9, 0.7, cfg.configuration, section = "Core", option = "vsync", command = director.window.set_vsync)
+        vsyncButton = SettingsToggleButton(cfg.configuration, section = "Core", option = "vsync", command = director.window.set_vsync)       
+        vsyncButton.x = self.width * 0.9
+        vsyncButton.y = self.height * 0.7
 
         showfpsLabel = Label("Show FPS", font_size=25, anchor_x="left", anchor_y="center", color=(255, 255, 255, 255))
         showfpsLabel.x = self.width * 0.05
         showfpsLabel.y = self.height * 0.5
-        showfpsButton = SettingsToggleButton(self, 0.9, 0.5, cfg.configuration, section = "Core", option = "showfps", command = director.set_show_FPS)
+        showfpsButton = SettingsToggleButton(cfg.configuration, section = "Core", option = "showfps", command = director.set_show_FPS)
+        showfpsButton.x = self.width * 0.9
+        showfpsButton.y = self.height * 0.5
 
         resInputLabel = Label("Resolution", font_size=25, anchor_x="left", anchor_y="center", color=(255, 255, 255, 255))
         resInputLabel.x = self.width * 0.05
@@ -347,9 +353,9 @@ class MiscSettings(layer.ColorLayer):
         logLabel = Label("Log", font_size=25, anchor_x="left", anchor_y="center", color=(255, 255, 255, 255))
         logLabel.x = self.width * 0.05
         logLabel.y = self.height * 0.7
-        logButton = SettingsToggleButton(self, 0.9, 0.7, cfg.configuration, section = "Core", option = "log", restartGame = True)
-
-
+        logButton = SettingsToggleButton(cfg.configuration, section = "Core", option = "log", restartGame = True)
+        logButton.x = self.width * 0.9
+        logButton.y = self.height * 0.7
 
         self.add(controlsButton)
         self.add(controlsLabel)
