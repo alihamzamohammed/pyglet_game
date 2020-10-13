@@ -347,7 +347,7 @@ class MiscSettings(layer.ColorLayer):
         logLabel = Label("Log", font_size=25, anchor_x="left", anchor_y="center", color=(255, 255, 255, 255))
         logLabel.x = self.width * 0.05
         logLabel.y = self.height * 0.7
-        logButton = SettingsToggleButton(self, 0.9, 0.7, cfg.configuration, section = "Core", option = "log", function = messagePopup.showMessage)
+        logButton = SettingsToggleButton(self, 0.9, 0.7, cfg.configuration, section = "Core", option = "log", restartGame = True)
 
 
 
