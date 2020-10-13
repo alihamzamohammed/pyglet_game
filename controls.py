@@ -39,17 +39,18 @@ class Controls(scene.Scene):
         backButton = elements.mediumButton("BACK", events.mainmenuevents.onSettingsButtonClick)
         backButton.x = reswidth * 0.065
         backButton.y = resheight * 0.89
+        backButton.show(0.0001)
         self.add(backButton)       
 
         controlElements = []
-        i = 0
-        for control, value in cfg.configuration["Controls"]:
+        i = 1
+        for control, value in cfg.configuration["Controls"].items():
             lbl = text.Label(str(control).capitalize(), font_size=25, anchor_x="left", anchor_y="center", color=(255, 255, 255, 255))
             lbl.x = reswidth * 0.1
-            lbl.y = 0.6 - (0.15 * i)
+            lbl.y = resheight * (0.6 - (0.15 * (i - 1)))
             txtBx = ControlTextBox(control)
             txtBx.x = reswidth * 0.9
-            txtBx.y = 0.6 - (0.15 * i)
+            txtBx.y = resheight * (0.6 - (0.15 * (i - 1)))
             self.scrollLayer.add(lbl)
             self.scrollLayer.add(txtBx)
             controlElements.append([lbl, txtBx])
@@ -60,17 +61,19 @@ class Controls(scene.Scene):
         self.scrollLayer.calculate()
         self.scrollManager.set_focus(reswidth / 2, resheight / 2)
 
-        self.add(self.scrollManager)
+        self.add(self.scrollManager, z = -2)
         self.add(self.scrollBar)
+        self.add(messagePopup, z = 1)
 
 
 class ControlTextBox(layer.Layer):
 
     is_event_handler = True
 
-    def __init__(self, control):
+    def __init__(self, control, scrollManager = None):
         super().__init__()
         self.control = control
+        self.scrollManager = scrollManager
         self.inputLabel = elements.Label(cfg.configuration["Controls"][control], font_size = 15, anchor_x = "center", anchor_y = "center", color=(0, 0, 0, 255))
         self.bgImage = elements.Sprite("textBox.png")
         self.width = self.bgImage.width
@@ -80,20 +83,19 @@ class ControlTextBox(layer.Layer):
         self.add(self.inputLabel)
         self.parentx = 0
         self.parenty = 0
-        self.showing = self._showing = False
+        self.showing = self._showing = True
         self.width_range = [0, 0]
         self.height_range = [0, 0] 
         self.schedule_interval(self.setWH, 1)
         self.resume_scheduler()
-        self.changed = False
+        self.changed = self._changed = False
 
     def setWH(self, dt):
         x, y = director.window.width, director.window.height
-        nmin = sc.scale(int((self.parent.x + self.x) - (self.bgImage.width / 2)), int((self.parent.y + self.y) - (self.bgImage.height / 2)))
-        nmax = sc.scale(int((self.parent.x + self.x) + (self.bgImage.width / 2)), int((self.parent.y + self.y) + (self.bgImage.height / 2)))
+        nmin = sc.scale(int((self.x) - (self.bgImage.width / 2)), int((self.y) - (self.bgImage.height / 2)))
+        nmax = sc.scale(int((self.x) + (self.bgImage.width / 2)), int((self.y) + (self.bgImage.height / 2)))
         self.width_range = [int(nmin[0]), int(nmax[0])]
         self.height_range = [int(nmin[1]), int(nmax[1])]
-
 
     def on_mouse_motion(self, x, y, dx, dy):
         if self.showing:
@@ -117,8 +119,8 @@ class ControlTextBox(layer.Layer):
         try:
             if self.active:
                 val = k.symbol_string(key)
-                self.inputLabel.element.text = val
-                cfg.configuration["Controls"][self.control] = val
+                self.inputLabel.element.text = val.capitalize()
+                cfg.configuration["Controls"][self.control] = val.capitalize()
                 self.active = False
                 self.bgImage.image = pyglet.resource.image("textBox.png")
                 self.changed = True
@@ -137,5 +139,34 @@ class ControlTextBox(layer.Layer):
     def showing(self, value):
         self._showing = value
 
-    def on_enter(self):
-        super().on_enter()
+    @property
+    def changed(self):
+        return self._changed
+
+    @changed.setter
+    def changed(self, value):
+        self._changed = value
+        if value:
+            messagePopup.showMessage()
+
+class MessagePopup(layer.ColorLayer):
+
+    def __init__(self):
+        super().__init__(50, 50, 50, 255)
+        self.width = int(reswidth)
+        self.height = int(resheight * 0.1)
+        self.x = 0
+        self.y = int(-self.height)
+        self.lbl = elements.Label("message", font_size = 18, anchor_y = "center")
+        self.lbl.x = int(self.width * 0.05)
+        self.lbl.y = int(self.height / 2)
+        self.add(self.lbl)
+        self.active = False
+
+    def showMessage(self, message = "Your game must be restarted in order to apply these settings."):
+        if not self.active:
+            self.lbl.element.text = message
+            self.do(actions.AccelDeccel(actions.MoveTo((int(self.x), 0), duration = 0.5)))
+            self.active = True
+
+messagePopup = MessagePopup()
