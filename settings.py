@@ -121,7 +121,7 @@ class VideoSettings(layer.ColorLayer):
         self.height = int(y * 0.6)
         self.x = int((x / 2) - (self.width / 2))
         self.y = int((y * 0.37) - (self.height / 2))
-        self.active = True
+        self.active = self._active = True
         self.posleft = int(-self.width)
         self.poscenter = int((x / 2) - (self.width / 2))
         self.posright = int(x)
@@ -180,6 +180,18 @@ class VideoSettings(layer.ColorLayer):
         else:
             self.x = self.posleft
 
+    @property
+    def active(self):
+        return self._active
+    
+    @active.setter
+    def active(self, value):
+        self._active = value
+        for child in self.get_children():
+            if hasattr(child, "showing"):
+                child.showing = value
+
+
 #TODO: Sound settings
 class SoundSettings(layer.ColorLayer):
 
@@ -196,7 +208,7 @@ class SoundSettings(layer.ColorLayer):
         self.posright = int(x)
         self.x = self.posright
         self.y = int((y * 0.37) - (self.height / 2))
-        self.active = False
+        self.active = self._active = False
 
 
         miscInfo = Label("Coming Soon", anchor_x="center", anchor_y="center", font_size=35, multiline=True, width=(self.width * 0.8), align="center")
@@ -229,8 +241,19 @@ class SoundSettings(layer.ColorLayer):
         else:
             self.x = self.posleft
 
+    @property
+    def active(self):
+        return self._active
+    
+    @active.setter
+    def active(self, value):
+        self._active = value
+        for child in self.get_children():
+            if hasattr(child, "showing"):
+                child.showing = value
+
+
 #TODO: Extension settings
-#?: Maybe change this to controls instead of extensions
 class ExtensionSettings(layer.ColorLayer):
 
     is_event_handler = True
@@ -251,7 +274,7 @@ class ExtensionSettings(layer.ColorLayer):
         self.posright = int(x)
         self.x = self.posright
         self.y = int((y * 0.37) - (self.height / 2))
-        self.active = False
+        self.active = self._active = False
 
         miscInfo = Label("Coming Soon", anchor_x="center", anchor_y="center", font_size=35, multiline=True, width=(self.width * 0.8), align="center")
         miscInfo.x = self.width / 2
@@ -284,6 +307,18 @@ class ExtensionSettings(layer.ColorLayer):
         else:
             self.x = self.posleft
 
+    @property
+    def active(self):
+        return self._active
+    
+    @active.setter
+    def active(self, value):
+        self._active = value
+        for child in self.get_children():
+            if hasattr(child, "showing"):
+                child.showing = value
+
+
 #TODO: Misc settings
 class MiscSettings(layer.ColorLayer):
 
@@ -300,12 +335,12 @@ class MiscSettings(layer.ColorLayer):
         self.posright = int(x)
         self.x = self.posright
         self.y = int((y * 0.37) - (self.height / 2))
-        self.active = False
+        self.active = self._active = False
 
         controlsLabel = Label("Controls", font_size=25, anchor_x="left", anchor_y="center", color=(255, 255, 255, 255))
         controlsLabel.x = self.width * 0.05
         controlsLabel.y = self.height * 0.9
-        controlsButton = elements.LargeButton("Controls", events.settingsevents.onControlsButtonClick)
+        controlsButton = elements.LargeButton("Controls", events.settingsevents.onControlsButtonClick, showing = False)
         controlsButton.x = self.width * 0.9
         controlsButton.y = self.height * 0.9
         self.add(controlsButton)
@@ -336,6 +371,17 @@ class MiscSettings(layer.ColorLayer):
     def showMiscScreen(self):
         self.active = True
         self.do(AccelDeccel(MoveTo((self.poscenter, self.y), duration = 0.5)))
+
+    @property
+    def active(self):
+        return self._active
+    
+    @active.setter
+    def active(self, value):
+        self._active = value
+        for child in self.get_children():
+            if hasattr(child, "showing"):
+                child.showing = value
 
 
 class SettingsScreen(scene.Scene):

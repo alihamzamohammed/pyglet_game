@@ -221,7 +221,7 @@ class LargeButton(layer.Layer):
 
     is_event_handler = True
 
-    def __init__(self, label, eventName, active = False, *args, **kwargs):
+    def __init__(self, label, eventName, active = False, showing = True, *args, **kwargs):
         super().__init__()
         global x, y
 
@@ -234,13 +234,13 @@ class LargeButton(layer.Layer):
         self.width = self.bgImage.width
         self.height = self.bgImage.height
 
-        self.width_range = []
-        self.height_range = []
+        self.width_range = [0,0]
+        self.height_range = [0,0]
 
         self.add(self.bgImage)
         self.add(self.lbl)
 
-        self.showing = True
+        self.showing = self._showing = showing
 
     def setWH(self, dt):
         x, y = director.window.width, director.window.height
@@ -278,6 +278,14 @@ class LargeButton(layer.Layer):
         self.schedule(self.setWH)
         self.resume_scheduler()
 
+    @property
+    def showing(self):
+        return self._showing
+
+    @showing.setter
+    def showing(self, value):
+        self._showing = value
+
 
 
 """Toggle Button. For toggling a setting on or off. Can alter a value in a dictionary and run a command simultaneously."""
@@ -285,7 +293,7 @@ class ToggleButton(layer.Layer):
 
     is_event_handler = True
 
-    def __init__(self, parent, selfx, selfy, configDict, section, option, command = None):
+    def __init__(self, parent, selfx, selfy, configDict, section, option, command = None, showing = True):
         super().__init__()
         global x, y
         self.px = parent.x
@@ -296,6 +304,7 @@ class ToggleButton(layer.Layer):
         self.configDict = configDict
         self.section = section
         self.option = option
+        self.showing = self._showing = showing
         self.lbl = Label("YES", anchor_x="center", anchor_y="center", dpi=105)
         self.bgImage = Sprite("largeButton.png")
         self.active = True if self.configDict[self.section][self.option] == "True" else False
@@ -327,31 +336,41 @@ class ToggleButton(layer.Layer):
         self.height_range = [int(nmin[1]), int(nmax[1])]
 
     def on_mouse_motion(self, x, y, dx, dy):
-        if x in range(self.width_range[0], self.width_range[1]) and y in range(self.height_range[0], self.height_range[1]):
-            if self.active:
-                self.bgImage.image = pyglet.resource.image("largeToggledButtonHovered.png")
+        if self.showing:
+            if x in range(self.width_range[0], self.width_range[1]) and y in range(self.height_range[0], self.height_range[1]):
+                if self.active:
+                    self.bgImage.image = pyglet.resource.image("largeToggledButtonHovered.png")
+                else:
+                    self.bgImage.image = pyglet.resource.image("largeButtonHovered.png")
             else:
-                self.bgImage.image = pyglet.resource.image("largeButtonHovered.png")
-        else:
-            if self.active:
-                self.bgImage.image = pyglet.resource.image("largeToggledButton.png")
-            else:
-                self.bgImage.image = pyglet.resource.image("largeButton.png")
+                if self.active:
+                    self.bgImage.image = pyglet.resource.image("largeToggledButton.png")
+                else:
+                    self.bgImage.image = pyglet.resource.image("largeButton.png")
 
     def on_mouse_press(self, x, y, buttons, modifiers):
-        if x in range(self.width_range[0], self.width_range[1]) and y in range(self.height_range[0], self.height_range[1]):
-            self.active = not self.active
-            self.changed = True
-            self.configDict[self.section][self.option] = str(self.active)
-            if callable(self.command):
-                self.command(self.active)
-            if self.active:
-                self.bgImage.image = pyglet.resource.image("largeToggledButtonClicked.png")
-                self.lbl.element.text = "YES"
-            else:
-                self.bgImage.image = pyglet.resource.image("largeButtonClicked.png")
-                self.lbl.element.text = "NO"
+        if self.showing:
+            if x in range(self.width_range[0], self.width_range[1]) and y in range(self.height_range[0], self.height_range[1]):
+                self.active = not self.active
+                self.changed = True
+                self.configDict[self.section][self.option] = str(self.active)
+                if callable(self.command):
+                    self.command(self.active)
+                if self.active:
+                    self.bgImage.image = pyglet.resource.image("largeToggledButtonClicked.png")
+                    self.lbl.element.text = "YES"
+                else:
+                    self.bgImage.image = pyglet.resource.image("largeButtonClicked.png")
+                    self.lbl.element.text = "NO"
 
+    @property
+    def showing(self):
+        return self._showing
+
+    @showing.setter
+    def showing(self, value):
+        self._showing = value
+    
 
 """Medium button. Same as small button, but can contain more text"""
 class mediumButton(layer.Layer):
