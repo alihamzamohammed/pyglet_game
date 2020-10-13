@@ -105,6 +105,7 @@ class VideoSettings(layer.ColorLayer):
             self.add(self.txtBoxWidth)
             self.add(seperator)
             self.add(self.txtBxHeight)
+            self.shwoing = self._showing = True
             self.schedule_interval(self.changed, 0.5)
             self.resume_scheduler()
 
@@ -112,6 +113,18 @@ class VideoSettings(layer.ColorLayer):
             if self.txtBoxWidth.changed or self.txtBxHeight.changed:
                 messagePopup.showMessage("Your game needs to be restarted for these changes to take effect.")
                 cfg.configuration["Core"]["defaultres"] = str(self.txtBoxWidth.get_text()) + "x" + str(self.txtBxHeight.get_text())
+        
+        @property
+        def showing(self):
+            return self._showing
+
+        @showing.setter
+        def showing(self, value):
+            self._showing = value
+            for child in self.get_children():
+                if hasattr(child, "showing"):
+                    child.showing = value
+
 
     def __init__(self):
         super().__init__(100, 100, 100, 100)
@@ -356,6 +369,16 @@ class MiscSettings(layer.ColorLayer):
         logButton = SettingsToggleButton(cfg.configuration, section = "Core", option = "log", restartGame = True)
         logButton.x = self.width * 0.9
         logButton.y = self.height * 0.7
+
+        if cfg.configuration["Debug"]["developer"] == "True":
+            debugLabel = Label("Debug", font_size=25, anchor_x="left", anchor_y="center", color=(255, 255, 255, 255))
+            debugLabel.x = self.width * 0.05
+            debugLabel.y = self.height * 0.5
+            debugButton = SettingsToggleButton(cfg.configuration, section = "Debug", option = "logging", restartGame = True)
+            debugButton.x = self.width * 0.9
+            debugButton.y = self.height * 0.5
+            self.add(debugLabel)
+            self.add(debugButton)
 
         self.add(controlsButton)
         self.add(controlsLabel)

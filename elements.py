@@ -112,6 +112,7 @@ class TextBox(layer.Layer):
         self.add(self.inputLabel)
         self.parentx = 0
         self.parenty = 0
+        self.showing = self._showing = False
         self.width_range = [int((self.parentx + self.x) - (self.bgImage.width / 2)), int((self.parentx + self.x) + (self.bgImage.width / 2))]
         self.height_range = [int((self.parenty + self.y) - (self.bgImage.height / 2)), int((self.parenty + self.y) + (self.bgImage.height / 2))]
         self.schedule_interval(self.setWH, 1)
@@ -127,13 +128,15 @@ class TextBox(layer.Layer):
 
 
     def on_mouse_motion(self, x, y, dx, dy):
-        if not self.active:
-            if x in range(self.width_range[0], self.width_range[1]) and y in range(self.height_range[0], self.height_range[1]):
-                self.bgImage.image = pyglet.resource.image("textBoxHovered.png")
-            else:
-                self.bgImage.image = pyglet.resource.image("textBox.png")
+        if self.showing:
+            if not self.active:
+                if x in range(self.width_range[0], self.width_range[1]) and y in range(self.height_range[0], self.height_range[1]):
+                    self.bgImage.image = pyglet.resource.image("textBoxHovered.png")
+                else:
+                    self.bgImage.image = pyglet.resource.image("textBox.png")
 
     def on_mouse_press(self, x, y, buttons, modifiers):
+        if self.showing:
             if x in range(self.width_range[0], self.width_range[1]) and y in range(self.height_range[0], self.height_range[1]):
                 self.active = True
                 self.bgImage.image = pyglet.resource.image("textBoxEntered.png")
@@ -156,6 +159,14 @@ class TextBox(layer.Layer):
 
     def get_text(self):
         return self.inputLabel.element.text
+
+    @property
+    def showing(self):
+        return self._showing
+
+    @showing.setter
+    def showing(self, value):
+        self._showing = value
 
 
 # TODO: Active and non-active checking
@@ -296,10 +307,6 @@ class ToggleButton(layer.Layer):
     def __init__(self, configDict, section, option, command = None, showing = True):
         super().__init__()
         global x, y
- #       self.px = parent.x
- #       self.py = parent.y
- #       pwidth = parent.width
- #       pheight = parent.height
         self.command = command
         self.configDict = configDict
         self.section = section
@@ -317,8 +324,6 @@ class ToggleButton(layer.Layer):
             self.lbl.element.text = "NO"
         self.width = self.bgImage.width
         self.height = self.bgImage.height
-#        self.x = pwidth * selfx
-#        self.y = pheight * selfy
         self.lbl.x = 0
         self.lbl.y = 0
         self.add(self.bgImage)
