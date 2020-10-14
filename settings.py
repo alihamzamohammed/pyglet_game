@@ -75,6 +75,7 @@ class SettingsToggleButton(elements.ToggleButton):
         self.restartGame = restartGame
         self.schedule(self.checkChanged)
         self.resume_scheduler()
+        self.lbl.element.font_size = 13
 
     def checkChanged(self, dt):
         if self.changed and self.restartGame:
@@ -105,7 +106,7 @@ class VideoSettings(layer.ColorLayer):
             self.add(self.txtBoxWidth)
             self.add(seperator)
             self.add(self.txtBxHeight)
-            self.shwoing = self._showing = True
+            self.showing = self._showing = True
             self.schedule_interval(self.changed, 0.5)
             self.resume_scheduler()
 
@@ -360,6 +361,7 @@ class MiscSettings(layer.ColorLayer):
         controlsLabel.x = self.width * 0.05
         controlsLabel.y = self.height * 0.9
         controlsButton = elements.LargeButton("Controls", events.settingsevents.onControlsButtonClick, showing = False)
+        controlsButton.lbl.element.font_size = 13
         controlsButton.x = self.width * 0.9
         controlsButton.y = self.height * 0.9
 

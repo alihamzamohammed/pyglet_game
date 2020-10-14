@@ -300,7 +300,11 @@ class LevelBox(layer.Layer):
         self.height = self.bg.height
         self.thumbnail.x = self.x
         self.thumbnail.y = self.y * 0.6
-        self.gmTitle = Label(level.name, color=(0, 0, 0, 255), font_size=20, anchor_x="left", anchor_y="center")
+        self.gmTitle = Label("", color=(0, 0, 0, 255), font_size=20, anchor_x="left", anchor_y="center")
+        if len(level.name) > 13:
+            self.gmTitle.element.text = level.name[:10] + "..."
+        else:
+            self.gmTitle.element.text = level.name
         self.gmTitle.x = self.x / 2
         self.gmTitle.y = self.y * 0.1
         self.delay = 0
@@ -418,7 +422,7 @@ class LVLExtendedInfo(layer.Layer):
         self.thumbnail.scale_y = 350 / self.thumbnail.height
         self.thumbnail.x = self.infoBox.x - ((self.infoBox.width / 2) * 0.55)
         self.thumbnail.y = self.infoBox.y
-        self.title = Label(level.name, anchor_x="center", anchor_y="center", font_size=39, color=(0, 0, 0, 255))
+        self.title = Label(level.name, anchor_x="center", anchor_y="center", font_size=34, color=(0, 0, 0, 255))
         self.title.x = self.infoBox.x + ((self.infoBox.width / 2) * 0.42)
         self.title.y = self.infoBox.y + ((self.infoBox.height / 2) * 0.7)
         self.desc = Label(level.desc, anchor_x="center", anchor_y="top", font_size=17, multiline = True, width=(self.infoBox.width * 0.5), height=(self.infoBox.height * 0.4), color=(0, 0, 0, 255), align="center")
@@ -492,7 +496,11 @@ class GameModeBox(layer.Layer):
         self.scrollManager = scrollManager
         self.thumbnail.x = self.x
         self.thumbnail.y = self.y * 0.6
-        self.gmTitle = Label(gameMode.name, color=(0, 0, 0, 255), font_size=20, anchor_x="left", anchor_y="center")
+        self.gmTitle = Label("", color=(0, 0, 0, 255), font_size=20, anchor_x="left", anchor_y="center")
+        if len(gameMode.name) > 13:
+            self.gmTitle.element.text = gameMode.name[:10] + "..."
+        else:
+            self.gmTitle.element.text = gameMode.name
         self.gmTitle.x = self.x / 2
         self.gmTitle.y = self.y * 0.1
         self.delay = 0
@@ -612,7 +620,7 @@ class GMExtendedInfo(layer.Layer):
         self.thumbnail.scale_y = 350 / self.thumbnail.height
         self.thumbnail.x = self.infoBox.x - ((self.infoBox.width / 2) * 0.55)
         self.thumbnail.y = self.infoBox.y
-        self.title = Label(gameMode.name, anchor_x="center", anchor_y="center", font_size=39, color=(0, 0, 0, 255))
+        self.title = Label(gameMode.name, anchor_x="center", anchor_y="center", font_size=34, color=(0, 0, 0, 255))
         self.title.x = self.infoBox.x + ((self.infoBox.width / 2) * 0.42)
         self.title.y = self.infoBox.y + ((self.infoBox.height / 2) * 0.7)
         self.desc = Label(gameMode.desc, anchor_x="center", anchor_y="top", font_size=17, multiline = True, width=(self.infoBox.width * 0.5), height=(self.infoBox.height * 0.4), color=(0, 0, 0, 255), align="center")
