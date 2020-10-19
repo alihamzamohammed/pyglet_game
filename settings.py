@@ -274,7 +274,6 @@ class SoundSettings(layer.ColorLayer):
                 child.showing = value
 
 
-#TODO: Extension settings
 class ExtensionSettings(layer.ColorLayer):
 
     is_event_handler = True
