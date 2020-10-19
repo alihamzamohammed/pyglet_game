@@ -7,6 +7,8 @@ import logger
 
 class Level():
 
+    modeType = "level"
+
     def __init__(self, folder, idx):
         super().__init__()
         self.folder = folder
@@ -108,7 +110,7 @@ def levelLoad(lvlstr):
     return load
 
 def init():
-    global levels
+    global levels, folder
     levels = {}
     folder = "//levels//"
     for lvlfolder in [f.name for f in os.scandir(os.getcwd() + folder) if f.is_dir()]:

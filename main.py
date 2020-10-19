@@ -39,6 +39,10 @@ import levels
 import items
 import modes
 
+import message
+message.init()
+import install
+
 class Game(object):
 
     is_event_handler = True
@@ -60,6 +64,8 @@ class Game(object):
 
     def multiplayerButtonClicked(self):
         logger.addLog("Multiplayer not yet implemented!")
+        import install
+        install.installer(levels.Level)
 
     def settingsButtonClicked(self):
         director.replace(FadeTransition(settings.SettingsScreen(), duration = 1, color = (0, 0, 0)))

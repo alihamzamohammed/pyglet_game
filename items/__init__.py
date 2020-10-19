@@ -5,7 +5,9 @@ import logger
 import os
 
 class ItemPack():
-
+    
+    modeType = "itempack"
+    
     def __init__(self, folder, idx):
         super().__init__()
         self.folder = folder
@@ -84,7 +86,7 @@ class DependencyNotFound(Exception):
 # ?: One way in which this could be done is through decorators, but this will need thorough research in order to implement properly.
 
 def init():
-    global itempacks
+    global itempacks, folder
     itempacks = {}
     folder = "//items//"
     for itmfolder in [f.name for f in os.scandir(os.getcwd() + folder) if f.is_dir()]:

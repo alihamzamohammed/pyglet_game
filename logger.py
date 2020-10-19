@@ -1,6 +1,7 @@
 import cfg
 import os
 import datetime
+import easygui
 
 logpath = ""
 loglevel = {"error": 0, "warning": 1, "info": 2, "debug": -1}
@@ -27,6 +28,7 @@ def addLog(message, level=loglevel["info"], first=False):
 
 def fatalError(err):
     if isinstance(err, Exception):
+        easygui.msgbox()
         addLog("A fatal error has occured, and the game has crashed. The error message was:" + err + "\nAn error report will be available at: \n", loglevel["error"]) # TODO: Add logger stacktrace from provided Exception class
 
 def init():

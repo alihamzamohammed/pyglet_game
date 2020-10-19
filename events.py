@@ -123,6 +123,7 @@ GameMenuEvents.register_event_type("replaceLevelMenu")
 GameMenuEvents.register_event_type("ChosenBoxClicked")
 GameMenuEvents.register_event_type("ReturnToGMMenu")
 
+
 pausescreenevents = PauseScreenEvents()
 mainmenuevents = MainMenuEvents()
 settingsevents = SettingsEvents()

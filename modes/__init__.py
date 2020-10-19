@@ -8,6 +8,8 @@ import cfg
 
 class GameMode():
 
+    modeType = "mode"
+
     def __init__(self, modeModule, modeId):
         super().__init__()
         self.idx = modeId
@@ -45,9 +47,10 @@ def loadGameMode(gameMode):
         return gameMode
 
 def init():
-    global gamemodes
+    global gamemodes, folder
     gamemodes = {}
-    for mode in [f.name for f in os.scandir(os.getcwd() + "\\modes\\")]:
+    folder = "//modes//"
+    for mode in [f.name for f in os.scandir(os.getcwd() + folder)]:
         if "_" not in mode:
             try:
                 module = importlib.import_module("modes." + mode)
