@@ -55,7 +55,7 @@ def installer(installType, dialog = "folder"):
                     message.showMessage("The chosen extension is not a folder or zip file.")
                     logger.addLog(installPathList[-1] + " is not a valid folder or .zip file, cannot be installed!", logger.loglevel["warning"])
                     return False
-            message.showMessage("Installed " + installType.modeType  + " " + installPathList[-1])
+            message.showMessage("Installed " + installType.modeType  + " " + installPathList[-1] + ". Please restart the game to use the new content.")
             logger.addLog(installType.modeType + " " + installPathList[-1] + " installed!", logger.loglevel["debug"])
             return True
         except Exception as e:

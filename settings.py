@@ -19,6 +19,7 @@ import resources
 import random
 import time
 import modes, levels, items
+import install
 
 x, y = director.window.width, director.window.height
 reswidth, resheight = [int(res) for res in cfg.resolution.split("x")]
@@ -296,12 +297,48 @@ class ExtensionSettings(layer.ColorLayer):
         self.y = int((y * 0.37) - (self.height / 2))
         self.active = self._active = False
 
-        miscInfo = Label("Coming Soon", anchor_x="center", anchor_y="center", font_size=35, multiline=True, width=(self.width * 0.8), align="center")
-        miscInfo.x = self.width / 2
-        miscInfo.y = self.height / 2
-        self.add(miscInfo)
+        gmLbl = Label("Installed Game Modes: " + str(len(modes.gamemodes)), font_size=25, anchor_x="center", anchor_y="center", color=(255, 255, 255, 255))
+        gmLbl.x = self.width / 2
+        gmLbl.y = self.height * 0.9
+        lvlLbl = Label("Installed Levels: " + str(len(levels.levels)), font_size=25, anchor_x="center", anchor_y="center", color=(255, 255, 255, 255))
+        lvlLbl.x = self.width / 2
+        lvlLbl.y = self.height * 0.7
+        itmpckLbl = Label("Installed Item Packs: " + str(len(items.itempacks)), font_size=25, anchor_x="center", anchor_y="center", color=(255, 255, 255, 255))
+        itmpckLbl.x = self.width / 2
+        itmpckLbl.y = self.height * 0.5
 
+        gmInstallFolder = elements.LargeButton("Install Folder", install.installer, eventparam = install.installTypes["mode"])
+        gmInstallFolder.x = self.width * 0.25
+        gminstallFolder.y = self.height * 0.8
+        gmInstallFile = elements.LargeButton("Install File", install.installer, eventparam = (install.installTypes["mode"], "file"))
+        gmInstallFile.x = self.width * 0.75
+        gmInstallFile.y = self.height * 0.8
+
+        lvlInstallFolder = elements.LargeButton("Install Folder", install.installer, eventparam = install.installTypes["level"])
+        lvlInstallFolder.x = self.width * 0.25
+        lvlInstallFolder.y = self.height * 0.6
+        lvlInstallFile = elements.LargeButton("Install File", install.installer, eventparam = (install.installTypes["level"], "file"))
+        lvlInstallFile.x = self.width * 0.75
+        lvlInstallFile.y = self.height * 0.6 
         
+        itmpckInstallFolder = elements.LargeButton("Install Folder", install.installer, eventparam = install.installTypes["itempack"])
+        itmpckInstallFolder.x = self.width * 0.25
+        itmpckInstallFolder.y = self.height * 0.4
+        itmpckInstallFile = elements.LargeButton("Install File", install.installer, eventparam = (install.installTypes["itempack"], "file"))
+        itmpckInstallFile.x = self.width * 0.75
+        itmpckInstallFile.y = self.height * 0.4
+
+        self.add(gmLbl)
+        self.add(lvlLbl)
+        self.add(itmpckLbl)
+        self.add(gmInstallFolder)
+        self.add(gmInstallFile)
+        self.add(lvlInstallFolder)
+        self.add(lvlInstallFile)
+        self.add(itmpckInstallFolder)
+        self.add(itmpckInstallFile)
+
+
     def showVideoScreen(self):
         if self.active:
             self.do(AccelDeccel(MoveTo((self.posright, self.y), duration = 0.5)))
@@ -339,7 +376,6 @@ class ExtensionSettings(layer.ColorLayer):
                 child.showing = value
 
 
-#TODO: Misc settings
 class MiscSettings(layer.ColorLayer):
 
     is_event_handler = True

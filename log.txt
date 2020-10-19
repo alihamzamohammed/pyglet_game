@@ -26408,3 +26408,15 @@ DEBUG: Error installing level ProgramOverflow.zip
 Exception:
 File <ZipInfo filename='ProgramOverflow.exe' compress_type=99 external_attr=0x20 file_size=579584 compress_size=573815> is encrypted, password required for extraction
 DEBUG: levelv4w-patcher-v1.1-release (1).zip installed!
+
+DEBUG: New execution, at: 2020-10-19 15:55:17.700473
+DEBUG: Init resources
+DEBUG: Starting game.
+DEBUG: Resolution is 1280x720
+DEBUG: Fullscreen is disabled
+DEBUG: Starting game loading!
+DEBUG: Init items
+INFO: Item pack Transparency Pack at path items//transparencyPack has no declared items.
+DEBUG: Init levels
+DEBUG: Init game modes
+DEBUG: Loading finished, displaying Main Menu
