@@ -289,7 +289,7 @@ class LargeButton(layer.Layer):
                 self.active = True
                 self.lbl.element.color = (0, 0, 0, 255)
                 if hasattr(self, "eventparam"):
-                    self.eventName(self.eventparam)
+                    self.eventName(*self.eventparam)
                 else:
                     self.eventName() 
                 self.active = False

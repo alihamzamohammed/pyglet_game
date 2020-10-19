@@ -26483,3 +26483,57 @@ DEBUG: Loading finished, displaying Main Menu
 DEBUG: mode pkg2zip_64bit installed!
 DEBUG: level pkg2zip_64bit installed!
 DEBUG: itempack pkg2zip_64bit installed!
+
+DEBUG: New execution, at: 2020-10-19 16:38:33.231153
+DEBUG: Init resources
+DEBUG: Starting game.
+DEBUG: Resolution is 1280x720
+DEBUG: Fullscreen is disabled
+DEBUG: Starting game loading!
+DEBUG: Init items
+INFO: Item pack Transparency Pack at path items//transparencyPack has no declared items.
+DEBUG: Init levels
+DEBUG: Init game modes
+DEBUG: Loading finished, displaying Main Menu
+WARNING: cfg.py is not a valid folder or .zip file, cannot be installed!
+WARNING: Rheingold 4.14.14 Standalone SDP 4.14.12 ISTA-P 3.65.2.000.rar is not a valid folder or .zip file, cannot be installed!
+WARNING: assets.txt is not a valid folder or .zip file, cannot be installed!
+
+DEBUG: New execution, at: 2020-10-19 16:41:10.833542
+DEBUG: Init resources
+DEBUG: Starting game.
+DEBUG: Resolution is 1280x720
+DEBUG: Fullscreen is disabled
+DEBUG: Starting game loading!
+DEBUG: Init items
+INFO: Item pack Transparency Pack at path items//transparencyPack has no declared items.
+DEBUG: Init levels
+DEBUG: Init game modes
+DEBUG: Loading finished, displaying Main Menu
+WARNING: assets.txt is not a valid folder or .zip file, cannot be installed!
+WARNING: elements.py is not a valid folder or .zip file, cannot be installed!
+
+DEBUG: New execution, at: 2020-10-19 16:41:58.422063
+DEBUG: Init resources
+DEBUG: Starting game.
+DEBUG: Resolution is 1280x720
+DEBUG: Fullscreen is disabled
+DEBUG: Starting game loading!
+DEBUG: Init items
+INFO: Item pack Transparency Pack at path items//transparencyPack has no declared items.
+DEBUG: Init levels
+DEBUG: Init game modes
+DEBUG: Loading finished, displaying Main Menu
+WARNING: cfg.py is not a valid folder or .zip file, cannot be installed!
+
+DEBUG: New execution, at: 2020-10-19 16:48:17.827653
+DEBUG: Init resources
+DEBUG: Starting game.
+DEBUG: Resolution is 1280x720
+DEBUG: Fullscreen is disabled
+DEBUG: Starting game loading!
+DEBUG: Init items
+INFO: Item pack Transparency Pack at path items//transparencyPack has no declared items.
+DEBUG: Init levels
+DEBUG: Init game modes
+DEBUG: Loading finished, displaying Main Menu
