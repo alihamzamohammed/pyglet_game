@@ -1,5 +1,8 @@
-import os
+import error
 import sys
+sys.excepthook = error.fatalError
+
+import os
 import pyglet
 import cocos
 from cocos.director import director

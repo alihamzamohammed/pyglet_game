@@ -26,11 +26,6 @@ def addLog(message, level=loglevel["info"], first=False):
             log.write("\n" + message)
             log.close()
 
-def fatalError(err):
-    if isinstance(err, Exception):
-        easygui.msgbox()
-        addLog("A fatal error has occured, and the game has crashed. The error message was:" + err + "\nAn error report will be available at: \n", loglevel["error"]) # TODO: Add logger stacktrace from provided Exception class
-
 def init():
     global logpath
     global loglevel
