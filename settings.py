@@ -306,7 +306,7 @@ class ExtensionSettings(layer.ColorLayer):
         itmpckLbl.x = self.width / 2
         itmpckLbl.y = self.height * 0.3
 
-        gmInstallFolder = elements.LargeButton("Install Folder", install.installer, eventparam = install.installTypes["mode"])
+        gmInstallFolder = elements.LargeButton("Install Folder", install.installer, eventparam = (install.installTypes["mode"], "folder"))
         gmInstallFolder.x = self.width * 0.25
         gmInstallFolder.y = self.height * 0.75
         gmInstallFolder.lbl.element.font_size = 12
@@ -315,7 +315,7 @@ class ExtensionSettings(layer.ColorLayer):
         gmInstallFile.y = self.height * 0.75
         gmInstallFile.lbl.element.font_size = 12
 
-        lvlInstallFolder = elements.LargeButton("Install Folder", install.installer, eventparam = install.installTypes["level"])
+        lvlInstallFolder = elements.LargeButton("Install Folder", install.installer, eventparam = (install.installTypes["level"], "folder"))
         lvlInstallFolder.x = self.width * 0.25
         lvlInstallFolder.y = self.height * 0.45
         lvlInstallFolder.lbl.element.font_size = 12
@@ -324,7 +324,7 @@ class ExtensionSettings(layer.ColorLayer):
         lvlInstallFile.y = self.height * 0.45
         lvlInstallFile.lbl.element.font_size = 12
         
-        itmpckInstallFolder = elements.LargeButton("Install Folder", install.installer, eventparam = install.installTypes["itempack"])
+        itmpckInstallFolder = elements.LargeButton("Install Folder", install.installer, eventparam = (install.installTypes["itempack"], "folder"))
         itmpckInstallFolder.x = self.width * 0.25
         itmpckInstallFolder.y = self.height * 0.15
         itmpckInstallFolder.lbl.element.font_size = 12

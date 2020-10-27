@@ -18,7 +18,7 @@ class Level():
         if "main.xml" in os.listdir(self.folder):
             self.main = os.path.join(self.folder, "main.xml")
         else:
-            raise LevelCorrupt("main.xml not found in Level " + self.folder + ", level will not be loaded!")
+            raise LevelCorrupt("main.xml not found in level " + self.folder + ", level will not be loaded!")
         try:
             self._lvl = et.parse(self.main)
         except et.ParseError:
