@@ -11,6 +11,7 @@ import items
 import cfg
 import logger
 import message
+import importlib
 
 installTypes = {"mode": modes.GameMode, "itempack": items.ItemPack, "level": levels.Level}
 
@@ -82,7 +83,8 @@ def installer(installType, dialog = "folder"):
         
             try:
                 if installType == modes.GameMode:
-                    modes.gamemodes[newExtensionName] = modes.GameMode(os.getcwd() + typeModule.folder + newExtensionName, newExtensionName)
+                    module = importlib.import_module("modes." + newExtensionName)
+                    modes.gamemodes[newExtensionName] = modes.GameMode(module, newExtensionName)
     
                 elif installType == items.ItemPack:
                     items.itempacks[newExtensionName] = items.ItemPack(os.getcwd() + typeModule.folder + newExtensionName, newExtensionName)
