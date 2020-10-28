@@ -35,14 +35,16 @@ def remove():
     director.scene.remove(message)
 
 def init():
-    global message
+    global message, currentAction
+    currentAction = None
     message = Message()
 
 def showMessage(text, duration = 3.5):
+    global currentAction
     if not message in director.scene.get_children():
         director.scene.add(message)
     if message.active:
+        message.remove_action(currentAction)
         message.do(message.hideAction)
     message.lbl.element.text = text
-    message.do(actions.CallFunc(message.activate) + message.showAction + actions.Delay(duration) + message.hideAction + actions.CallFunc(message.deactivate))# + actions.CallFunc(remove))
-
+    currentAction = message.do(actions.CallFunc(message.activate) + message.showAction + actions.Delay(duration) + message.hideAction + actions.CallFunc(message.deactivate))# + actions.CallFunc(remove))
