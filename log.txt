@@ -27186,3 +27186,21 @@ DEBUG: Init levels
 DEBUG: Init game modes
 DEBUG: Loading finished, displaying Main Menu
 DEBUG: mode freeplay2T installed!
+
+DEBUG: New execution, at: 2020-10-28 15:24:07.682414
+DEBUG: Init resources
+DEBUG: Starting game.
+DEBUG: Resolution is 1280x720
+DEBUG: Fullscreen is disabled
+DEBUG: Starting game loading!
+DEBUG: Init items
+INFO: Item pack Transparency Pack at path items//transparencyPack has no declared items.
+DEBUG: Init levels
+DEBUG: Init game modes
+DEBUG: Loading finished, displaying Main Menu
+DEBUG: mode freeplay2T installed!
+DEBUG: level testT installed!
+DEBUG: itempack bouncePackT installed!
+DEBUG: mode freeplay2Z installed!
+DEBUG: level testZ installed!
+DEBUG: itempack bouncePackZ installed!
