@@ -43,6 +43,7 @@ class ItemPack():
             for listreq in self.required:
                 for req in range(len(self.required[listreq])):
                     if not os.path.isfile(os.getcwd() + "\\" + self.folder + "\\" + self.required[listreq][req]):
+                        print(os.getcwd() + "\\" + self.folder + "\\" + self.required[listreq][req])
                         raise DependencyNotFound("File " + self.required[listreq][req] + " is not found, item pack " + self.folder + " will not be loaded!")
             
             if item.tag == "item" and item.text not in self.items:

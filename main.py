@@ -1,6 +1,4 @@
-import error
 import sys
-sys.excepthook = error.fatalError
 
 import os
 import pyglet
@@ -9,11 +7,14 @@ from cocos.director import director
 from cocos.scene import *
 from cocos.scenes import *
 from pyglet import event
-import events
 import cfg
 cfg.init()
 defaultconfigfile = "settings.ini"
 cfg.configRead(defaultconfigfile)
+if cfg.configuration["Debug"]["error"] == "False":
+    import error
+    sys.excepthook = error.fatalError
+import events
 import time
 import logger
 logger.init()

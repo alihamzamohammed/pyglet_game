@@ -27057,3 +27057,59 @@ DEBUG: Init game modes
 DEBUG: Loading finished, displaying Main Menu
 DEBUG: mode freeplay2T installed!
 WARNING: File bouncePack.py is not found, item pack c:\Users\alihamza\Documents\A Level\Computer Science\A Level Coursework\Coursework//items//bouncePackT will not be loaded!
+
+DEBUG: New execution, at: 2020-10-28 14:47:32.424835
+DEBUG: Init resources
+DEBUG: Starting game.
+DEBUG: Resolution is 1280x720
+DEBUG: Fullscreen is disabled
+DEBUG: Starting game loading!
+DEBUG: Init items
+INFO: Item pack Transparency Pack at path items//transparencyPack has no declared items.
+DEBUG: Init levels
+DEBUG: Init game modes
+DEBUG: Loading finished, displaying Main Menu
+WARNING: PlatformerController does not exist in game mode bouncePackT, game mode will not be loaded!
+DEBUG: mode freeplay2T installed!
+
+DEBUG: New execution, at: 2020-10-28 14:56:19.447531
+DEBUG: Init resources
+
+DEBUG: New execution, at: 2020-10-28 14:56:45.659230
+DEBUG: Init resources
+DEBUG: Starting game.
+DEBUG: Resolution is 1280x720
+DEBUG: Fullscreen is disabled
+DEBUG: Starting game loading!
+DEBUG: Init items
+INFO: Item pack Transparency Pack at path items//transparencyPack has no declared items.
+DEBUG: Init levels
+DEBUG: Init game modes
+DEBUG: Loading finished, displaying Main Menu
+WARNING: File bouncePack.py is not found, item pack c:\Users\alihamza\Documents\A Level\Computer Science\A Level Coursework\Coursework//items//bouncePackT will not be loaded!
+
+DEBUG: New execution, at: 2020-10-28 14:59:21.141669
+DEBUG: Init resources
+DEBUG: Starting game.
+DEBUG: Resolution is 1280x720
+DEBUG: Fullscreen is disabled
+DEBUG: Starting game loading!
+DEBUG: Init items
+INFO: Item pack Transparency Pack at path items//transparencyPack has no declared items.
+DEBUG: Init levels
+DEBUG: Init game modes
+DEBUG: Loading finished, displaying Main Menu
+DEBUG: level testT installed!
+DEBUG: itempack bouncePackT installed!
+
+DEBUG: New execution, at: 2020-10-28 15:09:26.605523
+DEBUG: Init resources
+DEBUG: Starting game.
+DEBUG: Resolution is 1280x720
+DEBUG: Fullscreen is disabled
+DEBUG: Starting game loading!
+DEBUG: Init items
+INFO: Item pack Transparency Pack at path items//transparencyPack has no declared items.
+DEBUG: Init levels
+DEBUG: Init game modes
+DEBUG: Loading finished, displaying Main Menu

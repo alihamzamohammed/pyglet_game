@@ -66,12 +66,12 @@ def installer(installType, dialog = "folder"):
             if os.path.isdir(installPath):
                 shutil.copytree(installPath, os.getcwd() + typeModule.folder + newExtensionName)
 
+                # DEBUG:
                 while os.path.getsize(os.getcwd() + typeModule.folder + newExtensionName) < os.path.getsize(os.getcwd() + typeModule.folder + newExtensionName):
                     print("copying")
                 
 
             else:
-        
                 if isZip:
                     with zipfile.ZipFile(installPath, "r") as zip_ref:
                         zip_ref.extractall(os.getcwd() + typeModule.folder + newExtensionName)
@@ -87,10 +87,10 @@ def installer(installType, dialog = "folder"):
                     modes.gamemodes[newExtensionName] = modes.GameMode(module, newExtensionName)
     
                 elif installType == items.ItemPack:
-                    items.itempacks[newExtensionName] = items.ItemPack(os.getcwd() + typeModule.folder + newExtensionName, newExtensionName)
+                    items.itempacks[newExtensionName] = items.ItemPack(typeModule.folder[2:] + newExtensionName, newExtensionName)
     
                 elif installType == levels.Level:
-                    levels.levels[newExtensionName] = levels.Level(os.getcwd() + typeModule.folder + newExtensionName, newExtensionName)
+                    levels.levels[newExtensionName] = levels.Level(typeModule.folder[2:] + newExtensionName, newExtensionName)
                 corrupt = False
             
             except modes.PlatformerControllerNotFound:
@@ -130,7 +130,7 @@ def installer(installType, dialog = "folder"):
             
             finally:
                 if corrupt:
-                    #shutil.rmtree(os.getcwd() + typeModule.folder + newExtensionName)
+                    shutil.rmtree(os.getcwd() + typeModule.folder + newExtensionName)
                     return False
 
             message.showMessage("Installed " + installType.modeType  + " " + newExtensionName + ". Please restart the game to use the new content.")

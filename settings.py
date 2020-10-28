@@ -423,6 +423,17 @@ class MiscSettings(layer.ColorLayer):
             self.add(debugLabel)
             self.add(debugButton)
 
+            errorLabel = Label("Error", font_size=25, anchor_x="left", anchor_y="center", color=(255, 255, 255, 255))
+            errorLabel.x = self.width * 0.05
+            errorLabel.y = self.height * 0.3
+            errorButton = SettingsToggleButton(cfg.configuration, section = "Debug", option = "error", restartGame = True)
+            errorButton.x = self.width * 0.9
+            errorButton.y = self.height * 0.3
+            self.add(errorLabel)
+            self.add(errorButton)
+
+
+
         self.add(controlsButton)
         self.add(controlsLabel)
         self.add(logLabel)
