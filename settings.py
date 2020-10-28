@@ -296,46 +296,46 @@ class ExtensionSettings(layer.ColorLayer):
         self.y = int((y * 0.37) - (self.height / 2))
         self.active = self._active = False
 
-        gmLbl = Label("Installed Game Modes: " + str(len(modes.gamemodes)), font_size=20, anchor_x="center", anchor_y="center", color=(255, 255, 255, 255))
-        gmLbl.x = self.width / 2
-        gmLbl.y = self.height * 0.9
-        lvlLbl = Label("Installed Levels: " + str(len(levels.levels)), font_size=20, anchor_x="center", anchor_y="center", color=(255, 255, 255, 255))
-        lvlLbl.x = self.width / 2
-        lvlLbl.y = self.height * 0.6
-        itmpckLbl = Label("Installed Item Packs: " + str(len(items.itempacks)), font_size=20, anchor_x="center", anchor_y="center", color=(255, 255, 255, 255))
-        itmpckLbl.x = self.width / 2
-        itmpckLbl.y = self.height * 0.3
+        self.gmLbl = Label("Installed Game Modes: " + str(len(modes.gamemodes)), font_size=20, anchor_x="center", anchor_y="center", color=(255, 255, 255, 255))
+        self.gmLbl.x = self.width / 2
+        self.gmLbl.y = self.height * 0.9
+        self.lvlLbl = Label("Installed Levels: " + str(len(levels.levels)), font_size=20, anchor_x="center", anchor_y="center", color=(255, 255, 255, 255))
+        self.lvlLbl.x = self.width / 2
+        self.lvlLbl.y = self.height * 0.6
+        self.itmpckLbl = Label("Installed Item Packs: " + str(len(items.itempacks)), font_size=20, anchor_x="center", anchor_y="center", color=(255, 255, 255, 255))
+        self.itmpckLbl.x = self.width / 2
+        self.itmpckLbl.y = self.height * 0.3
 
-        gmInstallFolder = elements.LargeButton("Install Folder", install.installer, eventparam = (install.installTypes["mode"], "folder"))
+        gmInstallFolder = elements.LargeButton("Install Folder", install.installer, eventparam = (install.installTypes["mode"], "folder"), responseTrue = self.refreshInstalled)
         gmInstallFolder.x = self.width * 0.25
         gmInstallFolder.y = self.height * 0.75
         gmInstallFolder.lbl.element.font_size = 12
-        gmInstallFile = elements.LargeButton("Install File", install.installer, eventparam = (install.installTypes["mode"], "file"))
+        gmInstallFile = elements.LargeButton("Install File", install.installer, eventparam = (install.installTypes["mode"], "file"), responseTrue = self.refreshInstalled)
         gmInstallFile.x = self.width * 0.75
         gmInstallFile.y = self.height * 0.75
         gmInstallFile.lbl.element.font_size = 12
 
-        lvlInstallFolder = elements.LargeButton("Install Folder", install.installer, eventparam = (install.installTypes["level"], "folder"))
+        lvlInstallFolder = elements.LargeButton("Install Folder", install.installer, eventparam = (install.installTypes["level"], "folder"), responseTrue = self.refreshInstalled)
         lvlInstallFolder.x = self.width * 0.25
         lvlInstallFolder.y = self.height * 0.45
         lvlInstallFolder.lbl.element.font_size = 12
-        lvlInstallFile = elements.LargeButton("Install File", install.installer, eventparam = (install.installTypes["level"], "file"))
+        lvlInstallFile = elements.LargeButton("Install File", install.installer, eventparam = (install.installTypes["level"], "file"), responseTrue = self.refreshInstalled)
         lvlInstallFile.x = self.width * 0.75
         lvlInstallFile.y = self.height * 0.45
         lvlInstallFile.lbl.element.font_size = 12
         
-        itmpckInstallFolder = elements.LargeButton("Install Folder", install.installer, eventparam = (install.installTypes["itempack"], "folder"))
+        itmpckInstallFolder = elements.LargeButton("Install Folder", install.installer, eventparam = (install.installTypes["itempack"], "folder"), responseTrue = self.refreshInstalled)
         itmpckInstallFolder.x = self.width * 0.25
         itmpckInstallFolder.y = self.height * 0.15
         itmpckInstallFolder.lbl.element.font_size = 12
-        itmpckInstallFile = elements.LargeButton("Install File", install.installer, eventparam = (install.installTypes["itempack"], "file"))
+        itmpckInstallFile = elements.LargeButton("Install File", install.installer, eventparam = (install.installTypes["itempack"], "file"), responseTrue = self.refreshInstalled)
         itmpckInstallFile.x = self.width * 0.75
         itmpckInstallFile.y = self.height * 0.15
         itmpckInstallFile.lbl.element.font_size = 12
 
-        self.add(gmLbl)
-        self.add(lvlLbl)
-        self.add(itmpckLbl)
+        self.add(self.gmLbl)
+        self.add(self.lvlLbl)
+        self.add(self.itmpckLbl)
         self.add(gmInstallFolder)
         self.add(gmInstallFile)
         self.add(lvlInstallFolder)
@@ -343,6 +343,10 @@ class ExtensionSettings(layer.ColorLayer):
         self.add(itmpckInstallFolder)
         self.add(itmpckInstallFile)
 
+    def refreshInstalled(self):
+        self.gmLbl.element.text = "Installed Game Modes: " + str(len(modes.gamemodes))
+        self.lvlLbl.element.text = "Installed Levels: " + str(len(levels.levels))
+        self.itmpckLbl.element.text = "Installed Item Packs: " + str(len(items.itempacks))
 
     def showVideoScreen(self):
         if self.active:

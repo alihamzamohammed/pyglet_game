@@ -250,6 +250,8 @@ class LargeButton(layer.Layer):
         self.active = active
         if "eventparam" in kwargs:
             self.eventparam = kwargs["eventparam"]
+        if "responseTrue" in kwargs:
+            self.responseTrue = kwargs["responseTrue"]
         self.bgImage = Sprite("largeButton.png")
         self.lbl = Label(label, anchor_x="center", anchor_y="center", dpi=110, font_size=16)
         self.width = self.bgImage.width
@@ -289,9 +291,11 @@ class LargeButton(layer.Layer):
                 self.active = True
                 self.lbl.element.color = (0, 0, 0, 255)
                 if hasattr(self, "eventparam"):
-                    self.eventName(*self.eventparam)
+                    response = self.eventName(*self.eventparam)
                 else:
-                    self.eventName() 
+                    response = self.eventName() 
+                if hasattr(self, "responseTrue") and response:
+                    self.responseTrue()
                 self.active = False
 
     def on_enter(self):
