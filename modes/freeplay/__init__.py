@@ -23,18 +23,13 @@ class PlatformerController(actions.Action):
     def start(self):
         import items as i
         for itemPack in cfg.loadedLevel.required["itempack"]:
-            print(itemPack)
             if "sourcecode" in i.itempacks[itemPack].required:
                 for ipSource in i.itempacks[itemPack].required["sourcecode"]:
-                    print(ipSource)
                     module = importlib.import_module("items." + i.itempacks[itemPack].idx + "." + ipSource[:-3])
-                    print(module)
                     if "bounce_modifier" in dir(module):
                         self.bounce = module.bounce_modifier(self.bounce)
-                        print(module.bounce_modifier)
                     if "move_modifier" in dir(module):
                         self.move = module.move_modifier(self.move)
-                        print(module.move_modifier)
 
 
         self.target.velocity = (0, 0)
