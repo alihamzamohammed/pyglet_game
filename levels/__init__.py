@@ -122,4 +122,4 @@ def init():
             except DependencyNotFound as e:
                 logger.addLog(e.message, logger.loglevel["warning"])
             except LevelDataCorrupt as e:
-                logger.addLog(e.message + "\n" + e.origEx, logger.loglevel["warning"])
+                logger.addLog(e.message + "\n" + str(e.origEx), logger.loglevel["warning"])
