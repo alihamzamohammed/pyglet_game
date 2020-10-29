@@ -59,7 +59,7 @@ class PlatformerController(actions.Action):
 
             if self.active:
                 vx = (keyboard[RIGHTKEY] - keyboard[LEFTKEY]) * self.MOVE_SPEED
-                #vx = self.move(keyboard[RIGHTKEY] - keyboard[LEFTKEY], self.MOVE_SPEED)
+                vx = self.move(vx)
 
                 if self.slowdownthreshold[0] < 0.9:
                     self.slowdownthreshold[0] += 0.1
@@ -92,7 +92,7 @@ class PlatformerController(actions.Action):
         vy += self.GRAVITY * dt
         vy = self.bounce(self.JUMP_SPEED, vy)
 
-        vx = self.move(vx)
+        #vx = self.move(vx)
         
         dx = vx * dt
         dy = vy * dt
