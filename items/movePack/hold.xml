@@ -1,0 +1,14 @@
+<?xml version="1.0" ?>
+<resource>
+    <imageatlas size="32x32" file="5x5s.png">
+        <image id="5x5si" offset="0,0" />
+    </imageatlas>
+    <tileset>
+        <tile id="5x5s">
+            <image ref="5x5si" />
+            <property name="move_multiplier" type="float" value="0" />
+            <property name="move_duration" type="int" value="3" />
+            <property name="sourcecode" type="unicode" value="movePack" />
+        </tile>
+    </tileset>
+</resource>
