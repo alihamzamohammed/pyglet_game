@@ -7,4 +7,5 @@
     <thumbnail></thumbnail>
     <required type="itempack">default</required>
     <required type="itempack">bouncePack</required>
+    <required type="itempack">movePack</required>
 </level>
