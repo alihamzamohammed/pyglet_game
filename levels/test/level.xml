@@ -14,7 +14,7 @@
     <requires file="items/movePack/2x3s.xml" namespace="2x3s" />
     <requires file="items/movePack/5x5s.xml" namespace="5x5s" />
     <requires file="items/movePack/0.2x5s.xml" namespace="0.2x5s" />
-    <requires file="items/movePack/0.5x3s.xml" namespace="0.5x3s"
+    <requires file="items/movePack/0.5x3s.xml" namespace="0.5x3s" />
     <requires file="items/movePack/hold.xml" namespace="hold" />
     <rectmap id="walls" origin="0,0,0" tile_size="32x32">
         <column>
@@ -1596,7 +1596,7 @@
         </column>
         <column>
             <cell tile="dirt:dirt" />>
-            <cell tile="2x3s:2x3s" />
+            <cell tile="grass:grass" />
             <cell />
             <cell />
             <cell tile="stone:stone" />
@@ -1702,16 +1702,16 @@
             <cell tile="5x5s:5x5s" />
             <cell />
             <cell />
-            <cell tile="0.2x5s" />
+            <cell tile="0.2x5s:0.2x5s" />
             <cell />
             <cell />
-            <cell tile="0.5x3s" />
+            <cell tile="0.5x3s:0.5x3s" />
+            <cell />
+            <cell />
+            <cell tile="2x3s:2x3s" />
             <cell />
             <cell />
             <cell tile="hold:hold" />
-            <cell />
-            <cell />
-            <cell tile="stone:stone" />
             <cell />
             <cell />
             <cell />
