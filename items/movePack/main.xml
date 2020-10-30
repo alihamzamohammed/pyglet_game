@@ -4,6 +4,7 @@
     <description>Includes placeable items that make players move faster or slower</description>
     <thumbnail>thumbnail.png</thumbnail>
     <required type="sourcecode">movePack.py</required>
+    <required type="sourcecode">movePackHold.py</required>
     
     <item>2x3s.xml</item>
     <item>2x5s.xml</item>
