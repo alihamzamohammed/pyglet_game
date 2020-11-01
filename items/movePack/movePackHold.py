@@ -32,7 +32,6 @@ def move_modifier(func):
                 newval = value
                 onTile = False
                 immuneTime = t.perf_counter()
-                print("immune 1 sec")
         
         newfunc = func(newval)
         return newfunc

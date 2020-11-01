@@ -3,7 +3,6 @@ import time as t
 
 DOWN = (0, -2) # Custom DOWN value taking into account double block height of player sprite
 
-#    #DEBUG:
 
 onTile = False
 currentTime = 0

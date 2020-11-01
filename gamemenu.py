@@ -61,7 +61,7 @@ class LevelMenu(Scene):
         self.chosenBox.do(AccelDeccel(MoveTo((self.chosenBox.x, resheight * 0.89), 2)))
         self.playButton = mediumButton("PLAY!", events.gamemenuevents.onPlayButtonClick)
         self.playButton.x = reswidth * 0.9
-        self.playButton.y = resheight * -0.1
+        self.playButton.y = -(self.playButton.bgImage.height / 2)
         self.add(self.playButton)
         self.playButton.show()
 
@@ -113,7 +113,7 @@ class LevelMenu(Scene):
 
 
     def LevelChosen(self, level):
-        self.playButton.do(AccelDeccel(MoveTo((self.playButton.x, resheight * 0.1), duration = 2)))
+        self.playButton.do(AccelDeccel(MoveTo((self.playButton.x, resheight * 0.1), duration = 1.5)))
         levels.levelLoad(level.idx)
 
     
