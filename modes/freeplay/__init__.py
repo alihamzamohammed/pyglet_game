@@ -87,7 +87,6 @@ class PlatformerController(actions.Action):
         vy += self.GRAVITY * dt
         vy = self.bounce(self.JUMP_SPEED, vy)
 
-        #vx = self.move(vx)
         
         dx = vx * dt
         dy = vy * dt

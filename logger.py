@@ -18,6 +18,8 @@ def addLog(message, level=loglevel["info"], first=False):
             message = "DEBUG: " + message
         else:
             return
+    if cfg.configuration["Debug"]["times"] == "True":
+        message = str(datetime.datetime.time(datetime.datetime.now())) + " " + message
     if first == True:
         message = "\n" + message
     print(message)

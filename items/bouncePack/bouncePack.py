@@ -17,21 +17,4 @@ def bounce_modifier(func):
     
     return bounce
 
-#    #DEBUG:
-#
-#def move_modifier(func):
-#
-#    def move(value):
-#        newval = value
-#        if rn.tilemap_walls.get_neighbor(rn.tilemap_walls.get_at_pixel(rn.player.x, rn.player.y), DOWN).tile is not None:
-#            if "sourcecode" in rn.tilemap_walls.get_neighbor(rn.tilemap_walls.get_at_pixel(rn.player.x, rn.player.y), DOWN).tile.properties:
-#                if rn.tilemap_walls.get_neighbor(rn.tilemap_walls.get_at_pixel(rn.player.x, rn.player.y), DOWN).tile.properties["sourcecode"] == "bouncePack":
-#                    newval = newval * 2
-#        
-#        newfunc = func(newval)
-#        return newfunc
-#
-#    return move
-            
-
 # TODO: This sorce code will also contain custom sound effects.

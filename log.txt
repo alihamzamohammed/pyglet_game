@@ -27765,3 +27765,89 @@ INFO: Item pack Transparency Pack at path items//transparencyPack has no declare
 DEBUG: Init levels
 DEBUG: Init game modes
 DEBUG: Loading finished, displaying Main Menu
+
+DEBUG: New execution, at: 2020-11-01 20:50:54.859961
+DEBUG: Init resources
+DEBUG: Starting game.
+DEBUG: Resolution is 1280x720
+DEBUG: Fullscreen is disabled
+DEBUG: Starting game loading!
+DEBUG: Init items
+INFO: Item pack Transparency Pack at path items//transparencyPack has no declared items.
+DEBUG: Init levels
+DEBUG: Init game modes
+DEBUG: Loading finished, displaying Main Menu
+INFO: Multiplayer not yet implemented!
+INFO: Multiplayer not yet implemented!
+
+DEBUG: New execution, at: 2020-11-01 20:52:45.941937
+DEBUG: Init resources
+DEBUG: Starting game.
+DEBUG: Resolution is 1280x720
+DEBUG: Fullscreen is disabled
+DEBUG: Starting game loading!
+DEBUG: Init items
+INFO: Item pack Transparency Pack at path items//transparencyPack has no declared items.
+DEBUG: Init levels
+DEBUG: Init game modes
+DEBUG: Loading finished, displaying Main Menu
+
+DEBUG: New execution, at: 2020-11-01 20:52:56.592012
+DEBUG: Init resources
+DEBUG: Starting game.
+DEBUG: Resolution is 1280x720
+DEBUG: Fullscreen is disabled
+DEBUG: Starting game loading!
+DEBUG: Init items
+INFO: Item pack Transparency Pack at path items//transparencyPack has no declared items.
+DEBUG: Init levels
+DEBUG: Init game modes
+DEBUG: Loading finished, displaying Main Menu
+
+DEBUG: New execution, at: 2020-11-01 20:55:18.964001
+DEBUG: Init resources
+DEBUG: Starting game.
+DEBUG: Resolution is 1920x1080
+DEBUG: Fullscreen is enabled
+DEBUG: Starting game loading!
+DEBUG: Init items
+INFO: Item pack Transparency Pack at path items//transparencyPack has no declared items.
+DEBUG: Init levels
+DEBUG: Init game modes
+DEBUG: Loading finished, displaying Main Menu
+
+15:05:43.766462 DEBUG: New execution, at: 2020-11-02 15:05:43.766462
+15:05:43.833071 DEBUG: Init resources
+15:05:44.285512 DEBUG: Starting game.
+15:05:44.287477 DEBUG: Resolution is 1280x720
+15:05:44.288477 DEBUG: Fullscreen is disabled
+15:05:44.290471 DEBUG: Starting game loading!
+15:05:44.291467 DEBUG: Init items
+15:05:44.315405 INFO: Item pack Transparency Pack at path items//transparencyPack has no declared items.
+15:05:44.322385 DEBUG: Init levels
+15:05:44.345322 DEBUG: Init game modes
+15:05:44.378235 DEBUG: Loading finished, displaying Main Menu
+
+15:06:51.032813 DEBUG: New execution, at: 2020-11-02 15:06:51.032813
+15:06:51.075700 DEBUG: Init resources
+15:06:51.462664 DEBUG: Starting game.
+15:06:51.464659 DEBUG: Resolution is 1280x720
+15:06:51.465656 DEBUG: Fullscreen is disabled
+15:06:51.466653 DEBUG: Starting game loading!
+15:06:51.467650 DEBUG: Init items
+15:06:51.493583 INFO: Item pack Transparency Pack at path items//transparencyPack has no declared items.
+15:06:51.498567 DEBUG: Init levels
+15:06:51.523501 DEBUG: Init game modes
+15:06:51.549441 DEBUG: Loading finished, displaying Main Menu
+
+DEBUG: New execution, at: 2020-11-02 15:07:27.322751
+DEBUG: Init resources
+DEBUG: Starting game.
+DEBUG: Resolution is 1280x720
+DEBUG: Fullscreen is disabled
+DEBUG: Starting game loading!
+DEBUG: Init items
+INFO: Item pack Transparency Pack at path items//transparencyPack has no declared items.
+DEBUG: Init levels
+DEBUG: Init game modes
+DEBUG: Loading finished, displaying Main Menu

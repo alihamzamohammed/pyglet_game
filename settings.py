@@ -436,6 +436,14 @@ class MiscSettings(layer.ColorLayer):
             self.add(errorLabel)
             self.add(errorButton)
 
+            timesLabel = Label("Execution Times", font_size=25, anchor_x="left", anchor_y="center", color=(255, 255, 255, 255))
+            timesLabel.x = self.width * 0.05
+            timesLabel.y = self.height * 0.1
+            timesButton = SettingsToggleButton(cfg.configuration, section = "Debug", option = "times", restartGame = True)
+            timesButton.x = self.width * 0.9
+            timesButton.y = self.height * 0.1
+            self.add(timesLabel)
+            self.add(timesButton)
 
 
         self.add(controlsButton)
