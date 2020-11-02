@@ -1,22 +1,29 @@
 A fatal error has occured, and the game has crashed.
 
 ERROR REPORT: 
-The error message was: <class 'SyntaxError'>
+The error message was: <class 'AttributeError'>
 Error details:
-SyntaxError('invalid syntax', ('<input>', 1, 4, '---\n'))
+AttributeError("module 'datetime' has no attribute 'datetimejfjfj'")
 Stacktrace:
 Traceback (most recent call last):
-  File "C:\Users\alihamza\AppData\Local\Programs\Python\Python37-32\lib\code.py", line 63, in runsource
-    code = self.compile(source, filename, symbol)
-  File "C:\Users\alihamza\AppData\Local\Programs\Python\Python37-32\lib\codeop.py", line 168, in __call__
-    return _maybe_compile(self.compiler, source, filename, symbol)
-  File "C:\Users\alihamza\AppData\Local\Programs\Python\Python37-32\lib\codeop.py", line 99, in _maybe_compile
-    raise err1
-  File "C:\Users\alihamza\AppData\Local\Programs\Python\Python37-32\lib\codeop.py", line 87, in _maybe_compile
-    code1 = compiler(source + "\n", filename, symbol)
-  File "C:\Users\alihamza\AppData\Local\Programs\Python\Python37-32\lib\codeop.py", line 133, in __call__
-    codeob = compile(source, filename, symbol, self.flags, 1)
-  File "<input>", line 1
-    ---
-      ^
-SyntaxError: invalid syntax
+  File "C:\Users\alihamza\AppData\Local\Programs\Python\Python37-32\lib\runpy.py", line 193, in _run_module_as_main
+    "__main__", mod_spec)
+  File "C:\Users\alihamza\AppData\Local\Programs\Python\Python37-32\lib\runpy.py", line 85, in _run_code
+    exec(code, run_globals)
+  File "c:\Users\alihamza\.vscode\extensions\ms-python.python-2020.3.71659\pythonFiles\lib\python\debugpy\wheels\debugpy\__main__.py", line 45, in <module>
+    cli.main()
+  File "c:\Users\alihamza\.vscode\extensions\ms-python.python-2020.3.71659\pythonFiles\lib\python\debugpy\wheels\debugpy/..\debugpy\server\cli.py", line 429, in main
+    run()
+  File "c:\Users\alihamza\.vscode\extensions\ms-python.python-2020.3.71659\pythonFiles\lib\python\debugpy\wheels\debugpy/..\debugpy\server\cli.py", line 266, in run_file
+    runpy.run_path(options.target, run_name=compat.force_str("__main__"))
+  File "C:\Users\alihamza\AppData\Local\Programs\Python\Python37-32\lib\runpy.py", line 263, in run_path
+    pkg_name=pkg_name, script_name=fname)
+  File "C:\Users\alihamza\AppData\Local\Programs\Python\Python37-32\lib\runpy.py", line 96, in _run_module_code
+    mod_name, mod_spec, pkg_name, script_name)
+  File "C:\Users\alihamza\AppData\Local\Programs\Python\Python37-32\lib\runpy.py", line 85, in _run_code
+    exec(code, run_globals)
+  File "C:\Users\alihamza\Documents\A Level\Computer Science\A Level Coursework\Coursework\main.py", line 20, in <module>
+    logger.init()
+  File "C:\Users\alihamza\Documents\A Level\Computer Science\A Level Coursework\Coursework\logger.py", line 36, in init
+    addLog("New execution, at: " + str(datetime.datetimejfjfj.now()), loglevel["debug"], True)
+AttributeError: module 'datetime' has no attribute 'datetimejfjfj'
