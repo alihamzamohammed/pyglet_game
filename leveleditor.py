@@ -23,3 +23,6 @@ class LevelEditor(Scene):
     def __init__(self, level):
         super().__init__()
         self.levelArray = loadLevel(level)
+
+# * cocos.tiles.load has a function names save_xml(), which saves the loaded folder to xml
+# * Along with the ability to change the shown tile directly on the layer and have it reflect in the game, this can be used for level editor
