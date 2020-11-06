@@ -8,6 +8,7 @@
             <image ref="holdi" />
             <property name="move_multiplier" type="float" value="0" />
             <property name="move_duration" type="int" value="3" />
+            <property name="bounce_multiplier" type="float" value="0" />
             <property name="sourcecode" type="unicode" value="movePack" />
         </tile>
     </tileset>

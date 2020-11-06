@@ -40,6 +40,22 @@ def move_modifier(func):
         return newfunc
 
     return move
-            
+
+def bounce_modifier(func):
+
+    def bounce(value, orig):
+        global onTile
+        newval = value
+        
+        if onTile:
+            multiplier = rn.tilemap_walls.get_neighbor(rn.tilemap_walls.get_at_pixel(rn.player.x, rn.player.y), DOWN).tile.properties["bounce_multiplier"]
+            newval = newval * multiplier
+
+        newfunc = func(newval, orig)
+
+        return newfunc
+    
+    return bounce
+
 
 # TODO: This sorce code will also contain custom sound effects.
