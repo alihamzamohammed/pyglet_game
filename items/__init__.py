@@ -24,6 +24,7 @@ class ItemPack():
             raise ItemPackCorrupt("main.xml in item pack " + self.folder + " is corrupt, item pack will not be loaded!")
         self.tags = {}
         self.items = []
+        self.item_data = {}
         for item in list(self._itm.getroot()):
             
             if item.tag == "name":
@@ -64,12 +65,18 @@ class ItemPack():
         
         if self.items == []:
             logger.addLog("Item pack " + self.name + " at path " + self.folder + " has no declared items.", logger.loglevel["info"])
-        
+        else:
+            for itempath in self.items:
+                res = cocos.tiles.load_tiles(self.folder + "\\" + itempath)
+                self.item_data[itempath[:-4]] = res.contents[None][itempath[:-4]]        
+
         if not hasattr(self, "background"):
             self.background = (100, 120, 150, 255)
 
     def __str__(self):
         return self.name
+
+
 
 class ItemPackCorrupt(Exception):
     
@@ -84,7 +91,7 @@ class DependencyNotFound(Exception):
         self.message = message
 
 # ?: Custom code delcared here for specific items that instantiate a class, such as trampoline needs to override existing code from the game mode to implement new functionality.
-# ?: One way in which this could be done is through decorators, but this will need thorough research in order to implement properly.
+# ?: One way in which this could be done is through decorators, but this will need thorough research in order to implement properly.    
 
 def init():
     global itempacks, folder
