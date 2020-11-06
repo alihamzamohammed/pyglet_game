@@ -25,6 +25,8 @@ class ItemPack():
         self.tags = {}
         self.items = []
         self.item_data = {}
+        self.item_res = {}
+
         for item in list(self._itm.getroot()):
             
             if item.tag == "name":
@@ -62,12 +64,13 @@ class ItemPack():
         
         if not hasattr(self, "desc"):
             self.desc = "No description"
-        
+
         if self.items == []:
             logger.addLog("Item pack " + self.name + " at path " + self.folder + " has no declared items.", logger.loglevel["info"])
         else:
             for itempath in self.items:
                 res = cocos.tiles.load_tiles(self.folder + "\\" + itempath)
+                self.item_res[itempath[:-4]] = res
                 self.item_data[itempath[:-4]] = res.contents[None][itempath[:-4]]        
 
         if not hasattr(self, "background"):
