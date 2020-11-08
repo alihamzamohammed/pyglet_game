@@ -68,6 +68,8 @@ class Game(object):
 
     def multiplayerButtonClicked(self):
         logger.addLog("Multiplayer not yet implemented!")
+        import leveleditor
+        director.replace(leveleditor.LevelEditor(levels.levels["test"]))
 
     def settingsButtonClicked(self):
         director.replace(FadeTransition(settings.SettingsScreen(), duration = 1, color = (0, 0, 0)))
