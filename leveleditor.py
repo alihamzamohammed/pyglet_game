@@ -1,6 +1,7 @@
 import pyglet
 import cocos
-from cocos import tiles, text, sprite, layer, scene
+from cocos import tiles, text, sprite, layer, scene, batch
+from cocos.director import director
 import xml.etree.ElementTree as et
 import levels
 import items
@@ -16,6 +17,22 @@ class LevelNotFound(Exception):
         super().__init__(*args, **kwargs)
         self.message = message
 
+class GridCellSprite(layer.Layer):
+
+    is_event_handler = True
+
+    def __init__(self):
+        super().__init__()
+        self.bgImage = sprite.Sprite()
+        self.add(self.bgImage)
+
+    def on_mouse_motion(self, x, y, dx, dy):
+        print("hello")
+        #if self.contains(x, y):
+         #   self.image = pyglet.resource.image("leveleditorItemHovered.png")
+          #  print(x, y)
+
+
 class LevelEditor(scene.Scene):
 
     is_event_handler = True
@@ -30,18 +47,21 @@ class LevelEditor(scene.Scene):
         self.tilemap_walls = self.levelData["walls"]
         
         self.gridLayer = layer.ScrollableLayer()
-        grid = []
-
+        self.gridList = []
+        self.gridBatch = batch.BatchNode()
+        self.gridLayer.add(self.gridBatch)
         ## ! Impelentation Inefficient
         #column, cell = 0
-        ##for column in self.tilemap_walls.cells:
-        ##    for cell in column:
-        ##        gridCell = sprite.Sprite("leveleditorItemClicked.png")
-        ##        gridCell.x = (cell.i * 32) - 16
-        ##        gridCell.y = (cell.j * 32) - 16
-        ##        gridCell.opacity = 0.5
-        ##        self.gridLayer.add(gridCell)
-             #   cell +=1
+        #for column in self.tilemap_walls.cells:
+        #    self.gridList.append([])
+        #    for cell in column:
+        #        gridCell = GridCellSprite("leveleditorItemClicked.png")
+        #        gridCell.x = ((cell.i + 1) * 32) - 16
+        #        gridCell.y = ((cell.j + 1) * 32) - 16
+        #        gridCell.opacity = 100
+        #        self.gridBatch.add(gridCell)
+        #        self.gridList[cell.i].append(gridCell)
+           #   cell +=1
             #column += 1
 
         self.scroller = layer.ScrollingManager()
@@ -55,8 +75,8 @@ class LevelEditor(scene.Scene):
         self.add(self.scroller)
 
     def on_mouse_motion(self, x, y, dx, dy):
-        pass
-
+        self.gridList[(x // 32) - 1][(y // 32) - 1].image(pyglet.resource.image("leveleditorItemHovered.png"))
+        print((x//32)-1, (y//32)-1)
 
 # * cocos.tiles.load has a function names save_xml(), which saves the loaded folder to xml
 # * Along with the ability to change the shown tile directly on the layer and have it reflect in the game, this can be used for level editor
