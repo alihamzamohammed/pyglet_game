@@ -102,8 +102,8 @@ class Game(object):
     # PROBLEM: This may be able to be done through actions, which colorise the cell when the mouse hovers over it.
     # PROBLEM: However, a way to implement a grid needs to be found. 
     # BUG: Too many sprites added, even with batches, causes fps drop
-    #def leveleditorButtonClicked(self):
-     #   director.replace(FadeTransition(leveleditor.LevelEditor(level), duration = 1, color = (0, 0, 0)))
+    #DEBUG def leveleditorButtonClicked(self):
+    # DEBUG    director.replace(FadeTransition(leveleditor.LevelEditor(level), duration = 1, color = (0, 0, 0)))
 
 
     def __init__(self):
