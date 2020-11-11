@@ -128,13 +128,22 @@ class LevelEditor(scene.Scene):
         self.scroller.add(self.tilemap_decorations, z=-1)
         self.scroller.add(self.tilemap_walls, z=0)
         self.gridLayer = LevelGridLayer(walls=self.tilemap_walls, decorations=self.tilemap_decorations, scroller=self.scroller, level=self.level)#layer.ScrollableLayer()
-        self.scroller.add(self.gridLayer, z=2)
+        self.scroller.add(self.gridLayer, z=1)
         self.scroller.add(self.bgLayer, z=-5)
 
-        self.add(self.scroller)
+        self.scrollerParent = layer.ColorLayer(0, 0, 0, 0, width=int(reswidth), height=int(resheight * 0.8))
+        self.scrollerParent.x = reswidth / 2
+        self.scrollerParent.y = resheight / 2
+        self.scrollerParent.add(self.scroller)
+        self.add(self.scrollerParent)
         
         self.intro = self.LevelIntro("Level Editor", self.level.name, 0, 0, 0, 0)
-        self.add(self.intro, z=2)
+        self.add(self.intro, z=3)
+
+        self.headerLayer = layer.ColorLayer(0, 0, 0, 75, width=int(reswidth), height=int(resheight * 0.1))
+        self.headerLayer.x = 0
+        self.headerLayer.y = resheight - self.headerLayer.height
+        self.add(self.headerLayer, z=2)
 
         self.intro.do(cocos.actions.FadeIn(0.1) + cocos.actions.Delay(3) + cocos.actions.FadeOut(1))
         self.intro.title.do(cocos.actions.FadeOut(0.1) + cocos.actions.Delay(0.5) + cocos.actions.FadeIn(0.5) + cocos.actions.Delay(1.5) + cocos.actions.FadeOut(1))
