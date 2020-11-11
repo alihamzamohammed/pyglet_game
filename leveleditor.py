@@ -42,7 +42,7 @@ class LevelGridLayer(layer.ScrollableLayer):
                 gridCell.y = ((cell.j + 1) * 32) - 16
                 #gridCell.opacity = 100
                 self.gridBatch.add(gridCell)
-                self.gridList[cell.i].append(gridCell)
+                self.gridList[cell.i].append([gridCell, False])
            #   cell +=1
         self.add(self.gridBatch)
             #column += 1
@@ -51,10 +51,16 @@ class LevelGridLayer(layer.ScrollableLayer):
         x, y = self.scroller.screen_to_world(x, y)
         #print(x // 32, y // 32)
         try:
+            #if self.gridList[x // 32][y // 32][1]:
             if self.hovered is not None:
-                self.hovered.image = pyglet.resource.image("leveleditorItem.png")
-            self.gridList[x // 32][y // 32].image = pyglet.resource.image("leveleditorItemHovered.png")
-            self.hovered = self.gridList[x // 32][y // 32]
+                self.hovered.image = (pyglet.resource.image("leveleditorItemClicked.png") if self.gridList[x // 32][y // 32][1] else pyglet.resource.image("leveleditorItem.png"))
+            self.gridList[x // 32][y // 32][0].image = pyglet.resource.image("leveleditorItemHovered.png")
+            self.hovered = self.gridList[x // 32][y // 32][0]
+            #else:
+            #    if self.hovered is not None:
+            #        self.hovered.image = pyglet.resource.image("leveleditorItem.png")
+            #    self.gridList[x // 32][y // 32][0].image = pyglet.resource.image("leveleditorItemHovered.png")
+            #    self.hovered = self.gridList[x // 32][y // 32][0]
         except IndexError:
             pass
 
@@ -62,10 +68,16 @@ class LevelGridLayer(layer.ScrollableLayer):
         x, y = self.scroller.screen_to_world(x, y)
         #print(x // 32, y // 32)
         try:
-            self.gridList[x // 32][y // 32].image = pyglet.resource.image("leveleditorItemClicked.png")
-            self.selected.append(self.gridList[x // 32][y // 32])
+            if self.gridList[x // 32][y // 32][1]:
+                self.gridList[x // 32][y // 32][0].image = pyglet.resource.image("leveleditorItem.png")
+                self.gridList[x // 32][y // 32][1] = False
+            else:
+                self.gridList[x // 32][y // 32][0].image = pyglet.resource.image("leveleditorItemClicked.png")
+                self.gridList[x // 32][y // 32][1] = True
+            #self.selected.append(self.gridList[x // 32][y // 32][0])
+            #self.gridList[x // 32][y // 32][1] = not self.gridList[x // 32][y // 32][1]
         except IndexError:
-            pass
+            raise#pass
 
 class LevelEditor(scene.Scene):
 
