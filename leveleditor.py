@@ -52,8 +52,8 @@ class LevelGridLayer(layer.ScrollableLayer):
         print(x // 32, y // 32)
         try:
             if self.hovered is not None:
-                self.hovered.image = pyglet.resource.image("leveleditorItemClicked.png")
-            self.gridList[x // 32][y // 32].image = pyglet.resource.image("leveleditorItem.png")
+                self.hovered.image = pyglet.resource.image("leveleditorItem.png")
+            self.gridList[x // 32][y // 32].image = pyglet.resource.image("leveleditorItemHovered.png")
             self.hovered = self.gridList[x // 32][y // 32]
         except IndexError:
             pass
