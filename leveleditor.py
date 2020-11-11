@@ -54,12 +54,12 @@ class LevelGridLayer(layer.ScrollableLayer):
             cell = self.gridList[x // 32][y // 32]
             #if self.gridList[x // 32][y // 32][1]:
             if self.hovered is not None:
-                if cell[1]:
-                    self.hovered.image = pyglet.resource.image("leveleditorItemClicked.png")
+                if self.hovered[1]:
+                    self.hovered[0].image = pyglet.resource.image("leveleditorItemClicked.png")
                 else:
-                    self.hovered.image = pyglet.resource.image("leveleditorItem.png")
+                    self.hovered[0].image = pyglet.resource.image("leveleditorItem.png")
             cell[0].image = pyglet.resource.image("leveleditorItemHovered.png")
-            self.hovered = cell[0]
+            self.hovered = cell
             #else:
             #    if self.hovered is not None:
             #        self.hovered.image = pyglet.resource.image("leveleditorItem.png")
