@@ -17,33 +17,44 @@ class LevelNotFound(Exception):
         super().__init__(*args, **kwargs)
         self.message = message
 
-class GridLayer(layer.ScrollableLayer):
+class LevelGridLayer(layer.ScrollableLayer):
 
     is_event_handler = True
 
-    def __init__(self, parallax=1, *args):
+    def __init__(self, parallax=1, **kwargs):
         super().__init__(parallax=parallax)
         self.gridList = []
         self.gridBatch = batch.BatchNode()
+        self.scroller = kwargs["scroller"]
+        self.level = kwargs["level"]
+        self.walls = kwargs["walls"]
+        self.decorations = kwargs["decorations"]
         #self.add(self.gridBatch)
         ## ! Impelentation Inefficient
         #column, cell = 0
-        #for column in args[0].cells[:1]:
-        #    self.gridList.append([])
-        #    for cell in column:
-        #        gridCell = sprite.Sprite("leveleditorItemClicked.png")
-        #        gridCell.x = ((cell.i + 1) * 32) - 16
-        #        gridCell.y = ((cell.j + 1) * 32) - 16
-        #        gridCell.opacity = 100
-        #        self.gridBatch.add(gridCell)
-        #        self.gridList[cell.i].append(gridCell)
-        #   #   cell +=1
+        for column in kwargs["walls"].cells[:1]:
+            self.gridList.append([])
+            for cell in column:
+                gridCell = sprite.Sprite("leveleditorItemClicked.png")
+                gridCell.x = ((cell.i + 1) * 32) - 16
+                gridCell.y = ((cell.j + 1) * 32) - 16
+                gridCell.opacity = 100
+                self.gridBatch.add(gridCell)
+                self.gridList[cell.i].append(gridCell)
+           #   cell +=1
+        self.add(self.gridBatch)
             #column += 1
 
     def on_mouse_motion(self, x, y, dx, dy):
-        self.gridList[(x // 32) - 1][(y // 32) - 1].image(pyglet.resource.image("leveleditorItemHovered.png"))
-        print((x//32)-1, (y//32)-1)
-        #self.level.set_dirty()
+        #print(self.scroller.screen_to_world(x, y))
+        x, y = self.scroller.screen_to_world(x, y)
+        print(x // 32, y // 32)
+        try:
+            self.gridList[(x // 32) - 1][(y // 32) - 1].image = pyglet.resource.image("leveleditorItemHovered.png")
+        except IndexError:
+            pass
+        finally:
+            self.walls.set_dirty()
 
 class LevelEditor(scene.Scene):
 
@@ -58,13 +69,14 @@ class LevelEditor(scene.Scene):
         self.tilemap_decorations = self.levelData["decorations"]
         self.tilemap_walls = self.levelData["walls"]
         
-        self.gridLayer = GridLayer(self.tilemap_walls, self.tilemap_decorations)#layer.ScrollableLayer()
         self.scroller = layer.ScrollingManager()
+        
         self.scroller.scale = 0.8
         self.scroller.x = 0
         self.scroller.y = 0
         self.scroller.add(self.tilemap_decorations, z=-1)
         self.scroller.add(self.tilemap_walls, z=0)
+        self.gridLayer = LevelGridLayer(walls=self.tilemap_walls, decorations=self.tilemap_decorations, scroller=self.scroller, level=self.level)#layer.ScrollableLayer()
         self.scroller.add(self.gridLayer, z=2)
 
         self.add(self.scroller)
