@@ -31,28 +31,20 @@ class LevelGridLayer(layer.ScrollableLayer):
         self.decorations = kwargs["decorations"]
         self.hovered = None
         self.selected = []
-        #self.add(self.gridBatch)
-        ## ! Impelentation Inefficient
-        #column, cell = 0
-        for column in kwargs["walls"].cells[:20]:
+        for column in kwargs["walls"].cells:
             self.gridList.append([])
             for cell in column:
                 gridCell = sprite.Sprite("leveleditorItem.png")
                 gridCell.x = ((cell.i + 1) * 32) - 16
                 gridCell.y = ((cell.j + 1) * 32) - 16
-                #gridCell.opacity = 100
                 self.gridBatch.add(gridCell)
                 self.gridList[cell.i].append([gridCell, False])
-           #   cell +=1
         self.add(self.gridBatch)
-            #column += 1
 
     def on_mouse_motion(self, x, y, dx, dy):
         x, y = self.scroller.screen_to_world(x, y)
-        #print(x // 32, y // 32)
         try:
             cell = self.gridList[x // 32][y // 32]
-            #if self.gridList[x // 32][y // 32][1]:
             if self.hovered is not None:
                 if self.hovered[1]:
                     self.hovered[0].image = pyglet.resource.image("leveleditorItemClicked.png")
@@ -60,17 +52,11 @@ class LevelGridLayer(layer.ScrollableLayer):
                     self.hovered[0].image = pyglet.resource.image("leveleditorItem.png")
             cell[0].image = pyglet.resource.image("leveleditorItemHovered.png")
             self.hovered = cell
-            #else:
-            #    if self.hovered is not None:
-            #        self.hovered.image = pyglet.resource.image("leveleditorItem.png")
-            #    self.gridList[x // 32][y // 32][0].image = pyglet.resource.image("leveleditorItemHovered.png")
-            #    self.hovered = self.gridList[x // 32][y // 32][0]
         except IndexError:
             pass
 
     def on_mouse_press(self, x, y, buttons, modifiers):
         x, y = self.scroller.screen_to_world(x, y)
-        #print(x // 32, y // 32)
         try:
             if self.hovered[1]:
                 self.hovered[0].image = pyglet.resource.image("leveleditorItem.png")
@@ -78,8 +64,6 @@ class LevelGridLayer(layer.ScrollableLayer):
             else:
                 self.hovered[0].image = pyglet.resource.image("leveleditorItemClicked.png")
                 self.hovered[1] = True
-            #self.selected.append(self.gridList[x // 32][y // 32][0])
-            #self.gridList[x // 32][y // 32][1] = not self.gridList[x // 32][y // 32][1]
         except IndexError:
             pass
 
@@ -124,3 +108,4 @@ class LevelEditor(scene.Scene):
 # * This check can be done when an item is changed on the level 
 
 # ! Cocos level renderer can be refreshed by set_dirty()
+# ! This should only be done when cells have been changed, because it causes a performance hit
