@@ -7,6 +7,9 @@ import levels
 import items
 import logger
 import cfg
+import resources
+import elements
+import events
 
 reswidth, resheight = [int(res) for res in cfg.resolution.split("x")]
 
@@ -136,12 +139,26 @@ class LevelEditor(scene.Scene):
         self.add(self.scroller)
         
         self.intro = self.LevelIntro("Level Editor", self.level.name, 0, 0, 0, 0)
-        self.add(self.intro, z=3)
+        self.add(self.intro, z=5)
 
-        self.headerLayer = layer.ColorLayer(0, 0, 0, 125, width=int(reswidth), height=int(resheight * 0.1))
+        self.headerLayer = layer.ColorLayer(0, 0, 0, 175, width=int(reswidth), height=int(resheight * 0.1))
         self.headerLayer.x = 0
         self.headerLayer.y = resheight - self.headerLayer.height
+
+        self.title = text.Label("Level Editor", font_name=resources.font[1], font_size=50, anchor_y="center", anchor_x="center")
+        self.title.x = int(self.headerLayer.width / 2)
+        self.title.y = int(self.headerLayer.height / 2)
+        self.backButton = elements.mediumButton("BACK", events.mainmenuevents.onPlayButtonClick)
+        self.backButton.x = int(self.headerLayer.width * 0.1)
+        self.backButton.y =  int(self.headerLayer.height / 2)
+        self.saveButton = elements.mediumButton("SAVE", events.mainmenuevents.backToMainMenu)
+        self.saveButton.x = int(self.headerLayer.width * 0.9)
+        self.saveButton.y =  int(self.headerLayer.height / 2)
+        #self.editButton
         self.add(self.headerLayer, z=2)
+        self.headerLayer.add(self.title)
+        self.headerLayer.add(self.saveButton)
+        self.headerLayer.add(self.backButton)
 
         self.footerLayer = layer.ColorLayer(0, 0, 0, 125, width=int(reswidth), height=int(resheight * 0.12))
         self.footerLayer.x = 0
