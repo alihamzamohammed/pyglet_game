@@ -129,18 +129,24 @@ class LevelEditor(scene.Scene):
         self.scroller.add(self.tilemap_walls, z=0)
         self.gridLayer = LevelGridLayer(walls=self.tilemap_walls, decorations=self.tilemap_decorations, scroller=self.scroller, level=self.level)#layer.ScrollableLayer()
         self.scroller.add(self.gridLayer, z=1)
-        self.scroller.add(self.bgLayer, z=-5)
+        #self.scroller.add(self.bgLayer, z=-5)
+        self.add(self.bgLayer, z=-5)
 
-        self.scroller.viewport = cocos.rect.Rect(0, int(resheight * 0.1), int(reswidth), int(resheight * 0.75))
+        self.scroller.viewport = cocos.rect.Rect(0, int(resheight * 0.12), int(reswidth), int(resheight * 0.78))
         self.add(self.scroller)
         
         self.intro = self.LevelIntro("Level Editor", self.level.name, 0, 0, 0, 0)
         self.add(self.intro, z=3)
 
-        self.headerLayer = layer.ColorLayer(0, 0, 0, 75, width=int(reswidth), height=int(resheight * 0.1))
+        self.headerLayer = layer.ColorLayer(0, 0, 0, 125, width=int(reswidth), height=int(resheight * 0.1))
         self.headerLayer.x = 0
         self.headerLayer.y = resheight - self.headerLayer.height
         self.add(self.headerLayer, z=2)
+
+        self.footerLayer = layer.ColorLayer(0, 0, 0, 125, width=int(reswidth), height=int(resheight * 0.12))
+        self.footerLayer.x = 0
+        self.footerLayer.y = 0
+        self.add(self.footerLayer, z=2)
 
         self.intro.do(cocos.actions.FadeIn(0.1) + cocos.actions.Delay(3) + cocos.actions.FadeOut(1))
         self.intro.title.do(cocos.actions.FadeOut(0.1) + cocos.actions.Delay(0.5) + cocos.actions.FadeIn(0.5) + cocos.actions.Delay(1.5) + cocos.actions.FadeOut(1))
