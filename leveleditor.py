@@ -29,10 +29,12 @@ class LevelGridLayer(layer.ScrollableLayer):
         self.level = kwargs["level"]
         self.walls = kwargs["walls"]
         self.decorations = kwargs["decorations"]
+        self.hovered = None
+        self.selected = []
         #self.add(self.gridBatch)
         ## ! Impelentation Inefficient
         #column, cell = 0
-        for column in kwargs["walls"].cells[:4]:
+        for column in kwargs["walls"].cells[:20]:
             self.gridList.append([])
             for cell in column:
                 gridCell = sprite.Sprite("leveleditorItemClicked.png")
@@ -46,11 +48,13 @@ class LevelGridLayer(layer.ScrollableLayer):
             #column += 1
 
     def on_mouse_motion(self, x, y, dx, dy):
-        #print(self.scroller.screen_to_world(x, y))
         x, y = self.scroller.screen_to_world(x, y)
         print(x // 32, y // 32)
         try:
+            if self.hovered is not None:
+                self.hovered.image = pyglet.resource.image("leveleditorItemClicked.png")
             self.gridList[x // 32][y // 32].image = pyglet.resource.image("leveleditorItemHovered.png")
+            self.hovered = self.gridList[x // 32][y // 32]
         except IndexError:
             pass
 
@@ -66,7 +70,13 @@ class LevelEditor(scene.Scene):
         self.levelData = tiles.load(self.level.datapath)
         self.tilemap_decorations = self.levelData["decorations"]
         self.tilemap_walls = self.levelData["walls"]
-        
+        if isinstance(self.level.background, str):
+            self.bgLayer = layer.ScrollableLayer()
+            self.bgLayer.parallax = 0.5
+            bgImage = cocos.sprite.Sprite(self.level.background)
+            # TODO: Add code to scale image to viewport, then tile it
+            self.bgLayer.add(bgImage)
+
         self.scroller = layer.ScrollingManager()
         
         self.scroller.scale = 0.8
@@ -77,6 +87,7 @@ class LevelEditor(scene.Scene):
         self.scroller.add(self.tilemap_walls, z=0)
         self.gridLayer = LevelGridLayer(walls=self.tilemap_walls, decorations=self.tilemap_decorations, scroller=self.scroller, level=self.level)#layer.ScrollableLayer()
         self.scroller.add(self.gridLayer, z=2)
+        self.scroller.add(self.bgLayer, z=-5)
 
         self.add(self.scroller)
 
