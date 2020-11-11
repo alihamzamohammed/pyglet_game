@@ -135,13 +135,13 @@ class LevelEditor(scene.Scene):
         #self.scroller.add(self.bgLayer, z=-5)
         self.add(self.bgLayer, z=-5)
 
-        self.scroller.viewport = cocos.rect.Rect(0, int(resheight * 0.12), int(reswidth), int(resheight * 0.78))
+        self.scroller.viewport = cocos.rect.Rect(0, int(resheight * 0.12), int(reswidth), int(resheight * 0.76))
         self.add(self.scroller)
         
         self.intro = self.LevelIntro("Level Editor", self.level.name, 0, 0, 0, 0)
         self.add(self.intro, z=5)
 
-        self.headerLayer = layer.ColorLayer(0, 0, 0, 175, width=int(reswidth), height=int(resheight * 0.1))
+        self.headerLayer = layer.ColorLayer(0, 0, 0, 175, width=int(reswidth), height=int(resheight * 0.12))
         self.headerLayer.x = 0
         self.headerLayer.y = resheight - self.headerLayer.height
 
@@ -149,10 +149,10 @@ class LevelEditor(scene.Scene):
         self.title.x = int(self.headerLayer.width / 2)
         self.title.y = int(self.headerLayer.height / 2)
         self.backButton = elements.mediumButton("BACK", events.mainmenuevents.onPlayButtonClick)
-        self.backButton.x = int(self.headerLayer.width * 0.1)
+        self.backButton.x = int(self.headerLayer.width * 0.065)
         self.backButton.y =  int(self.headerLayer.height / 2)
         self.saveButton = elements.mediumButton("SAVE", events.mainmenuevents.backToMainMenu)
-        self.saveButton.x = int(self.headerLayer.width * 0.9)
+        self.saveButton.x = int(self.headerLayer.width * 0.965)
         self.saveButton.y =  int(self.headerLayer.height / 2)
         #self.editButton
         self.add(self.headerLayer, z=2)
