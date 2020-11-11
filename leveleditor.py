@@ -37,10 +37,10 @@ class LevelGridLayer(layer.ScrollableLayer):
         for column in kwargs["walls"].cells[:20]:
             self.gridList.append([])
             for cell in column:
-                gridCell = sprite.Sprite("leveleditorItemClicked.png")
+                gridCell = sprite.Sprite("leveleditorItem.png")
                 gridCell.x = ((cell.i + 1) * 32) - 16
                 gridCell.y = ((cell.j + 1) * 32) - 16
-                gridCell.opacity = 100
+                #gridCell.opacity = 100
                 self.gridBatch.add(gridCell)
                 self.gridList[cell.i].append(gridCell)
            #   cell +=1
@@ -53,7 +53,7 @@ class LevelGridLayer(layer.ScrollableLayer):
         try:
             if self.hovered is not None:
                 self.hovered.image = pyglet.resource.image("leveleditorItemClicked.png")
-            self.gridList[x // 32][y // 32].image = pyglet.resource.image("leveleditorItemHovered.png")
+            self.gridList[x // 32][y // 32].image = pyglet.resource.image("leveleditorItem.png")
             self.hovered = self.gridList[x // 32][y // 32]
         except IndexError:
             pass
