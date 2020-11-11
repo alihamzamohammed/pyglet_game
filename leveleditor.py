@@ -50,7 +50,7 @@ class LevelGridLayer(layer.ScrollableLayer):
                     self.hovered[0].image = pyglet.resource.image("leveleditorItemClicked.png")
                 else:
                     self.hovered[0].image = pyglet.resource.image("leveleditorItem.png")
-            cell[0].image = pyglet.resource.image("leveleditorItemHovered.png")
+            cell[0].image = pyglet.resource.image("leveleditorItemActiveHovered.png" if cell[1] else "leveleditorItemHovered.png")
             self.hovered = cell
         except IndexError:
             pass
