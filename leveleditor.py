@@ -159,6 +159,8 @@ class LevelEditor(scene.Scene):
         self.headerLayer.add(self.title)
         self.headerLayer.add(self.saveButton)
         self.headerLayer.add(self.backButton)
+        self.backButton.show(0.1)
+        self.saveButton.show(0.1)
 
         self.footerLayer = layer.ColorLayer(0, 0, 0, 125, width=int(reswidth), height=int(resheight * 0.12))
         self.footerLayer.x = 0
