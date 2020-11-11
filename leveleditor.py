@@ -90,6 +90,20 @@ class LevelEditor(scene.Scene):
 
     is_event_handler = True
 
+    class LevelIntro(layer.ColorLayer):
+
+        def __init__(self, name, desc, r, g, b, a, width=None, height=None):
+            super().__init__(r, g, b, a, width=width, height=height)
+            self.title = cocos.text.Label(name, font_size=40, anchor_x="center", anchor_y="center")
+            self.desc = cocos.text.Label(desc, font_size=30, anchor_x="center", anchor_y="center")
+            self.title.x = self.width / 2
+            self.title.y = self.height * 0.55
+            self.desc.x = self.width / 2
+            self.desc.y = self.height * 0.4
+            self.add(self.title, z=3)
+            self.add(self.desc, z=3)
+
+
     def __init__(self, level):
         super().__init__()
         if not isinstance(level, levels.Level):
@@ -118,6 +132,15 @@ class LevelEditor(scene.Scene):
         self.scroller.add(self.bgLayer, z=-5)
 
         self.add(self.scroller)
+        
+        self.intro = self.LevelIntro("Level Editor", self.level.name, 0, 0, 0, 0)
+        self.add(self.intro, z=2)
+
+        self.intro.do(cocos.actions.FadeIn(0.1) + cocos.actions.Delay(3) + cocos.actions.FadeOut(1))
+        self.intro.title.do(cocos.actions.FadeOut(0.1) + cocos.actions.Delay(0.5) + cocos.actions.FadeIn(0.5) + cocos.actions.Delay(1.5) + cocos.actions.FadeOut(1))
+        self.intro.desc.do(cocos.actions.FadeOut(0.1) + cocos.actions.Delay(1) + cocos.actions.FadeIn(0.5) + cocos.actions.Delay(1) + cocos.actions.FadeOut(1))
+
+
 
 # * cocos.tiles.load has a function names save_xml(), which saves the loaded folder to xml
 # * Along with the ability to change the shown tile directly on the layer and have it reflect in the game, this can be used for level editor
