@@ -31,6 +31,7 @@ class LevelGridLayer(layer.ScrollableLayer):
         self.decorations = kwargs["decorations"]
         self.hovered = None
         self.selected = []
+        self.dragging = []
         for column in kwargs["walls"].cells:
             self.gridList.append([])
             for cell in column:
@@ -70,14 +71,21 @@ class LevelGridLayer(layer.ScrollableLayer):
     def on_mouse_drag(self, x, y, dx, dy, buttons, modifiers):
         x, y = self.scroller.screen_to_world(x, y)
         try:
-            if self.hovered[1]:
-                self.hovered[0].image = pyglet.resource.image("leveleditorItem.png")
-                self.hovered[1] = False
-            else:
-                self.hovered[0].image = pyglet.resource.image("leveleditorItemClicked.png")
-                self.hovered[1] = True
+            if not self.gridList[x // 32][y // 32] in self.dragging:
+                if self.gridList[x // 32][y // 32][1]:
+                    self.gridList[x // 32][y // 32][0].image = pyglet.resource.image("leveleditorItem.png")
+                    self.gridList[x // 32][y // 32][1] = False
+                    self.dragging.append(self.gridList[x // 32][y // 32])
+                else:
+                    self.gridList[x // 32][y // 32][0].image = pyglet.resource.image("leveleditorItemClicked.png")
+                    self.gridList[x // 32][y // 32][1] = True                    
+                    self.dragging.append(self.gridList[x // 32][y // 32])
         except IndexError:
             pass
+
+    def on_mouse_release(self, x, y, buttons, modifiers):
+        self.dragging = []
+
 class LevelEditor(scene.Scene):
 
     is_event_handler = True
