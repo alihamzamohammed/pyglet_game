@@ -53,7 +53,10 @@ class LevelGridLayer(layer.ScrollableLayer):
         try:
             #if self.gridList[x // 32][y // 32][1]:
             if self.hovered is not None:
-                self.hovered.image = (pyglet.resource.image("leveleditorItemClicked.png") if self.gridList[x // 32][y // 32][1] else pyglet.resource.image("leveleditorItem.png"))
+                if self.gridList[x // 32][y // 32][1]:
+                    self.hovered.image = pyglet.resource.image("leveleditorItemClicked.png")
+                else:
+                    self.hovered.image = pyglet.resource.image("leveleditorItem.png")
             self.gridList[x // 32][y // 32][0].image = pyglet.resource.image("leveleditorItemHovered.png")
             self.hovered = self.gridList[x // 32][y // 32][0]
             #else:
@@ -77,7 +80,7 @@ class LevelGridLayer(layer.ScrollableLayer):
             #self.selected.append(self.gridList[x // 32][y // 32][0])
             #self.gridList[x // 32][y // 32][1] = not self.gridList[x // 32][y // 32][1]
         except IndexError:
-            raise#pass
+            pass
 
 class LevelEditor(scene.Scene):
 
