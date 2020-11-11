@@ -50,15 +50,16 @@ class LevelGridLayer(layer.ScrollableLayer):
     def on_mouse_motion(self, x, y, dx, dy):
         x, y = self.scroller.screen_to_world(x, y)
         #print(x // 32, y // 32)
+        cell = self.gridList[x // 32][y // 32]
         try:
             #if self.gridList[x // 32][y // 32][1]:
             if self.hovered is not None:
-                if self.gridList[x // 32][y // 32][1]:
+                if cell[1]:
                     self.hovered.image = pyglet.resource.image("leveleditorItemClicked.png")
                 else:
                     self.hovered.image = pyglet.resource.image("leveleditorItem.png")
-            self.gridList[x // 32][y // 32][0].image = pyglet.resource.image("leveleditorItemHovered.png")
-            self.hovered = self.gridList[x // 32][y // 32][0]
+            cell[0].image = pyglet.resource.image("leveleditorItemHovered.png")
+            self.hovered = cell[0]
             #else:
             #    if self.hovered is not None:
             #        self.hovered.image = pyglet.resource.image("leveleditorItem.png")
@@ -71,12 +72,12 @@ class LevelGridLayer(layer.ScrollableLayer):
         x, y = self.scroller.screen_to_world(x, y)
         #print(x // 32, y // 32)
         try:
-            if self.gridList[x // 32][y // 32][1]:
-                self.gridList[x // 32][y // 32][0].image = pyglet.resource.image("leveleditorItem.png")
-                self.gridList[x // 32][y // 32][1] = False
+            if self.hovered[1]:
+                self.hovered[0].image = pyglet.resource.image("leveleditorItem.png")
+                self.hovered[1] = False
             else:
-                self.gridList[x // 32][y // 32][0].image = pyglet.resource.image("leveleditorItemClicked.png")
-                self.gridList[x // 32][y // 32][1] = True
+                self.hovered[0].image = pyglet.resource.image("leveleditorItemClicked.png")
+                self.hovered[1] = True
             #self.selected.append(self.gridList[x // 32][y // 32][0])
             #self.gridList[x // 32][y // 32][1] = not self.gridList[x // 32][y // 32][1]
         except IndexError:
