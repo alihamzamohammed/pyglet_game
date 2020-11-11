@@ -50,8 +50,8 @@ class LevelGridLayer(layer.ScrollableLayer):
     def on_mouse_motion(self, x, y, dx, dy):
         x, y = self.scroller.screen_to_world(x, y)
         #print(x // 32, y // 32)
-        cell = self.gridList[x // 32][y // 32]
         try:
+            cell = self.gridList[x // 32][y // 32]
             #if self.gridList[x // 32][y // 32][1]:
             if self.hovered is not None:
                 if cell[1]:
