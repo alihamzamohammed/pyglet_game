@@ -131,6 +131,7 @@ class LevelEditor(scene.Scene):
         self.scroller.add(self.gridLayer, z=1)
         self.scroller.add(self.bgLayer, z=-5)
 
+        self.scroller.viewport = cocos.rect.Rect(0, int(resheight * 0.1), int(reswidth), int(resheight * 0.75))
         self.add(self.scroller)
         
         self.intro = self.LevelIntro("Level Editor", self.level.name, 0, 0, 0, 0)
