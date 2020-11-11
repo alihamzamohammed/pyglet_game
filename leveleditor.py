@@ -67,6 +67,17 @@ class LevelGridLayer(layer.ScrollableLayer):
         except IndexError:
             pass
 
+    def on_mouse_drag(self, x, y, dx, dy, buttons, modifiers):
+        x, y = self.scroller.screen_to_world(x, y)
+        try:
+            if self.hovered[1]:
+                self.hovered[0].image = pyglet.resource.image("leveleditorItem.png")
+                self.hovered[1] = False
+            else:
+                self.hovered[0].image = pyglet.resource.image("leveleditorItemClicked.png")
+                self.hovered[1] = True
+        except IndexError:
+            pass
 class LevelEditor(scene.Scene):
 
     is_event_handler = True
