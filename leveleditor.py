@@ -131,11 +131,7 @@ class LevelEditor(scene.Scene):
         self.scroller.add(self.gridLayer, z=1)
         self.scroller.add(self.bgLayer, z=-5)
 
-        self.scrollerParent = layer.ColorLayer(0, 0, 0, 0, width=int(reswidth), height=int(resheight * 0.8))
-        self.scrollerParent.x = reswidth / 2
-        self.scrollerParent.y = resheight / 2
-        self.scrollerParent.add(self.scroller)
-        self.add(self.scrollerParent)
+        self.add(self.scroller)
         
         self.intro = self.LevelIntro("Level Editor", self.level.name, 0, 0, 0, 0)
         self.add(self.intro, z=3)
