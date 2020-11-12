@@ -148,7 +148,6 @@ class LevelEditor(scene.Scene):
         self.scroller.viewport = cocos.rect.Rect(0, int(resheight * 0.12), int(reswidth), int(resheight * 0.76))
         self.add(self.scroller)
         
-
         self.headerLayer = layer.ColorLayer(0, 0, 0, 175, width=int(reswidth), height=int(resheight * 0.12))
         self.headerLayer.x = 0
         self.headerLayer.y = resheight - self.headerLayer.height
@@ -176,10 +175,42 @@ class LevelEditor(scene.Scene):
         self.footerLayer.x = 0
         self.footerLayer.y = 0
         self.add(self.footerLayer, z=2)
+        self.upButton = elements.smallButton("\u2191", self.moveUp)
+        self.rightButton = elements.smallButton("\u2192", self.moveRight)
+        self.leftButton = elements.smallButton("\u2190", self.moveLeft)
+        self.downButton = elements.smallButton("\u2193", self.moveDown)
+        self.upButton.x = self.footerLayer.width * 0.9
+        self.upButton.y = self.footerLayer.height * 0.75
+        self.rightButton.x = self.footerLayer.width * 0.95
+        self.rightButton.y = self.footerLayer.height * 0.5
+        self.leftButton.x = self.footerLayer.width * 0.85
+        self.leftButton.y = self.footerLayer.height * 0.5
+        self.downButton.x = self.footerLayer.width * 0.9
+        self.downButton.y = self.footerLayer.height * 0.25
+        self.footerLayer.add(self.upButton)
+        self.footerLayer.add(self.rightButton)
+        self.footerLayer.add(self.leftButton)
+        self.footerLayer.add(self.downButton)
+        self.upButton.show(0.1)
+        self.rightButton.show(0.1)
+        self.leftButton.show(0.1)
+        self.downButton.show(0.1)        
 
-        self.intro.do(cocos.actions.Delay(2) + cocos.actions.FadeOut(1))
-        self.intro.title.do(cocos.actions.Delay(2) + cocos.actions.FadeOut(1))
-        self.intro.desc.do(cocos.actions.Delay(2) + cocos.actions.FadeOut(1))
+        self.intro.do(cocos.actions.Delay(3) + cocos.actions.FadeOut(1))
+        self.intro.title.do(cocos.actions.Delay(3) + cocos.actions.FadeOut(1))
+        self.intro.desc.do(cocos.actions.Delay(3) + cocos.actions.FadeOut(1))
+
+    def moveUp(self):
+        pass
+
+    def moveRight(self):
+        pass
+
+    def moveLeft(self):
+        pass
+
+    def moveDown(self):
+        pass
 
 
 
