@@ -47,7 +47,7 @@ class LevelGridLayer(layer.ScrollableLayer):
 
     def on_mouse_motion(self, x, y, dx, dy):
         x, y = self.scroller.screen_to_world(x, y)
-        if x < 0 or y < 0: pass
+        if x < 0 or y < 0: return
         try:
             cell = self.gridList[x // 32][y // 32]
             if self.hovered is not None:
@@ -63,6 +63,7 @@ class LevelGridLayer(layer.ScrollableLayer):
     def on_mouse_press(self, x, y, buttons, modifiers):
         x, y = self.scroller.screen_to_world(x, y)
         try:
+            if x < 0 or y < 0: return
             if self.hovered[1]:
                 self.hovered[0].image = pyglet.resource.image("leveleditorItem.png")
                 self.hovered[1] = False
@@ -75,6 +76,7 @@ class LevelGridLayer(layer.ScrollableLayer):
     def on_mouse_drag(self, x, y, dx, dy, buttons, modifiers):
         x, y = self.scroller.screen_to_world(x, y)
         try:
+            if x < 0 or y < 0: return
             if not self.gridList[x // 32][y // 32] in self.dragging:
                 if self.gridList[x // 32][y // 32][1]:
                     self.gridList[x // 32][y // 32][0].image = pyglet.resource.image("leveleditorItem.png")
@@ -138,10 +140,10 @@ class LevelEditor(scene.Scene):
         self.scroller.scale = 0.8
         self.scroller.x = 0
         self.scroller.y = 0
-        self.scroller.set_focus(800, 0)
+        self.scroller.set_focus(800, 340)
         self.scroller.add(self.tilemap_decorations, z=-1)
         self.scroller.add(self.tilemap_walls, z=0)
-        self.gridLayer = LevelGridLayer(walls=self.tilemap_walls, decorations=self.tilemap_decorations, scroller=self.scroller, level=self.level)#layer.ScrollableLayer()
+        self.gridLayer = LevelGridLayer(walls=self.tilemap_walls, decorations=self.tilemap_decorations, scroller=self.scroller, level=self.level)
         self.scroller.add(self.gridLayer, z=1)
         self.add(self.bgLayer, z=-5)
 
@@ -202,16 +204,16 @@ class LevelEditor(scene.Scene):
         self.intro.desc.do(cocos.actions.Delay(3) + cocos.actions.FadeOut(1))
 
     def moveUp(self):
-        pass
+        self.scroller.set_focus(self.scroller.fx, self.scroller.fy + 10)
 
     def moveRight(self):
-        pass
-
+        self.scroller.set_focus(self.scroller.fx + 10, self.scroller.fy)
+    
     def moveLeft(self):
-        pass
+        self.scroller.set_focus(self.scroller.fx - 10, self.scroller.fy)
 
     def moveDown(self):
-        pass
+        self.scroller.set_focus(self.scroller.fx, self.scroller.fy - 10)
 
 
 
