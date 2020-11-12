@@ -141,7 +141,6 @@ class LevelEditor(scene.Scene):
         self.scroller.scale = 0.8
         self.scroller.x = 0
         self.scroller.y = 0
-        self.scroller.set_focus(800, 340)
         self.scroller.add(self.tilemap_decorations, z=-1)
         self.scroller.add(self.tilemap_walls, z=0)
         self.gridLayer = LevelGridLayer(walls=self.tilemap_walls, decorations=self.tilemap_decorations, scroller=self.scroller, level=self.level)
@@ -199,6 +198,8 @@ class LevelEditor(scene.Scene):
         self.rightButton.show(0.1)
         self.leftButton.show(0.1)
         self.downButton.show(0.1)        
+
+        self.scroller.set_focus(int(self.tilemap_walls.view_w / 2), int(self.tilemap_walls.view_h / 2))
 
         self.intro.do(cocos.actions.Delay(3) + cocos.actions.FadeOut(1))
         self.intro.title.do(cocos.actions.Delay(3) + cocos.actions.FadeOut(1))
