@@ -76,16 +76,17 @@ class LevelGridLayer(layer.ScrollableLayer):
     def on_mouse_drag(self, x, y, dx, dy, buttons, modifiers):
         x, y = self.scroller.screen_to_world(x, y)
         try:
+            cell = self.gridList[x // 32][y // 32]
             if x < 0 or y < 0: return
-            if not self.gridList[x // 32][y // 32] in self.dragging:
-                if self.gridList[x // 32][y // 32][1]:
-                    self.gridList[x // 32][y // 32][0].image = pyglet.resource.image("leveleditorItem.png")
-                    self.gridList[x // 32][y // 32][1] = False
-                    self.dragging.append(self.gridList[x // 32][y // 32])
+            if not cell in self.dragging:
+                if cell[1]:
+                    cell[0].image = pyglet.resource.image("leveleditorItem.png")
+                    cell[1] = False
+                    self.dragging.append(cell)
                 else:
-                    self.gridList[x // 32][y // 32][0].image = pyglet.resource.image("leveleditorItemClicked.png")
-                    self.gridList[x // 32][y // 32][1] = True                    
-                    self.dragging.append(self.gridList[x // 32][y // 32])
+                    cell[0].image = pyglet.resource.image("leveleditorItemClicked.png")
+                    cell[1] = True                    
+                    self.dragging.append(cell)
         except IndexError:
             pass
 
