@@ -47,6 +47,7 @@ class LevelGridLayer(layer.ScrollableLayer):
 
     def on_mouse_motion(self, x, y, dx, dy):
         x, y = self.scroller.screen_to_world(x, y)
+        if x < 0 or y < 0: pass
         try:
             cell = self.gridList[x // 32][y // 32]
             if self.hovered is not None:
@@ -152,13 +153,15 @@ class LevelEditor(scene.Scene):
         self.backButton.x = int(self.headerLayer.width * 0.065)
         self.backButton.y =  int(self.headerLayer.height / 2)
         self.saveButton = elements.mediumButton("SAVE", events.mainmenuevents.backToMainMenu)
-        self.saveButton.x = int(self.headerLayer.width * 0.965)
+        self.saveButton.x = int(self.headerLayer.width * 0.947)
         self.saveButton.y =  int(self.headerLayer.height / 2)
         #self.editButton
         self.add(self.headerLayer, z=2)
         self.headerLayer.add(self.title)
         self.headerLayer.add(self.saveButton)
         self.headerLayer.add(self.backButton)
+        self.backButton.px = self.saveButton.px = self.headerLayer.x
+        self.backButton.py = self.saveButton.py = self.headerLayer.y
         self.backButton.show(0.1)
         self.saveButton.show(0.1)
 
