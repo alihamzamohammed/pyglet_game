@@ -118,69 +118,10 @@ class LevelEditor(scene.Scene):
         self.intro = self.LevelIntro("Level Editor", self.level.name, 0, 0, 0, 0)
         self.add(self.intro, z=5)
 
-        self.intro.do(cocos.actions.FadeIn(0.1))# + cocos.actions.Delay(3) + cocos.actions.FadeOut(1))
-        self.intro.title.do(cocos.actions.FadeOut(0.1) + cocos.actions.Delay(0.5) + cocos.actions.FadeIn(0.5))# + cocos.actions.Delay(1.5) + cocos.actions.FadeOut(1))
-        self.intro.desc.do(cocos.actions.FadeOut(0.1) + cocos.actions.Delay(1) + cocos.actions.FadeIn(0.5) + cocos.actions.CallFunc(self.loadSceenShowing))# + cocos.actions.Delay(1) + cocos.actions.FadeOut(1))
+        self.intro.do(cocos.actions.FadeIn(0.1))
+        self.intro.title.do(cocos.actions.FadeOut(0.1) + cocos.actions.Delay(0.5) + cocos.actions.FadeIn(0.5))
+        self.intro.desc.do(cocos.actions.FadeOut(0.1) + cocos.actions.Delay(1) + cocos.actions.FadeIn(0.5) + cocos.actions.CallFunc(self.loadSceenShowing))
         
-        # self.levelData = tiles.load(self.level.datapath)
-        # self.tilemap_decorations = self.levelData["decorations"]
-        # self.tilemap_walls = self.levelData["walls"]
-        # if isinstance(self.level.background, str):
-        #     self.bgLayer = layer.ScrollableLayer()
-        #     self.bgLayer.parallax = 0.5
-        #     bgImage = cocos.sprite.Sprite(self.level.background)
-        #     # TODO: Add code to scale image to viewport, then tile it
-        #     self.bgLayer.add(bgImage)
-
-        # self.scroller = layer.ScrollingManager()
-        
-        # self.scroller.scale = 0.8
-        # self.scroller.x = 0
-        # self.scroller.y = 0
-        # self.scroller.set_focus(800, 0)
-        # self.scroller.add(self.tilemap_decorations, z=-1)
-        # self.scroller.add(self.tilemap_walls, z=0)
-        # self.gridLayer = LevelGridLayer(walls=self.tilemap_walls, decorations=self.tilemap_decorations, scroller=self.scroller, level=self.level)#layer.ScrollableLayer()
-        # self.scroller.add(self.gridLayer, z=1)
-        # #self.scroller.add(self.bgLayer, z=-5)
-        # self.add(self.bgLayer, z=-5)
-
-        # self.scroller.viewport = cocos.rect.Rect(0, int(resheight * 0.12), int(reswidth), int(resheight * 0.76))
-        # self.add(self.scroller)
-        
-
-        # self.headerLayer = layer.ColorLayer(0, 0, 0, 175, width=int(reswidth), height=int(resheight * 0.12))
-        # self.headerLayer.x = 0
-        # self.headerLayer.y = resheight - self.headerLayer.height
-
-        # self.title = text.Label("Level Editor", font_name=resources.font[1], font_size=50, anchor_y="center", anchor_x="center")
-        # self.title.x = int(self.headerLayer.width / 2)
-        # self.title.y = int(self.headerLayer.height / 2)
-        # self.backButton = elements.mediumButton("BACK", events.mainmenuevents.onPlayButtonClick)
-        # self.backButton.x = int(self.headerLayer.width * 0.065)
-        # self.backButton.y =  int(self.headerLayer.height / 2)
-        # self.saveButton = elements.mediumButton("SAVE", events.mainmenuevents.backToMainMenu)
-        # self.saveButton.x = int(self.headerLayer.width * 0.947)
-        # self.saveButton.y =  int(self.headerLayer.height / 2)
-        # #self.editButton
-        # self.add(self.headerLayer, z=2)
-        # self.headerLayer.add(self.title)
-        # self.headerLayer.add(self.saveButton)
-        # self.headerLayer.add(self.backButton)
-        # self.backButton.px = self.saveButton.px = self.headerLayer.x
-        # self.backButton.py = self.saveButton.py = self.headerLayer.y
-        # self.backButton.show(0.1)
-        # self.saveButton.show(0.1)
-
-        # self.footerLayer = layer.ColorLayer(0, 0, 0, 125, width=int(reswidth), height=int(resheight * 0.12))
-        # self.footerLayer.x = 0
-        # self.footerLayer.y = 0
-        # self.add(self.footerLayer, z=2)
-
-        # self.intro.do(cocos.actions.FadeOut(1))
-        # self.intro.title.do(cocos.actions.FadeOut(1))
-        # self.intro.desc.do(cocos.actions.FadeOut(1))
-
     def loadSceenShowing(self):
         self.levelData = tiles.load(self.level.datapath)
         self.tilemap_decorations = self.levelData["decorations"]
@@ -202,7 +143,6 @@ class LevelEditor(scene.Scene):
         self.scroller.add(self.tilemap_walls, z=0)
         self.gridLayer = LevelGridLayer(walls=self.tilemap_walls, decorations=self.tilemap_decorations, scroller=self.scroller, level=self.level)#layer.ScrollableLayer()
         self.scroller.add(self.gridLayer, z=1)
-        #self.scroller.add(self.bgLayer, z=-5)
         self.add(self.bgLayer, z=-5)
 
         self.scroller.viewport = cocos.rect.Rect(0, int(resheight * 0.12), int(reswidth), int(resheight * 0.76))
