@@ -175,17 +175,18 @@ class LevelEditor(scene.Scene):
         self.footerLayer.x = 0
         self.footerLayer.y = 0
         self.add(self.footerLayer, z=2)
-        self.upButton = elements.smallButton("\u2191", self.moveUp)
-        self.rightButton = elements.smallButton("\u2192", self.moveRight)
-        self.leftButton = elements.smallButton("\u2190", self.moveLeft)
-        self.downButton = elements.smallButton("\u2193", self.moveDown)
-        self.upButton.x = self.footerLayer.width * 0.9
+        self.upButton = elements.smallButton("\u2b9d", self.moveUp)
+        self.rightButton = elements.smallButton("\u2b9e", self.moveRight)
+        self.leftButton = elements.smallButton("\u2b9c", self.moveLeft)
+        self.downButton = elements.smallButton("\u2b9f", self.moveDown)
+        self.upButton.x = self.footerLayer.width * 0.92
         self.upButton.y = self.footerLayer.height * 0.75
-        self.rightButton.x = self.footerLayer.width * 0.935
+        self.upButton.lbl.element.bold = True
+        self.rightButton.x = self.footerLayer.width * 0.955
         self.rightButton.y = self.footerLayer.height * 0.5
-        self.leftButton.x = self.footerLayer.width * 0.865
+        self.leftButton.x = self.footerLayer.width * 0.885
         self.leftButton.y = self.footerLayer.height * 0.5
-        self.downButton.x = self.footerLayer.width * 0.9
+        self.downButton.x = self.footerLayer.width * 0.92
         self.downButton.y = self.footerLayer.height * 0.25
         self.footerLayer.add(self.upButton)
         self.footerLayer.add(self.rightButton)
