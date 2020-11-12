@@ -181,9 +181,9 @@ class LevelEditor(scene.Scene):
         self.downButton = elements.smallButton("\u2193", self.moveDown)
         self.upButton.x = self.footerLayer.width * 0.9
         self.upButton.y = self.footerLayer.height * 0.75
-        self.rightButton.x = self.footerLayer.width * 0.95
+        self.rightButton.x = self.footerLayer.width * 0.935
         self.rightButton.y = self.footerLayer.height * 0.5
-        self.leftButton.x = self.footerLayer.width * 0.85
+        self.leftButton.x = self.footerLayer.width * 0.865
         self.leftButton.y = self.footerLayer.height * 0.5
         self.downButton.x = self.footerLayer.width * 0.9
         self.downButton.y = self.footerLayer.height * 0.25
