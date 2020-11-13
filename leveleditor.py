@@ -10,6 +10,7 @@ import cfg
 import resources
 import elements
 import events
+import scaling as sc
 
 reswidth, resheight = [int(res) for res in cfg.resolution.split("x")]
 
@@ -137,8 +138,8 @@ class LevelEditor(scene.Scene):
             self.bgLayer.add(bgImage)
 
         self.scroller = layer.ScrollingManager()
-        
         self.scroller.scale = 0.8
+        self.scroller.viewport = cocos.rect.Rect(0, int(resheight * 0.12), int(reswidth), int(resheight * 0.76))
         self.scroller.x = 0
         self.scroller.y = 0
         self.scroller.add(self.tilemap_decorations, z=-1)
@@ -147,7 +148,6 @@ class LevelEditor(scene.Scene):
         self.scroller.add(self.gridLayer, z=1)
         self.add(self.bgLayer, z=-5)
 
-        self.scroller.viewport = cocos.rect.Rect(0, int(resheight * 0.12), int(reswidth), int(resheight * 0.76))
         self.add(self.scroller)
         
         self.headerLayer = layer.ColorLayer(0, 0, 0, 175, width=int(reswidth), height=int(resheight * 0.12))
@@ -216,8 +216,6 @@ class LevelEditor(scene.Scene):
 
     def moveDown(self):
         self.scroller.set_focus(self.scroller.fx, self.scroller.fy - 10)
-
-
 
 # * cocos.tiles.load has a function names save_xml(), which saves the loaded folder to xml
 # * Along with the ability to change the shown tile directly on the layer and have it reflect in the game, this can be used for level editor
