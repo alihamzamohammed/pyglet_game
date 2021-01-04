@@ -222,11 +222,11 @@ class LevelEditor(scene.Scene):
         self.scroller.set_focus(self.scroller.fx + 10, self.scroller.fy)
     
     def moveLeft(self):
-        if self.scroller.fx >= self.scrollerFocusLimits["left"]:
+        if self.scroller.fx >= self.scrollerFocusLimits["left"] + 1:
             self.scroller.set_focus(self.scroller.fx - 10, self.scroller.fy)
 
     def moveDown(self):
-        if self.scroller.fy >= self.scrollerFocusLimits["down"]:
+        if self.scroller.fy >= self.scrollerFocusLimits["down"] + 1:
             self.scroller.set_focus(self.scroller.fx, self.scroller.fy - 10)
 
 # * cocos.tiles.load has a function names save_xml(), which saves the loaded folder to xml
