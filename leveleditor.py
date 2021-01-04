@@ -71,9 +71,6 @@ class LevelGridLayer(layer.ScrollableLayer):
             else:
                 self.hovered[0].image = pyglet.resource.image("leveleditorItemClicked.png")
                 self.hovered[1] = True
-            if self.hovered in self.dragging:
-                self.hovered[1] = not self.hovered[1]
-                self.hovered[0] = pyglet.resource.image("leveleditorItemClicked.png") if self.hovered[1] else pyglet.resource.image("leveleditorItem.png")
         except IndexError:
             pass
 
@@ -96,6 +93,10 @@ class LevelGridLayer(layer.ScrollableLayer):
 
     def on_mouse_release(self, x, y, buttons, modifiers):
         self.dragging = []
+
+    # TODO: Create more efficient object style cells instead of lists
+    # TODO: Add object properties automatically changing picture on status (hover, click, drag?)
+    # TODO: Fix 1st tile not selectable on drag
 
 class LevelEditor(scene.Scene):
 
