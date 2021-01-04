@@ -36,6 +36,7 @@ class LevelGridLayer(layer.ScrollableLayer):
         self.hovered = None
         self.selected = []
         self.dragging = []
+        self.initialCell = None
         for column in kwargs["walls"].cells:
             self.gridList.append([])
             for cell in column:
@@ -64,6 +65,7 @@ class LevelGridLayer(layer.ScrollableLayer):
     def on_mouse_press(self, x, y, buttons, modifiers):
         x, y = self.scroller.screen_to_world(x, y)
         try:
+            self.initialCell = self.hovered
             if x < 0 or y < 0: return
             if self.hovered[1]:
                 self.hovered[0].image = pyglet.resource.image("leveleditorItem.png")
@@ -80,6 +82,7 @@ class LevelGridLayer(layer.ScrollableLayer):
             cell = self.gridList[x // 32][y // 32]
             if x < 0 or y < 0: return
             if not cell in self.dragging:
+                if cell == self.initialCell: return
                 if cell[1]:
                     cell[0].image = pyglet.resource.image("leveleditorItem.png")
                     cell[1] = False
@@ -93,6 +96,7 @@ class LevelGridLayer(layer.ScrollableLayer):
 
     def on_mouse_release(self, x, y, buttons, modifiers):
         self.dragging = []
+        self.initialCell = None
 
     # TODO: Create more efficient object style cells instead of lists
     # TODO: Add object properties automatically changing picture on status (hover, click, drag?)
