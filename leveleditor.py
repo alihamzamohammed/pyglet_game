@@ -207,7 +207,9 @@ class LevelEditor(scene.Scene):
         self.leftButton.show(0.1)
         self.downButton.show(0.1)        
 
+
         self.scroller.set_focus(int(self.tilemap_walls.view_w / 2), int(self.tilemap_walls.view_h / 2))
+        self.scrollerFocusLimits = {"up": 0, "down": int(self.tilemap_walls.view_h / 2), "left": int(self.tilemap_walls.view_w / 2), "right": 0}
 
         self.intro.do(cocos.actions.Delay(3) + cocos.actions.FadeOut(1))
         self.intro.title.do(cocos.actions.Delay(3) + cocos.actions.FadeOut(1))
@@ -220,10 +222,12 @@ class LevelEditor(scene.Scene):
         self.scroller.set_focus(self.scroller.fx + 10, self.scroller.fy)
     
     def moveLeft(self):
-        self.scroller.set_focus(self.scroller.fx - 10, self.scroller.fy)
+        if self.scroller.fx >= self.scrollerFocusLimits["left"]:
+            self.scroller.set_focus(self.scroller.fx - 10, self.scroller.fy)
 
     def moveDown(self):
-        self.scroller.set_focus(self.scroller.fx, self.scroller.fy - 10)
+        if self.scroller.fy >= self.scrollerFocusLimits["down"]:
+            self.scroller.set_focus(self.scroller.fx, self.scroller.fy - 10)
 
 # * cocos.tiles.load has a function names save_xml(), which saves the loaded folder to xml
 # * Along with the ability to change the shown tile directly on the layer and have it reflect in the game, this can be used for level editor
