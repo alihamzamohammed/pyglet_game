@@ -109,10 +109,12 @@ class LevelEditor(scene.Scene):
     class LevelEditorScrollManager(layer.ScrollingManager):
 
         def on_cocos_resize(self, usable_width, usable_height):
-            x, y = sc.scale(self.viewport.x, self.viewport.y)
             w, h = sc.scale(self.viewport.width, self.viewport.height)
-            self.viewport = rect.Rect(x, y, w, h)
-            super().on_cocos_resize(usable_width, usable_height)
+            #self.viewport = rect.Rect(self.viewport.x, self.viewport.y, w, h)
+            #super().on_cocos_resize(usable_width, usable_height)
+            self.update_view_size()
+            self.refresh_focus()
+
 
     class LevelIntro(layer.ColorLayer):
 
