@@ -109,11 +109,12 @@ class LevelEditor(scene.Scene):
     class LevelEditorScrollManager(layer.ScrollingManager):
 
         def on_cocos_resize(self, usable_width, usable_height):
-            w, h = sc.scale(self.viewport.width, self.viewport.height)
+            #w, h = sc.scale(self.viewport.width, self.viewport.height)
             #self.viewport = rect.Rect(self.viewport.x, self.viewport.y, w, h)
             #super().on_cocos_resize(usable_width, usable_height)
-            self.update_view_size()
-            self.refresh_focus()
+            #self.update_view_size()
+            #self.refresh_focus()
+            pass
 
 
     class LevelIntro(layer.ColorLayer):
@@ -135,7 +136,7 @@ class LevelEditor(scene.Scene):
             raise LevelNotFound
 
         self.level = level
-
+        director.push_handlers(self)
         self.intro = self.LevelIntro("Level Editor", self.level.name, 0, 0, 0, 0)
         self.add(self.intro, z=5)
 
@@ -155,8 +156,8 @@ class LevelEditor(scene.Scene):
             self.bgLayer.add(bgImage)
 
 
-        viewport = rect.Rect(0, int(resheight * 0.12), int(reswidth), int(resheight * 0.76))
-        self.scroller = self.LevelEditorScrollManager(viewport, True)
+        self.scrollerViewport = rect.Rect(0, int(resheight * 0.12), int(reswidth), int(resheight * 0.76))
+        self.scroller = self.LevelEditorScrollManager(self.scrollerViewport, True)
         self.scroller.autoscale = False
         #self.scroller.on_cocos_resize = on_cocos_resize
         self.scroller.scale = 1
@@ -254,6 +255,12 @@ class LevelEditor(scene.Scene):
     def moveDown(self):
         if self.scroller.fy >= self.scrollerFocusLimits["down"] + 1:
             self.scroller.set_focus(self.scroller.fx, self.scroller.fy - 10)
+
+    def on_cocos_resize(self, usable_width, usable_height):
+        w, h = sc.scale(self.scrollerViewport.width, self.scrollerViewport.height)
+        self.scroller.viewport = rect.Rect(self.scroller.viewport.x, self.scroller.viewport.y, w, h)
+        self.scroller.update_view_size()
+        self.scroller.refresh_focus()
 
 # * cocos.tiles.load has a function names save_xml(), which saves the loaded folder to xml
 # * Along with the ability to change the shown tile directly on the layer and have it reflect in the game, this can be used for level editor
