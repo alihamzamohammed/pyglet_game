@@ -1,5 +1,4 @@
 import sys
-
 import os
 import pyglet
 import cocos
@@ -104,6 +103,7 @@ class Game(object):
     # BUG: Too many sprites added, even with batches, causes fps drop
     # DEBUG def leveleditorButtonClicked(self):
     # DEBUG    director.replace(FadeTransition(leveleditor.LevelEditor(level), duration = 1, color = (0, 0, 0)))
+    # FIX: Added stable grid with selections working
 
 
     def __init__(self):

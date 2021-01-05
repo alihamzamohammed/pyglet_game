@@ -1,6 +1,6 @@
 import pyglet
 import cocos
-from cocos import tiles, text, sprite, layer, scene, batch
+from cocos import tiles, text, sprite, layer, scene, batch, rect
 from cocos.director import director
 import xml.etree.ElementTree as et
 import levels
@@ -106,6 +106,14 @@ class LevelEditor(scene.Scene):
 
     is_event_handler = True
 
+    class LevelEditorScrollManager(layer.ScrollingManager):
+
+        def on_cocos_resize(self, usable_width, usable_height):
+            x, y = sc.scale(self.viewport.x, self.viewport.y)
+            w, h = sc.scale(self.viewport.width, self.viewport.height)
+            self.viewport = rect.Rect(x, y, w, h)
+            super().on_cocos_resize(usable_width, usable_height)
+
     class LevelIntro(layer.ColorLayer):
 
         def __init__(self, name, desc, r, g, b, a, width=None, height=None):
@@ -118,7 +126,6 @@ class LevelEditor(scene.Scene):
             self.desc.y = self.height * 0.4
             self.add(self.title, z=3)
             self.add(self.desc, z=3)
-
 
     def __init__(self, level):
         super().__init__()
@@ -145,11 +152,15 @@ class LevelEditor(scene.Scene):
             # TODO: Add code to scale image to viewport, then tile it
             self.bgLayer.add(bgImage)
 
-        self.scroller = layer.ScrollingManager()
-        self.scroller.scale = 0.8
+
+        viewport = rect.Rect(0, int(resheight * 0.12), int(reswidth), int(resheight * 0.76))
+        self.scroller = self.LevelEditorScrollManager(viewport, True)
+        self.scroller.autoscale = False
+        #self.scroller.on_cocos_resize = on_cocos_resize
+        self.scroller.scale = 1
         self.scroller.viewport = cocos.rect.Rect(0, int(resheight * 0.12), int(reswidth), int(resheight * 0.76))
-        self.scroller.x = 0
-        self.scroller.y = 0
+        #self.scroller.x = 0
+        #self.scroller.y = 0
         self.scroller.add(self.tilemap_decorations, z=-1)
         self.scroller.add(self.tilemap_walls, z=0)
         self.gridLayer = LevelGridLayer(walls=self.tilemap_walls, decorations=self.tilemap_decorations, scroller=self.scroller, level=self.level)
@@ -165,19 +176,26 @@ class LevelEditor(scene.Scene):
         self.title = text.Label("Level Editor", font_name=resources.font[1], font_size=50, anchor_y="center", anchor_x="center")
         self.title.x = int(self.headerLayer.width / 2)
         self.title.y = int(self.headerLayer.height / 2)
+        
         self.backButton = elements.mediumButton("BACK", events.mainmenuevents.onPlayButtonClick)
         self.backButton.x = int(self.headerLayer.width * 0.065)
+        
         self.backButton.y =  int(self.headerLayer.height / 2)
         self.saveButton = elements.mediumButton("SAVE", events.mainmenuevents.backToMainMenu)
+        
         self.saveButton.x = int(self.headerLayer.width * 0.947)
         self.saveButton.y =  int(self.headerLayer.height / 2)
+        
         #self.editButton
         self.add(self.headerLayer, z=2)
+        
         self.headerLayer.add(self.title)
         self.headerLayer.add(self.saveButton)
         self.headerLayer.add(self.backButton)
+        
         self.backButton.px = self.saveButton.px = self.headerLayer.x
         self.backButton.py = self.saveButton.py = self.headerLayer.y
+        
         self.backButton.show(0.1)
         self.saveButton.show(0.1)
 
@@ -185,23 +203,29 @@ class LevelEditor(scene.Scene):
         self.footerLayer.x = 0
         self.footerLayer.y = 0
         self.add(self.footerLayer, z=2)
+        
         self.upButton = elements.smallButton("\u2b9d", self.moveUp)
         self.rightButton = elements.smallButton("\u2b9e", self.moveRight)
         self.leftButton = elements.smallButton("\u2b9c", self.moveLeft)
         self.downButton = elements.smallButton("\u2b9f", self.moveDown)
+        
         self.upButton.x = self.footerLayer.width * 0.92
         self.upButton.y = self.footerLayer.height * 0.75
-        self.upButton.lbl.element.bold = True
+        
         self.rightButton.x = self.footerLayer.width * 0.955
         self.rightButton.y = self.footerLayer.height * 0.5
+        
         self.leftButton.x = self.footerLayer.width * 0.885
         self.leftButton.y = self.footerLayer.height * 0.5
+        
         self.downButton.x = self.footerLayer.width * 0.92
         self.downButton.y = self.footerLayer.height * 0.25
+        
         self.footerLayer.add(self.upButton)
         self.footerLayer.add(self.rightButton)
         self.footerLayer.add(self.leftButton)
         self.footerLayer.add(self.downButton)
+        
         self.upButton.show(0.1)
         self.rightButton.show(0.1)
         self.leftButton.show(0.1)
