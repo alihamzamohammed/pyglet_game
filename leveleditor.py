@@ -224,6 +224,10 @@ class LevelEditor(scene.Scene):
         
         self.downButton.x = self.footerLayer.width * 0.92
         self.downButton.y = self.footerLayer.height * 0.25
+
+        ## ITEMS
+
+        
         
         self.footerLayer.add(self.upButton)
         self.footerLayer.add(self.rightButton)
