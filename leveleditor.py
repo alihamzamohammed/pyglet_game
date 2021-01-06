@@ -109,6 +109,7 @@ class LevelEditor(scene.Scene):
     class LevelEditorScrollManager(layer.ScrollingManager):
 
         def on_cocos_resize(self, usable_width, usable_height):
+
             #w, h = sc.scale(self.viewport.width, self.viewport.height)
             #self.viewport = rect.Rect(self.viewport.x, self.viewport.y, w, h)
             #super().on_cocos_resize(usable_width, usable_height)
@@ -257,10 +258,22 @@ class LevelEditor(scene.Scene):
             self.scroller.set_focus(self.scroller.fx, self.scroller.fy - 10)
 
     def on_cocos_resize(self, usable_width, usable_height):
-        w, h = sc.scale(self.scrollerViewport.width, self.scrollerViewport.height)
-        self.scroller.viewport = rect.Rect(self.scroller.viewport.x, self.scroller.viewport.y, w, h)
+        if director.window.width == reswidth:
+            w = reswidth
+        else:
+            w = (((reswidth / (director.window.width - reswidth)) / 100) + 1) * reswidth
+        if director.window.height == resheight:
+            h = resheight
+        else:
+            h = (((resheight / (director.window.height - resheight)) / 100) + 1) * resheight
+        x, y = self.scrollerViewport.x, self.scrollerViewport.y
+        self.scroller.viewport = rect.Rect(x, y, w, h*0.76)
+        #w, h = sc.scale(self.scrollerViewport.width, self.scrollerViewport.height)
+        #w, h = director.get_virtual_coordinates(self.scrollerViewport.width, self.scrollerViewport.height)
+        #pass#self.scroller.viewport = rect.Rect(self.scroller.viewport.x, self.scroller.viewport.y, w, h)
         self.scroller.update_view_size()
-        self.scroller.refresh_focus()
+        #self.scroller.refresh_focus()
+        print(usable_width, usable_height)
 
 # * cocos.tiles.load has a function names save_xml(), which saves the loaded folder to xml
 # * Along with the ability to change the shown tile directly on the layer and have it reflect in the game, this can be used for level editor
