@@ -161,10 +161,10 @@ class Row(layer.Layer):
             itemBlock.x = (reswidth * 0.05) + (reswidth * (0.04 * itemId))
             itemBlock.y = resheight * 0.045
             itemBlock.opacity = 0
-            itemSelectionBlock = ItemHoverBox("leveleditorItemHovered.png", itempack, item_blocks[itemId], scale=1.2)
+            itemSelectionBlock = self.ItemHoverBox("leveleditorItemHovered.png", itempack, item_blocks[itemId], scale=1.2)
             itemSelectionBlock.x = (reswidth * 0.05) + (reswidth * (0.04 * itemId))
             itemSelectionBlock.y = resheight * 0.045
-            itemBlock.opacity = 0
+            #itemBlock.opacity = 0
             self.add(itemBlock, z=1)
             self.add(itemSelectionBlock, z=2)
             self.blocks.append([itemBlock, itemSelectionBlock])
@@ -181,10 +181,10 @@ class Row(layer.Layer):
             for item in self.blocks:
                 if value == True:
                     item[0].opacity = 255
-                    item[1].opacity = 255
+                    item[1].active = True
                 else:
                     item[0].opacity = 0
-                    item[1].opacity = 0
+                    item[1].active = False
 
 class ItemPackRows(layer.Layer):
 
