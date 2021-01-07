@@ -106,7 +106,7 @@ class Row(layer.Layer):
 
     def __init__(self, itempack, item_blocks = []):
         super().__init__()
-        self.packLbl = text.Label(itempack.idx, font_size=10, anchor_x="center", anchor_y="center")
+        self.packLbl = text.Label(itempack.idx, font_size=13, anchor_x="center", anchor_y="center")
         self.packLbl.x = reswidth * 0.15
         self.packLbl.y = resheight * 0.1
         self.blocks = []
@@ -114,11 +114,12 @@ class Row(layer.Layer):
         for itemId in range(len(item_blocks)):
             itemBlock = sprite.Sprite(items.itempacks[itempack.idx].item_data[item_blocks[itemId][:-4]].image, scale=1.2)
             itemBlock.x = (reswidth * 0.05) + (reswidth * (0.04 * itemId))
-            itemBlock.y = resheight * 0.06
+            itemBlock.y = resheight * 0.05
             itemBlock.opacity = 0
             
             self.add(itemBlock)
             self.blocks.append(itemBlock)
+        self.add(self.packLbl)
 
     @property
     def visible(self):
