@@ -106,7 +106,9 @@ class Row(layer.Layer):
 
     def __init__(self, itempack, item_blocks = []):
         super().__init__()
-        self.packLbl = text.Label("", font_size=14, anchor_x="center", anchor_y="center")
+        self.packLbl = text.Label(itempack.idx, font_size=10, anchor_x="center", anchor_y="center")
+        self.packLbl.x = reswidth * 0.15
+        self.packLbl.y = resheight * 0.1
         self.blocks = []
         self._visible = False
         for itemId in range(len(item_blocks)):
