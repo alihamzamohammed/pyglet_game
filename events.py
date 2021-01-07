@@ -136,6 +136,7 @@ class LevelEditorEvents(pyglet.window.EventDispatcher):
 
     def itemClick(self, itempack, item):
         self.dispatch_event("itemClicked", itempack, item)
+        print(item + " clicked!")
 
 LevelEditorEvents.register_event_type("rowNumberUp")
 LevelEditorEvents.register_event_type("rowNumberDown")
