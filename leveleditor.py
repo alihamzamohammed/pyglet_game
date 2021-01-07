@@ -137,10 +137,10 @@ class ItemPackRows(layer.Layer):
     def __init__(self):
         super().__init__()            
         upArrow = elements.smallButton("\u25b2", events.mainmenuevents.backToMainMenu)
-        upArrow.x = reswidth * 0.32
+        upArrow.x = reswidth * 0.27
         upArrow.y = resheight * 0.09
         downArrow = elements.smallButton("\u25bc", events.mainmenuevents.backToMainMenu)
-        downArrow.x = reswidth * 0.32
+        downArrow.x = reswidth * 0.27
         downArrow.y = resheight * 0.03
         splitItems = {}
         rows = []
