@@ -110,38 +110,44 @@ class LevelGridLayer(layer.ScrollableLayer):
 
 class Row(layer.Layer):
 
-    class ItemHoverBox(sprite.Sprite):
+    class ItemHoverBox(layer.Layer):
 
         is_event_handler = True
 
-        def __init__(self, image, itempack, item, position=(0,0), rotation=0, scale=1, opacity=255, color=(255,255,255), anchor=None, **kwargs):
-            super().__init__(image, position=position, rotation=rotation, scale=scale, opacity=opacity, color=color, anchor=anchor, **kwargs)
+        def __init__(self, image, itempack, item, x, y, scale=1):
+            super().__init__()
+            self.bgImage = sprite.Sprite("leveleditorItemHovered.png", scale=scale)
+            self.bgImage.x = x
+            self.bgImage.y = y
             self.px = 0
             self.py = 0
+            #self.x = x
+            #self.y = y
             self.itempack = itempack
             self.item = item
-            self.width_range = [int((self.px + self.x) - (self.width / 2)), int((self.px + self.x) + (self.width / 2))]
-            self.height_range = [int((self.py + self.y) - (self.height / 2)), int((self.py + self.y) + (self.height / 2))]
+            self.width_range = [int((self.px + self.bgImage.x) - (self.bgImage.width / 2)), int((self.px + self.bgImage.x) + (self.bgImage.width / 2))]
+            self.height_range = [int((self.py + self.bgImage.y) - (self.bgImage.height / 2)), int((self.py + self.bgImage.y) + (self.bgImage.height / 2))]
             self.active = False
-            self.image = pyglet.resource.image("leveleditorItemHovered.png")
-            self.opacity = 0
+            self.hovered = False
+            self.bgImage.opacity = 0
+            self.add(self.bgImage)
             self.schedule_interval(self.setWH, 1)
             self.resume_scheduler()
 
         def setWH(self, dt):
             x, y = director.window.width, director.window.height
-            nmin = sc.scale(int((self.px + self.x) - (self.width / 2)), int((self.py + self.y) - (self.height / 2)))
-            nmax = sc.scale(int((self.px + self.x) + (self.width / 2)), int((self.py + self.y) + (self.height / 2)))
+            nmin = sc.scale(int((self.px + self.bgImage.x) - (self.bgImage.width / 2)), int((self.py + self.bgImage.y) - (self.bgImage.height / 2)))
+            nmax = sc.scale(int((self.px + self.bgImage.x) + (self.bgImage.width / 2)), int((self.py + self.bgImage.y) + (self.bgImage.height / 2)))
             self.width_range = [int(nmin[0]), int(nmax[0])]
             self.height_range = [int(nmin[1]), int(nmax[1])]
 
         def on_mouse_motion(self, x, y, dx, dy):
             if self.active:
                 if x in range(self.width_range[0], self.width_range[1]) and y in range(self.height_range[0], self.height_range[1]):
-                    self.opacity = 255
+                    self.bgImage.opacity = 255
                     self.hovered = True
                 else:
-                    self.opacity = 0
+                    self.bgImage.opacity = 0
                     self.hovered = False
 
         def on_mouse_press(self, x, y, buttons, modifiers):
@@ -161,9 +167,9 @@ class Row(layer.Layer):
             itemBlock.x = (reswidth * 0.05) + (reswidth * (0.04 * itemId))
             itemBlock.y = resheight * 0.045
             itemBlock.opacity = 0
-            itemSelectionBlock = self.ItemHoverBox("leveleditorItemHovered.png", itempack, item_blocks[itemId], scale=1.2)
-            itemSelectionBlock.x = (reswidth * 0.05) + (reswidth * (0.04 * itemId))
-            itemSelectionBlock.y = resheight * 0.045
+            itemSelectionBlock = self.ItemHoverBox("leveleditorItemHovered.png", itempack, item_blocks[itemId], (reswidth * 0.05) + (reswidth * (0.04 * itemId)), resheight * 0.045, scale=1.2)
+            #itemSelectionBlock.x = 
+            #itemSelectionBlock.y = 
             #itemBlock.opacity = 0
             self.add(itemBlock, z=1)
             self.add(itemSelectionBlock, z=2)
@@ -203,6 +209,7 @@ class ItemPackRows(layer.Layer):
         self.rows = []
         self.rowNumber = 0
         for pack in items.itempacks.values():
+            if len(pack.items) == 0: continue
             splitItems[pack] = [pack.items[i:i + 5] for i in range(0, len(pack.items), 5)]
         for pack, itemList in splitItems.items():
             for splitId in range(len(itemList)):
