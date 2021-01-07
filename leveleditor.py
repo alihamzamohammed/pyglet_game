@@ -111,7 +111,7 @@ class Row(layer.Layer):
         self._visible = False
         for itemId in range(len(item_blocks)):
             itemBlock = sprite.Sprite(items.itempacks[itempack.idx].item_data[item_blocks[itemId][:-4]].image)
-            itemBlock.x = reswidth * (0.05 * itemId)
+            itemBlock.x = (reswidth * 0.1) + (reswidth * (0.05 * itemId))
             itemBlock.y = resheight * 0.06
             itemBlock.opacity = 0
             self.add(itemBlock)
@@ -124,12 +124,13 @@ class Row(layer.Layer):
     @visible.setter
     def visible(self, value):
         self._visible = value
-        for item in self.blocks:
-            if value == True:
-                item.opacity = 255
-            else:
-                item.opacity = 0
-                
+        if hasattr(self, "blocks"):
+            for item in self.blocks:
+                if value == True:
+                    item.opacity = 255
+                else:
+                    item.opacity = 0
+
 class ItemPackRows(layer.Layer):
 
     def __init__(self):
@@ -139,7 +140,7 @@ class ItemPackRows(layer.Layer):
         upArrow.y = resheight * 0.03
         downArrow = elements.smallButton("Down", events.mainmenuevents.backToMainMenu)
         downArrow.x = reswidth * 0.5
-        downArrow.y = resheight * 0.09
+        downArrow.y = resheight * 0.03
         splitItems = {}
         rows = []
         for pack in items.itempacks.values():
@@ -151,7 +152,9 @@ class ItemPackRows(layer.Layer):
                 self.add(row)
         self.add(upArrow)
         self.add(downArrow)
-        rows[0].visible = True
+        upArrow.show(0.01)
+        downArrow.show(0.01)
+        rows[2].visible = True
 
 class LevelEditor(scene.Scene):
 
@@ -278,8 +281,8 @@ class LevelEditor(scene.Scene):
 
         ## ITEMS
         self.itemRows = ItemPackRows()
-        self.itemRows.x = reswidth * 0.05
-        self.itemRows.y = resheight * 0.05
+        #self.itemRows.x = reswidth * 0.05
+        #self.itemRows.y = resheight * 0.05
         self.add(self.itemRows)
 
         
