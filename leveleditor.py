@@ -168,7 +168,7 @@ class ItemPackRows(layer.Layer):
                 if rowId == self.rowNumber:
                     self.rows[rowId].visible = True
                 else:
-                    self.rows[rowID].visible = False
+                    self.rows[rowId].visible = False
 
     def rowNumberDown(self):
         if self.rowNumber < len(self.rows):
@@ -177,7 +177,7 @@ class ItemPackRows(layer.Layer):
                 if rowId == self.rowNumber:
                     self.rows[rowId].visible = True
                 else:
-                    self.rows[rowID].visible = False
+                    self.rows[rowId].visible = False
 
 
 class LevelEditor(scene.Scene):
