@@ -162,8 +162,8 @@ class ItemPackRows(layer.Layer):
         self.rows[0].visible = True
 
     def rowNumberUp(self):
-        if rowNumber < len(self.rows):
-            self.rowNumber += 1
+        if self.rowNumber > 0:
+            self.rowNumber -= 1
             for rowId in range(len(self.rows)):
                 if rowId == self.rowNumber:
                     self.rows[rowId].visible = True
@@ -171,8 +171,8 @@ class ItemPackRows(layer.Layer):
                     self.rows[rowID].visible = False
 
     def rowNumberDown(self):
-        if rowNumber > 0:
-            self.rowNumber -= 1
+        if self.rowNumber < len(self.rows):
+            self.rowNumber += 1
             for rowId in range(len(self.rows)):
                 if rowId == self.rowNumber:
                     self.rows[rowId].visible = True
