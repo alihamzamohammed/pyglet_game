@@ -122,7 +122,7 @@ class Row(layer.Layer):
             itemBlock.x = (reswidth * 0.05) + (reswidth * (0.04 * itemId))
             itemBlock.y = resheight * 0.045
             itemBlock.opacity = 0
-            itemSelectionBlock = sprite.Sprite("levelEditorItem.png", scale=1.2)
+            itemSelectionBlock = sprite.Sprite("leveleditorItem.png", scale=1.2)
             itemSelectionBlock.x = (reswidth * 0.05) + (reswidth * (0.04 * itemId))
             itemSelectionBlock.y = resheight * 0.045
             itemBlock.opacity = 0
