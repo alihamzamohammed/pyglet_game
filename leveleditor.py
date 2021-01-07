@@ -110,6 +110,45 @@ class LevelGridLayer(layer.ScrollableLayer):
 
 class Row(layer.Layer):
 
+    class ItemHoverBox(sprite.Sprite):
+
+        is_event_handler = True
+
+        def __init__(self, image, itempack, item, position=(0,0), rotation=0, scale=1, opacity=255, color=(255,255,255), anchor=None, **kwargs):
+            super().__init__(image, position=position, rotation=rotation, scale=scale, opacity=opacity, color=color, anchor=anchor, **kwargs)
+            self.px = 0
+            self.py = 0
+            self.itempack = itempack
+            self.item = item
+            self.width_range = [int((self.px + self.x) - (self.width / 2)), int((self.px + self.x) + (self.width / 2))]
+            self.height_range = [int((self.py + self.y) - (self.height / 2)), int((self.py + self.y) + (self.height / 2))]
+            self.active = False
+            self.image = pyglet.resource.image("leveleditorItemHovered.png")
+            self.opacity = 0
+            self.schedule_interval(self.setWH, 1)
+            self.resume_scheduler()
+
+        def setWH(self, dt):
+            x, y = director.window.width, director.window.height
+            nmin = sc.scale(int((self.px + self.x) - (self.width / 2)), int((self.py + self.y) - (self.height / 2)))
+            nmax = sc.scale(int((self.px + self.x) + (self.width / 2)), int((self.py + self.y) + (self.height / 2)))
+            self.width_range = [int(nmin[0]), int(nmax[0])]
+            self.height_range = [int(nmin[1]), int(nmax[1])]
+
+        def on_mouse_motion(self, x, y, dx, dy):
+            if self.active:
+                if x in range(self.width_range[0], self.width_range[1]) and y in range(self.height_range[0], self.height_range[1]):
+                    self.opacity = 255
+                    self.hovered = True
+                else:
+                    self.opacity = 0
+                    self.hovered = False
+
+        def on_mouse_press(self, x, y, buttons, modifiers):
+            if self.active:
+                if self.hovered:
+                    events.leveleditorevents.itemClick(self.itempack, self.item)
+
     def __init__(self, itempack, label, item_blocks = []):
         super().__init__()
         self.packLbl = text.Label(label, font_size=14, anchor_x="center", anchor_y="center")
@@ -122,7 +161,7 @@ class Row(layer.Layer):
             itemBlock.x = (reswidth * 0.05) + (reswidth * (0.04 * itemId))
             itemBlock.y = resheight * 0.045
             itemBlock.opacity = 0
-            itemSelectionBlock = sprite.Sprite("leveleditorItem.png", scale=1.2)
+            itemSelectionBlock = ItemHoverBox("leveleditorItemHovered.png", itempack, item_blocks[itemId], scale=1.2)
             itemSelectionBlock.x = (reswidth * 0.05) + (reswidth * (0.04 * itemId))
             itemSelectionBlock.y = resheight * 0.045
             itemBlock.opacity = 0
