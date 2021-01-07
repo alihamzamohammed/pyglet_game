@@ -134,8 +134,11 @@ class Row(layer.Layer):
 
 class ItemPackRows(layer.Layer):
 
+    is_event_handler = True
+
     def __init__(self):
-        super().__init__()            
+        super().__init__()   
+        events.leveleditorevents.push_handlers(self)         
         upArrow = elements.smallButton("\u25b2", events.mainmenuevents.backToMainMenu)
         upArrow.x = reswidth * 0.27
         upArrow.y = resheight * 0.09
@@ -156,15 +159,26 @@ class ItemPackRows(layer.Layer):
         self.add(downArrow, z=5)
         upArrow.show(0.01)
         downArrow.show(0.01)
-        self.rows[2].visible = True
+        self.rows[0].visible = True
 
     def rowNumberUp(self):
         if rowNumber < len(self.rows):
             self.rowNumber += 1
+            for rowId in range(len(self.rows)):
+                if rowId == self.rowNumber:
+                    self.rows[rowId].visible = True
+                else:
+                    self.rows[rowID].visible = False
 
     def rowNumberDown(self):
         if rowNumber > 0:
             self.rowNumber -= 1
+            for rowId in range(len(self.rows)):
+                if rowId == self.rowNumber:
+                    self.rows[rowId].visible = True
+                else:
+                    self.rows[rowID].visible = False
+
 
 class LevelEditor(scene.Scene):
 

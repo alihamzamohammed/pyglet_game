@@ -123,8 +123,22 @@ GameMenuEvents.register_event_type("replaceLevelMenu")
 GameMenuEvents.register_event_type("ChosenBoxClicked")
 GameMenuEvents.register_event_type("ReturnToGMMenu")
 
+class LevelEditorEvents(pyglet.window.EventDispatcher):
+
+    def __init__(self):
+        super().__init__()
+
+    def rowUp(self):
+        self.dispatch_event("rowNumberUp")
+
+    def rowDown(self):
+        self.dispatch_event("rowNumberDown")
+
+LevelEditorEvents.register_event_type("rowNumberUp")
+LevelEditorEvents.register_event_type("rowNumberDown")
 
 pausescreenevents = PauseScreenEvents()
 mainmenuevents = MainMenuEvents()
 settingsevents = SettingsEvents()
 gamemenuevents = GameMenuEvents()
+leveleditorevents = LevelEditorEvents()
