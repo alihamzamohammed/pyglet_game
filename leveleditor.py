@@ -106,7 +106,7 @@ class Row(layer.Layer):
 
     def __init__(self, itempack, label, item_blocks = []):
         super().__init__()
-        self.packLbl = text.Label(label, font_size=14, anchor_x="center", anchor_y="center", bold=True)
+        self.packLbl = text.Label(label, font_size=14, anchor_x="center", anchor_y="center")
         self.packLbl.x = reswidth * 0.15
         self.packLbl.y = resheight * 0.095
         self.blocks = []
