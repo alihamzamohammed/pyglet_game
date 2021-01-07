@@ -135,10 +135,10 @@ class ItemPackRows(layer.Layer):
 
     def __init__(self):
         super().__init__()            
-        upArrow = elements.smallButton("Up", events.mainmenuevents.backToMainMenu)
+        upArrow = elements.smallButton("\u25b2", events.mainmenuevents.backToMainMenu)
         upArrow.x = reswidth * 0.5
         upArrow.y = resheight * 0.03
-        downArrow = elements.smallButton("Down", events.mainmenuevents.backToMainMenu)
+        downArrow = elements.smallButton("\u25bc", events.mainmenuevents.backToMainMenu)
         downArrow.x = reswidth * 0.5
         downArrow.y = resheight * 0.03
         splitItems = {}
@@ -149,9 +149,9 @@ class ItemPackRows(layer.Layer):
             for split in itemList:
                 row = Row(pack, item_blocks=split)
                 rows.append(row)
-                self.add(row)
-        self.add(upArrow)
-        self.add(downArrow)
+                self.add(row, z=5)
+        self.add(upArrow, z=5)
+        self.add(downArrow, z=5)
         upArrow.show(0.01)
         downArrow.show(0.01)
         rows[2].visible = True
@@ -283,9 +283,7 @@ class LevelEditor(scene.Scene):
         self.itemRows = ItemPackRows()
         #self.itemRows.x = reswidth * 0.05
         #self.itemRows.y = resheight * 0.05
-        self.add(self.itemRows)
-
-        
+        self.footerLayer.add(self.itemRows)
         
         self.footerLayer.add(self.upButton)
         self.footerLayer.add(self.rightButton)
