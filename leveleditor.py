@@ -248,7 +248,7 @@ class LevelEditor(scene.Scene):
         self.scroller = self.LevelEditorScrollManager(self.scrollerViewport, True)
         self.scroller.autoscale = False
         #self.scroller.on_cocos_resize = on_cocos_resize
-        self.scroller.scale = 1
+        self.scroller.scale = 0.8
         self.scroller.viewport = cocos.rect.Rect(0, int(resheight * 0.12), int(reswidth), int(resheight * 0.76))
         #self.scroller.x = 0
         #self.scroller.y = 0
