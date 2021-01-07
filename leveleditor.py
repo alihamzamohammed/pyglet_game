@@ -104,17 +104,17 @@ class LevelGridLayer(layer.ScrollableLayer):
 
 class Row(layer.Layer):
 
-    def __init__(self, itempack, item_blocks = []):
+    def __init__(self, itempack, label, item_blocks = []):
         super().__init__()
-        self.packLbl = text.Label(itempack.idx, font_size=13, anchor_x="center", anchor_y="center")
+        self.packLbl = text.Label(label, font_size=14, anchor_x="center", anchor_y="center", bold=True)
         self.packLbl.x = reswidth * 0.15
-        self.packLbl.y = resheight * 0.1
+        self.packLbl.y = resheight * 0.095
         self.blocks = []
         self._visible = False
         for itemId in range(len(item_blocks)):
             itemBlock = sprite.Sprite(items.itempacks[itempack.idx].item_data[item_blocks[itemId][:-4]].image, scale=1.2)
             itemBlock.x = (reswidth * 0.05) + (reswidth * (0.04 * itemId))
-            itemBlock.y = resheight * 0.05
+            itemBlock.y = resheight * 0.045
             itemBlock.opacity = 0
             
             self.add(itemBlock)
@@ -154,8 +154,8 @@ class ItemPackRows(layer.Layer):
         for pack in items.itempacks.values():
             splitItems[pack] = [pack.items[i:i + 5] for i in range(0, len(pack.items), 5)]
         for pack, itemList in splitItems.items():
-            for split in itemList:
-                row = Row(pack, item_blocks=split)
+            for splitId in range(len(itemList)):
+                row = Row(pack, pack.name + " - " + str(splitId + 1), item_blocks=itemList[splitId])
                 self.rows.append(row)
                 self.add(row, z=5)
         self.add(upArrow, z=5)
