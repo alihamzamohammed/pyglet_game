@@ -143,19 +143,28 @@ class ItemPackRows(layer.Layer):
         downArrow.x = reswidth * 0.27
         downArrow.y = resheight * 0.03
         splitItems = {}
-        rows = []
+        self.rows = []
+        self.rowNumber = 0
         for pack in items.itempacks.values():
             splitItems[pack] = [pack.items[i:i + 5] for i in range(0, len(pack.items), 5)]
         for pack, itemList in splitItems.items():
             for split in itemList:
                 row = Row(pack, item_blocks=split)
-                rows.append(row)
+                self.rows.append(row)
                 self.add(row, z=5)
         self.add(upArrow, z=5)
         self.add(downArrow, z=5)
         upArrow.show(0.01)
         downArrow.show(0.01)
-        rows[2].visible = True
+        self.rows[2].visible = True
+
+    def rowNumberUp(self):
+        if rowNumber < len(self.rows):
+            self.rowNumber += 1
+
+    def rowNumberDown(self):
+        if rowNumber > 0:
+            self.rowNumber -= 1
 
 class LevelEditor(scene.Scene):
 
