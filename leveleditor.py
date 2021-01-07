@@ -367,6 +367,7 @@ class LevelEditor(scene.Scene):
         self.scroller.update_view_size()
         #self.scroller.refresh_focus()
         print(usable_width, usable_height)
+        # PROBLEM: BROKEN SCALING WITH VIEWPORT AND SCROLLER, DO NOT RESIZE WINDOW
 
 # * cocos.tiles.load has a function names save_xml(), which saves the loaded folder to xml
 # * Along with the ability to change the shown tile directly on the layer and have it reflect in the game, this can be used for level editor
