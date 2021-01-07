@@ -61,6 +61,8 @@ class LevelGridLayer(layer.ScrollableLayer):
             self.hovered = cell
         except IndexError:
             pass
+        except TypeError: # For NoneType
+            pass
 
     def on_mouse_press(self, x, y, buttons, modifiers):
         x, y = self.scroller.screen_to_world(x, y)
@@ -74,6 +76,8 @@ class LevelGridLayer(layer.ScrollableLayer):
                 self.hovered[0].image = pyglet.resource.image("leveleditorItemClicked.png")
                 self.hovered[1] = True
         except IndexError:
+            pass
+        except TypeError: # For NoneType
             pass
 
     def on_mouse_drag(self, x, y, dx, dy, buttons, modifiers):
@@ -92,6 +96,8 @@ class LevelGridLayer(layer.ScrollableLayer):
                     cell[1] = True                    
                     self.dragging.append(cell)
         except IndexError:
+            pass
+        except TypeError: # For NoneType
             pass
 
     def on_mouse_release(self, x, y, buttons, modifiers):
