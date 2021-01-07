@@ -122,9 +122,13 @@ class Row(layer.Layer):
             itemBlock.x = (reswidth * 0.05) + (reswidth * (0.04 * itemId))
             itemBlock.y = resheight * 0.045
             itemBlock.opacity = 0
-            
-            self.add(itemBlock)
-            self.blocks.append(itemBlock)
+            itemSelectionBlock = sprite.Sprite("levelEditorItem.png", scale=1.2)
+            itemSelectionBlock.x = (reswidth * 0.05) + (reswidth * (0.04 * itemId))
+            itemSelectionBlock.y = resheight * 0.045
+            itemBlock.opacity = 0
+            self.add(itemBlock, z=1)
+            self.add(itemSelectionBlock, z=2)
+            self.blocks.append([itemBlock, itemSelectionBlock])
         self.add(self.packLbl)
 
     @property
@@ -137,9 +141,11 @@ class Row(layer.Layer):
         if hasattr(self, "blocks"):
             for item in self.blocks:
                 if value == True:
-                    item.opacity = 255
+                    item[0].opacity = 255
+                    item[1].opacity = 255
                 else:
-                    item.opacity = 0
+                    item[0].opacity = 0
+                    item[1].opacity = 0
 
 class ItemPackRows(layer.Layer):
 
