@@ -110,10 +110,11 @@ class Row(layer.Layer):
         self.blocks = []
         self._visible = False
         for itemId in range(len(item_blocks)):
-            itemBlock = sprite.Sprite(items.itempacks[itempack.idx].item_data[item_blocks[itemId][:-4]].image)
-            itemBlock.x = (reswidth * 0.1) + (reswidth * (0.05 * itemId))
+            itemBlock = sprite.Sprite(items.itempacks[itempack.idx].item_data[item_blocks[itemId][:-4]].image, scale=1.2)
+            itemBlock.x = (reswidth * 0.05) + (reswidth * (0.04 * itemId))
             itemBlock.y = resheight * 0.06
             itemBlock.opacity = 0
+            
             self.add(itemBlock)
             self.blocks.append(itemBlock)
 
@@ -137,7 +138,7 @@ class ItemPackRows(layer.Layer):
         super().__init__()            
         upArrow = elements.smallButton("\u25b2", events.mainmenuevents.backToMainMenu)
         upArrow.x = reswidth * 0.5
-        upArrow.y = resheight * 0.03
+        upArrow.y = resheight * 0.09
         downArrow = elements.smallButton("\u25bc", events.mainmenuevents.backToMainMenu)
         downArrow.x = reswidth * 0.5
         downArrow.y = resheight * 0.03
