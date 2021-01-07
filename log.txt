@@ -30780,3 +30780,164 @@ DEBUG: Init levels
 DEBUG: Init game modes
 DEBUG: Loading finished, displaying Main Menu
 INFO: Multiplayer not yet implemented!
+
+DEBUG: New execution, at: 2021-01-07 14:14:07.935495
+DEBUG: Init resources
+DEBUG: Starting game.
+DEBUG: Resolution is 1280x720
+DEBUG: Fullscreen is disabled
+DEBUG: Starting game loading!
+DEBUG: Init items
+INFO: Item pack Transparency Pack at path items//transparencyPack has no declared items.
+DEBUG: Init levels
+DEBUG: Init game modes
+DEBUG: Loading finished, displaying Main Menu
+
+DEBUG: New execution, at: 2021-01-07 14:21:06.171667
+DEBUG: Init resources
+DEBUG: Starting game.
+DEBUG: Resolution is 1280x720
+DEBUG: Fullscreen is disabled
+DEBUG: Starting game loading!
+DEBUG: Init items
+
+DEBUG: New execution, at: 2021-01-07 14:22:24.121319
+DEBUG: Init resources
+DEBUG: Starting game.
+DEBUG: Resolution is 1280x720
+DEBUG: Fullscreen is disabled
+DEBUG: Starting game loading!
+DEBUG: Init items
+INFO: Item pack Transparency Pack at path items//transparencyPack has no declared items.
+DEBUG: Init levels
+DEBUG: Init game modes
+DEBUG: Loading finished, displaying Main Menu
+INFO: Multiplayer not yet implemented!
+
+DEBUG: New execution, at: 2021-01-07 14:43:41.674980
+DEBUG: Init resources
+DEBUG: Starting game.
+DEBUG: Resolution is 1280x720
+DEBUG: Fullscreen is disabled
+DEBUG: Starting game loading!
+DEBUG: Init items
+INFO: Item pack Transparency Pack at path items//transparencyPack has no declared items.
+DEBUG: Init levels
+DEBUG: Init game modes
+DEBUG: Loading finished, displaying Main Menu
+
+DEBUG: New execution, at: 2021-01-07 14:51:14.721922
+DEBUG: Init resources
+DEBUG: Starting game.
+DEBUG: Resolution is 1280x720
+DEBUG: Fullscreen is disabled
+DEBUG: Starting game loading!
+DEBUG: Init items
+INFO: Item pack Transparency Pack at path items//transparencyPack has no declared items.
+DEBUG: Init levels
+DEBUG: Init game modes
+DEBUG: Loading finished, displaying Main Menu
+INFO: Multiplayer not yet implemented!
+
+DEBUG: New execution, at: 2021-01-07 14:52:13.278354
+DEBUG: Init resources
+DEBUG: Starting game.
+DEBUG: Resolution is 1280x720
+DEBUG: Fullscreen is disabled
+DEBUG: Starting game loading!
+DEBUG: Init items
+INFO: Item pack Transparency Pack at path items//transparencyPack has no declared items.
+DEBUG: Init levels
+DEBUG: Init game modes
+DEBUG: Loading finished, displaying Main Menu
+INFO: Multiplayer not yet implemented!
+
+DEBUG: New execution, at: 2021-01-07 14:52:52.798087
+DEBUG: Init resources
+DEBUG: Starting game.
+DEBUG: Resolution is 1280x720
+DEBUG: Fullscreen is disabled
+DEBUG: Starting game loading!
+DEBUG: Init items
+INFO: Item pack Transparency Pack at path items//transparencyPack has no declared items.
+DEBUG: Init levels
+DEBUG: Init game modes
+DEBUG: Loading finished, displaying Main Menu
+INFO: Multiplayer not yet implemented!
+
+DEBUG: New execution, at: 2021-01-07 14:53:22.003580
+DEBUG: Init resources
+DEBUG: Starting game.
+DEBUG: Resolution is 1280x720
+DEBUG: Fullscreen is disabled
+DEBUG: Starting game loading!
+DEBUG: Init items
+INFO: Item pack Transparency Pack at path items//transparencyPack has no declared items.
+DEBUG: Init levels
+DEBUG: Init game modes
+DEBUG: Loading finished, displaying Main Menu
+INFO: Multiplayer not yet implemented!
+
+DEBUG: New execution, at: 2021-01-07 14:55:25.887342
+DEBUG: Init resources
+DEBUG: Starting game.
+DEBUG: Resolution is 1280x720
+DEBUG: Fullscreen is disabled
+DEBUG: Starting game loading!
+DEBUG: Init items
+INFO: Item pack Transparency Pack at path items//transparencyPack has no declared items.
+DEBUG: Init levels
+DEBUG: Init game modes
+DEBUG: Loading finished, displaying Main Menu
+INFO: Multiplayer not yet implemented!
+
+DEBUG: New execution, at: 2021-01-07 14:56:18.581478
+DEBUG: Init resources
+DEBUG: Starting game.
+DEBUG: Resolution is 1280x720
+DEBUG: Fullscreen is disabled
+DEBUG: Starting game loading!
+DEBUG: Init items
+INFO: Item pack Transparency Pack at path items//transparencyPack has no declared items.
+DEBUG: Init levels
+DEBUG: Init game modes
+DEBUG: Loading finished, displaying Main Menu
+INFO: Multiplayer not yet implemented!
+
+DEBUG: New execution, at: 2021-01-07 14:57:07.922219
+DEBUG: Init resources
+DEBUG: Starting game.
+DEBUG: Resolution is 1280x720
+DEBUG: Fullscreen is disabled
+DEBUG: Starting game loading!
+DEBUG: Init items
+INFO: Item pack Transparency Pack at path items//transparencyPack has no declared items.
+DEBUG: Init levels
+DEBUG: Init game modes
+DEBUG: Loading finished, displaying Main Menu
+
+DEBUG: New execution, at: 2021-01-07 14:59:23.566604
+DEBUG: Init resources
+DEBUG: Starting game.
+DEBUG: Resolution is 1280x720
+DEBUG: Fullscreen is disabled
+DEBUG: Starting game loading!
+DEBUG: Init items
+INFO: Item pack Transparency Pack at path items//transparencyPack has no declared items.
+DEBUG: Init levels
+DEBUG: Init game modes
+DEBUG: Loading finished, displaying Main Menu
+INFO: Multiplayer not yet implemented!
+
+DEBUG: New execution, at: 2021-01-07 15:08:02.787135
+DEBUG: Init resources
+DEBUG: Starting game.
+DEBUG: Resolution is 1280x720
+DEBUG: Fullscreen is disabled
+DEBUG: Starting game loading!
+DEBUG: Init items
+INFO: Item pack Transparency Pack at path items//transparencyPack has no declared items.
+DEBUG: Init levels
+DEBUG: Init game modes
+DEBUG: Loading finished, displaying Main Menu
+INFO: Multiplayer not yet implemented!

@@ -102,6 +102,57 @@ class LevelGridLayer(layer.ScrollableLayer):
     # TODO: Add object properties automatically changing picture on status (hover, click, drag?)
     # TODO: Fix 1st tile not selectable on drag
 
+class Row(layer.Layer):
+
+    def __init__(self, itempack, item_blocks = []):
+        super().__init__()
+        self.packLbl = text.Label("", font_size=14, anchor_x="center", anchor_y="center")
+        self.blocks = []
+        self._visible = False
+        for itemId in range(len(item_blocks)):
+            itemBlock = sprite.Sprite(items.itempacks[itempack.idx].item_data[item_blocks[itemId][:-4]].image)
+            itemBlock.x = reswidth * (0.05 * itemId)
+            itemBlock.y = resheight * 0.06
+            itemBlock.opacity = 0
+            self.add(itemBlock)
+            self.blocks.append(itemBlock)
+
+    @property
+    def visible(self):
+        return self._visible
+
+    @visible.setter
+    def visible(self, value):
+        self._visible = value
+        for item in self.blocks:
+            if value == True:
+                item.opacity = 255
+            else:
+                item.opacity = 0
+                
+class ItemPackRows(layer.Layer):
+
+    def __init__(self):
+        super().__init__()            
+        upArrow = elements.smallButton("Up", events.mainmenuevents.backToMainMenu)
+        upArrow.x = reswidth * 0.5
+        upArrow.y = resheight * 0.03
+        downArrow = elements.smallButton("Down", events.mainmenuevents.backToMainMenu)
+        downArrow.x = reswidth * 0.5
+        downArrow.y = resheight * 0.09
+        splitItems = {}
+        rows = []
+        for pack in items.itempacks.values():
+            splitItems[pack] = [pack.items[i:i + 5] for i in range(0, len(pack.items), 5)]
+        for pack, itemList in splitItems.items():
+            for split in itemList:
+                row = Row(pack, item_blocks=split)
+                rows.append(row)
+                self.add(row)
+        self.add(upArrow)
+        self.add(downArrow)
+        rows[0].visible = True
+
 class LevelEditor(scene.Scene):
 
     is_event_handler = True
@@ -122,8 +173,8 @@ class LevelEditor(scene.Scene):
 
         def __init__(self, name, desc, r, g, b, a, width=None, height=None):
             super().__init__(r, g, b, a, width=width, height=height)
-            self.title = cocos.text.Label(name, font_size=40, anchor_x="center", anchor_y="center")
-            self.desc = cocos.text.Label(desc, font_size=30, anchor_x="center", anchor_y="center")
+            self.title = text.Label(name, font_size=40, anchor_x="center", anchor_y="center")
+            self.desc = text.Label(desc, font_size=30, anchor_x="center", anchor_y="center")
             self.title.x = self.width / 2
             self.title.y = self.height * 0.55
             self.desc.x = self.width / 2
@@ -226,6 +277,10 @@ class LevelEditor(scene.Scene):
         self.downButton.y = self.footerLayer.height * 0.25
 
         ## ITEMS
+        self.itemRows = ItemPackRows()
+        self.itemRows.x = reswidth * 0.05
+        self.itemRows.y = resheight * 0.05
+        self.add(self.itemRows)
 
         
         

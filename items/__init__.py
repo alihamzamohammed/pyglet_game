@@ -24,6 +24,7 @@ class ItemPack():
             raise ItemPackCorrupt("main.xml in item pack " + self.folder + " is corrupt, item pack will not be loaded!")
         self.tags = {}
         self.items = []
+        self.item_xml = {}
         self.item_data = {}
         self.item_res = {}
 
@@ -50,6 +51,7 @@ class ItemPack():
                         raise DependencyNotFound("File " + self.required[listreq][req] + " is not found, item pack " + self.folder + " will not be loaded!")
             
             if item.tag == "item" and item.text not in self.items:
+                self.item_xml[item.text[:-4]] = item.text
                 self.items.append(item.text)
             
             if item.tag == "thumbnail":
@@ -73,6 +75,7 @@ class ItemPack():
                 self.item_res[itempath[:-4]] = res
                 self.item_data[itempath[:-4]] = res.contents[None][itempath[:-4]]        
 
+        # ~ Is this needed?
         if not hasattr(self, "background"):
             self.background = (100, 120, 150, 255)
 
