@@ -139,7 +139,7 @@ class ItemPackRows(layer.Layer):
     def __init__(self):
         super().__init__()   
         events.leveleditorevents.push_handlers(self)         
-        upArrow = elements.smallButton("\u25b2", events.leveleditorevents.rowUp
+        upArrow = elements.smallButton("\u25b2", events.leveleditorevents.rowUp)
         upArrow.x = reswidth * 0.27
         upArrow.y = resheight * 0.09
         downArrow = elements.smallButton("\u25bc", events.leveleditorevents.rowDown)
