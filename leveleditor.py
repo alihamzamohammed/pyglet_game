@@ -305,17 +305,6 @@ class LevelEditor(scene.Scene):
         self.intro.title.do(cocos.actions.FadeOut(0.1) + cocos.actions.Delay(0.5) + cocos.actions.FadeIn(0.5))
         self.intro.desc.do(cocos.actions.FadeOut(0.1) + cocos.actions.Delay(1) + cocos.actions.FadeIn(0.5) + cocos.actions.CallFunc(self.loadSceenShowing))
         
-    def activeLayerChanged(self):
-        for layer, selected in self.layers.items():
-            if selected == True:
-                selectedLayer = layer
-                break
-        self.layers[selectedLayer] = False
-        try:
-            self.layers[list(self.layers.keys())[list(self.layers.keys()).index(layer) + 1]] = True
-        except IndexError:
-            self.layers[list(self.layers.keys())[0]] = True
-
     def loadSceenShowing(self):
         self.levelData = tiles.load(self.level.datapath)
         self.tilemap_decorations = self.levelData["decorations"]
@@ -444,6 +433,22 @@ class LevelEditor(scene.Scene):
         if len(selectedTiles) == 0: pass
         for tile in selectedTiles:
             print(tile)
+
+    def activeLayerChanged(self):
+        for layer, selected in self.layers.items():
+            if selected == True:
+                selectedLayer = layer
+                break
+        for layerId in range(len(self.layers)):
+            if self.layers[layerId][0] == layer:
+                self.layers[layerId][1] == False
+                self.layers[layerId][0].opacity = 100
+                try:
+                    self.layers[layerId + 1][1] == True
+                    self.layers[layerId + 1][0].opacity = 255
+                except IndexError:
+                    self.layers[0][1] = True
+                    self.layers[0][1].opacity = 255
 
     def on_cocos_resize(self, usable_width, usable_height):
         if director.window.width == reswidth:
