@@ -440,10 +440,10 @@ class LevelEditor(scene.Scene):
     def activeLayerChanged(self):
         for layerId in range(len(self.layers)):
             if self.layers[layerId][1] == True:
-                self.layers[layerId][1] == False
+                self.layers[layerId][1] = False
                 self.layers[layerId][0].opacity = 100
                 try:
-                    self.layers[layerId + 1][1] == True
+                    self.layers[layerId + 1][1] = True
                     self.layers[layerId + 1][0].opacity = 255
                 except IndexError:
                     self.layers[0][1] = True
