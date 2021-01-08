@@ -257,9 +257,12 @@ class ActiveLayerSelection(layer.Layer):
         titleLabel = text.Label("Active Layer:", anchor_x="center", anchor_y="center", font_size=14)
         titleLabel.x = reswidth * 0.4
         titleLabel.y = resheight * 0.09
-        self.changeLabel = text.Label("", anchor_x="center", anchor_y="center", font_size=14)
+        self.changeLabel = text.Label("Change Label", anchor_x="center", anchor_y="center", font_size=14)
         self.changeLabel.x = reswidth * 0.4
         self.changeLabel.y = resheight * 0.03
+        self.add(changeArrow)
+        self.add(titleLabel)
+        self.add(self.changeLabel)
 
 class LevelEditor(scene.Scene):
 
@@ -390,17 +393,16 @@ class LevelEditor(scene.Scene):
         self.downButton.x = self.footerLayer.width * 0.92
         self.downButton.y = self.footerLayer.height * 0.25
 
-        ## ITEMS
         self.itemRows = ItemPackRows()
-        #self.itemRows.x = reswidth * 0.05
-        #self.itemRows.y = resheight * 0.05
-        self.footerLayer.add(self.itemRows)
+        self.activeLayerSelection = ActiveLayerSelection()
         
         self.footerLayer.add(self.upButton)
         self.footerLayer.add(self.rightButton)
         self.footerLayer.add(self.leftButton)
         self.footerLayer.add(self.downButton)
-        
+        self.footerLayer.add(self.itemRows)
+        self.add(self.activeLayerSelection)
+
         self.upButton.show(0.1)
         self.rightButton.show(0.1)
         self.leftButton.show(0.1)
