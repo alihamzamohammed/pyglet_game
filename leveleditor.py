@@ -438,10 +438,6 @@ class LevelEditor(scene.Scene):
             print(tile)
 
     def activeLayerChanged(self):
-        for layer, selected in self.layers.items():
-            if selected == True:
-                selectedLayer = layer
-                break
         for layerId in range(len(self.layers)):
             if self.layers[layerId][0] == layer:
                 self.layers[layerId][1] == False
