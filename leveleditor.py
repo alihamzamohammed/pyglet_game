@@ -263,6 +263,7 @@ class ActiveLayerSelection(layer.Layer):
         self.add(changeArrow)
         self.add(titleLabel)
         self.add(self.changeLabel)
+        changeArrow.show(0.01)
 
 class LevelEditor(scene.Scene):
 
@@ -401,7 +402,7 @@ class LevelEditor(scene.Scene):
         self.footerLayer.add(self.leftButton)
         self.footerLayer.add(self.downButton)
         self.footerLayer.add(self.itemRows)
-        self.add(self.activeLayerSelection)
+        self.footerLayer.add(self.activeLayerSelection)
 
         self.upButton.show(0.1)
         self.rightButton.show(0.1)
