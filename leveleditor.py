@@ -310,9 +310,9 @@ class LevelEditor(scene.Scene):
         self.tilemap_decorations = self.levelData["decorations"]
         self.tilemap_walls = self.levelData["walls"]
 
-        self.tilemap_decorations.opacity = 100
-        self.tilemap_walls.opacity = 255
         self.layers = [[self.tilemap_decorations, False], [self.tilemap_walls, True]]
+        self.layers[0][0].opacity = 100
+        self.layers[1][0].opacity = 255
 
         if isinstance(self.level.background, str):
             self.bgLayer = layer.ScrollableLayer()
@@ -448,7 +448,7 @@ class LevelEditor(scene.Scene):
                     self.layers[layerId + 1][0].opacity = 255
                 except IndexError:
                     self.layers[0][1] = True
-                    self.layers[0][1].opacity = 255
+                    self.layers[0][0].opacity = 255
 
     def on_cocos_resize(self, usable_width, usable_height):
         if director.window.width == reswidth:
