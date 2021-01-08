@@ -314,9 +314,9 @@ class LevelEditor(scene.Scene):
         self.tilemap_decorations = self.levelData["decorations"]
         self.tilemap_walls = self.levelData["walls"]
 
-        self.layers = [[self.tilemap_decorations, False], [self.tilemap_walls, True]]
-        self.layers[0][0].opacity = 100
-        self.layers[1][0].opacity = 255
+        self.layers = [self.tilemap_decorations, self.tilemap_walls]
+        self.layers[0].visible = False
+        self.layers[1].visible = True
 
         if isinstance(self.level.background, str):
             self.bgLayer = layer.ScrollableLayer()
@@ -440,18 +440,17 @@ class LevelEditor(scene.Scene):
     def activeLayerChanged(self):
         print("changing layers")
         for layerId in range(len(self.layers)):
-            if self.layers[layerId][1] == True:
+            if self.layers[layerId].visible == True:
+                self.layers[layerId].visible = False
                 print(str(layerId) + " true, changing to false")
-                self.layers[layerId][1] = False
-                self.layers[layerId][0].opacity = 100
-                try:
-                    print(str(layerId) + " + 1 true")
-                    self.layers[layerId + 1][1] = True
-                    self.layers[layerId + 1][0].opacity = 255
-                except IndexError:
-                    print("layer 0 true")
-                    self.layers[0][1] = True
-                    self.layers[0][0].opacity = 255
+                break
+        try:
+            self.layers[layerId + 1].visible = True
+            print(str(layerId) + " + 1 true")
+        except IndexError:
+            self.layers[0].visible = True
+            print("layer 0 true")
+
 
     def on_cocos_resize(self, usable_width, usable_height):
         if director.window.width == reswidth:
