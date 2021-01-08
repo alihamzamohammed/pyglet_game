@@ -409,7 +409,7 @@ class LevelEditor(scene.Scene):
         if self.scroller.fy >= self.scrollerFocusLimits["down"] + 1:
             self.scroller.set_focus(self.scroller.fx, self.scroller.fy - 10)
 
-    def itemClicked(self, item):
+    def itemClicked(self, itempack, item):
         global selectedTiles
         if len(selectedTiles) == 0: pass
         for tile in selectedTiles:
