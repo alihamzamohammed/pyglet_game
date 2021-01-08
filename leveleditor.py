@@ -13,7 +13,7 @@ import events
 import scaling as sc
 
 reswidth, resheight = [int(res) for res in cfg.resolution.split("x")]
-
+selectedTiles = []
 
 class LevelNotFound(Exception):
     
@@ -34,7 +34,8 @@ class LevelGridLayer(layer.ScrollableLayer):
         self.walls = kwargs["walls"]
         self.decorations = kwargs["decorations"]
         self.hovered = None
-        self.selected = []
+        global selectedTiles
+        selectedTiles = []
         self.dragging = []
         self.initialCell = None
         for column in kwargs["walls"].cells:
@@ -66,6 +67,7 @@ class LevelGridLayer(layer.ScrollableLayer):
 
     def on_mouse_press(self, x, y, buttons, modifiers):
         x, y = self.scroller.screen_to_world(x, y)
+        global selectedTiles
         try:
             self.initialCell = self.hovered
             if x < 0 or y < 0: return
@@ -75,6 +77,7 @@ class LevelGridLayer(layer.ScrollableLayer):
             else:
                 self.hovered[0].image = pyglet.resource.image("leveleditorItemClicked.png")
                 self.hovered[1] = True
+                selectedTiles.append(self.hovered)
         except IndexError:
             pass
         except TypeError: # For NoneType
@@ -82,6 +85,7 @@ class LevelGridLayer(layer.ScrollableLayer):
 
     def on_mouse_drag(self, x, y, dx, dy, buttons, modifiers):
         x, y = self.scroller.screen_to_world(x, y)
+        global selectedTiles
         try:
             cell = self.gridList[x // 32][y // 32]
             if x < 0 or y < 0: return
@@ -91,10 +95,12 @@ class LevelGridLayer(layer.ScrollableLayer):
                     cell[0].image = pyglet.resource.image("leveleditorItem.png")
                     cell[1] = False
                     self.dragging.append(cell)
+                    selectedTiles.remove(cell)
                 else:
                     cell[0].image = pyglet.resource.image("leveleditorItemClicked.png")
                     cell[1] = True                    
                     self.dragging.append(cell)
+                    selectedTiles.append(cell)
         except IndexError:
             pass
         except TypeError: # For NoneType
@@ -279,6 +285,7 @@ class LevelEditor(scene.Scene):
         director.push_handlers(self)
         self.intro = self.LevelIntro("Level Editor", self.level.name, 0, 0, 0, 0)
         self.add(self.intro, z=5)
+        events.leveleditorevents.push_handlers(self)
 
         self.intro.do(cocos.actions.FadeIn(0.1))
         self.intro.title.do(cocos.actions.FadeOut(0.1) + cocos.actions.Delay(0.5) + cocos.actions.FadeIn(0.5))
@@ -401,6 +408,12 @@ class LevelEditor(scene.Scene):
     def moveDown(self):
         if self.scroller.fy >= self.scrollerFocusLimits["down"] + 1:
             self.scroller.set_focus(self.scroller.fx, self.scroller.fy - 10)
+
+    def itemClicked(self, item):
+        global selectedTiles
+        if len(selectedTiles) == 0: pass
+        for tile in selectedTiles:
+            print(tile)
 
     def on_cocos_resize(self, usable_width, usable_height):
         if director.window.width == reswidth:
