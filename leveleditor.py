@@ -305,6 +305,17 @@ class LevelEditor(scene.Scene):
         self.intro.title.do(cocos.actions.FadeOut(0.1) + cocos.actions.Delay(0.5) + cocos.actions.FadeIn(0.5))
         self.intro.desc.do(cocos.actions.FadeOut(0.1) + cocos.actions.Delay(1) + cocos.actions.FadeIn(0.5) + cocos.actions.CallFunc(self.loadSceenShowing))
         
+    def activeLayerChanged(self):
+        for layer, selected in self.layers.items():
+            if selected == True:
+                selectedLayer = layer
+                break
+        self.layers[selectedLayer] = False
+        try:
+            self.layers[list(self.layers.keys())[list(self.layers.keys()).index(layer) + 1]] = True
+        except IndexError:
+            self.layers[list(self.layers.keys())[0]] = True
+
     def loadSceenShowing(self):
         self.levelData = tiles.load(self.level.datapath)
         self.tilemap_decorations = self.levelData["decorations"]
@@ -312,8 +323,7 @@ class LevelEditor(scene.Scene):
 
         self.tilemap_decorations.opacity = 100
         self.tilemap_walls.opacity = 255
-        self.layers = [self.tilemap_decorations, self.tilemap_walls]
-        self.activeLayer = self.tilemap_walls
+        self.layers = [[self.tilemap_decorations, False], [self.tilemap_walls, True]]
 
         if isinstance(self.level.background, str):
             self.bgLayer = layer.ScrollableLayer()
