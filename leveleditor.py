@@ -317,6 +317,8 @@ class LevelEditor(scene.Scene):
         self.layers = [self.tilemap_decorations, self.tilemap_walls]
         self.layers[0].visible = False
         self.layers[1].visible = True
+        setattr(self.layers[0], "name", "Decorations Layer")
+        setattr(self.layers[1], "name", "Walls Layer")
 
         if isinstance(self.level.background, str):
             self.bgLayer = layer.ScrollableLayer()
@@ -442,15 +444,13 @@ class LevelEditor(scene.Scene):
         for layerId in range(len(self.layers)):
             if self.layers[layerId].visible == True:
                 self.layers[layerId].visible = False
-                print(str(layerId) + " true, changing to false")
                 break
         try:
             self.layers[layerId + 1].visible = True
-            print(str(layerId) + " + 1 true")
+            self.activeLayerSelection.changeLabel.element.text = self.layers[layerId + 1].name
         except IndexError:
             self.layers[0].visible = True
-            print("layer 0 true")
-
+            self.activeLayerSelection.changeLabel.element.text = self.layers[0].name
 
     def on_cocos_resize(self, usable_width, usable_height):
         if director.window.width == reswidth:
