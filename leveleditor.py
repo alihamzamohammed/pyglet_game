@@ -319,6 +319,7 @@ class LevelEditor(scene.Scene):
         self.layers[1].visible = True
         setattr(self.layers[0], "name", "Decorations Layer")
         setattr(self.layers[1], "name", "Walls Layer")
+        
 
         if isinstance(self.level.background, str):
             self.bgLayer = layer.ScrollableLayer()
@@ -398,6 +399,7 @@ class LevelEditor(scene.Scene):
 
         self.itemRows = ItemPackRows()
         self.activeLayerSelection = ActiveLayerSelection()
+        self.activeLayerSelection.changeLabel.element.text = self.layers[1].name
         
         self.footerLayer.add(self.upButton)
         self.footerLayer.add(self.rightButton)
