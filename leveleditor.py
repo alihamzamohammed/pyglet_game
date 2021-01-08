@@ -251,7 +251,7 @@ class ActiveLayerSelection(layer.Layer):
 
     def __init__(self):
         super().__init__()
-        changeArrow = elements.mediumButton("\u21f5", events.leveleditorevents.activeLayerChange)
+        changeArrow = elements.smallButton("\u21f5", events.leveleditorevents.activeLayerChange)
         changeArrow.x = reswidth * 0.5
         changeArrow.y = resheight * 0.06
         titleLabel = text.Label("Active Layer:", anchor_x="center", anchor_y="center", font_size=14)
