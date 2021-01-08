@@ -438,14 +438,18 @@ class LevelEditor(scene.Scene):
             print(tile)
 
     def activeLayerChanged(self):
+        print("changing layers")
         for layerId in range(len(self.layers)):
             if self.layers[layerId][1] == True:
+                print(str(layerId) + " true, changing to false")
                 self.layers[layerId][1] = False
                 self.layers[layerId][0].opacity = 100
                 try:
+                    print(str(layerId) + " + 1 true")
                     self.layers[layerId + 1][1] = True
                     self.layers[layerId + 1][0].opacity = 255
                 except IndexError:
+                    print("layer 0 true")
                     self.layers[0][1] = True
                     self.layers[0][0].opacity = 255
 
