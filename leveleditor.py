@@ -74,6 +74,7 @@ class LevelGridLayer(layer.ScrollableLayer):
             if self.hovered[1]:
                 self.hovered[0].image = pyglet.resource.image("leveleditorItem.png")
                 self.hovered[1] = False
+                selectedTiles.remove(self.hovered)
             else:
                 self.hovered[0].image = pyglet.resource.image("leveleditorItemClicked.png")
                 self.hovered[1] = True
