@@ -138,9 +138,13 @@ class LevelEditorEvents(pyglet.window.EventDispatcher):
         self.dispatch_event("itemClicked", itempack, item)
         print(item + " clicked!")
 
+    def activeLayerChange(self):
+        self.dispatch_event("activeLayerChanged")
+
 LevelEditorEvents.register_event_type("rowNumberUp")
 LevelEditorEvents.register_event_type("rowNumberDown")
 LevelEditorEvents.register_event_type("itemClicked")
+LevelEditorEvents.register_event_type("activeLayerChanged")
 
 pausescreenevents = PauseScreenEvents()
 mainmenuevents = MainMenuEvents()

@@ -247,6 +247,19 @@ class ItemPackRows(layer.Layer):
                 else:
                     self.rows[rowId].visible = False
 
+class ActiveLayerSelection(layer.Layer):
+
+    def __init__(self):
+        super().__init__()
+        changeArrow = elements.mediumButton("CHANGE", events.leveleditorevents.activeLayerChange)
+        changeArrow.x = reswidth * 0.5
+        changeArrow.y = resheight * 0.06
+        titleLabel = text.Label("Active Layer:", anchor_x="center", anchor_y="center", font_size=14)
+        titleLabel.x = reswidth * 0.4
+        titleLabel.y = resheight * 0.09
+        self.changeLabel = text.Label("", anchor_x="center", anchor_y="center", font_size=14)
+        self.changeLabel.x = reswidth * 0.4
+        self.changeLabel.y = resheight * 0.03
 
 class LevelEditor(scene.Scene):
 
@@ -296,6 +309,12 @@ class LevelEditor(scene.Scene):
         self.levelData = tiles.load(self.level.datapath)
         self.tilemap_decorations = self.levelData["decorations"]
         self.tilemap_walls = self.levelData["walls"]
+
+        self.tilemap_decorations.opacity = 100
+        self.tilemap_walls.opacity = 255
+        self.layers = [self.tilemap_decorations, self.tilemap_walls]
+        self.activeLayer = self.tilemap_walls
+
         if isinstance(self.level.background, str):
             self.bgLayer = layer.ScrollableLayer()
             self.bgLayer.parallax = 0.5
