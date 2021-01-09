@@ -367,7 +367,7 @@ class LevelEditor(scene.Scene):
         self.backButton.x = int(self.headerLayer.width * 0.065)
         self.backButton.y =  int(self.headerLayer.height / 2)
         
-        self.saveButton = elements.mediumButton("SAVE", events.mainmenuevents.backToMainMenu)
+        self.saveButton = elements.mediumButton("SAVE", events.leveleditorevents.levelSave)
         self.saveButton.x = int(self.headerLayer.width * 0.947)
         self.saveButton.y =  int(self.headerLayer.height / 2)
 
