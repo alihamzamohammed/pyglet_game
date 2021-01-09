@@ -440,7 +440,7 @@ class LevelEditor(scene.Scene):
         if len(selectedTiles) == 0: pass
         activeLayer = [layer for layer in self.layers if layer.visible]
         for tile in selectedTiles:
-            activeLayer[0].get_at_pixel(tile.x, tile.y).tile = items.itempacks[itempack.idx].item_data[item[:-4]]
+            activeLayer[0].get_at_pixel(tile[0].x, tile[0].y).tile = items.itempacks[itempack.idx].item_data[item[:-4]]
         activeLayer[0].set_dirty()
 
     def activeLayerChanged(self):
