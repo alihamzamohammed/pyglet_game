@@ -446,6 +446,7 @@ class LevelEditor(scene.Scene):
         activeLayer[0].set_dirty()
         selectedTiles = []
         # TODO: Add XML fixing 
+        # TODO: Add empty block to row
 
     def activeLayerChanged(self):
         print("changing layers")
