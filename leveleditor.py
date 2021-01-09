@@ -449,12 +449,12 @@ class LevelEditor(scene.Scene):
         global selectedTiles
         if len(selectedTiles) == 0: pass
         activeLayer = [layer for layer in self.layers if layer.visible]
-        if item == "empty":
-            activeLayer[0].get_at_pixel(tile[0].x, tile[0].y).tile = None
-            tile[0].image = pyglet.resource.image("leveleditorItem.png")
-            tile[1] = False
-        else:
-            for tile in selectedTiles:
+        for tile in selectedTiles:
+            if item == "empty":
+                activeLayer[0].get_at_pixel(tile[0].x, tile[0].y).tile = None
+                tile[0].image = pyglet.resource.image("leveleditorItem.png")
+                tile[1] = False
+            else:
                 activeLayer[0].get_at_pixel(tile[0].x, tile[0].y).tile = items.itempacks[itempack.idx].item_data[item[:-4]]
                 tile[0].image = pyglet.resource.image("leveleditorItem.png")
                 tile[1] = False
