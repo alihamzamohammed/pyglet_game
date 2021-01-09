@@ -32114,3 +32114,6 @@ DEBUG: Init levels
 DEBUG: Init game modes
 DEBUG: Loading finished, displaying Main Menu
 INFO: Multiplayer not yet implemented!
+
+DEBUG: New execution, at: 2021-01-09 21:36:39.843022
+DEBUG: Init resources
