@@ -505,7 +505,7 @@ class LevelEditor(scene.Scene):
         # PROBLEM: BROKEN SCALING WITH VIEWPORT AND SCROLLER, DO NOT RESIZE WINDOW
 
     def saveLevel(self):
-        self.levelData.save_xml(self.level.folder + "\\level.xml")
+        self.levelData.save_xml(self.level.folder + "\\level2.xml")
         self.level.save_xml()
         msg.showMessage("Level has been saved!", duration=4.5)
 
