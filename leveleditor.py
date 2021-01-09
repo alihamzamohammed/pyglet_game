@@ -230,7 +230,7 @@ class ItemPackRows(layer.Layer):
                 row = Row(pack, pack.name + " - " + str(splitId + 1), item_blocks=itemList[splitId])
                 self.rows.append(row)
                 self.add(row, z=5)
-        emptyRow = Row(None, "Default Blocks", ["empty"])
+        emptyRow = Row(None, "Empty Block", ["empty"])
         self.rows.append(emptyRow)
         self.add(emptyRow, z=5)
         self.add(upArrow, z=5)
