@@ -372,6 +372,7 @@ class LevelEditor(scene.Scene):
         self.saveButton.y =  int(self.headerLayer.height / 2)
 
         self.discardButton = elements.mediumButton("DISCARD", events.mainmenuevents.onPlayButtonClick)
+        self.discardButton.lbl.element.font_size = 14
         self.discardButton.x = int(self.headerLayer.width * 0.927)
         self.discardButton.y = int(self.headerLayer.height / 2)
         
