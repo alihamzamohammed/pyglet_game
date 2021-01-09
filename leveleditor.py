@@ -314,6 +314,7 @@ class LevelEditor(scene.Scene):
         self.intro = self.LevelIntro("Level Editor", self.level.name, 0, 0, 0, 0)
         self.add(self.intro, z=5)
         events.leveleditorevents.push_handlers(self)
+        self._changes = False
 
         self.intro.do(cocos.actions.FadeIn(0.1))
         self.intro.title.do(cocos.actions.FadeOut(0.1) + cocos.actions.Delay(0.5) + cocos.actions.FadeIn(0.5))
@@ -337,7 +338,6 @@ class LevelEditor(scene.Scene):
             bgImage = cocos.sprite.Sprite(self.level.background)
             # TODO: Add code to scale image to viewport, then tile it
             self.bgLayer.add(bgImage)
-
 
         self.scrollerViewport = rect.Rect(0, int(resheight * 0.12), int(reswidth), int(resheight * 0.76))
         self.scroller = self.LevelEditorScrollManager(self.scrollerViewport, True)
@@ -365,25 +365,29 @@ class LevelEditor(scene.Scene):
         
         self.backButton = elements.mediumButton("BACK", events.mainmenuevents.onPlayButtonClick)
         self.backButton.x = int(self.headerLayer.width * 0.065)
-        
         self.backButton.y =  int(self.headerLayer.height / 2)
-        self.saveButton = elements.mediumButton("SAVE", events.mainmenuevents.backToMainMenu)
         
+        self.saveButton = elements.mediumButton("SAVE", events.mainmenuevents.backToMainMenu)
         self.saveButton.x = int(self.headerLayer.width * 0.947)
         self.saveButton.y =  int(self.headerLayer.height / 2)
+
+        self.discardButton = elements.mediumButton("DISCARD", events.mainmenuevents.onPlayButtonClick)
+        self.discardButton.x = int(self.headerLayer.width * 0.747)
+        self.discardButton.y = int(self.headerLayer.height / 2)
         
         #self.editButton
+
         self.add(self.headerLayer, z=2)
         
         self.headerLayer.add(self.title)
         self.headerLayer.add(self.saveButton)
         self.headerLayer.add(self.backButton)
+        self.headerLayer.add(self.discardButton)
         
-        self.backButton.px = self.saveButton.px = self.headerLayer.x
-        self.backButton.py = self.saveButton.py = self.headerLayer.y
+        self.backButton.px = self.saveButton.px = self.discardButton.px = self.headerLayer.x
+        self.backButton.py = self.saveButton.py = self.discardButton.py = self.headerLayer.y
         
         self.backButton.show(0.1)
-        self.saveButton.show(0.1)
 
         self.footerLayer = layer.ColorLayer(0, 0, 0, 125, width=int(reswidth), height=int(resheight * 0.12))
         self.footerLayer.x = 0
@@ -450,8 +454,8 @@ class LevelEditor(scene.Scene):
         if len(selectedTiles) == 0: pass
         activeLayer = [layer for layer in self.layers if layer.visible]
         if item[:-4] not in [req[0] for req in self.levelData.requires]:
-            self.levelData.requires.append(tuple(item[:-4], items.itempacks[itempack.idx].item_res[item[:-4]]))
-            print(tuple(item[:-4], items.itempacks[itempack.idx].item_res[item[:-4]]))
+            self.levelData.requires.append((item[:-4], items.itempacks[itempack.idx].item_res[item[:-4]]))
+            print((item[:-4], items.itempacks[itempack.idx].item_res[item[:-4]]))
         for tile in selectedTiles:
             if item == "empty":
                 activeLayer[0].get_at_pixel(tile[0].x, tile[0].y).tile = None
@@ -463,6 +467,7 @@ class LevelEditor(scene.Scene):
                 tile[1] = False
         activeLayer[0].set_dirty()
         selectedTiles = []
+        self.changes = True
         # TODO: Add XML fixing 
 
     def activeLayerChanged(self):
@@ -496,6 +501,17 @@ class LevelEditor(scene.Scene):
         #self.scroller.refresh_focus()
         print(usable_width, usable_height)
         # PROBLEM: BROKEN SCALING WITH VIEWPORT AND SCROLLER, DO NOT RESIZE WINDOW
+
+    @property
+    def changes(self):
+        return self._changes
+
+    @changes.setter
+    def changes(self, value):
+        self._changes = value
+        if value:
+            self.saveButton.show(1)
+            self.discardButton.show(1)
 
 # * cocos.tiles.load has a function names save_xml(), which saves the loaded folder to xml
 # * Along with the ability to change the shown tile directly on the layer and have it reflect in the game, this can be used for level editor
