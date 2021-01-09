@@ -174,7 +174,7 @@ class Row(layer.Layer):
             itemBlock.x = (reswidth * 0.05) + (reswidth * (0.04 * itemId))
             itemBlock.y = resheight * 0.045
             itemBlock.opacity = 0
-            itemSelectionBlock = self.ItemHoverBox("leveleditorItemHovered.png", None, "empty", (reswidth * 0.05) + (reswidth * (0.04 * itemId)), resheight * 0.045, scale=1.2)
+            itemSelectionBlock = self.ItemHoverBox("leveleditorItemHovered.png", None, "empty", (reswidth * 0.05) + (reswidth * 0.04), resheight * 0.045, scale=1.2)
             self.add(itemBlock, z=1)
             self.add(itemSelectionBlock, z=2)
             self.blocks.append([itemBlock, itemSelectionBlock])
