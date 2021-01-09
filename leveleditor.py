@@ -171,7 +171,7 @@ class Row(layer.Layer):
         self._visible = False            
         if item_blocks[0] == "empty":
             itemBlock = sprite.Sprite("emptyBlock.png", scale=1.2)
-            itemBlock.x = (reswidth * 0.05) + (reswidth * (0.04 * itemId))
+            itemBlock.x = (reswidth * 0.05) + (reswidth * 0.04)
             itemBlock.y = resheight * 0.045
             itemBlock.opacity = 0
             itemSelectionBlock = self.ItemHoverBox("leveleditorItemHovered.png", None, "empty", (reswidth * 0.05) + (reswidth * 0.04), resheight * 0.045, scale=1.2)
