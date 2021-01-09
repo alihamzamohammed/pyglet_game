@@ -102,6 +102,7 @@ class Level():
                     element = et.Element("required")
                     element.set("type", required)
                     element.text = item
+                    element.tail = "\n   "
                     self._lvl.getroot().append(element)
         self._lvl.write(self.folder + "\\main2.xml")
 

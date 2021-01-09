@@ -7,4 +7,4 @@
     <required type="itempack">default</required>
     <required type="itempack">bouncePack</required>
     <required type="itempack">movePack</required>
-</level>
+<required type="itempack">transparencyPack</required></level>
