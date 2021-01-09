@@ -103,7 +103,7 @@ class Level():
                     element.set("type", required)
                     element.text = item
                     self._lvl.getroot().append(element)
-        self._lvl.write(self.folder)
+        self._lvl.write(self.folder + "\\" + self.idx + ".xml")
 
 class LevelCorrupt(Exception):
 
