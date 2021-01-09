@@ -104,7 +104,7 @@ class Level():
                     element.text = item
                     element.tail = "\n   "
                     self._lvl.getroot().append(element)
-        self._lvl.write(self.folder + "\\main2.xml")
+        self._lvl.write(self.folder + "\\main.xml")
 
 class LevelCorrupt(Exception):
 
