@@ -98,7 +98,7 @@ class Level():
                 element.text = self.thumbnail
         for required in list(self.required.keys()):
             for item in self.required[required]:
-                if item not in [name for name in self._lvl.getroot().findall("required").text]:
+                if item not in [name.text for name in self._lvl.getroot().findall("required")]:
                     element = et.Element("required")
                     element.set("type", required)
                     element.text = item
