@@ -1,3622 +1,3775 @@
-<resource><requires file="items/default/grass.xml" namespace="grass" />
-<requires file="items/default/wood.xml" namespace="wood" />
-<requires file="items/default/stone.xml" namespace="stone" />
-<requires file="items/default/dirt.xml" namespace="dirt" />
-<requires file="items/default/woodBeam.xml" namespace="woodBeam" />
-<requires file="items/default/stoneBeam.xml" namespace="stoneBeam" />
-<requires file="items/decorations/cloud.xml" namespace="cloud" />
-<requires file="items/bouncePack/trampoline.xml" namespace="trampoline" />
-<requires file="items/bouncePack/sponge.xml" namespace="sponge" />
-<requires file="items/bouncePack/hyperjump.xml" namespace="hyperjump" />
-<requires file="items/bouncePack/sticky.xml" namespace="sticky" />
-<requires file="items/movePack/2x3s.xml" namespace="2x3s" />
-<requires file="items/movePack/5x5s.xml" namespace="5x5s" />
-<requires file="items/movePack/0.2x5s.xml" namespace="0.2x5s" />
-<requires file="items/movePack/0.5x3s.xml" namespace="0.5x3s" />
-<requires file="items/movePack/hold.xml" namespace="hold" />
-<requires file="items/transparencyPack/glass.xml" namespace="glass" />
-<rectmap id="walls" origin="0,0,0" tile_size="32x32">
-<column>
-<cell tile="stone" />
-<cell tile="stone" />
-<cell tile="stone" />
-<cell tile="stone" />
-<cell tile="stone" />
-<cell tile="stone" />
-<cell tile="stone" />
-<cell tile="stone" />
-<cell tile="stone" />
-<cell tile="stone" />
-<cell tile="stone" />
-<cell tile="stone" />
-<cell tile="stone" />
-<cell tile="stone" />
-<cell tile="stone" />
-<cell tile="stone" />
-<cell tile="stone" />
-<cell tile="stone" />
-<cell tile="stone" />
-<cell tile="stone" />
-<cell tile="stone" />
-<cell tile="stone" />
-<cell tile="stone" />
-</column>
-<column><cell tile="dirt" />
-<cell tile="grass" />
-<cell><property name="player_start" type="bool" value="True" /></cell>
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell tile="stone" />
-</column>
-<column><cell tile="dirt" />
-<cell tile="grass" />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell tile="stone" />
-</column>
-<column><cell tile="dirt" />
-<cell tile="grass" />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell tile="stone" />
-</column>
-<column><cell tile="dirt" />
-<cell tile="grass" />
-<cell />
-<cell />
-<cell />
-<cell tile="wood" />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-</column>
-<column><cell tile="dirt" />
-<cell tile="grass" />
-<cell />
-<cell />
-<cell />
-<cell tile="wood" />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell tile="stone" />
-</column>
-<column><cell tile="dirt" />
-<cell tile="grass" />
-<cell />
-<cell />
-<cell />
-<cell tile="wood" />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell tile="stone" />
-</column>
-<column><cell tile="dirt" />
-<cell tile="grass" />
-<cell />
-<cell />
-<cell />
-<cell tile="wood" />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell tile="stone" />
-</column>
-<column><cell tile="dirt" />
-<cell tile="grass" />
-<cell />
-<cell />
-<cell />
-<cell tile="wood" />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell tile="stone" />
-</column>
-<column><cell tile="dirt" />
-<cell tile="grass" />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell tile="woodBeam" />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell tile="stone" />
-</column>
-<column><cell tile="dirt" />
-<cell tile="grass" />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell tile="woodBeam" />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell tile="stone" />
-</column>
-<column><cell tile="dirt" />
-<cell tile="grass" />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell tile="woodBeam" />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell tile="stone" />
-</column>
-<column><cell tile="dirt" />
-<cell tile="grass" />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell tile="woodBeam" />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell tile="stone" />
-</column>
-<column><cell tile="dirt" />
-<cell tile="trampoline" />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell tile="stoneBeam" />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell tile="stone" />
-</column>
-<column><cell tile="dirt" />
-<cell tile="sponge" />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell tile="stoneBeam" />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell tile="stone" />
-</column>
-<column><cell tile="dirt" />
-<cell tile="grass" />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell tile="stoneBeam" />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell tile="stone" />
-</column>
-<column><cell tile="dirt" />
-<cell tile="grass" />
-<cell />
-<cell tile="glass" />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell tile="sponge" />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell tile="stone" />
-</column>
-<column><cell tile="dirt" />
-<cell tile="grass" />
-<cell />
-<cell tile="glass" />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell tile="stoneBeam" />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell tile="stone" />
-</column>
-<column><cell tile="dirt" />
-<cell tile="grass" />
-<cell />
-<cell tile="glass" />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell tile="dirt" />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell tile="stone" />
-</column>
-<column><cell tile="dirt" />
-<cell tile="grass" />
-<cell />
-<cell tile="glass" />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell tile="dirt" />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell tile="stone" />
-</column>
-<column><cell tile="dirt" />
-<cell tile="grass" />
-<cell />
-<cell tile="glass" />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell tile="dirt" />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell tile="stone" />
-</column>
-<column><cell tile="dirt" />
-<cell tile="grass" />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell tile="dirt" />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell tile="stone" />
-</column>
-<column><cell tile="dirt" />
-<cell tile="grass" />
-<cell />
-<cell tile="glass" />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell tile="dirt" />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell tile="stone" />
-</column>
-<column><cell tile="dirt" />
-<cell tile="grass" />
-<cell />
-<cell />
-<cell tile="glass" />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell tile="dirt" />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell tile="stone" />
-</column>
-<column><cell tile="dirt" />
-<cell tile="grass" />
-<cell />
-<cell tile="glass" />
-<cell tile="glass" />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell tile="cloud" />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-</column>
-<column><cell tile="dirt" />
-<cell tile="grass" />
-<cell />
-<cell tile="glass" />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell tile="cloud" />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-</column>
-<column><cell tile="dirt" />
-<cell tile="grass" />
-<cell />
-<cell tile="glass" />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell tile="cloud" />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-</column>
-<column><cell tile="dirt" />
-<cell tile="grass" />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell tile="cloud" />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-</column>
-<column><cell tile="dirt" />
-<cell tile="grass" />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell tile="cloud" />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-</column>
-<column><cell tile="dirt" />
-<cell tile="grass" />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-</column>
-<column><cell tile="dirt" />
-<cell tile="grass" />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell tile="stone" />
-</column>
-<column><cell tile="dirt" />
-<cell tile="trampoline" />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell tile="stone" />
-</column>
-<column><cell tile="dirt" />
-<cell tile="trampoline" />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell tile="stone" />
-</column>
-<column><cell tile="dirt" />
-<cell tile="sponge" />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell tile="stone" />
-</column>
-<column><cell tile="dirt" />
-<cell tile="sponge" />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell tile="stone" />
-</column>
-<column><cell tile="dirt" />
-<cell tile="grass" />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell tile="stone" />
-</column>
-<column><cell tile="dirt" />
-<cell tile="grass" />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell tile="stone" />
-</column>
-<column><cell tile="dirt" />
-<cell tile="grass" />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell tile="stone" />
-</column>
-<column><cell tile="dirt" />
-<cell tile="grass" />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell tile="stone" />
-</column>
-<column><cell tile="dirt" />
-<cell tile="grass" />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-</column>
-<column><cell tile="dirt" />
-<cell tile="grass" />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-</column>
-<column><cell tile="dirt" />
-<cell tile="grass" />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-</column>
-<column><cell tile="dirt" />
-<cell tile="grass" />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-</column>
-<column><cell tile="dirt" />
-<cell tile="grass" />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-</column>
-<column><cell tile="dirt" />
-<cell tile="sticky" />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-</column>
-<column><cell tile="dirt" />
-<cell tile="grass" />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-</column>
-<column><cell tile="dirt" />
-<cell tile="grass" />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-</column>
-<column><cell tile="dirt" />
-<cell tile="grass" />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-</column>
-<column><cell tile="dirt" />
-<cell tile="grass" />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-</column>
-<column><cell tile="dirt" />
-<cell tile="grass" />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-</column>
-<column><cell tile="dirt" />
-<cell tile="grass" />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-</column>
-<column><cell tile="dirt" />
-<cell tile="grass" />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-</column>
-<column><cell tile="dirt" />
-<cell tile="grass" />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-</column>
-<column><cell tile="dirt" />
-<cell tile="grass" />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-</column>
-<column><cell tile="dirt" />
-<cell tile="grass" />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-</column>
-<column><cell tile="dirt" />
-<cell tile="hyperjump" />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-</column>
-<column><cell tile="dirt" />
-<cell tile="grass" />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-</column>
-<column><cell tile="dirt" />
-<cell tile="grass" />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-</column>
-<column><cell tile="dirt" />
-<cell tile="grass" />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-</column>
-<column><cell tile="dirt" />
-<cell tile="grass" />
-<cell />
-<cell />
-<cell tile="stone" />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-</column>
-<column><cell tile="dirt" />
-<cell tile="grass" />
-<cell />
-<cell />
-<cell tile="stone" />
-<cell />
-<cell />
-<cell tile="stone" />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-</column>
-<column><cell tile="dirt" />
-<cell tile="grass" />
-<cell />
-<cell />
-<cell tile="stone" />
-<cell />
-<cell />
-<cell tile="stone" />
-<cell />
-<cell />
-<cell tile="stone" />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-</column>
-<column><cell tile="dirt" />
-<cell tile="grass" />
-<cell />
-<cell />
-<cell tile="stone" />
-<cell />
-<cell />
-<cell tile="stone" />
-<cell />
-<cell />
-<cell tile="stone" />
-<cell />
-<cell />
-<cell tile="stone" />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-</column>
-<column><cell tile="dirt" />
-<cell tile="grass" />
-<cell />
-<cell />
-<cell tile="stone" />
-<cell />
-<cell />
-<cell tile="stone" />
-<cell />
-<cell />
-<cell tile="stone" />
-<cell />
-<cell />
-<cell tile="stone" />
-<cell />
-<cell />
-<cell tile="stone" />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-</column>
-<column><cell tile="dirt" />
-<cell tile="grass" />
-<cell />
-<cell />
-<cell tile="stone" />
-<cell />
-<cell />
-<cell tile="stone" />
-<cell />
-<cell />
-<cell tile="stone" />
-<cell />
-<cell />
-<cell tile="stone" />
-<cell />
-<cell />
-<cell tile="stone" />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-</column>
-<column><cell tile="dirt" />
-<cell tile="grass" />
-<cell />
-<cell />
-<cell tile="stone" />
-<cell />
-<cell />
-<cell tile="stone" />
-<cell />
-<cell />
-<cell tile="stone" />
-<cell />
-<cell />
-<cell tile="stone" />
-<cell />
-<cell />
-<cell tile="stone" />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-</column>
-<column><cell tile="dirt" />
-<cell tile="grass" />
-<cell />
-<cell />
-<cell tile="stone" />
-<cell />
-<cell />
-<cell tile="stone" />
-<cell />
-<cell />
-<cell tile="stone" />
-<cell />
-<cell />
-<cell tile="stone" />
-<cell />
-<cell />
-<cell tile="stone" />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-</column>
-<column><cell tile="dirt" />
-<cell tile="grass" />
-<cell />
-<cell />
-<cell tile="5x5s" />
-<cell />
-<cell />
-<cell tile="0.2x5s" />
-<cell />
-<cell />
-<cell tile="0.5x3s" />
-<cell />
-<cell />
-<cell tile="2x3s" />
-<cell />
-<cell />
-<cell tile="hold" />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-</column>
-<column><cell tile="dirt" />
-<cell tile="grass" />
-<cell />
-<cell />
-<cell tile="stone" />
-<cell />
-<cell />
-<cell tile="stone" />
-<cell />
-<cell />
-<cell tile="stone" />
-<cell />
-<cell />
-<cell tile="stone" />
-<cell />
-<cell />
-<cell tile="stone" />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-</column>
-<column><cell tile="dirt" />
-<cell tile="grass" />
-<cell />
-<cell />
-<cell tile="stone" />
-<cell />
-<cell />
-<cell tile="stone" />
-<cell />
-<cell />
-<cell tile="stone" />
-<cell />
-<cell />
-<cell tile="stone" />
-<cell />
-<cell />
-<cell tile="stone" />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-</column>
-<column><cell tile="dirt" />
-<cell tile="grass" />
-<cell />
-<cell />
-<cell tile="stone" />
-<cell />
-<cell />
-<cell tile="stone" />
-<cell />
-<cell />
-<cell tile="stone" />
-<cell />
-<cell />
-<cell tile="stone" />
-<cell />
-<cell />
-<cell tile="stone" />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-</column>
-<column><cell tile="dirt" />
-<cell tile="hold" />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-</column>
-<column><cell tile="dirt" />
-<cell tile="grass" />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-</column>
-<column><cell tile="dirt" />
-<cell tile="grass" />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-</column>
-<column><cell tile="stone" />
-<cell tile="stone" />
-<cell tile="stone" />
-<cell tile="stone" />
-<cell tile="stone" />
-<cell tile="stone" />
-<cell tile="stone" />
-<cell tile="stone" />
-<cell tile="stone" />
-<cell tile="stone" />
-<cell tile="stone" />
-<cell tile="stone" />
-<cell tile="stone" />
-<cell tile="stone" />
-<cell tile="stone" />
-<cell tile="stone" />
-<cell tile="stone" />
-<cell tile="stone" />
-<cell tile="stone" />
-<cell tile="stone" />
-<cell tile="stone" />
-<cell tile="stone" />
-<cell tile="stone" />
-</column>
-</rectmap>
-<rectmap id="decorations" origin="0,0,0" tile_size="32x32"><column><cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell tile="cloud" />
-<cell />
-<cell />
-<cell />
-</column>
-<column><cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-</column>
-<column><cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell tile="cloud" />
-<cell />
-<cell />
-<cell />
-</column>
-<column><cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-</column>
-<column><cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell tile="cloud" />
-<cell />
-<cell />
-<cell />
-</column>
-<column><cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-</column>
-<column><cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell tile="cloud" />
-<cell />
-<cell />
-<cell />
-</column>
-<column><cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-</column>
-<column><cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell tile="cloud" />
-<cell />
-<cell />
-<cell />
-</column>
-<column><cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-</column>
-<column><cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell tile="cloud" />
-<cell />
-<cell />
-<cell />
-</column>
-<column><cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-</column>
-<column><cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell tile="cloud" />
-<cell />
-<cell />
-<cell />
-</column>
-<column><cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-</column>
-<column><cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell tile="cloud" />
-<cell />
-<cell />
-<cell />
-</column>
-<column><cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-</column>
-<column><cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell tile="cloud" />
-<cell />
-<cell />
-<cell />
-</column>
-<column><cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-</column>
-<column><cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell tile="cloud" />
-<cell />
-<cell />
-<cell />
-</column>
-<column><cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-</column>
-<column><cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell tile="cloud" />
-<cell />
-<cell />
-<cell />
-</column>
-<column><cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-</column>
-<column><cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell tile="cloud" />
-<cell />
-<cell />
-<cell />
-</column>
-<column><cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-</column>
-<column><cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell tile="cloud" />
-<cell />
-<cell />
-<cell />
-</column>
-<column><cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-</column>
-<column><cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell tile="cloud" />
-<cell />
-<cell />
-<cell />
-</column>
-<column><cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-</column>
-<column><cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell tile="cloud" />
-<cell />
-<cell />
-<cell />
-</column>
-<column><cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-</column>
-<column><cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell tile="cloud" />
-<cell />
-<cell />
-<cell />
-</column>
-<column><cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-</column>
-<column><cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell tile="cloud" />
-<cell />
-<cell />
-<cell />
-</column>
-<column><cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-</column>
-<column><cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell tile="cloud" />
-<cell />
-<cell />
-<cell />
-</column>
-<column><cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-</column>
-<column><cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell tile="cloud" />
-<cell />
-<cell />
-<cell />
-</column>
-<column><cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-</column>
-<column><cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell tile="cloud" />
-<cell />
-<cell />
-<cell />
-</column>
-<column><cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-</column>
-<column><cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell tile="cloud" />
-<cell />
-<cell />
-<cell />
-</column>
-<column><cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-</column>
-<column><cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell tile="cloud" />
-<cell />
-<cell />
-<cell />
-</column>
-<column><cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-</column>
-<column><cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell tile="cloud" />
-<cell />
-<cell />
-<cell />
-</column>
-<column><cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-</column>
-<column><cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell tile="cloud" />
-<cell />
-<cell />
-<cell />
-</column>
-<column><cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-</column>
-<column><cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell tile="cloud" />
-<cell />
-<cell />
-<cell />
-</column>
-<column><cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-</column>
-<column><cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell tile="cloud" />
-<cell />
-<cell />
-<cell />
-</column>
-<column><cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-</column>
-<column><cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell tile="cloud" />
-<cell />
-<cell />
-<cell />
-</column>
-<column><cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-</column>
-<column><cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell tile="cloud" />
-<cell />
-<cell />
-<cell />
-</column>
-<column><cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-</column>
-<column><cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell tile="cloud" />
-<cell />
-<cell />
-<cell />
-</column>
-<column><cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-</column>
-<column><cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell tile="cloud" />
-<cell />
-<cell />
-<cell />
-</column>
-<column><cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-</column>
-<column><cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell tile="cloud" />
-<cell />
-<cell />
-<cell />
-</column>
-<column><cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-</column>
-<column><cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell tile="cloud" />
-<cell />
-<cell />
-<cell />
-</column>
-<column><cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-</column>
-<column><cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell tile="cloud" />
-<cell />
-<cell />
-<cell />
-</column>
-<column><cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-</column>
-<column><cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell tile="cloud" />
-<cell />
-<cell />
-<cell />
-</column>
-<column><cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-</column>
-<column><cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell tile="cloud" />
-<cell />
-<cell />
-<cell />
-</column>
-<column><cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-</column>
-<column><cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell tile="cloud" />
-<cell />
-<cell />
-<cell />
-</column>
-<column><cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-</column>
-<column><cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell tile="cloud" />
-<cell />
-<cell />
-<cell />
-</column>
-<column><cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-</column>
-<column><cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell tile="cloud" />
-<cell />
-<cell />
-<cell />
-</column>
-</rectmap>
+<?xml version="1.0" ?>
+<resource>
+    <requires file="items/default/grass.xml" namespace="grass" />
+    <requires file="items/default/wood.xml" namespace="wood" />
+    <requires file="items/default/stone.xml" namespace="stone" />
+    <requires file="items/default/dirt.xml" namespace="dirt" />
+    <requires file="items/default/woodBeam.xml" namespace="woodBeam" />
+    <requires file="items/default/stoneBeam.xml" namespace="stoneBeam" />
+    <requires file="items/decorations/cloud.xml" namespace="cloud" />
+    <requires file="items/bouncePack/trampoline.xml" namespace="trampoline" />
+    <requires file="items/bouncePack/sponge.xml" namespace="sponge" />
+    <requires file="items/bouncePack/hyperjump.xml" namespace="hyperjump" />
+    <requires file="items/bouncePack/sticky.xml" namespace="sticky" />
+    <requires file="items/movePack/2x3s.xml" namespace="2x3s" />
+    <requires file="items/movePack/5x5s.xml" namespace="5x5s" />
+    <requires file="items/movePack/0.2x5s.xml" namespace="0.2x5s" />
+    <requires file="items/movePack/0.5x3s.xml" namespace="0.5x3s" />
+    <requires file="items/movePack/hold.xml" namespace="hold" />
+    <rectmap id="walls" origin="0,0,0" tile_size="32x32">
+        <column>
+            <cell tile="stone:stone" />
+            <cell tile="stone:stone" />
+            <cell tile="stone:stone" />
+            <cell tile="stone:stone" />
+            <cell tile="stone:stone" />
+            <cell tile="stone:stone" />
+            <cell tile="stone:stone" />
+            <cell tile="stone:stone" />
+            <cell tile="stone:stone" />
+            <cell tile="stone:stone" />
+            <cell tile="stone:stone" />
+            <cell tile="stone:stone" />
+            <cell tile="stone:stone" />
+            <cell tile="stone:stone" />
+            <cell tile="stone:stone" />
+            <cell tile="stone:stone" />
+            <cell tile="stone:stone" />
+            <cell tile="stone:stone" />
+            <cell tile="stone:stone" />
+            <cell tile="stone:stone" />
+            <cell tile="stone:stone" />
+            <cell tile="stone:stone" />
+            <cell tile="stone:stone" />
+        </column>
+        <column>
+            <cell tile="dirt:dirt" />
+            <cell tile="grass:grass" />
+            <cell>
+                <property name="player_start" type="bool" value="True" />
+            </cell>
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell tile="stone:stone" />
+        </column>
+        <column>
+            <cell tile="dirt:dirt" />>
+            <cell tile="grass:grass" />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell tile="stone:stone" />
+        </column>
+        <column>
+            <cell tile="dirt:dirt" />>
+            <cell tile="grass:grass" />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell tile="stone:stone" />
+        </column>
+        <column>
+            <cell tile="dirt:dirt" />>
+            <cell tile="grass:grass" />
+            <cell />
+            <cell />
+            <cell />
+            <cell tile="wood:wood" />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+        </column>
+        <column>
+            <cell tile="dirt:dirt" />>
+            <cell tile="grass:grass" />
+            <cell />
+            <cell />
+            <cell />
+            <cell tile="wood:wood" />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell tile="stone:stone" />
+        </column>
+        <column>
+            <cell tile="dirt:dirt" />>
+            <cell tile="grass:grass" />
+            <cell />
+            <cell />
+            <cell />
+            <cell tile="wood:wood" />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell tile="stone:stone" />
+        </column>
+        <column>
+            <cell tile="dirt:dirt" />>
+            <cell tile="grass:grass" />
+            <cell />
+            <cell />
+            <cell />
+            <cell tile="wood:wood" />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell tile="stone:stone" />
+        </column>
+        <column>
+            <cell tile="dirt:dirt" />>
+            <cell tile="grass:grass" />
+            <cell />
+            <cell />
+            <cell />
+            <cell tile="wood:wood" />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell tile="stone:stone" />
+        </column>
+        <column>
+            <cell tile="dirt:dirt" />>
+            <cell tile="grass:grass" />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell tile="woodBeam:woodBeam" />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell tile="stone:stone" />
+        </column>
+        <column>
+            <cell tile="dirt:dirt" />>
+            <cell tile="grass:grass" />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell tile="woodBeam:woodBeam" />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell tile="stone:stone" />
+        </column>
+        <column>
+            <cell tile="dirt:dirt" />>
+            <cell tile="grass:grass" />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell tile="woodBeam:woodBeam" />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell tile="stone:stone" />
+        </column>
+        <column>
+            <cell tile="dirt:dirt" />>
+            <cell tile="grass:grass" />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell tile="woodBeam:woodBeam" />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell tile="stone:stone" />
+        </column>
+        <column>
+            <cell tile="dirt:dirt" />>
+            <cell tile="trampoline:trampoline" />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell tile="stoneBeam:stoneBeam" />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell tile="stone:stone" />
+        </column>
+        <column>
+            <cell tile="dirt:dirt" />>
+            <cell tile="sponge:sponge" />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell tile="stoneBeam:stoneBeam" />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell tile="stone:stone" />
+        </column>
+        <column>
+            <cell tile="dirt:dirt" />>
+            <cell tile="grass:grass" />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell tile="stoneBeam:stoneBeam" />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell tile="stone:stone" />
+        </column>
+        <column>
+            <cell tile="dirt:dirt" />>
+            <cell tile="grass:grass" />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell tile="sponge:sponge" />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell tile="stone:stone" />
+        </column>
+        <column>
+            <cell tile="dirt:dirt" />>
+            <cell tile="grass:grass" />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell tile="stoneBeam:stoneBeam" />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell tile="stone:stone" />
+        </column>
+        <column>
+            <cell tile="dirt:dirt" />>
+            <cell tile="grass:grass" />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell tile="dirt:dirt" />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell tile="stone:stone" />
+        </column>
+        <column>
+            <cell tile="dirt:dirt" />>
+            <cell tile="grass:grass" />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell tile="dirt:dirt" />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell tile="stone:stone" />
+        </column>
+        <column>
+            <cell tile="dirt:dirt" />>
+            <cell tile="grass:grass" />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell tile="dirt:dirt" />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell tile="stone:stone" />
+        </column>
+        <column>
+            <cell tile="dirt:dirt" />>
+            <cell tile="grass:grass" />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell tile="dirt:dirt" />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell tile="stone:stone" />
+        </column>
+        <column>
+            <cell tile="dirt:dirt" />>
+            <cell tile="grass:grass" />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell tile="dirt:dirt" />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell tile="stone:stone" />
+        </column>
+        <column>
+            <cell tile="dirt:dirt" />>
+            <cell tile="grass:grass" />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell tile="dirt:dirt" />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell tile="stone:stone" />
+        </column>
+        <column>
+            <cell tile="dirt:dirt" />>
+            <cell tile="grass:grass" />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell tile="cloud:cloud" />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+        </column>
+        <column>
+            <cell tile="dirt:dirt" />>
+            <cell tile="grass:grass" />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell tile="cloud:cloud" />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+        </column>
+        <column>
+            <cell tile="dirt:dirt" />>
+            <cell tile="grass:grass" />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell tile="cloud:cloud" />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+        </column>
+        <column>
+            <cell tile="dirt:dirt" />>
+            <cell tile="grass:grass" />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell tile="cloud:cloud" />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+        </column>
+        <column>
+            <cell tile="dirt:dirt" />>
+            <cell tile="grass:grass" />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell tile="cloud:cloud" />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+        </column>
+        <column>
+            <cell tile="dirt:dirt" />>
+            <cell tile="grass:grass" />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+        </column>
+        <column>
+            <cell tile="dirt:dirt" />>
+            <cell tile="grass:grass" />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell tile="stone:stone" />
+        </column>
+        <column>
+            <cell tile="dirt:dirt" />>
+            <cell tile="trampoline:trampoline" />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell tile="stone:stone" />
+        </column>
+        <column>
+            <cell tile="dirt:dirt" />>
+            <cell tile="trampoline:trampoline" />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell tile="stone:stone" />
+        </column>
+        <column>
+            <cell tile="dirt:dirt" />>
+            <cell tile="sponge:sponge" />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell tile="stone:stone" />
+        </column>
+        <column>
+            <cell tile="dirt:dirt" />>
+            <cell tile="sponge:sponge" />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell tile="stone:stone" />
+        </column>
+        <column>
+            <cell tile="dirt:dirt" />>
+            <cell tile="grass:grass" />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell tile="stone:stone" />
+        </column>
+        <column>
+            <cell tile="dirt:dirt" />>
+            <cell tile="grass:grass" />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell tile="stone:stone" />
+        </column>
+        <column>
+            <cell tile="dirt:dirt" />>
+            <cell tile="grass:grass" />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell tile="stone:stone" />
+        </column>
+        <column>
+            <cell tile="dirt:dirt" />>
+            <cell tile="grass:grass" />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell tile="stone:stone" />
+        </column>
+        <column>
+            <cell tile="dirt:dirt" />>
+            <cell tile="grass:grass" />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+        </column>
+        <column>
+            <cell tile="dirt:dirt" />>
+            <cell tile="grass:grass" />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+        </column>
+        <column>
+            <cell tile="dirt:dirt" />>
+            <cell tile="grass:grass" />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+        </column>
+        <column>
+            <cell tile="dirt:dirt" />>
+            <cell tile="grass:grass" />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+        </column>
+        <column>
+            <cell tile="dirt:dirt" />>
+            <cell tile="grass:grass" />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+        </column>
+        <column>
+            <cell tile="dirt:dirt" />>
+            <cell tile="sticky:sticky" />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+        </column>
+        <column>
+            <cell tile="dirt:dirt" />>
+            <cell tile="grass:grass" />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+        </column>
+        <column>
+            <cell tile="dirt:dirt" />>
+            <cell tile="grass:grass" />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+        </column>
+        <column>
+            <cell tile="dirt:dirt" />>
+            <cell tile="grass:grass" />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+        </column>
+        <column>
+            <cell tile="dirt:dirt" />>
+            <cell tile="grass:grass" />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+        </column>
+        <column>
+            <cell tile="dirt:dirt" />>
+            <cell tile="grass:grass" />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+        </column>
+        <column>
+            <cell tile="dirt:dirt" />>
+            <cell tile="grass:grass" />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+        </column>
+        <column>
+            <cell tile="dirt:dirt" />>
+            <cell tile="grass:grass" />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+        </column>
+        <column>
+            <cell tile="dirt:dirt" />>
+            <cell tile="grass:grass" />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+        </column>
+        <column>
+            <cell tile="dirt:dirt" />>
+            <cell tile="grass:grass" />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+        </column>
+        <column>
+            <cell tile="dirt:dirt" />>
+            <cell tile="grass:grass" />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+        </column>
+        <column>
+            <cell tile="dirt:dirt" />>
+            <cell tile="hyperjump:hyperjump" />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+        </column>
+        <column>
+            <cell tile="dirt:dirt" />>
+            <cell tile="grass:grass" />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+        </column>
+        <column>
+            <cell tile="dirt:dirt" />>
+            <cell tile="grass:grass" />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+        </column>
+        <column>
+            <cell tile="dirt:dirt" />>
+            <cell tile="grass:grass" />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+        </column>
+        <column>
+            <cell tile="dirt:dirt" />>
+            <cell tile="grass:grass" />
+            <cell />
+            <cell />
+            <cell tile="stone:stone" />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+        </column>
+        <column>
+            <cell tile="dirt:dirt" />>
+            <cell tile="grass:grass" />
+            <cell />
+            <cell />
+            <cell tile="stone:stone" />
+            <cell />
+            <cell />
+            <cell tile="stone:stone" />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+        </column>
+        <column>
+            <cell tile="dirt:dirt" />>
+            <cell tile="grass:grass" />
+            <cell />
+            <cell />
+            <cell tile="stone:stone" />
+            <cell />
+            <cell />
+            <cell tile="stone:stone" />
+            <cell />
+            <cell />
+            <cell tile="stone:stone" />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+        </column>
+        <column>
+            <cell tile="dirt:dirt" />>
+            <cell tile="grass:grass" />
+            <cell />
+            <cell />
+            <cell tile="stone:stone" />
+            <cell />
+            <cell />
+            <cell tile="stone:stone" />
+            <cell />
+            <cell />
+            <cell tile="stone:stone" />
+            <cell />
+            <cell />
+            <cell tile="stone:stone" />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+        </column>
+        <column>
+            <cell tile="dirt:dirt" />>
+            <cell tile="grass:grass" />
+            <cell />
+            <cell />
+            <cell tile="stone:stone" />
+            <cell />
+            <cell />
+            <cell tile="stone:stone" />
+            <cell />
+            <cell />
+            <cell tile="stone:stone" />
+            <cell />
+            <cell />
+            <cell tile="stone:stone" />
+            <cell />
+            <cell />
+            <cell tile="stone:stone" />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+        </column>
+        <column>
+            <cell tile="dirt:dirt" />>
+            <cell tile="grass:grass" />
+            <cell />
+            <cell />
+            <cell tile="stone:stone" />
+            <cell />
+            <cell />
+            <cell tile="stone:stone" />
+            <cell />
+            <cell />
+            <cell tile="stone:stone" />
+            <cell />
+            <cell />
+            <cell tile="stone:stone" />
+            <cell />
+            <cell />
+            <cell tile="stone:stone" />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+        </column>
+        <column>
+            <cell tile="dirt:dirt" />>
+            <cell tile="grass:grass" />
+            <cell />
+            <cell />
+            <cell tile="stone:stone" />
+            <cell />
+            <cell />
+            <cell tile="stone:stone" />
+            <cell />
+            <cell />
+            <cell tile="stone:stone" />
+            <cell />
+            <cell />
+            <cell tile="stone:stone" />
+            <cell />
+            <cell />
+            <cell tile="stone:stone" />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+        </column>
+        <column>
+            <cell tile="dirt:dirt" />>
+            <cell tile="grass:grass" />
+            <cell />
+            <cell />
+            <cell tile="stone:stone" />
+            <cell />
+            <cell />
+            <cell tile="stone:stone" />
+            <cell />
+            <cell />
+            <cell tile="stone:stone" />
+            <cell />
+            <cell />
+            <cell tile="stone:stone" />
+            <cell />
+            <cell />
+            <cell tile="stone:stone" />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+        </column>
+        <column>
+            <cell tile="dirt:dirt" />>
+            <cell tile="grass:grass" />
+            <cell />
+            <cell />
+            <cell tile="5x5s:5x5s" />
+            <cell />
+            <cell />
+            <cell tile="0.2x5s:0.2x5s" />
+            <cell />
+            <cell />
+            <cell tile="0.5x3s:0.5x3s" />
+            <cell />
+            <cell />
+            <cell tile="2x3s:2x3s" />
+            <cell />
+            <cell />
+            <cell tile="hold:hold" />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+        </column>
+        <column>
+            <cell tile="dirt:dirt" />>
+            <cell tile="grass:grass" />
+            <cell />
+            <cell />
+            <cell tile="stone:stone" />
+            <cell />
+            <cell />
+            <cell tile="stone:stone" />
+            <cell />
+            <cell />
+            <cell tile="stone:stone" />
+            <cell />
+            <cell />
+            <cell tile="stone:stone" />
+            <cell />
+            <cell />
+            <cell tile="stone:stone" />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+        </column>
+        <column>
+            <cell tile="dirt:dirt" />>
+            <cell tile="grass:grass" />
+            <cell />
+            <cell />
+            <cell tile="stone:stone" />
+            <cell />
+            <cell />
+            <cell tile="stone:stone" />
+            <cell />
+            <cell />
+            <cell tile="stone:stone" />
+            <cell />
+            <cell />
+            <cell tile="stone:stone" />
+            <cell />
+            <cell />
+            <cell tile="stone:stone" />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+        </column>
+        <column>
+            <cell tile="dirt:dirt" />>
+            <cell tile="grass:grass" />
+            <cell />
+            <cell />
+            <cell tile="stone:stone" />
+            <cell />
+            <cell />
+            <cell tile="stone:stone" />
+            <cell />
+            <cell />
+            <cell tile="stone:stone" />
+            <cell />
+            <cell />
+            <cell tile="stone:stone" />
+            <cell />
+            <cell />
+            <cell tile="stone:stone" />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+        </column>
+        <column>
+            <cell tile="dirt:dirt" />>
+            <cell tile="hold:hold" />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+        </column>
+        <column>
+            <cell tile="dirt:dirt" />>
+            <cell tile="grass:grass" />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+        </column>
+        <column>
+            <cell tile="dirt:dirt" />>
+            <cell tile="grass:grass" />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+        </column>
+        <column>
+            <cell tile="stone:stone" />
+            <cell tile="stone:stone" />
+            <cell tile="stone:stone" />
+            <cell tile="stone:stone" />
+            <cell tile="stone:stone" />
+            <cell tile="stone:stone" />
+            <cell tile="stone:stone" />
+            <cell tile="stone:stone" />
+            <cell tile="stone:stone" />
+            <cell tile="stone:stone" />
+            <cell tile="stone:stone" />
+            <cell tile="stone:stone" />
+            <cell tile="stone:stone" />
+            <cell tile="stone:stone" />
+            <cell tile="stone:stone" />
+            <cell tile="stone:stone" />
+            <cell tile="stone:stone" />
+            <cell tile="stone:stone" />
+            <cell tile="stone:stone" />
+            <cell tile="stone:stone" />
+            <cell tile="stone:stone" />
+            <cell tile="stone:stone" />
+            <cell tile="stone:stone" />
+        </column>
+    </rectmap>
+    <rectmap id="decorations" origin="0,0,0" tile_size="32x32">
+        <column>
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell tile="cloud:cloud" />
+            <cell />
+            <cell />
+            <cell />
+        </column>
+        <column>
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+        </column>
+        <column>
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell tile="cloud:cloud" />
+            <cell />
+            <cell />
+            <cell />
+        </column>
+        <column>
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+        </column>
+        <column>
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell tile="cloud:cloud" />
+            <cell />
+            <cell />
+            <cell />
+        </column>
+        <column>
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+        </column>
+        <column>
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell tile="cloud:cloud" />
+            <cell />
+            <cell />
+            <cell />
+        </column>
+        <column>
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+        </column>
+        <column>
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell tile="cloud:cloud" />
+            <cell />
+            <cell />
+            <cell />
+        </column>
+        <column>
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+        </column>
+        <column>
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell tile="cloud:cloud" />
+            <cell />
+            <cell />
+            <cell />
+        </column>
+        <column>
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+        </column>
+        <column>
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell tile="cloud:cloud" />
+            <cell />
+            <cell />
+            <cell />
+        </column>
+        <column>
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+        </column>
+        <column>
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell tile="cloud:cloud" />
+            <cell />
+            <cell />
+            <cell />
+        </column>
+        <column>
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+        </column>
+        <column>
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell tile="cloud:cloud" />
+            <cell />
+            <cell />
+            <cell />
+        </column>
+        <column>
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+        </column>
+        <column>
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell tile="cloud:cloud" />
+            <cell />
+            <cell />
+            <cell />
+        </column>
+        <column>
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+        </column>
+        <column>
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell tile="cloud:cloud" />
+            <cell />
+            <cell />
+            <cell />
+        </column>
+        <column>
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+        </column>
+        <column>
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell tile="cloud:cloud" />
+            <cell />
+            <cell />
+            <cell />
+        </column>
+        <column>
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+        </column>
+        <column>
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell tile="cloud:cloud" />
+            <cell />
+            <cell />
+            <cell />
+        </column>
+        <column>
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+        </column>
+        <column>
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell tile="cloud:cloud" />
+            <cell />
+            <cell />
+            <cell />
+        </column>
+        <column>
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+        </column>
+        <column>
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell tile="cloud:cloud" />
+            <cell />
+            <cell />
+            <cell />
+        </column>
+        <column>
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+        </column>
+        <column>
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell tile="cloud:cloud" />
+            <cell />
+            <cell />
+            <cell />
+        </column>
+        <column>
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+        </column>
+        <column>
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell tile="cloud:cloud" />
+            <cell />
+            <cell />
+            <cell />
+        </column>
+        <column>
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+        </column>
+        <column>
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell tile="cloud:cloud" />
+            <cell />
+            <cell />
+            <cell />
+        </column>
+        <column>
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+        </column>
+        <column>
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell tile="cloud:cloud" />
+            <cell />
+            <cell />
+            <cell />
+        </column>
+        <column>
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+        </column>
+        <column>
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell tile="cloud:cloud" />
+            <cell />
+            <cell />
+            <cell />
+        </column>
+        <column>
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+        </column>
+        <column>
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell tile="cloud:cloud" />
+            <cell />
+            <cell />
+            <cell />
+        </column>
+        <column>
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+        </column>
+        <column>
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell tile="cloud:cloud" />
+            <cell />
+            <cell />
+            <cell />
+        </column>
+        <column>
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+        </column>
+        <column>
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell tile="cloud:cloud" />
+            <cell />
+            <cell />
+            <cell />
+        </column>
+        <column>
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+        </column>
+        <column>
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell tile="cloud:cloud" />
+            <cell />
+            <cell />
+            <cell />
+        </column>
+        <column>
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+        </column>
+        <column>
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell tile="cloud:cloud" />
+            <cell />
+            <cell />
+            <cell />
+        </column>
+        <column>
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+        </column>
+        <column>
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell tile="cloud:cloud" />
+            <cell />
+            <cell />
+            <cell />
+        </column>
+        <column>
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+        </column>
+        <column>
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell tile="cloud:cloud" />
+            <cell />
+            <cell />
+            <cell />
+        </column>
+        <column>
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+        </column>
+        <column>
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell tile="cloud:cloud" />
+            <cell />
+            <cell />
+            <cell />
+        </column>
+        <column>
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+        </column>
+        <column>
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell tile="cloud:cloud" />
+            <cell />
+            <cell />
+            <cell />
+        </column>
+        <column>
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+        </column>
+        <column>
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell tile="cloud:cloud" />
+            <cell />
+            <cell />
+            <cell />
+        </column>
+        <column>
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+        </column>
+        <column>
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell tile="cloud:cloud" />
+            <cell />
+            <cell />
+            <cell />
+        </column>
+        <column>
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+        </column>
+        <column>
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell tile="cloud:cloud" />
+            <cell />
+            <cell />
+            <cell />
+        </column>
+        <column>
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+        </column>
+        <column>
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell tile="cloud:cloud" />
+            <cell />
+            <cell />
+            <cell />
+        </column>
+        <column>
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+        </column>
+        <column>
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell tile="cloud:cloud" />
+            <cell />
+            <cell />
+            <cell />
+        </column>
+        <column>
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+        </column>
+        <column>
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell tile="cloud:cloud" />
+            <cell />
+            <cell />
+            <cell />
+        </column>
+        <column>
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+        </column>
+        <column>
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell tile="cloud:cloud" />
+            <cell />
+            <cell />
+            <cell />
+        </column>
+        <column>
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+        </column>
+        <column>
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell tile="cloud:cloud" />
+            <cell />
+            <cell />
+            <cell />
+        </column>
+        <column>
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+        </column>
+        <column>
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell />
+            <cell tile="cloud:cloud" />
+            <cell />
+            <cell />
+            <cell />
+        </column>
+    </rectmap>
 </resource>
