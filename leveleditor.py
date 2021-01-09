@@ -168,19 +168,26 @@ class Row(layer.Layer):
         self.packLbl.x = reswidth * 0.15
         self.packLbl.y = resheight * 0.095
         self.blocks = []
-        self._visible = False
-        for itemId in range(len(item_blocks)):
-            itemBlock = sprite.Sprite(items.itempacks[itempack.idx].item_data[item_blocks[itemId][:-4]].image, scale=1.2)
+        self._visible = False            
+        if item_blocks[0] == "empty":
+            itemBlock = sprite.Sprite("emptyBlock.png", scale=1.2)
             itemBlock.x = (reswidth * 0.05) + (reswidth * (0.04 * itemId))
             itemBlock.y = resheight * 0.045
             itemBlock.opacity = 0
-            itemSelectionBlock = self.ItemHoverBox("leveleditorItemHovered.png", itempack, item_blocks[itemId], (reswidth * 0.05) + (reswidth * (0.04 * itemId)), resheight * 0.045, scale=1.2)
-            #itemSelectionBlock.x = 
-            #itemSelectionBlock.y = 
-            #itemBlock.opacity = 0
+            itemSelectionBlock = self.ItemHoverBox("leveleditorItemHovered.png", None, "empty", (reswidth * 0.05) + (reswidth * (0.04 * itemId)), resheight * 0.045, scale=1.2)
             self.add(itemBlock, z=1)
             self.add(itemSelectionBlock, z=2)
             self.blocks.append([itemBlock, itemSelectionBlock])
+        else:
+            for itemId in range(len(item_blocks)):
+                itemBlock = sprite.Sprite(items.itempacks[itempack.idx].item_data[item_blocks[itemId][:-4]].image, scale=1.2)
+                itemBlock.x = (reswidth * 0.05) + (reswidth * (0.04 * itemId))
+                itemBlock.y = resheight * 0.045
+                itemBlock.opacity = 0
+                itemSelectionBlock = self.ItemHoverBox("leveleditorItemHovered.png", itempack, item_blocks[itemId], (reswidth * 0.05) + (reswidth * (0.04 * itemId)), resheight * 0.045, scale=1.2)
+                self.add(itemBlock, z=1)
+                self.add(itemSelectionBlock, z=2)
+                self.blocks.append([itemBlock, itemSelectionBlock])
         self.add(self.packLbl)
 
     @property
@@ -223,6 +230,9 @@ class ItemPackRows(layer.Layer):
                 row = Row(pack, pack.name + " - " + str(splitId + 1), item_blocks=itemList[splitId])
                 self.rows.append(row)
                 self.add(row, z=5)
+        emptyRow = Row(None, "Default Blocks", ["empty"])
+        self.rows.append(emptyRow)
+        self.add(emptyRow, z=5)
         self.add(upArrow, z=5)
         self.add(downArrow, z=5)
         upArrow.show(0.01)
@@ -439,14 +449,18 @@ class LevelEditor(scene.Scene):
         global selectedTiles
         if len(selectedTiles) == 0: pass
         activeLayer = [layer for layer in self.layers if layer.visible]
-        for tile in selectedTiles:
-            activeLayer[0].get_at_pixel(tile[0].x, tile[0].y).tile = items.itempacks[itempack.idx].item_data[item[:-4]]
+        if item == "empty":
+            activeLayer[0].get_at_pixel(tile[0].x, tile[0].y).tile = None
             tile[0].image = pyglet.resource.image("leveleditorItem.png")
             tile[1] = False
+        else:
+            for tile in selectedTiles:
+                activeLayer[0].get_at_pixel(tile[0].x, tile[0].y).tile = items.itempacks[itempack.idx].item_data[item[:-4]]
+                tile[0].image = pyglet.resource.image("leveleditorItem.png")
+                tile[1] = False
         activeLayer[0].set_dirty()
         selectedTiles = []
         # TODO: Add XML fixing 
-        # TODO: Add empty block to row
 
     def activeLayerChanged(self):
         print("changing layers")
