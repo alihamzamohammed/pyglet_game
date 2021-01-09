@@ -469,7 +469,6 @@ class LevelEditor(scene.Scene):
         activeLayer[0].set_dirty()
         selectedTiles = []
         self.changes = True
-        # TODO: Add XML fixing 
 
     def activeLayerChanged(self):
         print("changing layers")
@@ -502,6 +501,12 @@ class LevelEditor(scene.Scene):
         #self.scroller.refresh_focus()
         print(usable_width, usable_height)
         # PROBLEM: BROKEN SCALING WITH VIEWPORT AND SCROLLER, DO NOT RESIZE WINDOW
+
+    def saveLevel(self):
+        pass
+
+    def discardLevel(self):
+        pass
 
     @property
     def changes(self):

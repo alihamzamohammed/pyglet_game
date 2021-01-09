@@ -140,11 +140,19 @@ class LevelEditorEvents(pyglet.window.EventDispatcher):
 
     def activeLayerChange(self):
         self.dispatch_event("activeLayerChanged")
+    
+    def levelSave(self):
+        self.dispatch_event("saveLevel")
+
+    def levelDiscard(self):
+        self.dispatch_event("discardLevel")
 
 LevelEditorEvents.register_event_type("rowNumberUp")
 LevelEditorEvents.register_event_type("rowNumberDown")
 LevelEditorEvents.register_event_type("itemClicked")
 LevelEditorEvents.register_event_type("activeLayerChanged")
+LevelEditorEvents.register_event_type("saveLevel")
+LevelEditorEvents.register_event_type("discardLevel")
 
 pausescreenevents = PauseScreenEvents()
 mainmenuevents = MainMenuEvents()
