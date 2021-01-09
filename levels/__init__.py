@@ -84,8 +84,26 @@ class Level():
         if not hasattr(self, "thumbnail"):
             self.thumbnail = "defaultThumbnail.png"
 
-    #def __str__(self):
-     #   return self.name
+    def save_xml(self):
+        for element in self._lvl.getroot().getchildren():
+            if element.tag == "name" and self.name != "Level":
+                element.text = self.name
+            if (element.tag == "description" or element.tag == "desc") and self.desc != "No description":
+                element.text = self.desc
+            if element.tag == "data":
+                element.text = self.datapath.split("\\")[-1]
+            if element.tag == "background" and self.background != (100, 120, 150, 255):
+                element.text = self.background
+            if element.tag == "thumbnail" and self.thumbnail != "defaultThumbnail.png":
+                element.text = self.thumbnail
+        for required in list(self.required.keys()):
+            for item in self.required[required]:
+                if item not in [name for name in self._lvl.getroot().findall("required").text]:
+                    element = et.Element("required")
+                    element.set("type", required)
+                    element.text = item
+                    self._lvl.getroot().append(element)
+        self._lvl.write(self.folder)
 
 class LevelCorrupt(Exception):
 

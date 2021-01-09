@@ -456,7 +456,8 @@ class LevelEditor(scene.Scene):
         activeLayer = [layer for layer in self.layers if layer.visible]
         if item[:-4] not in [req[0] for req in self.levelData.requires] and item != "empty":
             self.levelData.requires.append((item[:-4], items.itempacks[itempack.idx].item_res[item[:-4]]))
-            print((item[:-4], items.itempacks[itempack.idx].item_res[item[:-4]]))
+        if itempack not in self.level.required["itempack"]:
+            self.level.required["itempack"].append(itempack)
         for tile in selectedTiles:
             if item == "empty":
                 activeLayer[0].get_at_pixel(tile[0].x, tile[0].y).tile = None
@@ -503,7 +504,7 @@ class LevelEditor(scene.Scene):
         # PROBLEM: BROKEN SCALING WITH VIEWPORT AND SCROLLER, DO NOT RESIZE WINDOW
 
     def saveLevel(self):
-        pass
+        self.level.save_xml()
 
     def discardLevel(self):
         pass
