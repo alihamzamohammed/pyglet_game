@@ -451,7 +451,7 @@ class LevelEditor(scene.Scene):
         activeLayer = [layer for layer in self.layers if layer.visible]
         if item[:-4] not in [req[0] for req in self.levelData.requires]:
             self.levelData.requires.append(tuple(item[:-4], items.itempacks[itempack].item_res[item[:-4]]))
-            print(tuple(item[:-4], items.itempacks[itempack].item_res[item[:-4]]))
+            print(tuple(item[:-4], items.itempacks[itempack.idx].item_res[item[:-4]]))
         for tile in selectedTiles:
             if item == "empty":
                 activeLayer[0].get_at_pixel(tile[0].x, tile[0].y).tile = None
