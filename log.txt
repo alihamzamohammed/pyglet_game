@@ -32117,3 +32117,15 @@ INFO: Multiplayer not yet implemented!
 
 DEBUG: New execution, at: 2021-01-09 21:36:39.843022
 DEBUG: Init resources
+
+DEBUG: New execution, at: 2021-01-09 21:37:57.731303
+DEBUG: Init resources
+DEBUG: Starting game.
+DEBUG: Resolution is 1280x720
+DEBUG: Fullscreen is disabled
+DEBUG: Starting game loading!
+DEBUG: Init items
+DEBUG: Init levels
+DEBUG: Init game modes
+DEBUG: Loading finished, displaying Main Menu
+INFO: Multiplayer not yet implemented!

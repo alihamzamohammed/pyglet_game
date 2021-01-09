@@ -42,7 +42,7 @@ def init():
 def showMessage(text, duration = 3.5):
     global currentAction
     if not message in director.scene.get_children():
-        director.scene.add(message)
+        director.scene.add(message, z=100)
     if message.active:
         message.remove_action(currentAction)
         message.do(message.hideAction)
