@@ -441,7 +441,11 @@ class LevelEditor(scene.Scene):
         activeLayer = [layer for layer in self.layers if layer.visible]
         for tile in selectedTiles:
             activeLayer[0].get_at_pixel(tile[0].x, tile[0].y).tile = items.itempacks[itempack.idx].item_data[item[:-4]]
+            tile[0].image = pyglet.resource.image("leveleditorItem.png")
+            tile[1] = False
         activeLayer[0].set_dirty()
+        selectedTiles = []
+        # TODO: Add XML fixing 
 
     def activeLayerChanged(self):
         print("changing layers")
