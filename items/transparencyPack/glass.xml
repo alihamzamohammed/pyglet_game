@@ -1,0 +1,11 @@
+<?xml version="1.0" ?>
+<resource>
+    <imageatlas size="32x32" file="glass.png">
+        <image id="glassi" offset="0,0" />
+    </imageatlas>
+    <tileset>
+        <tile id="glass">
+            <image ref="glassi" />
+        </tile>
+    </tileset>
+</resource>

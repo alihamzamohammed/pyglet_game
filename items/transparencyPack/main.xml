@@ -3,4 +3,5 @@
     <name>Transparency Pack</name>
     <description>This item pack adds see through items to the game, providing a solid but transparent barrier.</description>
     <thumbnail>thumbnail.png</thumbnail>
+    <item>glass.xml</item>
 </itempack>
