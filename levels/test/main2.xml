@@ -1,0 +1,10 @@
+<level>
+    <name>Test Level</name>
+    <description>This level is for testing purposes</description>
+    <data>level.xml</data>
+    <background>bg.jpg</background>
+    <thumbnail />
+    <required type="itempack">default</required>
+    <required type="itempack">bouncePack</required>
+    <required type="itempack">movePack</required>
+</level>

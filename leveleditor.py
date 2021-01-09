@@ -457,7 +457,7 @@ class LevelEditor(scene.Scene):
         if item[:-4] not in [req[0] for req in self.levelData.requires] and item != "empty":
             self.levelData.requires.append((item[:-4], items.itempacks[itempack.idx].item_res[item[:-4]]))
         if itempack not in self.level.required["itempack"]:
-            self.level.required["itempack"].append(itempack)
+            self.level.required["itempack"].append(itempack.idx)
         for tile in selectedTiles:
             if item == "empty":
                 activeLayer[0].get_at_pixel(tile[0].x, tile[0].y).tile = None
