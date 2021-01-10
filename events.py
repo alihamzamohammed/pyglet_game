@@ -125,6 +125,7 @@ GameMenuEvents.register_event_type("GamePlayButtonClicked")
 GameMenuEvents.register_event_type("replaceLevelMenu")
 GameMenuEvents.register_event_type("ChosenBoxClicked")
 GameMenuEvents.register_event_type("ReturnToGMMenu")
+GameMenuEvents.register_event_type("openLevelEditor")
 
 class LevelEditorEvents(pyglet.window.EventDispatcher):
 

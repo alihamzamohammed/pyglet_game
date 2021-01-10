@@ -32279,3 +32279,14 @@ DEBUG: Init items
 DEBUG: Init levels
 DEBUG: Init game modes
 DEBUG: Loading finished, displaying Main Menu
+
+DEBUG: New execution, at: 2021-01-10 12:14:45.164479
+DEBUG: Init resources
+DEBUG: Starting game.
+DEBUG: Resolution is 1280x720
+DEBUG: Fullscreen is disabled
+DEBUG: Starting game loading!
+DEBUG: Init items
+DEBUG: Init levels
+DEBUG: Init game modes
+DEBUG: Loading finished, displaying Main Menu
