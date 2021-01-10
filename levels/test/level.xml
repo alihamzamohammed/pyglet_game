@@ -14,7 +14,6 @@
 <requires file="items/movePack/0.2x5s.xml" />
 <requires file="items/movePack/0.5x3s.xml" />
 <requires file="items/movePack/hold.xml"  />
-<requires file="items/transparencyPack/glass.xml" />
 <rectmap id="walls" origin="0,0,0" tile_size="32x32"><column><cell tile="stone" />
 <cell tile="stone" />
 <cell tile="stone" />
@@ -378,7 +377,7 @@
 <column><cell tile="dirt" />
 <cell tile="grass" />
 <cell />
-<cell tile="glass" />
+<cell />
 <cell />
 <cell />
 <cell />
@@ -402,7 +401,7 @@
 <column><cell tile="dirt" />
 <cell tile="grass" />
 <cell />
-<cell tile="glass" />
+<cell />
 <cell />
 <cell />
 <cell />
@@ -426,7 +425,7 @@
 <column><cell tile="dirt" />
 <cell tile="grass" />
 <cell />
-<cell tile="glass" />
+<cell />
 <cell />
 <cell />
 <cell />
@@ -450,7 +449,7 @@
 <column><cell tile="dirt" />
 <cell tile="grass" />
 <cell />
-<cell tile="glass" />
+<cell />
 <cell />
 <cell />
 <cell />
