@@ -159,7 +159,7 @@ LevelEditorEvents.register_event_type("itemClicked")
 LevelEditorEvents.register_event_type("activeLayerChanged")
 LevelEditorEvents.register_event_type("saveLevel")
 LevelEditorEvents.register_event_type("discardLevel")
-LevelEditorEvents.register_event_type("leveleditorGoBack")
+LevelEditorEvents.register_event_type("leveleditorBack")
 
 pausescreenevents = PauseScreenEvents()
 mainmenuevents = MainMenuEvents()
