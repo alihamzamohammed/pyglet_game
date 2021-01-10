@@ -41,21 +41,21 @@ class LevelMenu(Scene):
         self.levelTitle.element.text = "Levels"
         self.levelTitle.x = reswidth * 0.13
         self.levelTitle.y = resheight * 1.2
-        backButton = mediumButton("BACK", events.mainmenuevents.backToMainMenu)
-        backButton.x = reswidth * 0.065
-        backButton.y = resheight * 0.89
-        backButton.show(0.01)
-        newButton = mediumButton("EDIT", events.gamemenuevents.levelEditor) # TODO: Need to change to level creator/editor
-        newButton.x = reswidth * 0.935
-        newButton.y = resheight * 0.89
+        self.backButton = mediumButton("BACK", events.mainmenuevents.backToMainMenu)
+        self.backButton.x = reswidth * 0.065
+        self.backButton.y = resheight * 0.89
+        self.backButton.show(0.01)
+        self.newButton = mediumButton("EDIT", events.gamemenuevents.levelEditor) # TODO: Need to change to level creator/editor
+        self.newButton.x = reswidth * 0.935
+        self.newButton.y = resheight * 0.89
         #newButton.show(0.01)
         self.chosenBox = ChosenBox(cfg.loadedGameMode)
         self.chosenBox.x = reswidth * 0.7
         self.chosenBox.y = resheight * 1.2
         self.chosenBox.update_positions()
         self.add(self.chosenBox)
-        self.add(backButton)
-        self.add(newButton)
+        self.add(self.backButton)
+        self.add(self.newButton)
         self.add(self.levelTitle)
         self.levelTitle.do(AccelDeccel(MoveTo((self.levelTitle.x, resheight * 0.94), 2)))
         self.chosenBox.do(AccelDeccel(MoveTo((self.chosenBox.x, resheight * 0.89), 2)))
@@ -65,7 +65,7 @@ class LevelMenu(Scene):
         self.add(self.playButton)
         self.playButton.show()
 
-        blackLayer = layer.ColorLayer(0, 0, 0, 255)
+        blackLayer = layer.ColorLayer(0, 0, 0, 100)
         blackLayer.width = reswidth
         blackLayer.height = int(resheight * 0.35)
         blackLayer.x = 0
@@ -114,7 +114,7 @@ class LevelMenu(Scene):
 
     def LevelChosen(self, level):
         self.playButton.do(AccelDeccel(MoveTo((self.playButton.x, resheight * 0.1), duration = 1.5)))
-        setattr(self.newbutton, "eventparam", level)
+        setattr(self.newButton, "eventparam", level)
         self.newButton.show(1)
         levels.levelLoad(level.idx)
 
