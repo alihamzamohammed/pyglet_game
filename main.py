@@ -32,6 +32,7 @@ resources.resourceLoad()
 
 import mainmenu
 import gamemenu
+import leveleditor
 import settings
 import controls
 
@@ -67,8 +68,6 @@ class Game(object):
 
     def multiplayerButtonClicked(self):
         logger.addLog("Multiplayer not yet implemented!")
-        import leveleditor
-        director.replace(FadeTransition(leveleditor.LevelEditor(levels.levels["test"]), duration = 1, color = (0, 0, 0)))
 
     def settingsButtonClicked(self):
         director.replace(FadeTransition(settings.SettingsScreen(), duration = 1, color = (0, 0, 0)))
@@ -95,22 +94,19 @@ class Game(object):
     def ReturnToGMMenu(self):
         director.replace(FadeTransition(gamemenu.GameModeMenu(), duration = 0.001))
 
-    ## TODO: WORK IN PROGRESS
-    # PROBLEM: Current implemntation is slow and inefficient, due to too may sprites added to the view. 
-    # PROBLEM: Need to find a way to implement grid system more efficiently, with handlers. 
-    # PROBLEM: This may be able to be done through actions, which colorise the cell when the mouse hovers over it.
-    # PROBLEM: However, a way to implement a grid needs to be found. 
-    # BUG: Too many sprites added, even with batches, causes fps drop
-    # DEBUG def leveleditorButtonClicked(self):
-    # DEBUG    director.replace(FadeTransition(leveleditor.LevelEditor(level), duration = 1, color = (0, 0, 0)))
-    # FIX: Added stable grid with selections working
+    def openLevelEditor(self, level):
+        director.replace(FadeTransition(leveleditor.LevelEditor(level), duration = 1, color = (0, 0, 0)))
 
+    def leveleditorBack(self):
+        director.replace(FadeTransition(gamemenu.GameModeMenu(), duration = 1, color = (0, 0, 0)))
 
     def __init__(self):
         super(Game, self).__init__()
         events.mainmenuevents.push_handlers(self)
         events.gamemenuevents.push_handlers(self)
         events.settingsevents.push_handlers(self)
+        events.leveleditorevents.push_handlers(self)
+
 
 if __name__=="__main__":
     logger.addLog("Starting game.", logger.loglevel["debug"])

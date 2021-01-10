@@ -114,6 +114,9 @@ class GameMenuEvents(pyglet.window.EventDispatcher):
     def onReturnToGMMenu(self):
         self.dispatch_event("ReturnToGMMenu")
 
+    def levelEditor(self, level):
+        self.dispatch_event("openLevelEditor", level)
+
 GameMenuEvents.register_event_type("ExtendedInfoShow")
 GameMenuEvents.register_event_type("ExtendedInfoHide")
 GameMenuEvents.register_event_type("GameModeChosen")
@@ -136,7 +139,6 @@ class LevelEditorEvents(pyglet.window.EventDispatcher):
 
     def itemClick(self, itempack, item):
         self.dispatch_event("itemClicked", itempack, item)
-        print(item + " clicked!")
 
     def activeLayerChange(self):
         self.dispatch_event("activeLayerChanged")
@@ -147,12 +149,16 @@ class LevelEditorEvents(pyglet.window.EventDispatcher):
     def levelDiscard(self):
         self.dispatch_event("discardLevel")
 
+    def leveleditorGoBack(self):
+        self.dispatch_event("leveleditorBack")
+
 LevelEditorEvents.register_event_type("rowNumberUp")
 LevelEditorEvents.register_event_type("rowNumberDown")
 LevelEditorEvents.register_event_type("itemClicked")
 LevelEditorEvents.register_event_type("activeLayerChanged")
 LevelEditorEvents.register_event_type("saveLevel")
 LevelEditorEvents.register_event_type("discardLevel")
+LevelEditorEvents.register_event_type("leveleditorGoBack")
 
 pausescreenevents = PauseScreenEvents()
 mainmenuevents = MainMenuEvents()

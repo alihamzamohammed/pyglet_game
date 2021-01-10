@@ -45,10 +45,10 @@ class LevelMenu(Scene):
         backButton.x = reswidth * 0.065
         backButton.y = resheight * 0.89
         backButton.show(0.01)
-        newButton = mediumButton("NEW", events.mainmenuevents.backToMainMenu) # TODO: Need to change to level creator/editor
+        newButton = mediumButton("EDIT", events.gamemenuevents.levelEditor) # TODO: Need to change to level creator/editor
         newButton.x = reswidth * 0.935
         newButton.y = resheight * 0.89
-        newButton.show(0.01)
+        #newButton.show(0.01)
         self.chosenBox = ChosenBox(cfg.loadedGameMode)
         self.chosenBox.x = reswidth * 0.7
         self.chosenBox.y = resheight * 1.2
@@ -114,6 +114,8 @@ class LevelMenu(Scene):
 
     def LevelChosen(self, level):
         self.playButton.do(AccelDeccel(MoveTo((self.playButton.x, resheight * 0.1), duration = 1.5)))
+        setattr(self.newbutton, "eventparam", level)
+        self.newButton.show(1)
         levels.levelLoad(level.idx)
 
     
@@ -143,7 +145,7 @@ class GameModeMenu(Scene):
         newButton = mediumButton("NEW", events.mainmenuevents.backToMainMenu) # TODO: Need to change to level creator/editor
         newButton.x = reswidth * 0.935
         newButton.y = resheight * 0.89
-        newButton.show(0.01)
+        #newButton.show(0.01)
         
         self.add(backButton)
         self.add(newButton)

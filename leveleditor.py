@@ -364,7 +364,7 @@ class LevelEditor(scene.Scene):
         self.title.x = int(self.headerLayer.width / 2)
         self.title.y = int(self.headerLayer.height / 2)
         
-        self.backButton = elements.mediumButton("BACK", events.mainmenuevents.onPlayButtonClick)
+        self.backButton = elements.mediumButton("BACK", events.leveleditorevents.leveleditorGoBack)
         self.backButton.x = int(self.headerLayer.width * 0.065)
         self.backButton.y =  int(self.headerLayer.height / 2)
         
@@ -372,7 +372,7 @@ class LevelEditor(scene.Scene):
         self.saveButton.x = int(self.headerLayer.width * 0.947)
         self.saveButton.y =  int(self.headerLayer.height / 2)
 
-        self.discardButton = elements.mediumButton("DISCARD", events.mainmenuevents.onPlayButtonClick)
+        self.discardButton = elements.mediumButton("DISCARD", events.leveleditorevents.levelDiscard)
         self.discardButton.lbl.element.font_size = 13
         self.discardButton.x = int(self.headerLayer.width * 0.857)
         self.discardButton.y = int(self.headerLayer.height / 2)
