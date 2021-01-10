@@ -13,7 +13,8 @@
 <requires file="items/movePack/5x5s.xml" />
 <requires file="items/movePack/0.2x5s.xml" />
 <requires file="items/movePack/0.5x3s.xml" />
-<requires file="items/movePack/hold.xml"  />
+<requires file="items/movePack/hold.xml" />
+<requires file="items//transparencyPack\glass.xml" />
 <rectmap id="walls" origin="0,0,0" tile_size="32x32"><column><cell tile="stone" />
 <cell tile="stone" />
 <cell tile="stone" />
@@ -402,7 +403,7 @@
 <cell tile="grass" />
 <cell />
 <cell />
-<cell />
+<cell tile="glass" />
 <cell />
 <cell />
 <cell />
@@ -426,7 +427,7 @@
 <cell tile="grass" />
 <cell />
 <cell />
-<cell />
+<cell tile="glass" />
 <cell />
 <cell />
 <cell />
@@ -450,8 +451,8 @@
 <cell tile="grass" />
 <cell />
 <cell />
-<cell />
-<cell />
+<cell tile="glass" />
+<cell tile="glass" />
 <cell />
 <cell />
 <cell />
@@ -472,6 +473,8 @@
 </column>
 <column><cell tile="dirt" />
 <cell tile="grass" />
+<cell />
+<cell />
 <cell />
 <cell tile="glass" />
 <cell />
@@ -482,8 +485,6 @@
 <cell />
 <cell />
 <cell />
-<cell />
-<cell />
 <cell tile="dirt" />
 <cell />
 <cell />
@@ -499,31 +500,7 @@
 <cell />
 <cell />
 <cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell tile="dirt" />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell tile="stone" />
-</column>
-<column><cell tile="dirt" />
-<cell tile="grass" />
-<cell />
-<cell />
-<cell />
-<cell />
+<cell tile="glass" />
 <cell />
 <cell />
 <cell />
@@ -548,7 +525,55 @@
 <cell />
 <cell />
 <cell />
+<cell tile="glass" />
 <cell />
+<cell />
+<cell />
+<cell />
+<cell />
+<cell />
+<cell />
+<cell tile="dirt" />
+<cell />
+<cell />
+<cell />
+<cell />
+<cell />
+<cell />
+<cell />
+<cell tile="stone" />
+</column>
+<column><cell tile="dirt" />
+<cell tile="grass" />
+<cell />
+<cell />
+<cell />
+<cell />
+<cell tile="glass" />
+<cell />
+<cell />
+<cell />
+<cell />
+<cell />
+<cell />
+<cell />
+<cell tile="dirt" />
+<cell />
+<cell />
+<cell />
+<cell />
+<cell />
+<cell />
+<cell />
+<cell tile="stone" />
+</column>
+<column><cell tile="dirt" />
+<cell tile="grass" />
+<cell />
+<cell />
+<cell />
+<cell />
+<cell tile="glass" />
 <cell />
 <cell />
 <cell />
@@ -573,31 +598,7 @@
 <cell />
 <cell />
 <cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell tile="dirt" />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell tile="stone" />
-</column>
-<column><cell tile="dirt" />
-<cell tile="grass" />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
+<cell tile="glass" />
 <cell />
 <cell />
 <cell />
@@ -621,7 +622,7 @@
 <cell />
 <cell />
 <cell />
-<cell />
+<cell tile="glass" />
 <cell />
 <cell />
 <cell />
