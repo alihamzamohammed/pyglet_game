@@ -508,6 +508,7 @@ class LevelEditor(scene.Scene):
         self.levelData.save_xml(self.level.folder + "\\level2.xml")
         self.level.save_xml()
         msg.showMessage("Level has been saved!", duration=4.5)
+        # TODO: Namespace problems in saving level.xml, namespaces are discarded
 
     def discardLevel(self):
         pass
