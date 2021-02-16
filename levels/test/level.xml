@@ -19,7 +19,9 @@
 <requires file="items//default\stone.xml" />
 <requires file="items//default\stone.xml" />
 <requires file="items//default\stone.xml" />
-<rectmap id="walls" origin="0,0,0" tile_size="32x32"><column><cell tile="stone" />
+<requires file="items//default\stoneBeam.xml" />
+<requires file="items//bouncePack\trampoline.xml" />
+<rectmap id="walls" tile_size="32x32" origin="0,0,0"><column><cell tile="stone" />
 <cell tile="stone" />
 <cell tile="stone" />
 <cell tile="stone" />
@@ -45,7 +47,7 @@
 </column>
 <column><cell tile="dirt" />
 <cell tile="grass" />
-<cell><property name="player_start" type="bool" value="True" /></cell>
+<cell><property name="player_start" value="True" type="bool" /></cell>
 <cell />
 <cell />
 <cell />
@@ -627,31 +629,7 @@
 <cell />
 <cell />
 <cell tile="glass" />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell tile="cloud" />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell tile="stone" />
-</column>
-<column><cell tile="dirt" />
-<cell tile="grass" />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
+<cell tile="trampoline" />
 <cell />
 <cell />
 <cell />
@@ -675,31 +653,7 @@
 <cell />
 <cell />
 <cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell tile="cloud" />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell tile="stone" />
-</column>
-<column><cell tile="dirt" />
-<cell tile="grass" />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
-<cell />
+<cell tile="trampoline" />
 <cell />
 <cell />
 <cell />
@@ -723,7 +677,55 @@
 <cell />
 <cell />
 <cell />
+<cell tile="trampoline" />
 <cell />
+<cell />
+<cell />
+<cell />
+<cell />
+<cell />
+<cell />
+<cell />
+<cell tile="cloud" />
+<cell />
+<cell />
+<cell />
+<cell />
+<cell tile="stone" />
+</column>
+<column><cell tile="dirt" />
+<cell tile="grass" />
+<cell />
+<cell />
+<cell />
+<cell />
+<cell />
+<cell />
+<cell tile="trampoline" />
+<cell />
+<cell />
+<cell />
+<cell />
+<cell />
+<cell />
+<cell />
+<cell />
+<cell tile="cloud" />
+<cell />
+<cell />
+<cell />
+<cell />
+<cell tile="stone" />
+</column>
+<column><cell tile="dirt" />
+<cell tile="grass" />
+<cell />
+<cell />
+<cell />
+<cell />
+<cell />
+<cell />
+<cell tile="trampoline" />
 <cell />
 <cell />
 <cell />
@@ -1820,7 +1822,7 @@
 <cell tile="stone" />
 </column>
 </rectmap>
-<rectmap id="decorations" origin="0,0,0" tile_size="32x32"><column><cell />
+<rectmap id="decorations" tile_size="32x32" origin="0,0,0"><column><cell />
 <cell />
 <cell />
 <cell />
