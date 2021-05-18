@@ -66,3 +66,5 @@ modes/freeplay/__pycache__/__init__.cpython-37.pyc
 resources/__pycache__/__init__.cpython-37.pyc
 __pycache__/gamemenu.cpython-38.pyc
 
+sonartoken.txt
+.vscode/settings.json
